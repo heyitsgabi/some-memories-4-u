@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>The Music</title>
+<title>Music</title>
 
 <style>
 
@@ -147,25 +147,7 @@ h1 {
 }
 
 /* =========================================
-   INTRO TEXT
-========================================= */
-
-.intro {
-    margin: 0 auto 28px;
-
-    max-width: 500px;
-}
-
-.intro p {
-    font-size: 16px;
-
-    line-height: 1.7;
-
-    color: #c2c2c2;
-}
-
-/* =========================================
-   HEADPHONES
+   TEXT + HEADPHONES
 ========================================= */
 
 .text-with-headphones {
@@ -179,6 +161,38 @@ h1 {
 
     gap: 13px;
 }
+
+.intro {
+    margin-bottom: 28px;
+}
+
+.tease {
+    margin-bottom: 11px;
+}
+
+.text-with-headphones p {
+    flex: 1;
+
+    color: #c2c2c2;
+}
+
+.intro p {
+    font-size: 16px;
+
+    line-height: 1.7;
+}
+
+.tease p {
+    font-size: 15px;
+
+    line-height: 1.7;
+
+    font-style: italic;
+}
+
+/* =========================================
+   HEADPHONES
+========================================= */
 
 .headphones {
     width: 21px;
@@ -237,7 +251,7 @@ h1 {
 
     max-width: 560px;
 
-    margin: 0 auto 27px;
+    margin: 0 auto 18px;
 }
 
 .spotify-label {
@@ -290,6 +304,8 @@ h1 {
 
     justify-content: center;
 
+    overflow: hidden;
+
     backdrop-filter: blur(16px);
 
     box-shadow:
@@ -297,40 +313,48 @@ h1 {
         0 0 55px rgba(30,215,96,0.045);
 }
 
-.spotify-placeholder {
+.spotify-box iframe {
+    display: block;
+
+    width: 100%;
+
+    border: none;
+}
+
+/* =========================================
+   OPEN IN SPOTIFY
+========================================= */
+
+.spotify-open {
+    display: inline-block;
+
+    margin-top: 14px;
+
+    color: #8a8a8a;
+
+    text-decoration: none;
+
     font-family: Arial, sans-serif;
 
-    font-size: 10px;
+    font-size: 9px;
 
     letter-spacing: 3px;
 
-    color: #777;
-
     text-transform: uppercase;
+
+    transition: color 0.2s ease;
+}
+
+.spotify-open:visited {
+    color: #8a8a8a;
+}
+
+.spotify-open:hover {
+    color: #ffffff;
 }
 
 /* =========================================
    LOWER TEXT
-========================================= */
-
-.tease {
-    margin-bottom: 11px;
-}
-
-.tease p {
-    flex: 1;
-
-    color: #c2c2c2;
-
-    font-size: 15px;
-
-    line-height: 1.7;
-
-    font-style: italic;
-}
-
-/* =========================================
-   LISTEN IN ORDER
 ========================================= */
 
 .listen {
@@ -343,6 +367,8 @@ h1 {
     color: #fff;
 
     text-transform: uppercase;
+
+    margin-top: 4px;
 }
 
 /* =========================================
@@ -399,7 +425,6 @@ h1 {
     .spotify-box {
         min-height: 320px;
     }
-
 }
 
 </style>
@@ -428,7 +453,7 @@ h1 {
 
 
         <h1>
-             MUSIC
+            MUSIC
         </h1>
 
 
@@ -462,11 +487,26 @@ h1 {
 
             <div class="spotify-box">
 
-                <div class="spotify-placeholder">
-                    Spotify playlist goes here
-                </div>
+                <iframe
+                    src="https://open.spotify.com/embed/playlist/6hKLkkNrVIzQXHrSKG5bsk?utm_source=generator"
+                    width="100%"
+                    height="352"
+                    frameborder="0"
+                    allowfullscreen=""
+                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                    loading="lazy">
+                </iframe>
 
             </div>
+
+
+            <a
+                href="https://open.spotify.com/playlist/6hKLkkNrVIzQXHrSKG5bsk"
+                class="spotify-open"
+                target="_blank"
+                rel="noopener noreferrer">
+                Open in Spotify ↗
+            </a>
 
         </div>
 
@@ -493,7 +533,7 @@ h1 {
 
         <!-- BACK -->
 
-        <a href="archive.html" class="back">
+        <a href="/some-memories-4-u/archive.html" class="back">
             ← Back to archive
         </a>
 
