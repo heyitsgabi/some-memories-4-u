@@ -6,184 +6,229 @@
     <title>The Soundtrack</title>
 
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
 
-        body {
-            min-height: 100vh;
-            background: #0d0d0d;
-            color: #f5f5f5;
-            font-family: Georgia, serif;
-            overflow-x: hidden;
-        }
+    body {
+        min-height: 100vh;
+        background:
+            radial-gradient(circle at center, #292929 0%, #171717 38%, #090909 78%);
+        color: #f5f5f5;
+        font-family: Georgia, serif;
+        overflow-x: hidden;
+    }
 
-        .page {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 60px 25px;
-            position: relative;
-            overflow: hidden;
-        }
+    .page {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 70px 25px;
+        position: relative;
+        overflow: hidden;
+    }
 
-        .glow {
-            position: absolute;
-            width: 520px;
-            height: 520px;
-            background: rgba(255, 255, 255, 0.035);
-            border-radius: 50%;
-            filter: blur(70px);
-            z-index: 0;
-        }
+    /* Large visible soundwave */
+    .wave {
+        position: absolute;
+        left: -10%;
+        width: 120%;
+        height: 260px;
+        opacity: 0.25;
+        z-index: 0;
+        background:
+            repeating-linear-gradient(
+                90deg,
+                transparent 0px,
+                transparent 18px,
+                rgba(255, 255, 255, 0.22) 19px,
+                rgba(255, 255, 255, 0.22) 21px,
+                transparent 22px,
+                transparent 42px
+            );
+        mask-image: linear-gradient(
+            to bottom,
+            transparent 0%,
+            black 25%,
+            black 75%,
+            transparent 100%
+        );
+        transform: rotate(-4deg) scaleY(0.7);
+    }
 
-        .wave {
-            position: absolute;
-            width: 120%;
-            height: 120px;
-            border-top: 1px solid rgba(255, 255, 255, 0.035);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.02);
-            transform: rotate(-5deg);
-            z-index: 0;
-        }
+    .wave.one {
+        top: 3%;
+    }
 
-        .wave.one {
-            top: 18%;
-        }
+    .wave.two {
+        bottom: 2%;
+        transform: rotate(4deg) scaleY(0.7);
+    }
 
-        .wave.two {
-            bottom: 18%;
-            transform: rotate(5deg);
-        }
+    /* Soft spotlight behind the playlist */
+    .glow {
+        position: absolute;
+        width: 650px;
+        height: 650px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.08);
+        filter: blur(100px);
+        z-index: 0;
+    }
 
-        .note {
-            position: absolute;
-            color: rgba(255, 255, 255, 0.12);
-            font-family: Arial, sans-serif;
-            font-size: 13px;
-            z-index: 0;
-        }
+    /* Decorative music notes */
+    .note {
+        position: absolute;
+        font-family: Georgia, serif;
+        color: rgba(255, 255, 255, 0.28);
+        z-index: 1;
+        font-size: 25px;
+    }
 
-        .note.one {
-            top: 15%;
-            left: 13%;
-        }
+    .note.one {
+        top: 18%;
+        left: 12%;
+        transform: rotate(-12deg);
+    }
 
-        .note.two {
-            top: 28%;
-            right: 12%;
-        }
+    .note.two {
+        top: 32%;
+        right: 10%;
+        font-size: 18px;
+        transform: rotate(10deg);
+    }
 
-        .note.three {
-            bottom: 18%;
-            left: 17%;
-        }
+    .note.three {
+        bottom: 23%;
+        left: 9%;
+        font-size: 20px;
+        transform: rotate(8deg);
+    }
 
-        .track-number {
-            position: absolute;
-            color: rgba(255, 255, 255, 0.08);
-            font-family: Arial, sans-serif;
-            font-size: 10px;
-            letter-spacing: 2px;
-            z-index: 0;
-        }
+    .note.four {
+        bottom: 15%;
+        right: 14%;
+        font-size: 28px;
+        transform: rotate(-8deg);
+    }
 
-        .track-one {
-            top: 42%;
-            left: 7%;
-        }
+    /* Track numbers */
+    .track-number {
+        position: absolute;
+        font-family: Arial, sans-serif;
+        color: rgba(255, 255, 255, 0.18);
+        font-size: 11px;
+        letter-spacing: 4px;
+        z-index: 1;
+    }
 
-        .track-two {
-            bottom: 34%;
-            right: 7%;
-        }
+    .track-one {
+        top: 22%;
+        left: 25%;
+    }
 
-        .content {
-            width: 100%;
-            max-width: 600px;
-            position: relative;
-            z-index: 2;
-        }
+    .track-two {
+        top: 20%;
+        right: 24%;
+    }
 
-        .eyebrow {
-            font-family: Arial, sans-serif;
-            font-size: 10px;
-            letter-spacing: 4px;
-            color: #777777;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-        }
+    .track-three {
+        bottom: 21%;
+        left: 24%;
+    }
 
-        h1 {
-            font-size: clamp(42px, 8vw, 68px);
-            font-weight: normal;
-            letter-spacing: -2px;
-            margin-bottom: 25px;
-        }
+    .track-four {
+        bottom: 19%;
+        right: 25%;
+    }
 
-        .intro {
-            max-width: 500px;
-            margin: 0 auto 38px;
-            font-size: 16px;
-            line-height: 1.7;
-            color: #b0b0b0;
-        }
+    .content {
+        width: 100%;
+        max-width: 620px;
+        position: relative;
+        z-index: 2;
+    }
 
-        .spotify-box {
-            width: 100%;
-            min-height: 352px;
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            background: rgba(0, 0, 0, 0.35);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 28px;
-            backdrop-filter: blur(8px);
-        }
+    .eyebrow {
+        font-family: Arial, sans-serif;
+        font-size: 10px;
+        letter-spacing: 5px;
+        color: #999999;
+        margin-bottom: 18px;
+        text-transform: uppercase;
+    }
 
-        .spotify-placeholder {
-            font-family: Arial, sans-serif;
-            font-size: 11px;
-            letter-spacing: 3px;
-            color: #777777;
-            text-transform: uppercase;
-        }
+    h1 {
+        font-size: clamp(42px, 8vw, 70px);
+        font-weight: normal;
+        letter-spacing: -2px;
+        margin-bottom: 25px;
+    }
 
-        .tease {
-            font-size: 15px;
-            color: #999999;
-            font-style: italic;
-            line-height: 1.7;
-            margin-bottom: 10px;
-        }
+    .intro {
+        max-width: 500px;
+        margin: 0 auto 40px;
+        font-size: 16px;
+        line-height: 1.7;
+        color: #c0c0c0;
+    }
 
-        .listen {
-            font-family: Arial, sans-serif;
-            font-size: 11px;
-            letter-spacing: 3px;
-            color: #f5f5f5;
-            text-transform: uppercase;
-        }
+    .spotify-box {
+        width: 100%;
+        min-height: 352px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        background: rgba(0, 0, 0, 0.55);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 30px;
+        backdrop-filter: blur(12px);
+        box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5);
+    }
 
-        .back {
-            display: inline-block;
-            margin-top: 40px;
-            color: #666666;
-            text-decoration: none;
-            font-family: Arial, sans-serif;
-            font-size: 10px;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-        }
+    .spotify-placeholder {
+        font-family: Arial, sans-serif;
+        font-size: 11px;
+        letter-spacing: 3px;
+        color: #999999;
+        text-transform: uppercase;
+    }
 
-        .back:hover {
-            color: #ffffff;
-        }
-    </style>
+    .tease {
+        font-size: 15px;
+        color: #b0b0b0;
+        font-style: italic;
+        line-height: 1.7;
+        margin-bottom: 12px;
+    }
+
+    .listen {
+        font-family: Arial, sans-serif;
+        font-size: 11px;
+        letter-spacing: 3px;
+        color: #ffffff;
+        text-transform: uppercase;
+    }
+
+    .back {
+        display: inline-block;
+        margin-top: 42px;
+        color: #777777;
+        text-decoration: none;
+        font-family: Arial, sans-serif;
+        font-size: 10px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+    }
+
+    .back:hover {
+        color: #ffffff;
+    }
+</style>
 </head>
 
 <body>
