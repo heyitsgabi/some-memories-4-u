@@ -1,6 +1,8 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -8,9 +10,9 @@
 
 <style>
 
-/* =========================================
+/* =====================================================
    RESET
-========================================= */
+===================================================== */
 
 * {
     box-sizing: border-box;
@@ -27,18 +29,23 @@ body {
 
     background:
         radial-gradient(
-            circle at 15% 10%,
-            rgba(160,145,120,0.08),
-            transparent 28%
-        ),
-        radial-gradient(
-            circle at 85% 45%,
-            rgba(0,0,0,0.035),
+            ellipse at 10% 5%,
+            rgba(122, 101, 73, 0.13),
             transparent 32%
         ),
-        #f3f0e9;
+        radial-gradient(
+            ellipse at 90% 20%,
+            rgba(255,255,255,0.8),
+            transparent 35%
+        ),
+        radial-gradient(
+            ellipse at 45% 70%,
+            rgba(111, 92, 67, 0.08),
+            transparent 40%
+        ),
+        #eee9df;
 
-    color: #171717;
+    color: #191817;
 
     font-family: Georgia, "Times New Roman", serif;
 
@@ -47,9 +54,10 @@ body {
     position: relative;
 }
 
-/* =========================================
-   PAPER GRAIN
-========================================= */
+
+/* =====================================================
+   PAPER TEXTURE
+===================================================== */
 
 body::before {
     content: "";
@@ -60,41 +68,63 @@ body::before {
 
     pointer-events: none;
 
-    z-index: 999;
+    z-index: 9999;
 
-    opacity: 0.055;
+    opacity: 0.09;
 
     background-image:
-        url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.75'/%3E%3C/svg%3E");
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.65' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='.55'/%3E%3C/svg%3E");
 
     mix-blend-mode: multiply;
 }
 
-/* =========================================
+
+/* =====================================================
+   DECORATIVE PAPER EDGE
+===================================================== */
+
+body::after {
+    content: "";
+
+    position: fixed;
+
+    inset: 12px;
+
+    border: 1px solid rgba(50,45,38,0.08);
+
+    pointer-events: none;
+
+    z-index: 9998;
+}
+
+
+/* =====================================================
    PAGE
-========================================= */
+===================================================== */
 
 .page {
     width: 100%;
-    max-width: 1100px;
+
+    max-width: 1180px;
 
     margin: 0 auto;
 
-    padding: 85px 45px 100px;
+    padding: 70px 35px 90px;
 }
 
-/* =========================================
+
+/* =====================================================
    HEADER
-========================================= */
+===================================================== */
 
 .header {
     text-align: center;
 
-    margin-bottom: 75px;
+    margin-bottom: 55px;
 
     position: relative;
 
-    z-index: 10;
+    z-index: 20;
 }
 
 .eyebrow {
@@ -104,15 +134,15 @@ body::before {
 
     letter-spacing: 5px;
 
-    color: #77736c;
-
     text-transform: uppercase;
 
-    margin-bottom: 22px;
+    color: #777067;
+
+    margin-bottom: 18px;
 }
 
 h1 {
-    font-size: clamp(50px, 9vw, 82px);
+    font-size: clamp(48px, 8vw, 78px);
 
     font-weight: normal;
 
@@ -120,88 +150,161 @@ h1 {
 
     line-height: 0.9;
 
-    color: #171717;
+    color: #181716;
 }
-
-.header-note {
-    margin: 25px auto 0;
-
-    max-width: 380px;
-
-    color: #77736c;
-
-    font-size: 13px;
-
-    line-height: 1.7;
-}
-
-/* =========================================
-   LITTLE HEADER LINE
-========================================= */
 
 .header-line {
-    width: 55px;
+    width: 70px;
 
     height: 1px;
 
-    background: #272727;
+    background: #3b3731;
 
-    margin: 28px auto 0;
+    margin: 25px auto 20px;
 }
 
-/* =========================================
-   COLLAGE
-========================================= */
+.header-note {
+    color: #777067;
 
-.collage {
+    font-size: 12px;
+
+    letter-spacing: 0.3px;
+}
+
+.section-number {
+    margin-top: 18px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 8px;
+
+    letter-spacing: 4px;
+
+    text-transform: uppercase;
+
+    color: #9a9389;
+}
+
+
+/* =====================================================
+   GALLERY
+===================================================== */
+
+.gallery {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 42px 22px;
+
+    align-items: start;
+
+    position: relative;
+
+    z-index: 5;
+}
+
+
+/* =====================================================
+   PHOTO ITEM
+===================================================== */
+
+.item {
+    position: relative;
+
+    cursor: pointer;
+
+    min-width: 0;
+}
+
+.item:nth-child(2) {
+    margin-top: 35px;
+}
+
+.item:nth-child(5) {
+    margin-top: 25px;
+}
+
+.item:nth-child(7) {
+    margin-top: 38px;
+}
+
+.item:nth-child(9) {
+    margin-top: 18px;
+}
+
+
+/* =====================================================
+   PHOTO FRAME
+===================================================== */
+
+.frame {
     position: relative;
 
     width: 100%;
 
-    max-width: 900px;
+    aspect-ratio: 0.82;
 
-    margin: 0 auto;
+    padding: 8px;
 
-    height: 1740px;
-}
+    background: #f8f5ee;
 
-/* =========================================
-   PHOTO CARD
-========================================= */
-
-.photo {
-    position: absolute;
-
-    background: #faf9f5;
-
-    padding: 10px 10px 38px;
-
-    border: 1px solid rgba(20,20,20,0.18);
+    border: 1px solid rgba(25,23,20,0.28);
 
     box-shadow:
-        0 18px 45px rgba(0,0,0,0.12);
+        5px 7px 0 rgba(65,57,47,0.08),
+        0 12px 25px rgba(40,34,28,0.13);
 
     transition:
-        transform 0.45s ease,
-        box-shadow 0.45s ease;
-
-    z-index: 2;
+        transform 0.35s ease,
+        box-shadow 0.35s ease;
 }
 
-.photo::before {
+
+/* Inner frame */
+
+.frame::before {
     content: "";
 
     position: absolute;
 
     inset: 4px;
 
-    border: 1px solid rgba(30,30,30,0.08);
+    border: 1px solid rgba(35,31,27,0.13);
 
     pointer-events: none;
+
+    z-index: 3;
 }
 
-.photo img {
+
+/* Decorative corner */
+
+.frame::after {
+    content: "✦";
+
+    position: absolute;
+
+    top: 8px;
+
+    right: 10px;
+
+    font-size: 8px;
+
+    color: rgba(40,35,29,0.38);
+
+    z-index: 5;
+}
+
+
+/* =====================================================
+   IMAGE
+===================================================== */
+
+.frame img {
     width: 100%;
+
     height: 100%;
 
     display: block;
@@ -212,244 +315,330 @@ h1 {
 
     z-index: 2;
 
-    filter: saturate(0.94);
+    filter: saturate(0.91) contrast(0.97);
 
     transition:
-        transform 0.5s ease,
-        filter 0.5s ease;
+        transform 0.45s ease,
+        filter 0.45s ease;
 }
 
-.photo:hover {
+
+/* =====================================================
+   DIFFERENT FRAME STYLES
+===================================================== */
+
+.item:nth-child(2) .frame {
+    background: #e7dfd2;
+
+    border: 1px solid #4a443c;
+
     box-shadow:
-        0 25px 55px rgba(0,0,0,0.18);
+        8px 8px 0 rgba(57,50,42,0.11),
+        0 15px 30px rgba(40,34,28,0.14);
 }
 
-.photo:hover img {
-    filter: saturate(1);
+.item:nth-child(2) .frame::before {
+    inset: 6px;
+
+    border: 2px solid rgba(35,31,27,0.18);
+}
+
+.item:nth-child(3) .frame {
+    background: #faf8f2;
+
+    padding: 11px;
+
+    border: 1px solid rgba(20,20,20,0.4);
+
+    box-shadow:
+        -4px 6px 0 rgba(75,66,54,0.08),
+        0 13px 28px rgba(40,34,28,0.12);
+}
+
+.item:nth-child(4) .frame {
+    aspect-ratio: 1.12;
+
+    background: #20201e;
+
+    border: 7px solid #20201e;
+
+    box-shadow:
+        4px 8px 0 rgba(40,35,29,0.1),
+        0 15px 30px rgba(30,27,23,0.18);
+}
+
+.item:nth-child(4) .frame::before {
+    inset: 3px;
+
+    border-color: rgba(255,255,255,0.17);
+}
+
+.item:nth-child(5) .frame {
+    background: #ddd4c6;
+
+    border: 1px solid #82786a;
+
+    padding: 9px;
+}
+
+.item:nth-child(6) .frame {
+    background: #f9f7f1;
+
+    border: 2px solid #272522;
+
+    padding: 7px;
+
+    box-shadow:
+        0 0 0 4px #eee9df,
+        0 0 0 5px rgba(35,31,27,0.3),
+        0 14px 28px rgba(40,34,28,0.14);
+}
+
+.item:nth-child(7) .frame {
+    aspect-ratio: 1.15;
+
+    background: #1b1b1a;
+
+    border: 8px solid #1b1b1a;
+}
+
+.item:nth-child(7) .frame::before {
+    inset: 2px;
+
+    border-color: rgba(255,255,255,0.15);
+}
+
+.item:nth-child(8) .frame {
+    background: #eee6d9;
+
+    border: 1px solid #817668;
+
+    box-shadow:
+        -7px 7px 0 rgba(91,77,60,0.1),
+        0 14px 28px rgba(40,34,28,0.12);
+}
+
+.item:nth-child(9) .frame {
+    background: #191918;
+
+    border: 9px solid #191918;
+
+    box-shadow:
+        5px 7px 0 rgba(60,51,41,0.1),
+        0 16px 30px rgba(30,27,23,0.2);
+}
+
+.item:nth-child(9) .frame::before {
+    inset: 2px;
+
+    border-color: rgba(255,255,255,0.14);
+}
+
+.item:nth-child(10) .frame {
+    background: #f8f5ed;
+
+    border: 1px solid rgba(20,20,20,0.4);
+
+    padding: 10px;
+
+    box-shadow:
+        7px 5px 0 rgba(70,59,47,0.1),
+        0 13px 28px rgba(40,34,28,0.13);
+}
+
+
+/* =====================================================
+   HOVER
+===================================================== */
+
+.item:hover .frame {
+    transform: translateY(-5px) rotate(0deg) !important;
+
+    box-shadow:
+        0 20px 38px rgba(35,30,25,0.2);
+}
+
+.item:hover img {
+    filter: saturate(1) contrast(1);
 
     transform: scale(1.018);
 }
 
-/* =========================================
-   CAPTIONS
-========================================= */
+
+/* =====================================================
+   ROTATIONS
+===================================================== */
+
+.item:nth-child(1) .frame {
+    transform: rotate(-1.2deg);
+}
+
+.item:nth-child(2) .frame {
+    transform: rotate(1.5deg);
+}
+
+.item:nth-child(3) .frame {
+    transform: rotate(-0.7deg);
+}
+
+.item:nth-child(4) .frame {
+    transform: rotate(1deg);
+}
+
+.item:nth-child(5) .frame {
+    transform: rotate(-1.4deg);
+}
+
+.item:nth-child(6) .frame {
+    transform: rotate(0.8deg);
+}
+
+.item:nth-child(7) .frame {
+    transform: rotate(-1deg);
+}
+
+.item:nth-child(8) .frame {
+    transform: rotate(1.4deg);
+}
+
+.item:nth-child(9) .frame {
+    transform: rotate(-0.8deg);
+}
+
+.item:nth-child(10) .frame {
+    transform: rotate(1.1deg);
+}
+
+
+/* =====================================================
+   CAPTION
+===================================================== */
 
 .caption {
-    position: absolute;
+    margin-top: 11px;
 
-    left: 12px;
-    right: 12px;
+    padding: 0 4px;
 
-    bottom: 10px;
+    color: #403c36;
 
-    color: #33312e;
+    font-size: 11px;
 
-    font-size: 12px;
+    line-height: 1.45;
 
-    line-height: 1.35;
+    min-height: 32px;
 
-    text-align: left;
+    position: relative;
 
     z-index: 10;
 }
 
-.caption em {
-    font-style: normal;
+.caption::before {
+    content: "";
 
-    color: #817b72;
+    display: block;
+
+    width: 17px;
+
+    height: 1px;
+
+    background: #aaa195;
+
+    margin-bottom: 7px;
 }
 
-/* =========================================
-   DARK CARD
-========================================= */
 
-.photo.dark {
-    background: #171717;
+/* =====================================================
+   LITTLE INDEX NUMBERS
+===================================================== */
 
-    border-color: rgba(0,0,0,0.35);
-
-    box-shadow:
-        0 20px 50px rgba(0,0,0,0.2);
-}
-
-.photo.dark::before {
-    border-color: rgba(255,255,255,0.08);
-}
-
-.photo.dark .caption {
-    color: #eeeeea;
-}
-
-.photo.dark .caption em {
-    color: #a9a49b;
-}
-
-/* =========================================
-   PHOTO 1
-========================================= */
-
-.photo-one {
-    width: 285px;
-    height: 365px;
-
-    top: 15px;
-    left: 7%;
-
-    transform: rotate(-1.5deg);
-
-    z-index: 3;
-}
-
-/* =========================================
-   PHOTO 2
-========================================= */
-
-.photo-two {
-    width: 210px;
-    height: 275px;
-
-    top: 80px;
-    right: 9%;
-
-    transform: rotate(2deg);
-
-    z-index: 5;
-}
-
-/* =========================================
-   PHOTO 3
-========================================= */
-
-.photo-three {
-    width: 235px;
-    height: 310px;
-
-    top: 385px;
-    left: 20%;
-
-    transform: rotate(1deg);
-
-    z-index: 6;
-}
-
-/* =========================================
-   PHOTO 4
-========================================= */
-
-.photo-four {
-    width: 355px;
-    height: 285px;
-
-    top: 350px;
-    right: 5%;
-
-    transform: rotate(-0.8deg);
-
-    z-index: 3;
-}
-
-/* =========================================
-   PHOTO 5
-========================================= */
-
-.photo-five {
-    width: 250px;
-    height: 335px;
-
-    top: 690px;
-    left: 4%;
-
-    transform: rotate(-1deg);
-
-    z-index: 5;
-}
-
-/* =========================================
-   PHOTO 6
-========================================= */
-
-.photo-six {
-    width: 225px;
-    height: 305px;
-
-    top: 655px;
-    right: 20%;
-
-    transform: rotate(1.6deg);
-
-    z-index: 6;
-}
-
-/* =========================================
-   PHOTO 7
-========================================= */
-
-.photo-seven {
-    width: 315px;
-    height: 235px;
-
-    top: 1000px;
-    left: 29%;
-
-    transform: rotate(0.7deg);
-
-    z-index: 4;
-}
-
-/* =========================================
-   PHOTO 8
-========================================= */
-
-.photo-eight {
-    width: 220px;
-    height: 295px;
-
-    top: 1190px;
-    left: 8%;
-
-    transform: rotate(-1.5deg);
-
-    z-index: 6;
-}
-
-/* =========================================
-   PHOTO 9
-========================================= */
-
-.photo-nine {
-    width: 315px;
-    height: 410px;
-
-    top: 1250px;
-    right: 9%;
-
-    transform: rotate(0.8deg);
-
-    z-index: 4;
-}
-
-/* =========================================
-   PHOTO 10
-========================================= */
-
-.photo-ten {
-    width: 215px;
-    height: 285px;
-
-    top: 1515px;
-    left: 17%;
-
-    transform: rotate(-1.2deg);
-
-    z-index: 7;
-}
-
-/* =========================================
-   DECORATIVE TEXT
-========================================= */
-
-.mark {
+.number {
     position: absolute;
+
+    top: -18px;
+
+    left: 2px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 7px;
+
+    letter-spacing: 2px;
+
+    color: #9c958b;
+
+    z-index: 15;
+}
+
+
+/* =====================================================
+   SIDE NOTES
+===================================================== */
+
+.note {
+    position: absolute;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 7px;
+
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+
+    color: #aaa197;
+
+    writing-mode: vertical-rl;
+
+    z-index: 1;
+}
+
+.note-one {
+    left: -25px;
+
+    top: 250px;
+}
+
+.note-two {
+    right: -25px;
+
+    top: 720px;
+}
+
+
+/* =====================================================
+   BOTTOM
+===================================================== */
+
+.bottom {
+    text-align: center;
+
+    margin-top: 65px;
+
+    padding-top: 28px;
+
+    border-top: 1px solid rgba(50,45,38,0.16);
+
+    position: relative;
+
+    z-index: 30;
+}
+
+.bottom-note {
+    color: #91897f;
+
+    font-size: 11px;
+
+    margin-bottom: 20px;
+
+    font-style: italic;
+}
+
+.back {
+    display: inline-block;
+
+    text-decoration: none;
+
+    color: #3d3934;
 
     font-family: Arial, sans-serif;
 
@@ -459,70 +648,9 @@ h1 {
 
     text-transform: uppercase;
 
-    color: #aaa39a;
+    padding: 11px 20px;
 
-    z-index: 1;
-}
-
-.mark-one {
-    top: 300px;
-    right: 2%;
-}
-
-.mark-two {
-    top: 930px;
-    left: 50%;
-}
-
-.mark-three {
-    top: 1450px;
-    right: 2%;
-}
-
-/* =========================================
-   BOTTOM
-========================================= */
-
-.bottom {
-    position: relative;
-
-    z-index: 30;
-
-    text-align: center;
-
-    margin-top: 25px;
-
-    padding-top: 20px;
-}
-
-.bottom-line {
-    width: 45px;
-
-    height: 1px;
-
-    background: #aaa39a;
-
-    margin: 0 auto 22px;
-}
-
-.back {
-    display: inline-block;
-
-    color: #66615a;
-
-    text-decoration: none;
-
-    font-family: Arial, sans-serif;
-
-    font-size: 9px;
-
-    letter-spacing: 3px;
-
-    text-transform: uppercase;
-
-    padding: 10px 18px;
-
-    border: 1px solid rgba(30,30,30,0.22);
+    border: 1px solid rgba(40,35,30,0.35);
 
     transition:
         background 0.25s ease,
@@ -530,164 +658,302 @@ h1 {
 }
 
 .back:hover {
-    background: #171717;
+    background: #1b1b1a;
 
-    color: #fff;
+    color: #f7f3eb;
 }
 
-/* =========================================
-   MOBILE
-========================================= */
 
-@media (max-width: 700px) {
+/* =====================================================
+   LIGHTBOX
+===================================================== */
+
+.lightbox {
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(20,19,17,0.94);
+
+    z-index: 10000;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 30px;
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transition: opacity 0.3s ease;
+}
+
+.lightbox.active {
+    opacity: 1;
+
+    pointer-events: auto;
+}
+
+.lightbox-inner {
+    max-width: 850px;
+
+    width: 100%;
+
+    max-height: 94vh;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+.lightbox-image {
+    max-width: 90vw;
+
+    max-height: 76vh;
+
+    object-fit: contain;
+
+    display: block;
+
+    box-shadow:
+        0 25px 70px rgba(0,0,0,0.5);
+
+    border: 5px solid #f3efe7;
+}
+
+.lightbox-caption {
+    color: #f1eee7;
+
+    font-family: Georgia, serif;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+
+    text-align: center;
+
+    max-width: 500px;
+
+    margin-top: 18px;
+}
+
+.close {
+    position: fixed;
+
+    top: 22px;
+
+    right: 25px;
+
+    background: transparent;
+
+    border: 1px solid rgba(255,255,255,0.35);
+
+    color: #fff;
+
+    width: 38px;
+
+    height: 38px;
+
+    border-radius: 50%;
+
+    font-size: 18px;
+
+    cursor: pointer;
+
+    z-index: 10002;
+}
+
+.prev,
+.next {
+    position: fixed;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    background: transparent;
+
+    border: 1px solid rgba(255,255,255,0.3);
+
+    color: #fff;
+
+    width: 42px;
+
+    height: 42px;
+
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    font-size: 17px;
+
+    z-index: 10002;
+
+    transition:
+        background 0.2s ease;
+}
+
+.prev {
+    left: 22px;
+}
+
+.next {
+    right: 22px;
+}
+
+.prev:hover,
+.next:hover,
+.close:hover {
+    background: rgba(255,255,255,0.12);
+}
+
+.lightbox-counter {
+    margin-top: 10px;
+
+    color: #88837b;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 8px;
+
+    letter-spacing: 3px;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 800px) {
+
+    body::after {
+        inset: 7px;
+    }
 
     .page {
-        padding: 60px 15px 70px;
+        padding: 55px 17px 70px;
     }
 
     .header {
-        margin-bottom: 55px;
+        margin-bottom: 48px;
     }
 
     h1 {
-        font-size: 48px;
+        font-size: 49px;
     }
 
-    .header-note {
-        font-size: 12px;
+    .gallery {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 38px 13px;
     }
 
-    .collage {
-        height: 1680px;
-    }
-
-    /* PHOTO 1 */
-
-    .photo-one {
-        width: 57vw;
-        height: 285px;
-
-        top: 5px;
-        left: 2%;
-
-        transform: rotate(-1.2deg);
-    }
-
-    /* PHOTO 2 */
-
-    .photo-two {
-        width: 40vw;
-        height: 210px;
-
-        top: 70px;
-        right: 1%;
-
-        transform: rotate(1.7deg);
-    }
-
-    /* PHOTO 3 */
-
-    .photo-three {
-        width: 44vw;
-        height: 255px;
-
-        top: 320px;
-        left: 4%;
-    }
-
-    /* PHOTO 4 */
-
-    .photo-four {
-        width: 62vw;
-        height: 230px;
-
-        top: 405px;
-        right: 1%;
-    }
-
-    /* PHOTO 5 */
-
-    .photo-five {
-        width: 47vw;
-        height: 285px;
-
-        top: 680px;
-        left: 1%;
-    }
-
-    /* PHOTO 6 */
-
-    .photo-six {
-        width: 43vw;
-        height: 265px;
-
-        top: 650px;
-        right: 1%;
-    }
-
-    /* PHOTO 7 */
-
-    .photo-seven {
-        width: 64vw;
-        height: 205px;
-
-        top: 985px;
-        left: 17%;
-    }
-
-    /* PHOTO 8 */
-
-    .photo-eight {
-        width: 42vw;
-        height: 265px;
-
-        top: 1190px;
-        left: 2%;
-    }
-
-    /* PHOTO 9 */
-
-    .photo-nine {
-        width: 58vw;
-        height: 345px;
-
-        top: 1260px;
-        right: 1%;
-    }
-
-    /* PHOTO 10 */
-
-    .photo-ten {
-        width: 42vw;
-        height: 245px;
-
-        top: 1530px;
-        left: 8%;
+    .item:nth-child(2),
+    .item:nth-child(5),
+    .item:nth-child(7),
+    .item:nth-child(9) {
+        margin-top: 18px;
     }
 
     .caption {
         font-size: 10px;
 
-        bottom: 9px;
+        margin-top: 9px;
     }
 
-    .mark {
+    .number {
+        top: -16px;
+
+        font-size: 6px;
+    }
+
+    .note {
         display: none;
+    }
+
+    .bottom {
+        margin-top: 50px;
+    }
+
+    .lightbox {
+        padding: 20px;
+    }
+
+    .lightbox-image {
+        max-width: 94vw;
+
+        max-height: 70vh;
+    }
+
+    .lightbox-caption {
+        font-size: 13px;
+
+        padding: 0 25px;
+    }
+
+    .prev {
+        left: 10px;
+    }
+
+    .next {
+        right: 10px;
+    }
+
+    .close {
+        top: 14px;
+
+        right: 14px;
+    }
+
+}
+
+
+/* =====================================================
+   SMALL PHONES
+===================================================== */
+
+@media (max-width: 430px) {
+
+    .gallery {
+        gap: 32px 10px;
+    }
+
+    .frame {
+        padding: 6px;
+    }
+
+    .caption {
+        font-size: 9px;
+    }
+
+    .header-note {
+        font-size: 11px;
     }
 
 }
 
 </style>
+
 </head>
+
 
 <body>
 
 <main class="page">
 
 
-    <!-- =====================================
+    <!-- =============================================
          HEADER
-    ====================================== -->
+    ============================================== -->
 
     <header class="header">
 
@@ -705,203 +971,285 @@ h1 {
             A few things I happened to keep.
         </p>
 
+        <div class="section-number">
+            01 / You
+        </div>
+
     </header>
 
 
-    <!-- =====================================
-         COLLAGE
-    ====================================== -->
+    <!-- =============================================
+         GALLERY
+    ============================================== -->
 
-    <section class="collage">
+    <section class="gallery">
 
 
         <!-- PHOTO 1 -->
 
-        <div class="photo photo-one">
+        <article class="item" onclick="openLightbox(0)">
 
-            <img
-                src="photo1.jpg"
-                alt="Candid photo"
-            >
+            <span class="number">
+                01
+            </span>
+
+            <div class="frame">
+
+                <img
+                    src="photo1.jpg"
+                    alt="Candid photo"
+                >
+
+            </div>
 
             <div class="caption">
                 caught unaware…ish
             </div>
 
-        </div>
+        </article>
 
 
         <!-- PHOTO 2 -->
 
-        <div class="photo photo-two dark">
+        <article class="item" onclick="openLightbox(1)">
 
-            <img
-                src="photo2.jpg"
-                alt="Close-up photo"
-            >
+            <span class="number">
+                02
+            </span>
+
+            <div class="frame">
+
+                <img
+                    src="photo2.jpg"
+                    alt="Close-up photo"
+                >
+
+            </div>
 
             <div class="caption">
                 …the angle was not the point
             </div>
 
-        </div>
+        </article>
 
 
         <!-- PHOTO 3 -->
 
-        <div class="photo photo-three">
+        <article class="item" onclick="openLightbox(2)">
 
-            <img
-                src="photo3.jpg"
-                alt="Candid moment"
-            >
+            <span class="number">
+                03
+            </span>
+
+            <div class="frame">
+
+                <img
+                    src="photo3.jpg"
+                    alt="Candid moment"
+                >
+
+            </div>
 
             <div class="caption">
                 hehe
             </div>
 
-        </div>
+        </article>
 
 
         <!-- PHOTO 4 -->
 
-        <div class="photo photo-four dark">
+        <article class="item" onclick="openLightbox(3)">
 
-            <img
-                src="photo4.jpg"
-                alt="Candid moment"
-            >
+            <span class="number">
+                04
+            </span>
+
+            <div class="frame">
+
+                <img
+                    src="photo4.jpg"
+                    alt="Candid moment"
+                >
+
+            </div>
 
             <div class="caption">
                 the other one could’ve looked better… now we’ll never know
             </div>
 
-        </div>
+        </article>
 
 
         <!-- PHOTO 5 -->
 
-        <div class="photo photo-five">
+        <article class="item" onclick="openLightbox(4)">
 
-            <img
-                src="photo5.jpg"
-                alt="Candid photo"
-            >
+            <span class="number">
+                05
+            </span>
+
+            <div class="frame">
+
+                <img
+                    src="photo5.jpg"
+                    alt="Candid photo"
+                >
+
+            </div>
 
             <div class="caption">
                 first goatee reveal?
             </div>
 
-        </div>
+        </article>
 
 
         <!-- PHOTO 6 -->
 
-        <div class="photo photo-six">
+        <article class="item" onclick="openLightbox(5)">
 
-            <img
-                src="photo6.jpg"
-                alt="Mirror selfie"
-            >
+            <span class="number">
+                06
+            </span>
+
+            <div class="frame">
+
+                <img
+                    src="photo6.jpg"
+                    alt="Mirror selfie"
+                >
+
+            </div>
 
             <div class="caption">
                 apparently this needed to be recorded…
             </div>
 
-        </div>
+        </article>
 
 
         <!-- PHOTO 7 -->
 
-        <div class="photo photo-seven dark">
+        <article class="item" onclick="openLightbox(6)">
 
-            <img
-                src="photo7.jpg"
-                alt="Sleeping"
-            >
+            <span class="number">
+                07
+            </span>
+
+            <div class="frame">
+
+                <img
+                    src="photo7.jpg"
+                    alt="Sleeping"
+                >
+
+            </div>
 
             <div class="caption">
                 sleeping…shocker
                 <br>
-                <em>also just look at how much peace i give you</em>
+                also just look at how much peace i give you
             </div>
 
-        </div>
+        </article>
 
 
         <!-- PHOTO 8 -->
 
-        <div class="photo photo-eight">
+        <article class="item" onclick="openLightbox(7)">
 
-            <img
-                src="photo8.jpg"
-                alt="Back profile outdoors"
-            >
+            <span class="number">
+                08
+            </span>
+
+            <div class="frame">
+
+                <img
+                    src="photo8.jpg"
+                    alt="Back profile outdoors"
+                >
+
+            </div>
 
             <div class="caption">
                 😛
             </div>
 
-        </div>
+        </article>
 
 
         <!-- PHOTO 9 -->
 
-        <div class="photo photo-nine dark">
+        <article class="item" onclick="openLightbox(8)">
 
-            <img
-                src="photo9.jpg"
-                alt="Mirror photo"
-            >
+            <span class="number">
+                09
+            </span>
+
+            <div class="frame">
+
+                <img
+                    src="photo9.jpg"
+                    alt="Mirror photo"
+                >
+
+            </div>
 
             <div class="caption">
                 a fav 🙂‍↕️
             </div>
 
-        </div>
+        </article>
 
 
         <!-- PHOTO 10 -->
 
-        <div class="photo photo-ten">
+        <article class="item" onclick="openLightbox(9)">
 
-            <img
-                src="photo10.jpg"
-                alt="A photo he likes"
-            >
+            <span class="number">
+                10
+            </span>
+
+            <div class="frame">
+
+                <img
+                    src="photo10.jpg"
+                    alt="A photo he likes"
+                >
+
+            </div>
 
             <div class="caption">
                 you liked this one, so here.
             </div>
 
-        </div>
-
-
-        <!-- DECORATIVE DETAILS -->
-
-        <div class="mark mark-one">
-            kept
-        </div>
-
-        <div class="mark mark-two">
-            apparently
-        </div>
-
-        <div class="mark mark-three">
-            for the record
-        </div>
+        </article>
 
 
     </section>
 
 
-    <!-- =====================================
-         BACK
-    ====================================== -->
+    <!-- DECORATIVE SIDE NOTES -->
+
+    <div class="note note-one">
+        kept for the record
+    </div>
+
+    <div class="note note-two">
+        apparently
+    </div>
+
+
+    <!-- =============================================
+         BOTTOM
+    ============================================== -->
 
     <div class="bottom">
 
-        <div class="bottom-line"></div>
+        <p class="bottom-note">
+            that's enough evidence for now.
+        </p>
 
         <a
             href="archive.html"
@@ -915,5 +1263,299 @@ h1 {
 
 </main>
 
+
+<!-- =============================================
+     LIGHTBOX
+============================================= -->
+
+<div
+    class="lightbox"
+    id="lightbox"
+    onclick="closeFromBackground(event)"
+>
+
+    <button
+        class="close"
+        onclick="closeLightbox()"
+        aria-label="Close"
+    >
+        ×
+    </button>
+
+
+    <button
+        class="prev"
+        onclick="changePhoto(-1)"
+        aria-label="Previous photo"
+    >
+        ‹
+    </button>
+
+
+    <div class="lightbox-inner">
+
+        <img
+            id="lightboxImage"
+            class="lightbox-image"
+            src=""
+            alt=""
+        >
+
+        <div
+            id="lightboxCaption"
+            class="lightbox-caption"
+        >
+        </div>
+
+        <div
+            id="lightboxCounter"
+            class="lightbox-counter"
+        >
+        </div>
+
+    </div>
+
+
+    <button
+        class="next"
+        onclick="changePhoto(1)"
+        aria-label="Next photo"
+    >
+        ›
+    </button>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   PHOTO DATA
+===================================================== */
+
+const photos = [
+
+    {
+        src: "photo1.jpg",
+        caption: "caught unaware…ish"
+    },
+
+    {
+        src: "photo2.jpg",
+        caption: "…the angle was not the point"
+    },
+
+    {
+        src: "photo3.jpg",
+        caption: "hehe"
+    },
+
+    {
+        src: "photo4.jpg",
+        caption: "the other one could’ve looked better… now we’ll never know"
+    },
+
+    {
+        src: "photo5.jpg",
+        caption: "first goatee reveal?"
+    },
+
+    {
+        src: "photo6.jpg",
+        caption: "apparently this needed to be recorded…"
+    },
+
+    {
+        src: "photo7.jpg",
+        caption: "sleeping…shocker — also just look at how much peace i give you"
+    },
+
+    {
+        src: "photo8.jpg",
+        caption: "😛"
+    },
+
+    {
+        src: "photo9.jpg",
+        caption: "a fav 🙂‍↕️"
+    },
+
+    {
+        src: "photo10.jpg",
+        caption: "you liked this one, so here."
+    }
+
+];
+
+
+/* =====================================================
+   CURRENT PHOTO
+===================================================== */
+
+let currentPhoto = 0;
+
+
+/* =====================================================
+   OPEN LIGHTBOX
+===================================================== */
+
+function openLightbox(index) {
+
+    currentPhoto = index;
+
+    updateLightbox();
+
+    document
+        .getElementById("lightbox")
+        .classList
+        .add("active");
+
+    document.body.style.overflow = "hidden";
+}
+
+
+/* =====================================================
+   UPDATE LIGHTBOX
+===================================================== */
+
+function updateLightbox() {
+
+    const image =
+        document.getElementById("lightboxImage");
+
+    const caption =
+        document.getElementById("lightboxCaption");
+
+    const counter =
+        document.getElementById("lightboxCounter");
+
+
+    image.src =
+        photos[currentPhoto].src;
+
+    image.alt =
+        photos[currentPhoto].caption;
+
+    caption.textContent =
+        photos[currentPhoto].caption;
+
+    counter.textContent =
+        String(currentPhoto + 1).padStart(2, "0")
+        + " / "
+        + String(photos.length).padStart(2, "0");
+
+}
+
+
+/* =====================================================
+   CLOSE LIGHTBOX
+===================================================== */
+
+function closeLightbox() {
+
+    document
+        .getElementById("lightbox")
+        .classList
+        .remove("active");
+
+    document.body.style.overflow = "";
+
+}
+
+
+/* =====================================================
+   CLOSE WHEN CLICKING BACKGROUND
+===================================================== */
+
+function closeFromBackground(event) {
+
+    if (
+        event.target ===
+        document.getElementById("lightbox")
+    ) {
+
+        closeLightbox();
+
+    }
+
+}
+
+
+/* =====================================================
+   NEXT / PREVIOUS
+===================================================== */
+
+function changePhoto(direction) {
+
+    currentPhoto += direction;
+
+
+    if (currentPhoto < 0) {
+
+        currentPhoto =
+            photos.length - 1;
+
+    }
+
+
+    if (currentPhoto >= photos.length) {
+
+        currentPhoto = 0;
+
+    }
+
+
+    updateLightbox();
+
+}
+
+
+/* =====================================================
+   KEYBOARD CONTROLS
+===================================================== */
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+        const lightbox =
+            document.getElementById("lightbox");
+
+
+        if (
+            !lightbox.classList.contains("active")
+        ) {
+
+            return;
+
+        }
+
+
+        if (event.key === "Escape") {
+
+            closeLightbox();
+
+        }
+
+
+        if (event.key === "ArrowRight") {
+
+            changePhoto(1);
+
+        }
+
+
+        if (event.key === "ArrowLeft") {
+
+            changePhoto(-1);
+
+        }
+
+    }
+);
+
+</script>
+
 </body>
 </html>
+```
