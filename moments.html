@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>For The Record</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #050505;
+    color: #f4f4f4;
+    font-family: Georgia, serif;
+    overflow-x: hidden;
+}
+
+/* =========================================
+   PAGE
+========================================= */
+
+.page {
+    width: 100%;
+    max-width: 900px;
+
+    margin: 0 auto;
+
+    padding: 90px 28px 80px;
+}
+
+/* =========================================
+   HEADER
+========================================= */
+
+.header {
+    text-align: center;
+
+    margin-bottom: 100px;
+}
+
+.eyebrow {
+    font-family: Arial, sans-serif;
+
+    font-size: 9px;
+
+    letter-spacing: 5px;
+
+    color: #777;
+
+    text-transform: uppercase;
+
+    margin-bottom: 18px;
+}
+
+h1 {
+    font-size: clamp(48px, 10vw, 82px);
+
+    font-weight: normal;
+
+    letter-spacing: -3px;
+
+    line-height: 0.95;
+
+    text-shadow:
+        0 0 25px rgba(255,255,255,0.18),
+        0 0 60px rgba(255,255,255,0.07);
+}
+
+.header-note {
+    max-width: 380px;
+
+    margin: 25px auto 0;
+
+    color: #777;
+
+    font-size: 13px;
+
+    line-height: 1.7;
+}
+
+/* =========================================
+   SECTION LABEL
+========================================= */
+
+.section-label {
+    font-family: Arial, sans-serif;
+
+    font-size: 9px;
+
+    letter-spacing: 4px;
+
+    color: #555;
+
+    text-transform: uppercase;
+
+    margin-bottom: 35px;
+}
+
+/* =========================================
+   PHOTO
+========================================= */
+
+.photo {
+    position: relative;
+
+    overflow: hidden;
+
+    background: #111;
+}
+
+.photo img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    filter: saturate(0.92);
+
+    transition:
+        transform 0.6s ease,
+        filter 0.6s ease;
+}
+
+.photo:hover img {
+    transform: scale(1.025);
+
+    filter: saturate(1);
+}
+
+/* =========================================
+   CAPTION
+========================================= */
+
+.caption {
+    position: absolute;
+
+    z-index: 3;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+
+    color: #eeeeee;
+
+    text-shadow:
+        0 1px 10px rgba(0,0,0,0.8);
+}
+
+.caption.small {
+    font-family: Arial, sans-serif;
+
+    font-size: 9px;
+
+    letter-spacing: 1.5px;
+
+    text-transform: uppercase;
+
+    color: #aaa;
+}
+
+/* =========================================
+   WALK SECTION
+========================================= */
+
+.walk-section {
+    position: relative;
+
+    min-height: 850px;
+
+    margin-bottom: 130px;
+}
+
+.walk-one {
+    width: 58%;
+
+    height: 470px;
+
+    margin-left: 5%;
+}
+
+.walk-one .caption {
+    bottom: 24px;
+    left: 24px;
+}
+
+.walk-two {
+    position: absolute;
+
+    width: 34%;
+
+    height: 300px;
+
+    top: 170px;
+
+    right: 2%;
+}
+
+.walk-two .caption {
+    bottom: -35px;
+    right: 0;
+
+    color: #777;
+
+    text-shadow: none;
+}
+
+.walk-three {
+    position: absolute;
+
+    width: 47%;
+
+    height: 300px;
+
+    right: 7%;
+
+    bottom: 20px;
+}
+
+.walk-three .caption {
+    top: -30px;
+    left: 0;
+
+    color: #777;
+
+    text-shadow: none;
+}
+
+/* =========================================
+   LITTLE THINGS
+========================================= */
+
+.little-section {
+    margin-bottom: 150px;
+}
+
+.lap-photo {
+    width: 72%;
+
+    height: 470px;
+
+    margin-left: auto;
+}
+
+.lap-caption {
+    position: static;
+
+    margin-top: 18px;
+
+    margin-left: 28%;
+
+    max-width: 340px;
+
+    color: #aaa;
+
+    font-size: 13px;
+
+    font-style: italic;
+}
+
+.goodbye-row {
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 40px;
+
+    margin-top: 100px;
+
+    margin-left: 7%;
+}
+
+.goodbye-photo {
+    width: 40%;
+
+    height: 430px;
+}
+
+.goodbye-caption {
+    width: 32%;
+
+    padding-top: 80px;
+
+    color: #888;
+
+    font-size: 13px;
+
+    line-height: 1.7;
+}
+
+.sleep-section {
+    margin-top: 120px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 80px;
+}
+
+.sleep-photo {
+    width: 48%;
+
+    height: 360px;
+}
+
+.sleep-note {
+    width: 35%;
+
+    color: #aaa;
+
+    font-size: 14px;
+
+    line-height: 1.8;
+}
+
+.sleep-note span {
+    display: block;
+
+    margin-top: 12px;
+
+    color: #555;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 9px;
+
+    letter-spacing: 1.5px;
+
+    text-transform: uppercase;
+}
+
+/* =========================================
+   SELF PORTRAITS
+========================================= */
+
+.self-section {
+    margin-bottom: 130px;
+}
+
+.self-grid {
+    position: relative;
+
+    min-height: 720px;
+}
+
+.self-one {
+    width: 38%;
+
+    height: 430px;
+
+    margin-left: 8%;
+}
+
+.self-one .caption {
+    bottom: -32px;
+    left: 0;
+
+    color: #666;
+
+    text-shadow: none;
+}
+
+.self-two {
+    position: absolute;
+
+    width: 48%;
+
+    height: 570px;
+
+    top: 90px;
+
+    right: 3%;
+}
+
+.self-two .caption {
+    bottom: -40px;
+
+    left: 0;
+
+    color: #aaa;
+
+    text-shadow: none;
+}
+
+/* =========================================
+   FINAL IMAGE
+========================================= */
+
+.final-section {
+    margin-top: 100px;
+
+    text-align: center;
+}
+
+.final-photo {
+    width: 68%;
+
+    height: 600px;
+
+    margin: 0 auto;
+}
+
+.final-note {
+    margin-top: 30px;
+
+    color: #777;
+
+    font-size: 13px;
+
+    font-style: italic;
+}
+
+/* =========================================
+   BOTTOM
+========================================= */
+
+.bottom {
+    text-align: center;
+
+    margin-top: 120px;
+}
+
+.back {
+    display: inline-block;
+
+    color: #666;
+
+    text-decoration: none;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 9px;
+
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+
+    transition: color 0.2s ease;
+}
+
+.back:hover {
+    color: #fff;
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+
+    .page {
+        padding: 65px 18px 60px;
+    }
+
+    .header {
+        margin-bottom: 75px;
+    }
+
+    .walk-section {
+        min-height: auto;
+    }
+
+    .walk-one {
+        width: 82%;
+        height: 400px;
+        margin-left: 0;
+    }
+
+    .walk-two {
+        position: relative;
+
+        width: 62%;
+        height: 250px;
+
+        top: auto;
+        right: auto;
+
+        margin: 55px 0 0 auto;
+    }
+
+    .walk-three {
+        position: relative;
+
+        width: 76%;
+        height: 270px;
+
+        right: auto;
+        bottom: auto;
+
+        margin: 70px 0 0 5%;
+    }
+
+    .lap-photo {
+        width: 94%;
+        height: 390px;
+    }
+
+    .lap-caption {
+        margin-left: 8%;
+    }
+
+    .goodbye-row {
+        gap: 20px;
+        margin-left: 0;
+    }
+
+    .goodbye-photo {
+        width: 55%;
+        height: 350px;
+    }
+
+    .goodbye-caption {
+        width: 35%;
+        padding-top: 50px;
+    }
+
+    .sleep-section {
+        gap: 25px;
+    }
+
+    .sleep-photo {
+        width: 57%;
+        height: 300px;
+    }
+
+    .sleep-note {
+        width: 38%;
+        font-size: 12px;
+    }
+
+    .self-grid {
+        min-height: auto;
+    }
+
+    .self-one {
+        width: 55%;
+        height: 370px;
+        margin-left: 0;
+    }
+
+    .self-two {
+        position: relative;
+
+        width: 72%;
+        height: 460px;
+
+        top: auto;
+        right: auto;
+
+        margin: 80px 0 0 auto;
+    }
+
+    .final-photo {
+        width: 92%;
+        height: 500px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<main class="page">
+
+    <!-- =====================================
+         HEADER
+    ====================================== -->
+
+    <header class="header">
+
+        <div class="eyebrow">
+            Some Memories 4 U
+        </div>
+
+        <h1>
+            FOR THE RECORD
+        </h1>
+
+        <p class="header-note">
+            A few things I happened to keep.
+        </p>
+
+    </header>
+
+
+    <!-- =====================================
+         THE WALKS
+    ====================================== -->
+
+    <section>
+
+        <div class="section-label">
+            01 / THE WALKS
+        </div>
+
+        <div class="walk-section">
+
+            <!-- IMAGE 1 -->
+
+            <div class="photo walk-one">
+
+                <img src="images/photo1.jpg" alt="A candid photo">
+
+                <div class="caption">
+                    caught unaware…ish
+                </div>
+
+            </div>
+
+
+            <!-- IMAGE 2 -->
+
+            <div class="photo walk-two">
+
+                <img src="images/photo2.jpg" alt="A close-up photo">
+
+                <div class="caption">
+                    …the angle was not the point
+                </div>
+
+            </div>
+
+
+            <!-- IMAGE 5 -->
+
+            <div class="photo walk-three">
+
+                <img src="images/photo5.jpg" alt="A candid photo">
+
+                <div class="caption small">
+                    first goatee reveal?
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================
+         LITTLE THINGS
+    ====================================== -->
+
+    <section class="little-section">
+
+        <div class="section-label">
+            02 / LITTLE THINGS
+        </div>
+
+
+        <!-- IMAGE 4 -->
+
+        <div class="photo lap-photo">
+
+            <img src="images/photo4.jpg" alt="A candid moment">
+
+        </div>
+
+        <div class="lap-caption">
+            the other one could’ve looked better… now we’ll never know
+        </div>
+
+
+        <!-- IMAGE 3 -->
+
+        <div class="goodbye-row">
+
+            <div class="photo goodbye-photo">
+
+                <img src="images/photo3.jpg" alt="A candid moment">
+
+                <div class="caption">
+                    hehe
+                </div>
+
+            </div>
+
+            <div class="goodbye-caption">
+                Some moments don't really need explaining.
+            </div>
+
+        </div>
+
+
+        <!-- IMAGE 7 -->
+
+        <div class="sleep-section">
+
+            <div class="photo sleep-photo">
+
+                <img src="images/photo7.jpg" alt="Sleeping">
+
+            </div>
+
+            <div class="sleep-note">
+
+                sleeping… shocker
+
+                <span>
+                    also just look at how much peace i give you
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================
+         MORE WALK
+    ====================================== -->
+
+    <section class="self-section">
+
+        <div class="section-label">
+            03 / SOMEWHERE IN BETWEEN
+        </div>
+
+        <div class="self-grid">
+
+            <!-- IMAGE 8 -->
+
+            <div class="photo self-one">
+
+                <img src="images/photo8.jpg" alt="Back profile outdoors">
+
+                <div class="caption">
+                    😛
+                </div>
+
+            </div>
+
+
+            <!-- IMAGE 6 -->
+
+            <div class="photo self-two">
+
+                <img src="images/photo6.jpg" alt="Mirror selfie">
+
+                <div class="caption">
+                    apparently this needed to be recorded…
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================
+         FINAL IMAGE
+    ====================================== -->
+
+    <section class="final-section">
+
+        <div class="section-label">
+            04 / FOR THE RECORD
+        </div>
+
+
+        <!-- IMAGE 9 -->
+
+        <div class="photo final-photo">
+
+            <img src="images/photo9.jpg" alt="Mirror photo">
+
+        </div>
+
+        <div class="final-note">
+            a fav 🙂‍↕️
+        </div>
+
+    </section>
+
+
+    <!-- =====================================
+         BACK
+    ====================================== -->
+
+    <div class="bottom">
+
+        <a href="archive.html" class="back">
+            ← Back to archive
+        </a>
+
+    </div>
+
+</main>
+
+</body>
+</html>
