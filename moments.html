@@ -30,20 +30,20 @@ body {
     background:
         radial-gradient(
             ellipse at 10% 5%,
-            rgba(122, 101, 73, 0.13),
+            rgba(112, 96, 77, 0.16),
             transparent 32%
         ),
         radial-gradient(
             ellipse at 90% 20%,
-            rgba(255,255,255,0.8),
+            rgba(255,255,255,0.38),
             transparent 35%
         ),
         radial-gradient(
             ellipse at 45% 70%,
-            rgba(111, 92, 67, 0.08),
-            transparent 40%
+            rgba(100, 84, 66, 0.10),
+            transparent 42%
         ),
-        #eee9df;
+        #d8d1c5;
 
     color: #191817;
 
@@ -56,7 +56,7 @@ body {
 
 
 /* =====================================================
-   PAPER TEXTURE
+   CRUMPLED PAPER TEXTURE
 ===================================================== */
 
 body::before {
@@ -70,10 +70,61 @@ body::before {
 
     z-index: 9999;
 
-    opacity: 0.09;
+    opacity: 0.32;
 
-    background-image:
-        url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.65' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='.55'/%3E%3C/svg%3E");
+    background:
+
+        /* soft paper folds */
+
+        radial-gradient(
+            ellipse at 15% 18%,
+            rgba(255,255,255,0.30) 0%,
+            transparent 28%
+        ),
+
+        radial-gradient(
+            ellipse at 82% 12%,
+            rgba(90,78,63,0.10) 0%,
+            transparent 25%
+        ),
+
+        radial-gradient(
+            ellipse at 70% 72%,
+            rgba(255,255,255,0.24) 0%,
+            transparent 30%
+        ),
+
+        radial-gradient(
+            ellipse at 25% 85%,
+            rgba(90,78,63,0.08) 0%,
+            transparent 25%
+        ),
+
+        /* subtle diagonal creases */
+
+        linear-gradient(
+            125deg,
+            transparent 0%,
+            rgba(255,255,255,0.13) 18%,
+            transparent 31%,
+            rgba(75,65,54,0.06) 48%,
+            transparent 62%,
+            rgba(255,255,255,0.10) 78%,
+            transparent 90%
+        ),
+
+        linear-gradient(
+            35deg,
+            transparent 10%,
+            rgba(80,68,55,0.05) 28%,
+            transparent 43%,
+            rgba(255,255,255,0.12) 66%,
+            transparent 82%
+        ),
+
+        /* paper grain */
+
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paperNoise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.035' numOctaves='4' seed='8' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23paperNoise)' opacity='.32'/%3E%3C/svg%3E");
 
     mix-blend-mode: multiply;
 }
@@ -90,7 +141,7 @@ body::after {
 
     inset: 12px;
 
-    border: 1px solid rgba(50,45,38,0.08);
+    border: 1px solid rgba(50,45,38,0.10);
 
     pointer-events: none;
 
@@ -136,7 +187,7 @@ body::after {
 
     text-transform: uppercase;
 
-    color: #777067;
+    color: #70695f;
 
     margin-bottom: 18px;
 }
@@ -164,7 +215,7 @@ h1 {
 }
 
 .header-note {
-    color: #777067;
+    color: #6f685e;
 
     font-size: 12px;
 
@@ -182,7 +233,7 @@ h1 {
 
     text-transform: uppercase;
 
-    color: #9a9389;
+    color: #8d857a;
 }
 
 
@@ -207,7 +258,7 @@ h1 {
 
 
 /* =====================================================
-   PHOTO ITEM
+   PHOTO ITEMS
 ===================================================== */
 
 .item {
@@ -230,7 +281,20 @@ h1 {
     margin-top: 38px;
 }
 
+
+/* =====================================================
+   CENTRE LAST TWO
+===================================================== */
+
 .item:nth-child(9) {
+    grid-column: 2;
+
+    margin-top: 18px;
+}
+
+.item:nth-child(10) {
+    grid-column: 3;
+
     margin-top: 18px;
 }
 
@@ -262,7 +326,7 @@ h1 {
 }
 
 
-/* Inner frame */
+/* inner frame */
 
 .frame::before {
     content: "";
@@ -279,7 +343,7 @@ h1 {
 }
 
 
-/* Decorative corner */
+/* decorative corner */
 
 .frame::after {
     content: "✦";
@@ -315,7 +379,9 @@ h1 {
 
     z-index: 2;
 
-    filter: saturate(0.91) contrast(0.97);
+    filter:
+        saturate(0.91)
+        contrast(0.97);
 
     transition:
         transform 0.45s ease,
@@ -343,6 +409,7 @@ h1 {
     border: 2px solid rgba(35,31,27,0.18);
 }
 
+
 .item:nth-child(3) .frame {
     background: #faf8f2;
 
@@ -354,6 +421,7 @@ h1 {
         -4px 6px 0 rgba(75,66,54,0.08),
         0 13px 28px rgba(40,34,28,0.12);
 }
+
 
 .item:nth-child(4) .frame {
     aspect-ratio: 1.12;
@@ -373,6 +441,7 @@ h1 {
     border-color: rgba(255,255,255,0.17);
 }
 
+
 .item:nth-child(5) .frame {
     background: #ddd4c6;
 
@@ -380,6 +449,7 @@ h1 {
 
     padding: 9px;
 }
+
 
 .item:nth-child(6) .frame {
     background: #f9f7f1;
@@ -389,10 +459,11 @@ h1 {
     padding: 7px;
 
     box-shadow:
-        0 0 0 4px #eee9df,
+        0 0 0 4px #ded7cb,
         0 0 0 5px rgba(35,31,27,0.3),
         0 14px 28px rgba(40,34,28,0.14);
 }
+
 
 .item:nth-child(7) .frame {
     aspect-ratio: 1.15;
@@ -408,6 +479,7 @@ h1 {
     border-color: rgba(255,255,255,0.15);
 }
 
+
 .item:nth-child(8) .frame {
     background: #eee6d9;
 
@@ -417,6 +489,7 @@ h1 {
         -7px 7px 0 rgba(91,77,60,0.1),
         0 14px 28px rgba(40,34,28,0.12);
 }
+
 
 .item:nth-child(9) .frame {
     background: #191918;
@@ -433,6 +506,7 @@ h1 {
 
     border-color: rgba(255,255,255,0.14);
 }
+
 
 .item:nth-child(10) .frame {
     background: #f8f5ed;
@@ -452,14 +526,18 @@ h1 {
 ===================================================== */
 
 .item:hover .frame {
-    transform: translateY(-5px) rotate(0deg) !important;
+    transform:
+        translateY(-5px)
+        rotate(0deg) !important;
 
     box-shadow:
         0 20px 38px rgba(35,30,25,0.2);
 }
 
 .item:hover img {
-    filter: saturate(1) contrast(1);
+    filter:
+        saturate(1)
+        contrast(1);
 
     transform: scale(1.018);
 }
@@ -511,7 +589,7 @@ h1 {
 
 
 /* =====================================================
-   CAPTION
+   CAPTIONS
 ===================================================== */
 
 .caption {
@@ -548,7 +626,7 @@ h1 {
 
 
 /* =====================================================
-   LITTLE INDEX NUMBERS
+   INDEX NUMBERS
 ===================================================== */
 
 .number {
@@ -585,7 +663,7 @@ h1 {
 
     text-transform: uppercase;
 
-    color: #aaa197;
+    color: #968d82;
 
     writing-mode: vertical-rl;
 
@@ -624,7 +702,7 @@ h1 {
 }
 
 .bottom-note {
-    color: #91897f;
+    color: #7d756b;
 
     font-size: 11px;
 
@@ -829,7 +907,7 @@ h1 {
 
 
 /* =====================================================
-   MOBILE
+   TABLET / MOBILE
 ===================================================== */
 
 @media (max-width: 800px) {
@@ -860,8 +938,14 @@ h1 {
     .item:nth-child(2),
     .item:nth-child(5),
     .item:nth-child(7),
-    .item:nth-child(9) {
+    .item:nth-child(9),
+    .item:nth-child(10) {
         margin-top: 18px;
+    }
+
+    .item:nth-child(9),
+    .item:nth-child(10) {
+        grid-column: auto;
     }
 
     .caption {
@@ -987,7 +1071,10 @@ h1 {
 
         <!-- PHOTO 1 -->
 
-        <article class="item" onclick="openLightbox(0)">
+        <article
+            class="item"
+            onclick="openLightbox(0)"
+        >
 
             <span class="number">
                 01
@@ -1011,7 +1098,10 @@ h1 {
 
         <!-- PHOTO 2 -->
 
-        <article class="item" onclick="openLightbox(1)">
+        <article
+            class="item"
+            onclick="openLightbox(1)"
+        >
 
             <span class="number">
                 02
@@ -1035,7 +1125,10 @@ h1 {
 
         <!-- PHOTO 3 -->
 
-        <article class="item" onclick="openLightbox(2)">
+        <article
+            class="item"
+            onclick="openLightbox(2)"
+        >
 
             <span class="number">
                 03
@@ -1059,7 +1152,10 @@ h1 {
 
         <!-- PHOTO 4 -->
 
-        <article class="item" onclick="openLightbox(3)">
+        <article
+            class="item"
+            onclick="openLightbox(3)"
+        >
 
             <span class="number">
                 04
@@ -1083,7 +1179,10 @@ h1 {
 
         <!-- PHOTO 5 -->
 
-        <article class="item" onclick="openLightbox(4)">
+        <article
+            class="item"
+            onclick="openLightbox(4)"
+        >
 
             <span class="number">
                 05
@@ -1107,7 +1206,10 @@ h1 {
 
         <!-- PHOTO 6 -->
 
-        <article class="item" onclick="openLightbox(5)">
+        <article
+            class="item"
+            onclick="openLightbox(5)"
+        >
 
             <span class="number">
                 06
@@ -1131,7 +1233,10 @@ h1 {
 
         <!-- PHOTO 7 -->
 
-        <article class="item" onclick="openLightbox(6)">
+        <article
+            class="item"
+            onclick="openLightbox(6)"
+        >
 
             <span class="number">
                 07
@@ -1157,7 +1262,10 @@ h1 {
 
         <!-- PHOTO 8 -->
 
-        <article class="item" onclick="openLightbox(7)">
+        <article
+            class="item"
+            onclick="openLightbox(7)"
+        >
 
             <span class="number">
                 08
@@ -1181,7 +1289,10 @@ h1 {
 
         <!-- PHOTO 9 -->
 
-        <article class="item" onclick="openLightbox(8)">
+        <article
+            class="item"
+            onclick="openLightbox(8)"
+        >
 
             <span class="number">
                 09
@@ -1205,7 +1316,10 @@ h1 {
 
         <!-- PHOTO 10 -->
 
-        <article class="item" onclick="openLightbox(9)">
+        <article
+            class="item"
+            onclick="openLightbox(9)"
+        >
 
             <span class="number">
                 10
@@ -1230,7 +1344,9 @@ h1 {
     </section>
 
 
-    <!-- DECORATIVE SIDE NOTES -->
+    <!-- =============================================
+         SIDE NOTES
+    ============================================== -->
 
     <div class="note note-one">
         kept for the record
@@ -1266,13 +1382,14 @@ h1 {
 
 <!-- =============================================
      LIGHTBOX
-============================================= -->
+============================================== -->
 
 <div
     class="lightbox"
     id="lightbox"
     onclick="closeFromBackground(event)"
 >
+
 
     <button
         class="close"
@@ -1323,6 +1440,7 @@ h1 {
     >
         ›
     </button>
+
 
 </div>
 
@@ -1464,7 +1582,7 @@ function closeLightbox() {
 
 
 /* =====================================================
-   CLOSE WHEN CLICKING BACKGROUND
+   CLOSE FROM BACKGROUND
 ===================================================== */
 
 function closeFromBackground(event) {
