@@ -1,10 +1,11 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>The Soundtrack</title>
+<title>The Music</title>
 
 <style>
 
@@ -99,161 +100,6 @@ body {
 }
 
 /* =========================================
-   FLOATING MUSIC NOTES
-========================================= */
-
-.note {
-    position: absolute;
-
-    z-index: 4;
-
-    color: rgba(255,255,255,0.48);
-
-    font-family: Georgia, serif;
-
-    text-shadow:
-        0 0 18px rgba(255,255,255,0.08);
-}
-
-.note.one {
-    top: 15%;
-    left: 9%;
-
-    font-size: 34px;
-
-    transform: rotate(-14deg);
-}
-
-.note.two {
-    top: 22%;
-    left: 27%;
-
-    font-size: 18px;
-
-    transform: rotate(8deg);
-}
-
-.note.three {
-    top: 30%;
-    right: 10%;
-
-    font-size: 29px;
-
-    transform: rotate(12deg);
-}
-
-.note.four {
-    top: 42%;
-    left: 7%;
-
-    font-size: 21px;
-
-    transform: rotate(-10deg);
-}
-
-.note.five {
-    top: 49%;
-    right: 6%;
-
-    font-size: 35px;
-
-    transform: rotate(8deg);
-}
-
-.note.six {
-    bottom: 34%;
-    left: 16%;
-
-    font-size: 26px;
-
-    transform: rotate(12deg);
-}
-
-.note.seven {
-    bottom: 29%;
-    right: 21%;
-
-    font-size: 18px;
-
-    transform: rotate(-11deg);
-}
-
-.note.eight {
-    bottom: 19%;
-    left: 9%;
-
-    font-size: 31px;
-
-    transform: rotate(-7deg);
-}
-
-.note.nine {
-    bottom: 16%;
-    right: 12%;
-
-    font-size: 24px;
-
-    transform: rotate(13deg);
-}
-
-.note.ten {
-    top: 37%;
-    left: 19%;
-
-    font-size: 17px;
-
-    transform: rotate(-5deg);
-}
-
-/* =========================================
-   TRACK NUMBERS
-========================================= */
-
-.track {
-    position: absolute;
-
-    z-index: 4;
-
-    font-family: Arial, sans-serif;
-
-    font-size: 9px;
-
-    letter-spacing: 3px;
-
-    color: rgba(255,255,255,0.30);
-}
-
-.track.one {
-    top: 18%;
-    right: 21%;
-}
-
-.track.two {
-    top: 28%;
-    left: 10%;
-}
-
-.track.three {
-    top: 39%;
-    right: 13%;
-}
-
-.track.four {
-    top: 55%;
-    left: 9%;
-}
-
-.track.five {
-    bottom: 28%;
-    right: 11%;
-}
-
-.track.six {
-    bottom: 20%;
-    left: 23%;
-}
-
-/* =========================================
    MAIN CONTENT
 ========================================= */
 
@@ -302,7 +148,25 @@ h1 {
 }
 
 /* =========================================
-   TEXT + HEADPHONES
+   INTRO TEXT
+========================================= */
+
+.intro {
+    margin: 0 auto 28px;
+
+    max-width: 500px;
+}
+
+.intro p {
+    font-size: 16px;
+
+    line-height: 1.7;
+
+    color: #c2c2c2;
+}
+
+/* =========================================
+   HEADPHONES
 ========================================= */
 
 .text-with-headphones {
@@ -316,38 +180,6 @@ h1 {
 
     gap: 13px;
 }
-
-.intro {
-    margin-bottom: 28px;
-}
-
-.tease {
-    margin-bottom: 11px;
-}
-
-.text-with-headphones p {
-    flex: 1;
-
-    color: #c2c2c2;
-}
-
-.intro p {
-    font-size: 16px;
-
-    line-height: 1.7;
-}
-
-.tease p {
-    font-size: 15px;
-
-    line-height: 1.7;
-
-    font-style: italic;
-}
-
-/* =========================================
-   HEADPHONES
-========================================= */
 
 .headphones {
     width: 21px;
@@ -479,6 +311,26 @@ h1 {
 }
 
 /* =========================================
+   LOWER TEXT
+========================================= */
+
+.tease {
+    margin-bottom: 11px;
+}
+
+.tease p {
+    flex: 1;
+
+    color: #c2c2c2;
+
+    font-size: 15px;
+
+    line-height: 1.7;
+
+    font-style: italic;
+}
+
+/* =========================================
    LISTEN IN ORDER
 ========================================= */
 
@@ -545,37 +397,10 @@ h1 {
         width: 520px;
     }
 
-    .track {
-        font-size: 8px;
-    }
-
-    .track.one {
-        right: 7%;
-    }
-
-    .track.two {
-        left: 5%;
-    }
-
-    .track.three {
-        right: 5%;
-    }
-
-    .track.four {
-        left: 4%;
-    }
-
-    .track.five {
-        right: 4%;
-    }
-
-    .track.six {
-        left: 10%;
-    }
-
     .spotify-box {
         min-height: 320px;
     }
+
 }
 
 </style>
@@ -594,37 +419,7 @@ h1 {
     <div class="title-light"></div>
 
 
-    <!-- =====================================
-         FLOATING MUSIC NOTES
-    ====================================== -->
-
-    <div class="note one">♪</div>
-    <div class="note two">♫</div>
-    <div class="note three">♬</div>
-    <div class="note four">♪</div>
-    <div class="note five">♫</div>
-    <div class="note six">♩</div>
-    <div class="note seven">♪</div>
-    <div class="note eight">♫</div>
-    <div class="note nine">♬</div>
-    <div class="note ten">♪</div>
-
-
-    <!-- =====================================
-         TRACK DETAILS
-    ====================================== -->
-
-    <div class="track one">TRACK 01</div>
-    <div class="track two">TRACK 02</div>
-    <div class="track three">TRACK 05</div>
-    <div class="track four">TRACK 03</div>
-    <div class="track five">TRACK 07</div>
-    <div class="track six">TRACK 09</div>
-
-
-    <!-- =====================================
-         MAIN CONTENT
-    ====================================== -->
+    <!-- MAIN CONTENT -->
 
     <div class="content">
 
@@ -634,7 +429,7 @@ h1 {
 
 
         <h1>
-            THE SOUNDTRACK
+            THE MUSIC
         </h1>
 
 
@@ -709,3 +504,4 @@ h1 {
 
 </body>
 </html>
+```
