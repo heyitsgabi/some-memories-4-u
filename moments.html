@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>For The Record</title>
+<title>Moments</title>
 
 <style>
 
@@ -73,8 +73,6 @@ body::before {
 
     background:
 
-        /* soft paper folds */
-
         radial-gradient(
             ellipse at 15% 18%,
             rgba(255,255,255,0.30) 0%,
@@ -99,8 +97,6 @@ body::before {
             transparent 25%
         ),
 
-        /* subtle diagonal creases */
-
         linear-gradient(
             125deg,
             transparent 0%,
@@ -121,8 +117,6 @@ body::before {
             transparent 82%
         ),
 
-        /* paper grain */
-
         url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paperNoise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.035' numOctaves='4' seed='8' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23paperNoise)' opacity='.32'/%3E%3C/svg%3E");
 
     mix-blend-mode: multiply;
@@ -130,7 +124,7 @@ body::before {
 
 
 /* =====================================================
-   DECORATIVE PAPER EDGE
+   DECORATIVE EDGE
 ===================================================== */
 
 body::after {
@@ -170,7 +164,7 @@ body::after {
 .header {
     text-align: center;
 
-    margin-bottom: 55px;
+    margin-bottom: 58px;
 
     position: relative;
 
@@ -192,13 +186,13 @@ body::after {
 }
 
 h1 {
-    font-size: clamp(48px, 8vw, 78px);
+    font-size: clamp(48px, 8vw, 76px);
 
     font-weight: normal;
 
     letter-spacing: -3px;
 
-    line-height: 0.9;
+    line-height: 0.92;
 
     color: #181716;
 }
@@ -218,7 +212,7 @@ h1 {
 
     font-size: 12px;
 
-    letter-spacing: 0.3px;
+    line-height: 1.6;
 }
 
 .section-number {
@@ -246,7 +240,7 @@ h1 {
     grid-template-columns:
         repeat(4, minmax(0, 1fr));
 
-    gap: 42px 22px;
+    gap: 44px 22px;
 
     align-items: start;
 
@@ -269,32 +263,71 @@ h1 {
 }
 
 .item:nth-child(2) {
-    margin-top: 35px;
+    margin-top: 32px;
 }
 
-.item:nth-child(5) {
-    margin-top: 25px;
+.item:nth-child(3) {
+    margin-top: 8px;
 }
 
-.item:nth-child(7) {
+.item:nth-child(4) {
     margin-top: 38px;
 }
 
+.item:nth-child(5) {
+    margin-top: 10px;
+}
 
-/* =====================================================
-   CENTRE LAST TWO
-===================================================== */
+.item:nth-child(6) {
+    margin-top: 36px;
+}
+
+.item:nth-child(7) {
+    margin-top: 5px;
+}
+
+.item:nth-child(8) {
+    margin-top: 30px;
+}
 
 .item:nth-child(9) {
-    grid-column: 2;
-
     margin-top: 18px;
 }
 
 .item:nth-child(10) {
-    grid-column: 3;
+    margin-top: 40px;
+}
 
-    margin-top: 18px;
+.item:nth-child(11) {
+    margin-top: 5px;
+}
+
+.item:nth-child(12) {
+    margin-top: 28px;
+}
+
+.item:nth-child(13) {
+    margin-top: 12px;
+}
+
+.item:nth-child(14) {
+    margin-top: 38px;
+}
+
+.item:nth-child(15) {
+    margin-top: 4px;
+}
+
+.item:nth-child(16) {
+    margin-top: 30px;
+}
+
+.item:nth-child(17) {
+    margin-top: 10px;
+}
+
+.item:nth-child(18) {
+    margin-top: 35px;
 }
 
 
@@ -307,7 +340,7 @@ h1 {
 
     width: 100%;
 
-    aspect-ratio: 0.82;
+    aspect-ratio: 0.84;
 
     padding: 8px;
 
@@ -325,7 +358,9 @@ h1 {
 }
 
 
-/* inner frame */
+/* =====================================================
+   INNER FRAME
+===================================================== */
 
 .frame::before {
     content: "";
@@ -342,7 +377,9 @@ h1 {
 }
 
 
-/* decorative corner */
+/* =====================================================
+   DECORATIVE CORNER
+===================================================== */
 
 .frame::after {
     content: "✦";
@@ -362,7 +399,7 @@ h1 {
 
 
 /* =====================================================
-   IMAGE
+   IMAGES
 ===================================================== */
 
 .frame img {
@@ -379,7 +416,7 @@ h1 {
     z-index: 2;
 
     filter:
-        saturate(0.91)
+        saturate(0.92)
         contrast(0.97);
 
     transition:
@@ -389,59 +426,50 @@ h1 {
 
 
 /* =====================================================
-   DIFFERENT FRAME STYLES
+   FRAME VARIATIONS
 ===================================================== */
 
-.item:nth-child(2) .frame {
+.item:nth-child(2) .frame,
+.item:nth-child(12) .frame {
     background: #e7dfd2;
 
-    border: 1px solid #4a443c;
+    border: 1px solid #71675a;
 
     box-shadow:
         8px 8px 0 rgba(57,50,42,0.11),
         0 15px 30px rgba(40,34,28,0.14);
 }
 
-.item:nth-child(2) .frame::before {
-    inset: 6px;
 
-    border: 2px solid rgba(35,31,27,0.18);
-}
-
-
-.item:nth-child(3) .frame {
-    background: #faf8f2;
-
-    padding: 11px;
-
-    border: 1px solid rgba(20,20,20,0.4);
-
-    box-shadow:
-        -4px 6px 0 rgba(75,66,54,0.08),
-        0 13px 28px rgba(40,34,28,0.12);
-}
-
-
-.item:nth-child(4) .frame {
-    aspect-ratio: 1.12;
-
+.item:nth-child(3) .frame,
+.item:nth-child(15) .frame {
     background: #20201e;
 
-    border: 7px solid #20201e;
-
-    box-shadow:
-        4px 8px 0 rgba(40,35,29,0.1),
-        0 15px 30px rgba(30,27,23,0.18);
+    border: 8px solid #20201e;
 }
 
-.item:nth-child(4) .frame::before {
-    inset: 3px;
+.item:nth-child(3) .frame::before,
+.item:nth-child(15) .frame::before {
+    inset: 2px;
 
-    border-color: rgba(255,255,255,0.17);
+    border-color: rgba(255,255,255,0.15);
 }
 
 
-.item:nth-child(5) .frame {
+.item:nth-child(4) .frame,
+.item:nth-child(13) .frame {
+    aspect-ratio: 1.12;
+
+    background: #faf8f2;
+
+    padding: 10px;
+
+    border: 1px solid rgba(20,20,20,0.38);
+}
+
+
+.item:nth-child(5) .frame,
+.item:nth-child(17) .frame {
     background: #ddd4c6;
 
     border: 1px solid #82786a;
@@ -450,21 +478,21 @@ h1 {
 }
 
 
-.item:nth-child(6) .frame {
+.item:nth-child(6) .frame,
+.item:nth-child(16) .frame {
     background: #f9f7f1;
 
-    border: 2px solid #272522;
-
-    padding: 7px;
+    border: 2px solid #292724;
 
     box-shadow:
         0 0 0 4px #ded7cb,
-        0 0 0 5px rgba(35,31,27,0.3),
+        0 0 0 5px rgba(35,31,27,0.28),
         0 14px 28px rgba(40,34,28,0.14);
 }
 
 
-.item:nth-child(7) .frame {
+.item:nth-child(7) .frame,
+.item:nth-child(18) .frame {
     aspect-ratio: 1.15;
 
     background: #1b1b1a;
@@ -472,14 +500,16 @@ h1 {
     border: 8px solid #1b1b1a;
 }
 
-.item:nth-child(7) .frame::before {
+.item:nth-child(7) .frame::before,
+.item:nth-child(18) .frame::before {
     inset: 2px;
 
     border-color: rgba(255,255,255,0.15);
 }
 
 
-.item:nth-child(8) .frame {
+.item:nth-child(8) .frame,
+.item:nth-child(14) .frame {
     background: #eee6d9;
 
     border: 1px solid #817668;
@@ -521,24 +551,43 @@ h1 {
 
 
 /* =====================================================
-   HOVER
+   US / PLACES FRAME STYLES
 ===================================================== */
 
-.item:hover .frame {
-    transform:
-        translateY(-5px)
-        rotate(0deg) !important;
+.item:nth-child(11) .frame {
+    background: #f9f6ed;
 
-    box-shadow:
-        0 20px 38px rgba(35,30,25,0.2);
+    border: 2px solid #4a443b;
+
+    padding: 7px;
 }
 
-.item:hover img {
-    filter:
-        saturate(1)
-        contrast(1);
+.item:nth-child(12) .frame {
+    transform: rotate(1.5deg);
+}
 
-    transform: scale(1.018);
+.item:nth-child(13) .frame {
+    transform: rotate(-0.7deg);
+}
+
+.item:nth-child(14) .frame {
+    transform: rotate(1deg);
+}
+
+.item:nth-child(15) .frame {
+    transform: rotate(-1.3deg);
+}
+
+.item:nth-child(16) .frame {
+    transform: rotate(0.8deg);
+}
+
+.item:nth-child(17) .frame {
+    transform: rotate(-0.8deg);
+}
+
+.item:nth-child(18) .frame {
+    transform: rotate(1.2deg);
 }
 
 
@@ -588,11 +637,33 @@ h1 {
 
 
 /* =====================================================
+   HOVER
+===================================================== */
+
+.item:hover .frame {
+    transform:
+        translateY(-6px)
+        rotate(0deg) !important;
+
+    box-shadow:
+        0 20px 38px rgba(35,30,25,0.20);
+}
+
+.item:hover img {
+    filter:
+        saturate(1)
+        contrast(1);
+
+    transform: scale(1.018);
+}
+
+
+/* =====================================================
    CAPTIONS
 ===================================================== */
 
 .caption {
-    margin-top: 11px;
+    margin-top: 12px;
 
     padding: 0 4px;
 
@@ -600,9 +671,9 @@ h1 {
 
     font-size: 11px;
 
-    line-height: 1.45;
+    line-height: 1.5;
 
-    min-height: 32px;
+    min-height: 34px;
 
     position: relative;
 
@@ -672,13 +743,13 @@ h1 {
 .note-one {
     left: -25px;
 
-    top: 250px;
+    top: 270px;
 }
 
 .note-two {
     right: -25px;
 
-    top: 720px;
+    top: 1000px;
 }
 
 
@@ -689,7 +760,7 @@ h1 {
 .bottom {
     text-align: center;
 
-    margin-top: 65px;
+    margin-top: 70px;
 
     padding-top: 28px;
 
@@ -817,7 +888,7 @@ h1 {
 
     text-align: center;
 
-    max-width: 500px;
+    max-width: 540px;
 
     margin-top: 18px;
 }
@@ -924,7 +995,7 @@ h1 {
     }
 
     h1 {
-        font-size: 49px;
+        font-size: 48px;
     }
 
     .gallery {
@@ -935,16 +1006,23 @@ h1 {
     }
 
     .item:nth-child(2),
+    .item:nth-child(3),
+    .item:nth-child(4),
     .item:nth-child(5),
+    .item:nth-child(6),
     .item:nth-child(7),
+    .item:nth-child(8),
     .item:nth-child(9),
-    .item:nth-child(10) {
+    .item:nth-child(10),
+    .item:nth-child(11),
+    .item:nth-child(12),
+    .item:nth-child(13),
+    .item:nth-child(14),
+    .item:nth-child(15),
+    .item:nth-child(16),
+    .item:nth-child(17),
+    .item:nth-child(18) {
         margin-top: 18px;
-    }
-
-    .item:nth-child(9),
-    .item:nth-child(10) {
-        grid-column: auto;
     }
 
     .caption {
@@ -964,7 +1042,7 @@ h1 {
     }
 
     .bottom {
-        margin-top: 50px;
+        margin-top: 52px;
     }
 
     .lightbox {
@@ -1036,7 +1114,7 @@ h1 {
 
     <!-- =============================================
          HEADER
-    ============================================== -->
+    ============================================= -->
 
     <header class="header">
 
@@ -1045,17 +1123,17 @@ h1 {
         </div>
 
         <h1>
-            FOR THE RECORD
+            MOMENTS
         </h1>
 
         <div class="header-line"></div>
 
         <p class="header-note">
-            A few things I happened to keep.
+            The people, places, and little moments worth keeping.
         </p>
 
         <div class="section-number">
-            01 / You
+            02 / Moments
         </div>
 
     </header>
@@ -1063,29 +1141,19 @@ h1 {
 
     <!-- =============================================
          GALLERY
-    ============================================== -->
+    ============================================= -->
 
     <section class="gallery">
 
 
         <!-- PHOTO 1 -->
 
-        <article
-            class="item"
-            onclick="openLightbox(0)"
-        >
+        <article class="item" onclick="openLightbox(0)">
 
-            <span class="number">
-                01
-            </span>
+            <span class="number">01</span>
 
             <div class="frame">
-
-                <img
-                    src="photo1.jpg"
-                    alt="Candid photo"
-                >
-
+                <img src="photo1.jpg" alt="Candid photo">
             </div>
 
             <div class="caption">
@@ -1097,22 +1165,12 @@ h1 {
 
         <!-- PHOTO 2 -->
 
-        <article
-            class="item"
-            onclick="openLightbox(1)"
-        >
+        <article class="item" onclick="openLightbox(1)">
 
-            <span class="number">
-                02
-            </span>
+            <span class="number">02</span>
 
             <div class="frame">
-
-                <img
-                    src="photo2.jpg"
-                    alt="Close-up photo"
-                >
-
+                <img src="photo2.jpg" alt="Close-up photo">
             </div>
 
             <div class="caption">
@@ -1124,22 +1182,12 @@ h1 {
 
         <!-- PHOTO 3 -->
 
-        <article
-            class="item"
-            onclick="openLightbox(2)"
-        >
+        <article class="item" onclick="openLightbox(2)">
 
-            <span class="number">
-                03
-            </span>
+            <span class="number">03</span>
 
             <div class="frame">
-
-                <img
-                    src="photo3.jpg"
-                    alt="Candid moment"
-                >
-
+                <img src="photo3.jpg" alt="Candid moment">
             </div>
 
             <div class="caption">
@@ -1151,22 +1199,12 @@ h1 {
 
         <!-- PHOTO 4 -->
 
-        <article
-            class="item"
-            onclick="openLightbox(3)"
-        >
+        <article class="item" onclick="openLightbox(3)">
 
-            <span class="number">
-                04
-            </span>
+            <span class="number">04</span>
 
             <div class="frame">
-
-                <img
-                    src="photo4.jpg"
-                    alt="Candid moment"
-                >
-
+                <img src="photo4.jpg" alt="Candid moment">
             </div>
 
             <div class="caption">
@@ -1178,22 +1216,12 @@ h1 {
 
         <!-- PHOTO 5 -->
 
-        <article
-            class="item"
-            onclick="openLightbox(4)"
-        >
+        <article class="item" onclick="openLightbox(4)">
 
-            <span class="number">
-                05
-            </span>
+            <span class="number">05</span>
 
             <div class="frame">
-
-                <img
-                    src="photo5.jpg"
-                    alt="Candid photo"
-                >
-
+                <img src="photo5.jpg" alt="Candid photo">
             </div>
 
             <div class="caption">
@@ -1205,22 +1233,12 @@ h1 {
 
         <!-- PHOTO 6 -->
 
-        <article
-            class="item"
-            onclick="openLightbox(5)"
-        >
+        <article class="item" onclick="openLightbox(5)">
 
-            <span class="number">
-                06
-            </span>
+            <span class="number">06</span>
 
             <div class="frame">
-
-                <img
-                    src="photo6.jpg"
-                    alt="Mirror selfie"
-                >
-
+                <img src="photo6.jpg" alt="Mirror selfie">
             </div>
 
             <div class="caption">
@@ -1232,22 +1250,12 @@ h1 {
 
         <!-- PHOTO 7 -->
 
-        <article
-            class="item"
-            onclick="openLightbox(6)"
-        >
+        <article class="item" onclick="openLightbox(6)">
 
-            <span class="number">
-                07
-            </span>
+            <span class="number">07</span>
 
             <div class="frame">
-
-                <img
-                    src="photo7.jpg"
-                    alt="Sleeping"
-                >
-
+                <img src="photo7.jpg" alt="Sleeping">
             </div>
 
             <div class="caption">
@@ -1261,22 +1269,12 @@ h1 {
 
         <!-- PHOTO 8 -->
 
-        <article
-            class="item"
-            onclick="openLightbox(7)"
-        >
+        <article class="item" onclick="openLightbox(7)">
 
-            <span class="number">
-                08
-            </span>
+            <span class="number">08</span>
 
             <div class="frame">
-
-                <img
-                    src="photo8.jpg"
-                    alt="Back profile outdoors"
-                >
-
+                <img src="photo8.jpg" alt="Back profile outdoors">
             </div>
 
             <div class="caption">
@@ -1288,22 +1286,12 @@ h1 {
 
         <!-- PHOTO 9 -->
 
-        <article
-            class="item"
-            onclick="openLightbox(8)"
-        >
+        <article class="item" onclick="openLightbox(8)">
 
-            <span class="number">
-                09
-            </span>
+            <span class="number">09</span>
 
             <div class="frame">
-
-                <img
-                    src="photo9.jpg"
-                    alt="Mirror photo"
-                >
-
+                <img src="photo9.jpg" alt="Mirror photo">
             </div>
 
             <div class="caption">
@@ -1315,26 +1303,152 @@ h1 {
 
         <!-- PHOTO 10 -->
 
-        <article
-            class="item"
-            onclick="openLightbox(9)"
-        >
+        <article class="item" onclick="openLightbox(9)">
 
-            <span class="number">
-                10
-            </span>
+            <span class="number">10</span>
 
             <div class="frame">
-
-                <img
-                    src="photo10.jpg"
-                    alt="A photo he likes"
-                >
-
+                <img src="photo10.jpg" alt="A photo he likes">
             </div>
 
             <div class="caption">
                 you liked this one, so here.
+            </div>
+
+        </article>
+
+
+        <!-- US / PLACES 1 -->
+
+        <article class="item" onclick="openLightbox(10)">
+
+            <span class="number">11</span>
+
+            <div class="frame">
+                <img src="us1.jpg" alt="Boba drinks">
+            </div>
+
+            <div class="caption">
+                hand mogging
+            </div>
+
+        </article>
+
+
+        <!-- US / PLACES 2 -->
+
+        <article class="item" onclick="openLightbox(11)">
+
+            <span class="number">12</span>
+
+            <div class="frame">
+                <img src="us2.jpg" alt="Night market">
+            </div>
+
+            <div class="caption">
+                our return to your fav spot which I have hijacked… tbf, I didn’t see your name engraved there
+            </div>
+
+        </article>
+
+
+        <!-- US / PLACES 3 -->
+
+        <article class="item" onclick="openLightbox(12)">
+
+            <span class="number">13</span>
+
+            <div class="frame">
+                <img src="us3.jpg" alt="Legon City Mall">
+            </div>
+
+            <div class="caption">
+                one of many walks… who is that cutie in the photo though 🤔
+            </div>
+
+        </article>
+
+
+        <!-- US / PLACES 4 -->
+
+        <article class="item" onclick="openLightbox(13)">
+
+            <span class="number">14</span>
+
+            <div class="frame">
+                <img src="us4.jpg" alt="Relaxing moment">
+            </div>
+
+            <div class="caption">
+                sb looks comfy
+            </div>
+
+        </article>
+
+
+        <!-- US / PLACES 5 -->
+
+        <article class="item" onclick="openLightbox(14)">
+
+            <span class="number">15</span>
+
+            <div class="frame">
+                <img src="us5.jpg" alt="Relaxing moment close-up">
+            </div>
+
+            <div class="caption">
+                like an innocent little thing… looks really are deceptive, aren’t they
+            </div>
+
+        </article>
+
+
+        <!-- US / PLACES 6 -->
+
+        <article class="item" onclick="openLightbox(15)">
+
+            <span class="number">16</span>
+
+            <div class="frame">
+                <img src="us6.jpg" alt="Balme Library">
+            </div>
+
+            <div class="caption">
+                just bc it’s pretty and you ‘happened’ to be there
+            </div>
+
+        </article>
+
+
+        <!-- US / PLACES 7 -->
+
+        <article class="item" onclick="openLightbox(16)">
+
+            <span class="number">17</span>
+
+            <div class="frame">
+                <img src="us7.jpg" alt="Campus pathway">
+            </div>
+
+            <div class="caption">
+                our return after you lost the Skittles game terribly
+            </div>
+
+        </article>
+
+
+        <!-- US / PLACES 8 -->
+
+        <article class="item" onclick="openLightbox(17)">
+
+            <span class="number">18</span>
+
+            <div class="frame">
+                <img src="us8.jpg" alt="Campus walkway">
+            </div>
+
+            <div class="caption">
+                you wallowing in your misery in the distance… realizing that that was going to be just one of your many losses to me
             </div>
 
         </article>
@@ -1345,7 +1459,7 @@ h1 {
 
     <!-- =============================================
          SIDE NOTES
-    ============================================== -->
+    ============================================= -->
 
     <div class="note note-one">
         kept for the record
@@ -1358,7 +1472,7 @@ h1 {
 
     <!-- =============================================
          BOTTOM
-    ============================================== -->
+    ============================================= -->
 
     <div class="bottom">
 
@@ -1366,10 +1480,7 @@ h1 {
             that's enough evidence for now.
         </p>
 
-        <a
-            href="archive.html"
-            class="back"
-        >
+        <a href="archive.html" class="back">
             ← Back to archive
         </a>
 
@@ -1388,7 +1499,6 @@ h1 {
     id="lightbox"
     onclick="closeFromBackground(event)"
 >
-
 
     <button
         class="close"
@@ -1439,7 +1549,6 @@ h1 {
     >
         ›
     </button>
-
 
 </div>
 
@@ -1500,6 +1609,46 @@ const photos = [
     {
         src: "photo10.jpg",
         caption: "you liked this one, so here."
+    },
+
+    {
+        src: "us1.jpg",
+        caption: "hand mogging"
+    },
+
+    {
+        src: "us2.jpg",
+        caption: "our return to your fav spot which I have hijacked… tbf, I didn’t see your name engraved there"
+    },
+
+    {
+        src: "us3.jpg",
+        caption: "one of many walks… who is that cutie in the photo though 🤔"
+    },
+
+    {
+        src: "us4.jpg",
+        caption: "sb looks comfy"
+    },
+
+    {
+        src: "us5.jpg",
+        caption: "like an innocent little thing… looks really are deceptive, aren’t they"
+    },
+
+    {
+        src: "us6.jpg",
+        caption: "just bc it’s pretty and you ‘happened’ to be there"
+    },
+
+    {
+        src: "us7.jpg",
+        caption: "our return after you lost the Skittles game terribly"
+    },
+
+    {
+        src: "us8.jpg",
+        caption: "you wallowing in your misery in the distance… realizing that that was going to be just one of your many losses to me"
     }
 
 ];
