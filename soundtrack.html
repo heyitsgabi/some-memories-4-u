@@ -4,9 +4,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>The Soundtrack</title>
 
 <style>
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -21,19 +23,25 @@ body {
     overflow-x: hidden;
 }
 
+/* =========================================
+   PAGE
+========================================= */
+
 .page {
     min-height: 100vh;
     position: relative;
     overflow: hidden;
+
     padding: 90px 24px;
+
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-/* =================================
-   TOP + BOTTOM LIGHT
-================================= */
+/* =========================================
+   LIGHTING
+========================================= */
 
 .top-light,
 .bottom-light,
@@ -46,202 +54,248 @@ body {
 .top-light {
     width: 950px;
     height: 480px;
+
     top: -340px;
     left: 50%;
+
     transform: translateX(-50%);
+
     background: rgba(255,255,255,0.20);
+
     filter: blur(105px);
+
     z-index: 0;
 }
 
 .bottom-light {
     width: 950px;
     height: 470px;
+
     bottom: -340px;
     left: 50%;
+
     transform: translateX(-50%);
+
     background: rgba(255,255,255,0.16);
+
     filter: blur(105px);
+
     z-index: 0;
 }
 
 .title-light {
     width: 650px;
     height: 250px;
+
     top: 18%;
     left: 50%;
+
     transform: translateX(-50%);
+
     background: rgba(255,255,255,0.14);
+
     filter: blur(85px);
+
     z-index: 1;
 }
 
-/* =================================
-   SMOOTH VIBRATION WAVES
-================================= */
+/* =========================================
+   HORIZONTAL SOUND WAVES
+========================================= */
 
 .sound-wave {
     position: absolute;
-    width: 900px;
-    max-width: 125vw;
-    height: 150px;
+
+    width: 100%;
+    height: 105px;
+
+    left: 0;
+
     z-index: 2;
-    opacity: 0.56;
+
     pointer-events: none;
+
+    opacity: 0.58;
 }
 
 .sound-wave.top {
-    top: 5%;
-    left: 47%;
-    transform: translateX(-50%) rotate(-5deg);
+    top: 6%;
 }
 
 .sound-wave.bottom {
-    bottom: 5%;
-    left: 53%;
-    transform: translateX(-50%) rotate(5deg);
+    bottom: 6%;
 }
 
-/*
-   Each wave is drawn using a smooth SVG-style
-   vibration line created with CSS curves.
-*/
-
-.wave-line {
-    position: absolute;
-    inset: 0;
+.sound-wave svg {
     width: 100%;
     height: 100%;
-}
 
-.wave-line svg {
-    width: 100%;
-    height: 100%;
+    display: block;
+
     overflow: visible;
 }
 
-.wave-line path {
+.sound-wave path {
     fill: none;
+
     stroke: rgba(255,255,255,0.72);
+
     stroke-width: 1.7;
+
     stroke-linecap: round;
-    filter: drop-shadow(0 0 8px rgba(255,255,255,0.12));
+
+    filter:
+        drop-shadow(0 0 8px rgba(255,255,255,0.14));
 }
 
-.wave-line.soft path {
+/* softer secondary wave */
+
+.sound-wave .soft-wave {
     stroke: rgba(255,255,255,0.20);
+
     stroke-width: 1;
+
+    filter: none;
 }
 
-/* =================================
+/* =========================================
    FLOATING MUSIC NOTES
-================================= */
+========================================= */
 
 .note {
     position: absolute;
+
     z-index: 4;
+
     color: rgba(255,255,255,0.48);
+
     font-family: Georgia, serif;
-    text-shadow: 0 0 18px rgba(255,255,255,0.08);
+
+    text-shadow:
+        0 0 18px rgba(255,255,255,0.08);
 }
 
 .note.one {
-    top: 15%;
-    left: 10%;
+    top: 16%;
+    left: 9%;
+
     font-size: 34px;
+
     transform: rotate(-14deg);
 }
 
 .note.two {
-    top: 22%;
-    left: 28%;
+    top: 23%;
+    left: 27%;
+
     font-size: 18px;
+
     transform: rotate(8deg);
 }
 
 .note.three {
     top: 30%;
-    right: 11%;
+    right: 10%;
+
     font-size: 29px;
+
     transform: rotate(12deg);
 }
 
 .note.four {
-    top: 43%;
+    top: 42%;
     left: 7%;
+
     font-size: 21px;
+
     transform: rotate(-10deg);
 }
 
 .note.five {
     top: 49%;
     right: 6%;
+
     font-size: 35px;
+
     transform: rotate(8deg);
 }
 
 .note.six {
     bottom: 34%;
     left: 16%;
+
     font-size: 26px;
+
     transform: rotate(12deg);
 }
 
 .note.seven {
     bottom: 29%;
     right: 21%;
+
     font-size: 18px;
+
     transform: rotate(-11deg);
 }
 
 .note.eight {
     bottom: 19%;
     left: 9%;
+
     font-size: 31px;
+
     transform: rotate(-7deg);
 }
 
 .note.nine {
     bottom: 16%;
     right: 12%;
+
     font-size: 24px;
+
     transform: rotate(13deg);
 }
 
 .note.ten {
     top: 37%;
     left: 19%;
+
     font-size: 17px;
+
     transform: rotate(-5deg);
 }
 
-/* =================================
-   TRACK LABELS
-================================= */
+/* =========================================
+   TRACK NUMBERS
+========================================= */
 
 .track {
     position: absolute;
+
     z-index: 4;
 
     font-family: Arial, sans-serif;
+
     font-size: 9px;
+
     letter-spacing: 3px;
+
     color: rgba(255,255,255,0.30);
 }
 
 .track.one {
     top: 18%;
-    right: 22%;
+    right: 21%;
 }
 
 .track.two {
     top: 28%;
-    left: 11%;
+    left: 10%;
 }
 
 .track.three {
     top: 39%;
-    right: 14%;
+    right: 13%;
 }
 
 .track.four {
@@ -259,48 +313,63 @@ body {
     left: 23%;
 }
 
-/* =================================
+/* =========================================
    MAIN CONTENT
-================================= */
+========================================= */
 
 .content {
     width: 100%;
     max-width: 560px;
+
     position: relative;
+
     z-index: 10;
+
     text-align: center;
 }
 
 .eyebrow {
     font-family: Arial, sans-serif;
+
     font-size: 9px;
+
     letter-spacing: 5px;
+
     color: #9b9b9b;
+
     text-transform: uppercase;
+
     margin-bottom: 14px;
 }
 
 h1 {
     font-size: clamp(43px, 8vw, 70px);
+
     font-weight: normal;
+
     letter-spacing: -2px;
+
     margin-bottom: 24px;
 
     text-shadow:
-        0 0 18px rgba(255,255,255,0.28),
-        0 0 45px rgba(255,255,255,0.18),
-        0 0 90px rgba(255,255,255,0.10);
+        0 0 18px rgba(255,255,255,0.30),
+        0 0 45px rgba(255,255,255,0.19),
+        0 0 90px rgba(255,255,255,0.11);
 }
 
-/* =================================
+/* =========================================
    TEXT + HEADPHONES
-================================= */
+========================================= */
 
 .text-with-headphones {
     width: 100%;
+
     display: flex;
+
     align-items: center;
+
     justify-content: center;
+
     gap: 13px;
 }
 
@@ -314,85 +383,114 @@ h1 {
 
 .text-with-headphones p {
     flex: 1;
+
     color: #c2c2c2;
 }
 
 .intro p {
     font-size: 16px;
+
     line-height: 1.7;
 }
 
 .tease p {
     font-size: 15px;
+
     line-height: 1.7;
+
     font-style: italic;
 }
 
-/* =================================
-   TINY HEADPHONES
-================================= */
+/* =========================================
+   HEADPHONES
+========================================= */
 
 .headphones {
     width: 21px;
     height: 17px;
+
     position: relative;
+
     flex-shrink: 0;
+
     opacity: 0.68;
 }
 
 .headphones::before {
     content: "";
+
     position: absolute;
+
     width: 17px;
     height: 14px;
+
     left: 2px;
     top: 0;
 
     border: 2px solid #aaa;
+
     border-bottom: none;
+
     border-radius: 12px 12px 0 0;
 }
 
 .headphones::after {
     content: "";
+
     position: absolute;
+
     width: 4px;
     height: 8px;
+
     left: 0;
     bottom: 0;
 
     border-radius: 3px;
+
     background: #aaa;
-    box-shadow: 17px 0 0 #aaa;
+
+    box-shadow:
+        17px 0 0 #aaa;
 }
 
-/* =================================
+/* =========================================
    SPOTIFY
-================================= */
+========================================= */
 
 .spotify-container {
     width: 100%;
+
     max-width: 560px;
+
     margin: 0 auto 27px;
 }
 
 .spotify-label {
     display: flex;
+
     align-items: center;
+
     justify-content: center;
+
     gap: 8px;
 
     font-family: Arial, sans-serif;
+
     font-size: 9px;
+
     letter-spacing: 3px;
+
     color: #bdbdbd;
+
     text-transform: uppercase;
+
     margin-bottom: 10px;
 }
 
 .spotify-dot {
     width: 9px;
     height: 9px;
+
     border-radius: 50%;
 
     background: #1ed760;
@@ -404,13 +502,17 @@ h1 {
 
 .spotify-box {
     width: 100%;
+
     min-height: 352px;
 
     border: 1px solid rgba(255,255,255,0.25);
+
     background: rgba(0,0,0,0.78);
 
     display: flex;
+
     align-items: center;
+
     justify-content: center;
 
     backdrop-filter: blur(16px);
@@ -422,40 +524,65 @@ h1 {
 
 .spotify-placeholder {
     font-family: Arial, sans-serif;
+
     font-size: 10px;
+
     letter-spacing: 3px;
+
     color: #777;
+
     text-transform: uppercase;
 }
+
+/* =========================================
+   LISTEN IN ORDER
+========================================= */
 
 .listen {
     font-family: Arial, sans-serif;
+
     font-size: 10px;
+
     letter-spacing: 3px;
+
     color: #fff;
+
     text-transform: uppercase;
 }
+
+/* =========================================
+   BACK BUTTON
+========================================= */
 
 .back {
     display: inline-block;
+
     margin-top: 38px;
 
     color: #707070;
+
     text-decoration: none;
 
     font-family: Arial, sans-serif;
+
     font-size: 9px;
+
     letter-spacing: 3px;
+
     text-transform: uppercase;
 }
 
-.back:hover {
-    color: #fff;
+.back:visited {
+    color: #707070;
 }
 
-/* =================================
+.back:hover {
+    color: #ffffff;
+}
+
+/* =========================================
    MOBILE
-================================= */
+========================================= */
 
 @media (max-width: 700px) {
 
@@ -473,23 +600,8 @@ h1 {
     }
 
     .sound-wave {
-        width: 115vw;
-    }
-
-    .note.one {
-        left: 5%;
-    }
-
-    .note.three {
-        right: 5%;
-    }
-
-    .note.four {
-        left: 3%;
-    }
-
-    .note.five {
-        right: 3%;
+        width: 100%;
+        height: 85px;
     }
 
     .track {
@@ -524,6 +636,7 @@ h1 {
         min-height: 320px;
     }
 }
+
 </style>
 </head>
 
@@ -531,123 +644,222 @@ h1 {
 
 <main class="page">
 
-    <!-- LIGHT -->
+    <!-- =====================================
+         LIGHTING
+    ====================================== -->
+
     <div class="top-light"></div>
+
     <div class="bottom-light"></div>
+
     <div class="title-light"></div>
 
-    <!-- TOP SMOOTH WAVE -->
+
+    <!-- =====================================
+         TOP SOUND WAVE
+    ====================================== -->
+
     <div class="sound-wave top">
 
-        <div class="wave-line">
-            <svg viewBox="0 0 900 150" preserveAspectRatio="none">
-                <path d="
-                    M0,75
-                    C35,75 35,55 70,55
-                    C105,55 105,95 140,95
-                    C175,95 175,42 210,42
-                    C245,42 245,108 280,108
-                    C315,108 315,30 350,30
-                    C385,30 385,120 420,120
-                    C455,120 455,20 490,20
-                    C525,20 525,130 560,130
-                    C595,130 595,34 630,34
-                    C665,34 665,105 700,105
-                    C735,105 735,48 770,48
-                    C805,48 805,85 840,85
-                    C870,85 880,75 900,75
-                "/>
-            </svg>
-        </div>
+        <svg viewBox="0 0 1200 105"
+             preserveAspectRatio="none">
 
-        <div class="wave-line soft">
-            <svg viewBox="0 0 900 150" preserveAspectRatio="none">
-                <path d="
-                    M0,75
-                    C55,75 55,64 110,64
-                    C165,64 165,86 220,86
-                    C275,86 275,56 330,56
-                    C385,56 385,94 440,94
-                    C495,94 495,52 550,52
-                    C605,52 605,92 660,92
-                    C715,92 715,60 770,60
-                    C825,60 825,82 900,82
-                "/>
-            </svg>
-        </div>
+            <path d="
+                M0 52
+
+                C30 52 30 52 60 52
+                C90 52 90 36 120 36
+                C150 36 150 68 180 68
+
+                C210 68 210 43 240 43
+                C270 43 270 61 300 61
+
+                C330 61 330 27 360 27
+                C390 27 390 78 420 78
+
+                C450 78 450 35 480 35
+                C510 35 510 70 540 70
+
+                C570 70 570 19 600 19
+                C630 19 630 86 660 86
+
+                C690 86 690 34 720 34
+                C750 34 750 67 780 67
+
+                C810 67 810 28 840 28
+                C870 28 870 77 900 77
+
+                C930 77 930 40 960 40
+                C990 40 990 64 1020 64
+
+                C1050 64 1050 32 1080 32
+                C1110 32 1110 69 1140 69
+
+                C1170 69 1170 52 1200 52
+            "/>
+
+            <path
+                class="soft-wave"
+                d="
+                M0 52
+
+                C50 52 50 44 100 44
+                C150 44 150 61 200 61
+                C250 61 250 47 300 47
+                C350 47 350 59 400 59
+                C450 59 450 43 500 43
+                C550 43 550 62 600 62
+                C650 62 650 45 700 45
+                C750 45 750 60 800 60
+                C850 60 850 44 900 44
+                C950 44 950 61 1000 61
+                C1050 61 1050 46 1100 46
+                C1150 46 1150 55 1200 55
+            "/>
+
+        </svg>
 
     </div>
 
-    <!-- BOTTOM SMOOTH WAVE -->
+
+    <!-- =====================================
+         BOTTOM SOUND WAVE
+    ====================================== -->
+
     <div class="sound-wave bottom">
 
-        <div class="wave-line">
-            <svg viewBox="0 0 900 150" preserveAspectRatio="none">
-                <path d="
-                    M0,75
-                    C35,75 35,55 70,55
-                    C105,55 105,95 140,95
-                    C175,95 175,42 210,42
-                    C245,42 245,108 280,108
-                    C315,108 315,30 350,30
-                    C385,30 385,120 420,120
-                    C455,120 455,20 490,20
-                    C525,20 525,130 560,130
-                    C595,130 595,34 630,34
-                    C665,34 665,105 700,105
-                    C735,105 735,48 770,48
-                    C805,48 805,85 840,85
-                    C870,85 880,75 900,75
-                "/>
-            </svg>
-        </div>
+        <svg viewBox="0 0 1200 105"
+             preserveAspectRatio="none">
 
-        <div class="wave-line soft">
-            <svg viewBox="0 0 900 150" preserveAspectRatio="none">
-                <path d="
-                    M0,75
-                    C55,75 55,64 110,64
-                    C165,64 165,86 220,86
-                    C275,86 275,56 330,56
-                    C385,56 385,94 440,94
-                    C495,94 495,52 550,52
-                    C605,52 605,92 660,92
-                    C715,92 715,60 770,60
-                    C825,60 825,82 900,82
-                "/>
-            </svg>
-        </div>
+            <path d="
+                M0 52
+
+                C30 52 30 52 60 52
+                C90 52 90 36 120 36
+                C150 36 150 68 180 68
+
+                C210 68 210 43 240 43
+                C270 43 270 61 300 61
+
+                C330 61 330 27 360 27
+                C390 27 390 78 420 78
+
+                C450 78 450 35 480 35
+                C510 35 510 70 540 70
+
+                C570 70 570 19 600 19
+                C630 19 630 86 660 86
+
+                C690 86 690 34 720 34
+                C750 34 750 67 780 67
+
+                C810 67 810 28 840 28
+                C870 28 870 77 900 77
+
+                C930 77 930 40 960 40
+                C990 40 990 64 1020 64
+
+                C1050 64 1050 32 1080 32
+                C1110 32 1110 69 1140 69
+
+                C1170 69 1170 52 1200 52
+            "/>
+
+            <path
+                class="soft-wave"
+                d="
+                M0 52
+
+                C50 52 50 44 100 44
+                C150 44 150 61 200 61
+                C250 61 250 47 300 47
+                C350 47 350 59 400 59
+                C450 59 450 43 500 43
+                C550 43 550 62 600 62
+                C650 62 650 45 700 45
+                C750 45 750 60 800 60
+                C850 60 850 44 900 44
+                C950 44 950 61 1000 61
+                C1050 61 1050 46 1100 46
+                C1150 46 1150 55 1200 55
+            "/>
+
+        </svg>
 
     </div>
 
-    <!-- MUSIC NOTES -->
+
+    <!-- =====================================
+         FLOATING MUSIC NOTES
+    ====================================== -->
+
     <div class="note one">♪</div>
+
     <div class="note two">♫</div>
+
     <div class="note three">♬</div>
+
     <div class="note four">♪</div>
+
     <div class="note five">♫</div>
+
     <div class="note six">♩</div>
+
     <div class="note seven">♪</div>
+
     <div class="note eight">♫</div>
+
     <div class="note nine">♬</div>
+
     <div class="note ten">♪</div>
 
-    <!-- TRACK NUMBERS -->
-    <div class="track one">TRACK 01</div>
-    <div class="track two">TRACK 02</div>
-    <div class="track three">TRACK 05</div>
-    <div class="track four">TRACK 03</div>
-    <div class="track five">TRACK 07</div>
-    <div class="track six">TRACK 09</div>
 
-    <!-- MAIN CONTENT -->
+    <!-- =====================================
+         TRACK DETAILS
+    ====================================== -->
+
+    <div class="track one">
+        TRACK 01
+    </div>
+
+    <div class="track two">
+        TRACK 02
+    </div>
+
+    <div class="track three">
+        TRACK 05
+    </div>
+
+    <div class="track four">
+        TRACK 03
+    </div>
+
+    <div class="track five">
+        TRACK 07
+    </div>
+
+    <div class="track six">
+        TRACK 09
+    </div>
+
+
+    <!-- =====================================
+         MAIN CONTENT
+    ====================================== -->
+
     <div class="content">
 
         <div class="eyebrow">
             $OME MEMORIES 4 U
         </div>
 
-        <h1>THE SOUNDTRACK</h1>
+
+        <h1>
+            THE SOUNDTRACK
+        </h1>
+
+
+        <!-- INTRO -->
 
         <div class="text-with-headphones intro">
 
@@ -661,23 +873,37 @@ h1 {
 
         </div>
 
-        <!-- SPOTIFY -->
+
+        <!-- =================================
+             SPOTIFY
+        ================================== -->
+
         <div class="spotify-container">
 
             <div class="spotify-label">
+
                 <span class="spotify-dot"></span>
+
                 Now playing
+
             </div>
 
+
             <div class="spotify-box">
+
                 <div class="spotify-placeholder">
                     Spotify playlist goes here
                 </div>
+
             </div>
 
         </div>
 
-        <!-- LOWER TEXT -->
+
+        <!-- =================================
+             SECOND TEXT
+        ================================== -->
+
         <div class="text-with-headphones tease">
 
             <div class="headphones"></div>
@@ -690,9 +916,13 @@ h1 {
 
         </div>
 
+
         <div class="listen">
             Listen in order 😐
         </div>
+
+
+        <!-- BACK -->
 
         <a href="archive.html" class="back">
             ← Back to archive
