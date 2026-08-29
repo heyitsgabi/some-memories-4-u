@@ -22,7 +22,6 @@ html {
 
 body {
     min-height: 100vh;
-
     background:
         radial-gradient(
             ellipse at 12% 8%,
@@ -42,11 +41,8 @@ body {
         #d8d1c5;
 
     color: #191817;
-
     font-family: Georgia, "Times New Roman", serif;
-
     overflow-x: hidden;
-
     position: relative;
 }
 
@@ -59,38 +55,35 @@ body::before {
     content: "";
 
     position: fixed;
-
     inset: 0;
 
     pointer-events: none;
-
     z-index: 9999;
 
     opacity: 0.32;
 
     background:
-
         radial-gradient(
             ellipse at 15% 18%,
-            rgba(255,255,255,0.30) 0%,
+            rgba(255,255,255,0.30),
             transparent 28%
         ),
 
         radial-gradient(
             ellipse at 82% 12%,
-            rgba(90,78,63,0.10) 0%,
+            rgba(90,78,63,0.10),
             transparent 25%
         ),
 
         radial-gradient(
             ellipse at 70% 72%,
-            rgba(255,255,255,0.24) 0%,
+            rgba(255,255,255,0.24),
             transparent 30%
         ),
 
         radial-gradient(
             ellipse at 25% 85%,
-            rgba(90,78,63,0.08) 0%,
+            rgba(90,78,63,0.08),
             transparent 25%
         ),
 
@@ -128,13 +121,11 @@ body::after {
     content: "";
 
     position: fixed;
-
     inset: 12px;
 
     border: 1px solid rgba(50,45,38,0.10);
 
     pointer-events: none;
-
     z-index: 9998;
 }
 
@@ -145,7 +136,6 @@ body::after {
 
 .page {
     width: 100%;
-
     max-width: 1180px;
 
     margin: 0 auto;
@@ -164,7 +154,6 @@ body::after {
     margin-bottom: 58px;
 
     position: relative;
-
     z-index: 20;
 }
 
@@ -172,7 +161,6 @@ body::after {
     font-family: Arial, sans-serif;
 
     font-size: 9px;
-
     letter-spacing: 5px;
 
     text-transform: uppercase;
@@ -196,7 +184,6 @@ h1 {
 
 .header-line {
     width: 70px;
-
     height: 1px;
 
     background: #3b3731;
@@ -237,7 +224,7 @@ h1 {
     grid-template-columns:
         repeat(4, minmax(0, 1fr));
 
-    gap: 44px 22px;
+    gap: 48px 22px;
 
     align-items: start;
 
@@ -253,31 +240,30 @@ h1 {
 
 .item {
     position: relative;
-
     min-width: 0;
 }
 
 
-/* Slightly irregular placement */
+/* Slight scrapbook-style variation */
 
 .item:nth-child(2) {
-    margin-top: 32px;
+    margin-top: 30px;
 }
 
 .item:nth-child(3) {
-    margin-top: 8px;
+    margin-top: 7px;
 }
 
 .item:nth-child(4) {
-    margin-top: 38px;
+    margin-top: 34px;
 }
 
 .item:nth-child(5) {
-    margin-top: 10px;
+    margin-top: 8px;
 }
 
 .item:nth-child(6) {
-    margin-top: 36px;
+    margin-top: 32px;
 }
 
 .item:nth-child(7) {
@@ -285,15 +271,47 @@ h1 {
 }
 
 .item:nth-child(8) {
-    margin-top: 30px;
+    margin-top: 28px;
 }
 
+
+/* =====================================================
+   LAST THREE
+===================================================== */
+
+/*
+   Video 9 sits centered on its own row.
+   Videos 10 and 11 sit beneath it.
+*/
+
 .item:nth-child(9) {
+    grid-column: 1 / -1;
+
+    width: 38%;
+
+    justify-self: center;
+
     margin-top: 12px;
 }
 
 .item:nth-child(10) {
-    margin-top: 35px;
+    grid-column: 1 / span 2;
+
+    width: 58%;
+
+    justify-self: end;
+
+    margin-top: 10px;
+}
+
+.item:nth-child(11) {
+    grid-column: 3 / span 2;
+
+    width: 58%;
+
+    justify-self: start;
+
+    margin-top: 10px;
 }
 
 
@@ -357,12 +375,11 @@ h1 {
 
 
 /* =====================================================
-   THUMBNAIL
+   THUMBNAILS
 ===================================================== */
 
 .frame img {
     width: 100%;
-
     height: 100%;
 
     display: block;
@@ -370,7 +387,6 @@ h1 {
     object-fit: cover;
 
     position: relative;
-
     z-index: 2;
 
     filter:
@@ -391,13 +407,11 @@ h1 {
     position: absolute;
 
     left: 50%;
-
     top: 50%;
 
     transform: translate(-50%, -50%);
 
     width: 52px;
-
     height: 52px;
 
     border-radius: 50%;
@@ -411,7 +425,6 @@ h1 {
     display: flex;
 
     align-items: center;
-
     justify-content: center;
 
     font-family: Arial, sans-serif;
@@ -459,7 +472,7 @@ h1 {
 
 
 /* =====================================================
-   INDIVIDUAL FRAME STYLES
+   FRAME PERSONALITIES
 ===================================================== */
 
 .item:nth-child(1) .frame {
@@ -547,6 +560,18 @@ h1 {
     border-color: rgba(255,255,255,0.14);
 }
 
+.item:nth-child(9) .frame {
+    transform: rotate(-0.8deg);
+}
+
+.item:nth-child(10) .frame {
+    transform: rotate(1deg);
+}
+
+.item:nth-child(11) .frame {
+    transform: rotate(-1deg);
+}
+
 
 /* =====================================================
    NUMBERS
@@ -556,7 +581,6 @@ h1 {
     position: absolute;
 
     top: -18px;
-
     left: 2px;
 
     font-family: Arial, sans-serif;
@@ -609,20 +633,6 @@ h1 {
 
 
 /* =====================================================
-   CENTER THE LAST TWO
-===================================================== */
-
-.item:nth-child(10),
-.item:nth-child(11) {
-    grid-column: span 2;
-
-    width: 58%;
-
-    justify-self: center;
-}
-
-
-/* =====================================================
    SIDE NOTES
 ===================================================== */
 
@@ -646,13 +656,11 @@ h1 {
 
 .note-one {
     left: -25px;
-
     top: 260px;
 }
 
 .note-two {
     right: -25px;
-
     top: 760px;
 }
 
@@ -664,7 +672,7 @@ h1 {
 .bottom {
     text-align: center;
 
-    margin-top: 70px;
+    margin-top: 75px;
 
     padding-top: 28px;
 
@@ -742,7 +750,7 @@ h1 {
         grid-template-columns:
             repeat(2, minmax(0, 1fr));
 
-        gap: 38px 13px;
+        gap: 40px 13px;
     }
 
     .item:nth-child(2),
@@ -751,13 +759,17 @@ h1 {
     .item:nth-child(5),
     .item:nth-child(6),
     .item:nth-child(7),
-    .item:nth-child(8),
-    .item:nth-child(9) {
+    .item:nth-child(8) {
         margin-top: 18px;
     }
 
+
+    /* Last three become a clean centered stack */
+
+    .item:nth-child(9),
     .item:nth-child(10),
     .item:nth-child(11) {
+
         grid-column: 1 / -1;
 
         width: 72%;
@@ -766,6 +778,7 @@ h1 {
 
         margin-top: 25px;
     }
+
 
     .caption {
         font-size: 10px;
@@ -784,7 +797,7 @@ h1 {
     }
 
     .bottom {
-        margin-top: 52px;
+        margin-top: 55px;
     }
 }
 
