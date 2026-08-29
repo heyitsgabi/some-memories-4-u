@@ -1,0 +1,1381 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Memories</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+
+    background:
+        radial-gradient(
+            ellipse at 12% 8%,
+            rgba(112, 96, 77, 0.16),
+            transparent 32%
+        ),
+        radial-gradient(
+            ellipse at 88% 18%,
+            rgba(255,255,255,0.38),
+            transparent 35%
+        ),
+        radial-gradient(
+            ellipse at 48% 72%,
+            rgba(100,84,66,0.10),
+            transparent 42%
+        ),
+        #d8d1c5;
+
+    color: #191817;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    overflow-x: hidden;
+
+    position: relative;
+}
+
+
+/* =========================================
+   PAPER TEXTURE
+========================================= */
+
+body::before {
+    content: "";
+
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    z-index: 9999;
+
+    opacity: 0.32;
+
+    background:
+
+        radial-gradient(
+            ellipse at 15% 18%,
+            rgba(255,255,255,0.30),
+            transparent 28%
+        ),
+
+        radial-gradient(
+            ellipse at 82% 12%,
+            rgba(90,78,63,0.10),
+            transparent 25%
+        ),
+
+        radial-gradient(
+            ellipse at 70% 72%,
+            rgba(255,255,255,0.24),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            ellipse at 25% 85%,
+            rgba(90,78,63,0.08),
+            transparent 25%
+        ),
+
+        linear-gradient(
+            125deg,
+            transparent 0%,
+            rgba(255,255,255,0.13) 18%,
+            transparent 31%,
+            rgba(75,65,54,0.06) 48%,
+            transparent 62%,
+            rgba(255,255,255,0.10) 78%,
+            transparent 90%
+        ),
+
+        linear-gradient(
+            35deg,
+            transparent 10%,
+            rgba(80,68,55,0.05) 28%,
+            transparent 43%,
+            rgba(255,255,255,0.12) 66%,
+            transparent 82%
+        ),
+
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paperNoise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.035' numOctaves='4' seed='8' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23paperNoise)' opacity='.32'/%3E%3C/svg%3E");
+
+    mix-blend-mode: multiply;
+}
+
+
+body::after {
+    content: "";
+
+    position: fixed;
+
+    inset: 12px;
+
+    border: 1px solid rgba(50,45,38,0.10);
+
+    pointer-events: none;
+
+    z-index: 9998;
+}
+
+
+/* =========================================
+   PAGE
+========================================= */
+
+.page {
+    width: 100%;
+
+    max-width: 1180px;
+
+    margin: 0 auto;
+
+    padding: 70px 35px 90px;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.header {
+    text-align: center;
+
+    margin-bottom: 60px;
+
+    position: relative;
+
+    z-index: 20;
+}
+
+.eyebrow {
+    font-family: Arial, sans-serif;
+
+    font-size: 9px;
+
+    letter-spacing: 5px;
+
+    text-transform: uppercase;
+
+    color: #70695f;
+
+    margin-bottom: 18px;
+}
+
+h1 {
+    font-size: clamp(48px, 8vw, 76px);
+
+    font-weight: normal;
+
+    letter-spacing: -3px;
+
+    line-height: 0.95;
+
+    color: #181716;
+}
+
+.header-line {
+    width: 70px;
+
+    height: 1px;
+
+    background: #3b3731;
+
+    margin: 25px auto 20px;
+}
+
+.header-note {
+    color: #6f685e;
+
+    font-size: 12px;
+
+    line-height: 1.6;
+}
+
+.section-number {
+    margin-top: 18px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 8px;
+
+    letter-spacing: 4px;
+
+    text-transform: uppercase;
+
+    color: #8d857a;
+}
+
+
+/* =========================================
+   SECTION HEADINGS
+========================================= */
+
+.section-heading {
+    text-align: center;
+
+    margin-bottom: 30px;
+}
+
+.section-heading h2 {
+    font-size: 27px;
+
+    font-weight: normal;
+
+    letter-spacing: -0.5px;
+}
+
+.section-heading p {
+    margin-top: 8px;
+
+    color: #777067;
+
+    font-size: 11px;
+
+    font-style: italic;
+}
+
+
+/* =========================================
+   VIDEO GRID
+========================================= */
+
+.video-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 35px 22px;
+
+    margin-bottom: 80px;
+}
+
+
+/* =========================================
+   VIDEO CARD
+========================================= */
+
+.video-card {
+    text-decoration: none;
+
+    color: #191817;
+
+    display: block;
+
+    position: relative;
+
+    cursor: pointer;
+}
+
+.video-frame {
+    position: relative;
+
+    width: 100%;
+
+    aspect-ratio: 16 / 10;
+
+    padding: 7px;
+
+    background: #f8f5ee;
+
+    border: 1px solid rgba(25,23,20,0.28);
+
+    box-shadow:
+        5px 7px 0 rgba(65,57,47,0.08),
+        0 12px 25px rgba(40,34,28,0.13);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.video-frame::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 4px;
+
+    border: 1px solid rgba(35,31,27,0.13);
+
+    pointer-events: none;
+
+    z-index: 3;
+}
+
+.video-thumbnail {
+    width: 100%;
+
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    filter:
+        saturate(0.88)
+        contrast(0.96);
+
+    transition:
+        transform 0.35s ease,
+        filter 0.35s ease;
+}
+
+
+/* =========================================
+   PLAY BUTTON
+========================================= */
+
+.play-button {
+    position: absolute;
+
+    left: 50%;
+
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    width: 48px;
+
+    height: 48px;
+
+    border-radius: 50%;
+
+    background: rgba(25,24,22,0.78);
+
+    border: 1px solid rgba(255,255,255,0.55);
+
+    color: white;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 16px;
+
+    padding-left: 3px;
+
+    z-index: 5;
+
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease;
+}
+
+
+/* =========================================
+   VIDEO VARIATION
+========================================= */
+
+.video-card:nth-child(2) .video-frame {
+    transform: rotate(1deg);
+}
+
+.video-card:nth-child(3) .video-frame {
+    transform: rotate(-0.8deg);
+}
+
+.video-card:nth-child(4) .video-frame {
+    transform: rotate(0.7deg);
+}
+
+.video-card:nth-child(5) .video-frame {
+    transform: rotate(-1.1deg);
+}
+
+.video-card:nth-child(6) .video-frame {
+    transform: rotate(0.8deg);
+}
+
+.video-card:nth-child(7) .video-frame {
+    transform: rotate(-0.6deg);
+}
+
+.video-card:nth-child(8) .video-frame {
+    transform: rotate(1.2deg);
+}
+
+.video-card:nth-child(9) .video-frame {
+    transform: rotate(-0.9deg);
+}
+
+.video-card:nth-child(10) .video-frame {
+    transform: rotate(0.7deg);
+}
+
+.video-card:nth-child(11) .video-frame {
+    transform: rotate(-1deg);
+}
+
+
+/* =========================================
+   VIDEO HOVER
+========================================= */
+
+.video-card:hover .video-frame {
+    transform:
+        translateY(-5px)
+        rotate(0deg);
+
+    box-shadow:
+        0 20px 38px rgba(35,30,25,0.20);
+}
+
+.video-card:hover .video-thumbnail {
+    filter:
+        saturate(1)
+        contrast(1);
+
+    transform: scale(1.015);
+}
+
+.video-card:hover .play-button {
+    transform:
+        translate(-50%, -50%)
+        scale(1.08);
+
+    background: rgba(25,24,22,0.9);
+}
+
+
+/* =========================================
+   VIDEO CAPTION
+========================================= */
+
+.video-caption {
+    margin-top: 12px;
+
+    padding: 0 4px;
+
+    color: #403c36;
+
+    font-size: 11px;
+
+    line-height: 1.45;
+}
+
+.video-caption::before {
+    content: "";
+
+    display: block;
+
+    width: 17px;
+
+    height: 1px;
+
+    background: #aaa195;
+
+    margin-bottom: 7px;
+}
+
+.video-number {
+    display: block;
+
+    margin-bottom: 4px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 7px;
+
+    letter-spacing: 2px;
+
+    color: #9c958b;
+}
+
+
+/* =========================================
+   DIVIDER
+========================================= */
+
+.divider {
+    width: 100%;
+
+    height: 1px;
+
+    background: rgba(50,45,38,0.16);
+
+    margin: 10px 0 65px;
+}
+
+
+/* =========================================
+   SCREENSHOTS
+========================================= */
+
+.screenshot-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 38px 20px;
+
+    align-items: start;
+}
+
+.screenshot {
+    position: relative;
+}
+
+.screenshot:nth-child(2) {
+    margin-top: 25px;
+}
+
+.screenshot:nth-child(4) {
+    margin-top: 18px;
+}
+
+.screenshot:nth-child(6) {
+    margin-top: 30px;
+}
+
+.screenshot:nth-child(8) {
+    margin-top: 15px;
+}
+
+.screenshot-frame {
+    background: #f8f5ee;
+
+    padding: 8px;
+
+    border: 1px solid rgba(25,23,20,0.28);
+
+    box-shadow:
+        5px 7px 0 rgba(65,57,47,0.08),
+        0 12px 25px rgba(40,34,28,0.13);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.screenshot-frame img {
+    display: block;
+
+    width: 100%;
+
+    height: auto;
+
+    max-height: 500px;
+
+    object-fit: contain;
+
+    background: #eee9e0;
+}
+
+.screenshot:nth-child(1) .screenshot-frame {
+    transform: rotate(-1.2deg);
+}
+
+.screenshot:nth-child(2) .screenshot-frame {
+    transform: rotate(1.4deg);
+}
+
+.screenshot:nth-child(3) .screenshot-frame {
+    transform: rotate(-0.7deg);
+}
+
+.screenshot:nth-child(4) .screenshot-frame {
+    transform: rotate(1deg);
+}
+
+.screenshot:nth-child(5) .screenshot-frame {
+    transform: rotate(-1.3deg);
+}
+
+.screenshot:nth-child(6) .screenshot-frame {
+    transform: rotate(0.8deg);
+}
+
+.screenshot:nth-child(7) .screenshot-frame {
+    transform: rotate(-0.8deg);
+}
+
+.screenshot:nth-child(8) .screenshot-frame {
+    transform: rotate(1.1deg);
+}
+
+.screenshot:hover .screenshot-frame {
+    transform:
+        translateY(-5px)
+        rotate(0deg);
+
+    box-shadow:
+        0 20px 38px rgba(35,30,25,0.20);
+}
+
+.screenshot-caption {
+    margin-top: 10px;
+
+    padding: 0 3px;
+
+    color: #403c36;
+
+    font-size: 10px;
+
+    line-height: 1.45;
+}
+
+
+/* =========================================
+   BOTTOM
+========================================= */
+
+.bottom {
+    text-align: center;
+
+    margin-top: 75px;
+
+    padding-top: 28px;
+
+    border-top: 1px solid rgba(50,45,38,0.16);
+}
+
+.bottom-note {
+    color: #7d756b;
+
+    font-size: 11px;
+
+    margin-bottom: 20px;
+
+    font-style: italic;
+}
+
+.back {
+    display: inline-block;
+
+    text-decoration: none;
+
+    color: #3d3934;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 8px;
+
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+
+    padding: 11px 20px;
+
+    border: 1px solid rgba(40,35,30,0.35);
+
+    transition:
+        background 0.25s ease,
+        color 0.25s ease;
+}
+
+.back:hover {
+    background: #1b1b1a;
+
+    color: #f7f3eb;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 800px) {
+
+    body::after {
+        inset: 7px;
+    }
+
+    .page {
+        padding: 55px 17px 70px;
+    }
+
+    .header {
+        margin-bottom: 48px;
+    }
+
+    h1 {
+        font-size: 49px;
+    }
+
+    .video-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 32px 13px;
+
+        margin-bottom: 60px;
+    }
+
+    .screenshot-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 32px 13px;
+    }
+
+    .screenshot:nth-child(2),
+    .screenshot:nth-child(4),
+    .screenshot:nth-child(6),
+    .screenshot:nth-child(8) {
+        margin-top: 18px;
+    }
+
+    .divider {
+        margin-bottom: 50px;
+    }
+
+    .bottom {
+        margin-top: 52px;
+    }
+
+}
+
+
+@media (max-width: 430px) {
+
+    .video-grid {
+        gap: 28px 10px;
+    }
+
+    .screenshot-grid {
+        gap: 28px 10px;
+    }
+
+    .video-caption {
+        font-size: 9px;
+    }
+
+    .screenshot-caption {
+        font-size: 9px;
+    }
+
+    .play-button {
+        width: 42px;
+        height: 42px;
+        font-size: 14px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<main class="page">
+
+
+    <!-- =============================================
+         HEADER
+    ============================================== -->
+
+    <header class="header">
+
+        <div class="eyebrow">
+            Some Memories 4 U
+        </div>
+
+        <h1>
+            MEMORIES
+        </h1>
+
+        <div class="header-line"></div>
+
+        <p class="header-note">
+            Things that probably deserved to be kept.
+        </p>
+
+        <div class="section-number">
+            03 / Memories
+        </div>
+
+    </header>
+
+
+    <!-- =============================================
+         VIDEOS
+    ============================================== -->
+
+    <section>
+
+        <div class="section-heading">
+
+            <h2>
+                Moving Evidence
+            </h2>
+
+            <p>
+                unfortunately, some moments required video documentation.
+            </p>
+
+        </div>
+
+
+        <div class="video-grid">
+
+
+            <!-- VIDEO 01 -->
+
+            <a
+                class="video-card"
+                href="https://drive.google.com/file/d/1FaHIDvCHrj6Dj8Rjeqw5AZQjwYehdvYl/view?usp=sharing"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+
+                <div class="video-frame">
+
+                    <img
+                        class="video-thumbnail"
+                        src="https://drive.google.com/thumbnail?id=1FaHIDvCHrj6Dj8Rjeqw5AZQjwYehdvYl&sz=w1000"
+                        alt="Video 1"
+                    >
+
+                    <div class="play-button">
+                        ▶
+                    </div>
+
+                </div>
+
+                <div class="video-caption">
+                    <span class="video-number">01</span>
+                    video evidence
+                </div>
+
+            </a>
+
+
+            <!-- VIDEO 02 -->
+
+            <a
+                class="video-card"
+                href="https://drive.google.com/file/d/1A-S2MdAV0rGj9lf0Lv5aQ-TV4tx4TMG_/view?usp=sharing"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+
+                <div class="video-frame">
+
+                    <img
+                        class="video-thumbnail"
+                        src="https://drive.google.com/thumbnail?id=1A-S2MdAV0rGj9lf0Lv5aQ-TV4tx4TMG_&sz=w1000"
+                        alt="Video 2"
+                    >
+
+                    <div class="play-button">
+                        ▶
+                    </div>
+
+                </div>
+
+                <div class="video-caption">
+                    <span class="video-number">02</span>
+                    further evidence
+                </div>
+
+            </a>
+
+
+            <!-- VIDEO 03 -->
+
+            <a
+                class="video-card"
+                href="https://drive.google.com/file/d/1oRgery3QyYA-R3hhpE0YKsSgf7uyMG-Q/view?usp=sharing"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+
+                <div class="video-frame">
+
+                    <img
+                        class="video-thumbnail"
+                        src="https://drive.google.com/thumbnail?id=1oRgery3QyYA-R3hhpE0YKsSgf7uyMG-Q&sz=w1000"
+                        alt="Video 3"
+                    >
+
+                    <div class="play-button">
+                        ▶
+                    </div>
+
+                </div>
+
+                <div class="video-caption">
+                    <span class="video-number">03</span>
+                    things escalated
+                </div>
+
+            </a>
+
+
+            <!-- VIDEO 04 -->
+
+            <a
+                class="video-card"
+                href="https://drive.google.com/file/d/183nO1eYWlZinCWKqc1aIcrwNL-qXD35W/view?usp=sharing"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+
+                <div class="video-frame">
+
+                    <img
+                        class="video-thumbnail"
+                        src="https://drive.google.com/thumbnail?id=183nO1eYWlZinCWKqc1aIcrwNL-qXD35W&sz=w1000"
+                        alt="Video 4"
+                    >
+
+                    <div class="play-button">
+                        ▶
+                    </div>
+
+                </div>
+
+                <div class="video-caption">
+                    <span class="video-number">04</span>
+                    documented
+                </div>
+
+            </a>
+
+
+            <!-- VIDEO 05 -->
+
+            <a
+                class="video-card"
+                href="https://drive.google.com/file/d/1ROZOX17T234avamUR_wYkZtsql1NKnEQ/view?usp=sharing"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+
+                <div class="video-frame">
+
+                    <img
+                        class="video-thumbnail"
+                        src="https://drive.google.com/thumbnail?id=1ROZOX17T234avamUR_wYkZtsql1NKnEQ&sz=w1000"
+                        alt="Video 5"
+                    >
+
+                    <div class="play-button">
+                        ▶
+                    </div>
+
+                </div>
+
+                <div class="video-caption">
+                    <span class="video-number">05</span>
+                    no further comment
+                </div>
+
+            </a>
+
+
+            <!-- VIDEO 06 -->
+
+            <a
+                class="video-card"
+                href="https://drive.google.com/file/d/1ObZx67LF96OvoOlaN-S5BM8GbZL6bH9m/view?usp=sharing"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+
+                <div class="video-frame">
+
+                    <img
+                        class="video-thumbnail"
+                        src="https://drive.google.com/thumbnail?id=1ObZx67LF96OvoOlaN-S5BM8GbZL6bH9m&sz=w1000"
+                        alt="Video 6"
+                    >
+
+                    <div class="play-button">
+                        ▶
+                    </div>
+
+                </div>
+
+                <div class="video-caption">
+                    <span class="video-number">06</span>
+                    proof
+                </div>
+
+            </a>
+
+
+            <!-- VIDEO 07 -->
+
+            <a
+                class="video-card"
+                href="https://drive.google.com/file/d/1INAKUIL4B0Z_LeeZdEs-3ksmmmCyhykl/view?usp=sharing"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+
+                <div class="video-frame">
+
+                    <img
+                        class="video-thumbnail"
+                        src="https://drive.google.com/thumbnail?id=1INAKUIL4B0Z_LeeZdEs-3ksmmmCyhykl&sz=w1000"
+                        alt="Video 7"
+                    >
+
+                    <div class="play-button">
+                        ▶
+                    </div>
+
+                </div>
+
+                <div class="video-caption">
+                    <span class="video-number">07</span>
+                    captured in the wild
+                </div>
+
+            </a>
+
+
+            <!-- VIDEO 08 -->
+
+            <a
+                class="video-card"
+                href="https://drive.google.com/file/d/1VHuZXWl9EKfS4j7941PBzcDpEM5a5LgY/view?usp=sharing"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+
+                <div class="video-frame">
+
+                    <img
+                        class="video-thumbnail"
+                        src="https://drive.google.com/thumbnail?id=1VHuZXWl9EKfS4j7941PBzcDpEM5a5LgY&sz=w1000"
+                        alt="Video 8"
+                    >
+
+                    <div class="play-button">
+                        ▶
+                    </div>
+
+                </div>
+
+                <div class="video-caption">
+                    <span class="video-number">08</span>
+                    archived accordingly
+                </div>
+
+            </a>
+
+
+            <!-- VIDEO 09 -->
+
+            <a
+                class="video-card"
+                href="https://drive.google.com/file/d/1-5CTfYhO1iqhTq3tgWbw2HxljmtSPldO/view?usp=sharing"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+
+                <div class="video-frame">
+
+                    <img
+                        class="video-thumbnail"
+                        src="https://drive.google.com/thumbnail?id=1-5CTfYhO1iqhTq3tgWbw2HxljmtSPldO&sz=w1000"
+                        alt="Video 9"
+                    >
+
+                    <div class="play-button">
+                        ▶
+                    </div>
+
+                </div>
+
+                <div class="video-caption">
+                    <span class="video-number">09</span>
+                    this seemed necessary
+                </div>
+
+            </a>
+
+
+            <!-- VIDEO 10 -->
+
+            <a
+                class="video-card"
+                href="https://drive.google.com/file/d/1iBnwAu87PSvGRvkiUhq2vaFH0j8_MWqR/view?usp=sharing"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+
+                <div class="video-frame">
+
+                    <img
+                        class="video-thumbnail"
+                        src="https://drive.google.com/thumbnail?id=1iBnwAu87PSvGRvkiUhq2vaFH0j8_MWqR&sz=w1000"
+                        alt="Video 10"
+                    >
+
+                    <div class="play-button">
+                        ▶
+                    </div>
+
+                </div>
+
+                <div class="video-caption">
+                    <span class="video-number">10</span>
+                    recorded for posterity
+                </div>
+
+            </a>
+
+
+            <!-- VIDEO 11 -->
+
+            <a
+                class="video-card"
+                href="https://drive.google.com/file/d/1zj66vX1QQrn3i4N4BW-lYVBkANXqzjQS/view?usp=sharing"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+
+                <div class="video-frame">
+
+                    <img
+                        class="video-thumbnail"
+                        src="https://drive.google.com/thumbnail?id=1zj66vX1QQrn3i4N4BW-lYVBkANXqzjQS&sz=w1000"
+                        alt="Video 11"
+                    >
+
+                    <div class="play-button">
+                        ▶
+                    </div>
+
+                </div>
+
+                <div class="video-caption">
+                    <span class="video-number">11</span>
+                    final piece of evidence
+                </div>
+
+            </a>
+
+
+        </div>
+
+    </section>
+
+
+    <div class="divider"></div>
+
+
+    <!-- =============================================
+         SCREENSHOTS
+    ============================================== -->
+
+    <section>
+
+        <div class="section-heading">
+
+            <h2>
+                Screenshots
+            </h2>
+
+            <p>
+                because apparently conversations needed an archive too.
+            </p>
+
+        </div>
+
+
+        <div class="screenshot-grid">
+
+
+            <article class="screenshot">
+
+                <div class="screenshot-frame">
+
+                    <img
+                        src="screenshot1.jpg"
+                        alt="Screenshot 1"
+                    >
+
+                </div>
+
+                <div class="screenshot-caption">
+                    01 / kept for the record
+                </div>
+
+            </article>
+
+
+            <article class="screenshot">
+
+                <div class="screenshot-frame">
+
+                    <img
+                        src="screenshot2.jpg"
+                        alt="Screenshot 2"
+                    >
+
+                </div>
+
+                <div class="screenshot-caption">
+                    02 / evidence
+                </div>
+
+            </article>
+
+
+            <article class="screenshot">
+
+                <div class="screenshot-frame">
+
+                    <img
+                        src="screenshot3.jpg"
+                        alt="Screenshot 3"
+                    >
+
+                </div>
+
+                <div class="screenshot-caption">
+                    03 / documented
+                </div>
+
+            </article>
+
+
+            <article class="screenshot">
+
+                <div class="screenshot-frame">
+
+                    <img
+                        src="screenshot4.jpg"
+                        alt="Screenshot 4"
+                    >
+
+                </div>
+
+                <div class="screenshot-caption">
+                    04 / archived accordingly
+                </div>
+
+            </article>
+
+
+            <article class="screenshot">
+
+                <div class="screenshot-frame">
+
+                    <img
+                        src="screenshot5.jpg"
+                        alt="Screenshot 5"
+                    >
+
+                </div>
+
+                <div class="screenshot-caption">
+                    05 / apparently important
+                </div>
+
+            </article>
+
+
+            <article class="screenshot">
+
+                <div class="screenshot-frame">
+
+                    <img
+                        src="screenshot6.jpg"
+                        alt="Screenshot 6"
+                    >
+
+                </div>
+
+                <div class="screenshot-caption">
+                    06 / further evidence
+                </div>
+
+            </article>
+
+
+            <article class="screenshot">
+
+                <div class="screenshot-frame">
+
+                    <img
+                        src="screenshot7.jpg"
+                        alt="Screenshot 7"
+                    >
+
+                </div>
+
+                <div class="screenshot-caption">
+                    07 / for future reference
+                </div>
+
+            </article>
+
+
+            <article class="screenshot">
+
+                <div class="screenshot-frame">
+
+                    <img
+                        src="screenshot8.jpg"
+                        alt="Screenshot 8"
+                    >
+
+                </div>
+
+                <div class="screenshot-caption">
+                    08 / enough evidence
+                </div>
+
+            </article>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- =============================================
+         BOTTOM
+    ============================================== -->
+
+    <div class="bottom">
+
+        <p class="bottom-note">
+            that's enough evidence for now.
+        </p>
+
+        <a
+            href="archive.html"
+            class="back"
+        >
+            ← Back to archive
+        </a>
+
+    </div>
+
+
+</main>
+
+</body>
+</html>
+```
