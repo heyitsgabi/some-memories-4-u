@@ -293,23 +293,14 @@ function checkAnswer() {
     const correctAnswer = "missy";
 
 
-    if (answer === correctAnswer) {
+   if (answer === correctAnswer) {
 
-        sessionStorage.setItem("archiveAccess", "granted");
+    sessionStorage.setItem("archiveAccess", "granted");
 
-        responseMain.textContent = "Okay, proceed...";
+    window.location.href =
+        "/some-memories-4-u/proceed.html";
 
-        responseSub.textContent =
-            "We're still not making it a thing btw";
-
-        response.classList.add("show");
-
-        setTimeout(function() {
-
-            window.location.href =
-                "/some-memories-4-u/message.html";
-
-        }, 1200);
+}
 
     } else {
 
