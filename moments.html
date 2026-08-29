@@ -9,6 +9,10 @@
 
 <style>
 
+/* =========================================
+   RESET
+========================================= */
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -25,24 +29,19 @@ body {
     background:
         radial-gradient(
             circle at 15% 10%,
-            rgba(255,255,255,0.045),
-            transparent 30%
+            rgba(160,145,120,0.08),
+            transparent 28%
         ),
         radial-gradient(
-            circle at 85% 38%,
-            rgba(255,255,255,0.025),
-            transparent 34%
+            circle at 85% 45%,
+            rgba(0,0,0,0.035),
+            transparent 32%
         ),
-        radial-gradient(
-            circle at 45% 82%,
-            rgba(255,255,255,0.035),
-            transparent 38%
-        ),
-        #080808;
+        #f3f0e9;
 
-    color: #f4f4f4;
+    color: #171717;
 
-    font-family: Georgia, serif;
+    font-family: Georgia, "Times New Roman", serif;
 
     overflow-x: hidden;
 
@@ -50,7 +49,7 @@ body {
 }
 
 /* =========================================
-   SUBTLE GRAIN
+   PAPER GRAIN
 ========================================= */
 
 body::before {
@@ -67,9 +66,9 @@ body::before {
     opacity: 0.055;
 
     background-image:
-        url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E");
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.75'/%3E%3C/svg%3E");
 
-    mix-blend-mode: soft-light;
+    mix-blend-mode: multiply;
 }
 
 /* =========================================
@@ -78,11 +77,11 @@ body::before {
 
 .page {
     width: 100%;
-    max-width: 1050px;
+    max-width: 1100px;
 
     margin: 0 auto;
 
-    padding: 80px 35px 90px;
+    padding: 85px 45px 100px;
 }
 
 /* =========================================
@@ -106,37 +105,49 @@ body::before {
 
     letter-spacing: 5px;
 
-    color: #777;
+    color: #77736c;
 
     text-transform: uppercase;
 
-    margin-bottom: 20px;
+    margin-bottom: 22px;
 }
 
 h1 {
-    font-size: clamp(48px, 9vw, 78px);
+    font-size: clamp(50px, 9vw, 82px);
 
     font-weight: normal;
 
     letter-spacing: -3px;
 
-    line-height: 0.95;
+    line-height: 0.9;
 
-    text-shadow:
-        0 0 25px rgba(255,255,255,0.16),
-        0 0 60px rgba(255,255,255,0.06);
+    color: #171717;
 }
 
 .header-note {
-    max-width: 360px;
+    margin: 25px auto 0;
 
-    margin: 23px auto 0;
+    max-width: 380px;
 
-    color: #777;
+    color: #77736c;
 
     font-size: 13px;
 
     line-height: 1.7;
+}
+
+/* =========================================
+   LITTLE HEADER LINE
+========================================= */
+
+.header-line {
+    width: 55px;
+
+    height: 1px;
+
+    background: #272727;
+
+    margin: 28px auto 0;
 }
 
 /* =========================================
@@ -148,28 +159,46 @@ h1 {
 
     width: 100%;
 
-    height: 1900px;
+    max-width: 900px;
+
+    margin: 0 auto;
+
+    height: 1740px;
 }
 
 /* =========================================
-   PHOTOS
+   PHOTO CARD
 ========================================= */
 
 .photo {
     position: absolute;
 
-    overflow: visible;
+    background: #faf9f5;
 
-    background: #111;
+    padding: 10px 10px 38px;
 
-    border: 1px solid rgba(255,255,255,0.13);
+    border: 1px solid rgba(20,20,20,0.18);
 
     box-shadow:
-        0 20px 55px rgba(0,0,0,0.45);
+        0 18px 45px rgba(0,0,0,0.12);
 
     transition:
-        transform 0.5s ease,
-        box-shadow 0.5s ease;
+        transform 0.45s ease,
+        box-shadow 0.45s ease;
+
+    z-index: 2;
+}
+
+.photo::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 4px;
+
+    border: 1px solid rgba(30,30,30,0.08);
+
+    pointer-events: none;
 }
 
 .photo img {
@@ -180,22 +209,26 @@ h1 {
 
     object-fit: cover;
 
-    filter: saturate(0.92);
+    position: relative;
+
+    z-index: 2;
+
+    filter: saturate(0.94);
 
     transition:
-        transform 0.6s ease,
-        filter 0.6s ease;
+        transform 0.5s ease,
+        filter 0.5s ease;
 }
 
 .photo:hover {
     box-shadow:
-        0 28px 70px rgba(0,0,0,0.6);
+        0 25px 55px rgba(0,0,0,0.18);
 }
 
 .photo:hover img {
-    transform: scale(1.025);
-
     filter: saturate(1);
+
+    transform: scale(1.018);
 }
 
 /* =========================================
@@ -205,17 +238,51 @@ h1 {
 .caption {
     position: absolute;
 
-    z-index: 20;
+    left: 12px;
+    right: 12px;
 
-    font-size: 13px;
+    bottom: 10px;
 
-    line-height: 1.5;
+    color: #33312e;
 
-    color: #8f8f8f;
+    font-size: 12px;
 
-    width: max-content;
+    line-height: 1.35;
 
-    max-width: 260px;
+    text-align: left;
+
+    z-index: 10;
+}
+
+.caption em {
+    font-style: normal;
+
+    color: #817b72;
+}
+
+/* =========================================
+   DARK CARD
+========================================= */
+
+.photo.dark {
+    background: #171717;
+
+    border-color: rgba(0,0,0,0.35);
+
+    box-shadow:
+        0 20px 50px rgba(0,0,0,0.2);
+}
+
+.photo.dark::before {
+    border-color: rgba(255,255,255,0.08);
+}
+
+.photo.dark .caption {
+    color: #eeeeea;
+}
+
+.photo.dark .caption em {
+    color: #a9a49b;
 }
 
 /* =========================================
@@ -223,20 +290,15 @@ h1 {
 ========================================= */
 
 .photo-one {
-    width: 280px;
-    height: 360px;
+    width: 285px;
+    height: 365px;
 
     top: 15px;
     left: 7%;
 
-    transform: rotate(-1.3deg);
+    transform: rotate(-1.5deg);
 
-    z-index: 2;
-}
-
-.photo-one .caption {
-    left: 8px;
-    bottom: -48px;
+    z-index: 3;
 }
 
 /* =========================================
@@ -244,22 +306,15 @@ h1 {
 ========================================= */
 
 .photo-two {
-    width: 205px;
-    height: 260px;
+    width: 210px;
+    height: 275px;
 
-    top: 90px;
-    right: 13%;
+    top: 80px;
+    right: 9%;
 
-    transform: rotate(1.6deg);
+    transform: rotate(2deg);
 
-    z-index: 4;
-}
-
-.photo-two .caption {
-    right: 0;
-    bottom: -52px;
-
-    text-align: right;
+    z-index: 5;
 }
 
 /* =========================================
@@ -267,20 +322,15 @@ h1 {
 ========================================= */
 
 .photo-three {
-    width: 220px;
-    height: 295px;
+    width: 235px;
+    height: 310px;
 
-    top: 390px;
-    left: 18%;
+    top: 385px;
+    left: 20%;
 
-    transform: rotate(1.1deg);
+    transform: rotate(1deg);
 
-    z-index: 5;
-}
-
-.photo-three .caption {
-    left: 5px;
-    bottom: -43px;
+    z-index: 6;
 }
 
 /* =========================================
@@ -288,22 +338,15 @@ h1 {
 ========================================= */
 
 .photo-four {
-    width: 350px;
-    height: 265px;
+    width: 355px;
+    height: 285px;
 
-    top: 345px;
-    right: 8%;
+    top: 350px;
+    right: 5%;
 
     transform: rotate(-0.8deg);
 
     z-index: 3;
-}
-
-.photo-four .caption {
-    left: 3px;
-    bottom: -62px;
-
-    max-width: 320px;
 }
 
 /* =========================================
@@ -311,20 +354,15 @@ h1 {
 ========================================= */
 
 .photo-five {
-    width: 245px;
-    height: 330px;
+    width: 250px;
+    height: 335px;
 
     top: 690px;
-    left: 5%;
+    left: 4%;
 
-    transform: rotate(-1.2deg);
+    transform: rotate(-1deg);
 
-    z-index: 4;
-}
-
-.photo-five .caption {
-    left: 0;
-    bottom: -48px;
+    z-index: 5;
 }
 
 /* =========================================
@@ -335,21 +373,12 @@ h1 {
     width: 225px;
     height: 305px;
 
-    top: 660px;
-    right: 18%;
+    top: 655px;
+    right: 20%;
 
-    transform: rotate(1.4deg);
+    transform: rotate(1.6deg);
 
-    z-index: 5;
-}
-
-.photo-six .caption {
-    right: 0;
-    bottom: -62px;
-
-    text-align: right;
-
-    max-width: 220px;
+    z-index: 6;
 }
 
 /* =========================================
@@ -357,22 +386,15 @@ h1 {
 ========================================= */
 
 .photo-seven {
-    width: 300px;
-    height: 220px;
+    width: 315px;
+    height: 235px;
 
-    top: 1015px;
-    left: 28%;
+    top: 1000px;
+    left: 29%;
 
     transform: rotate(0.7deg);
 
-    z-index: 2;
-}
-
-.photo-seven .caption {
-    left: 0;
-    bottom: -62px;
-
-    max-width: 310px;
+    z-index: 4;
 }
 
 /* =========================================
@@ -380,20 +402,15 @@ h1 {
 ========================================= */
 
 .photo-eight {
-    width: 210px;
-    height: 290px;
+    width: 220px;
+    height: 295px;
 
     top: 1190px;
-    left: 7%;
+    left: 8%;
 
-    transform: rotate(-1.6deg);
+    transform: rotate(-1.5deg);
 
-    z-index: 4;
-}
-
-.photo-eight .caption {
-    left: 0;
-    bottom: -45px;
+    z-index: 6;
 }
 
 /* =========================================
@@ -401,20 +418,15 @@ h1 {
 ========================================= */
 
 .photo-nine {
-    width: 310px;
-    height: 420px;
+    width: 315px;
+    height: 410px;
 
-    top: 1260px;
-    right: 10%;
+    top: 1250px;
+    right: 9%;
 
     transform: rotate(0.8deg);
 
-    z-index: 3;
-}
-
-.photo-nine .caption {
-    left: 0;
-    bottom: -48px;
+    z-index: 4;
 }
 
 /* =========================================
@@ -422,22 +434,15 @@ h1 {
 ========================================= */
 
 .photo-ten {
-    width: 205px;
-    height: 270px;
+    width: 215px;
+    height: 285px;
 
-    top: 1580px;
-    left: 16%;
+    top: 1515px;
+    left: 17%;
 
     transform: rotate(-1.2deg);
 
-    z-index: 6;
-}
-
-.photo-ten .caption {
-    left: 0;
-    bottom: -62px;
-
-    max-width: 220px;
+    z-index: 7;
 }
 
 /* =========================================
@@ -447,8 +452,6 @@ h1 {
 .mark {
     position: absolute;
 
-    color: #3d3d3d;
-
     font-family: Arial, sans-serif;
 
     font-size: 8px;
@@ -457,42 +460,56 @@ h1 {
 
     text-transform: uppercase;
 
+    color: #aaa39a;
+
     z-index: 1;
 }
 
 .mark-one {
-    top: 330px;
-    right: 5%;
+    top: 300px;
+    right: 2%;
 }
 
 .mark-two {
     top: 930px;
-    left: 48%;
+    left: 50%;
 }
 
 .mark-three {
-    top: 1510px;
-    right: 3%;
+    top: 1450px;
+    right: 2%;
 }
 
 /* =========================================
-   BACK BUTTON
+   BOTTOM
 ========================================= */
 
 .bottom {
-    text-align: center;
-
-    margin-top: 20px;
-
     position: relative;
 
-    z-index: 20;
+    z-index: 30;
+
+    text-align: center;
+
+    margin-top: 25px;
+
+    padding-top: 20px;
+}
+
+.bottom-line {
+    width: 45px;
+
+    height: 1px;
+
+    background: #aaa39a;
+
+    margin: 0 auto 22px;
 }
 
 .back {
     display: inline-block;
 
-    color: #666;
+    color: #66615a;
 
     text-decoration: none;
 
@@ -504,10 +521,18 @@ h1 {
 
     text-transform: uppercase;
 
-    transition: color 0.25s ease;
+    padding: 10px 18px;
+
+    border: 1px solid rgba(30,30,30,0.22);
+
+    transition:
+        background 0.25s ease,
+        color 0.25s ease;
 }
 
 .back:hover {
+    background: #171717;
+
     color: #fff;
 }
 
@@ -518,7 +543,7 @@ h1 {
 @media (max-width: 700px) {
 
     .page {
-        padding: 60px 16px 65px;
+        padding: 60px 15px 70px;
     }
 
     .header {
@@ -526,7 +551,7 @@ h1 {
     }
 
     h1 {
-        font-size: 46px;
+        font-size: 48px;
     }
 
     .header-note {
@@ -534,179 +559,117 @@ h1 {
     }
 
     .collage {
-        height: 1810px;
+        height: 1680px;
     }
 
     /* PHOTO 1 */
 
     .photo-one {
-        width: 56vw;
-        height: 275px;
+        width: 57vw;
+        height: 285px;
 
         top: 5px;
-        left: 3%;
+        left: 2%;
 
-        transform: rotate(-1deg);
-    }
-
-    .photo-one .caption {
-        bottom: -42px;
-
-        font-size: 11px;
+        transform: rotate(-1.2deg);
     }
 
     /* PHOTO 2 */
 
     .photo-two {
-        width: 38vw;
-        height: 205px;
+        width: 40vw;
+        height: 210px;
 
-        top: 75px;
-        right: 2%;
+        top: 70px;
+        right: 1%;
 
-        transform: rotate(1.4deg);
-    }
-
-    .photo-two .caption {
-        bottom: -50px;
-
-        font-size: 10px;
-
-        max-width: 145px;
+        transform: rotate(1.7deg);
     }
 
     /* PHOTO 3 */
 
     .photo-three {
-        width: 42vw;
-        height: 250px;
+        width: 44vw;
+        height: 255px;
 
-        top: 335px;
+        top: 320px;
         left: 4%;
-    }
-
-    .photo-three .caption {
-        bottom: -40px;
-
-        font-size: 11px;
     }
 
     /* PHOTO 4 */
 
     .photo-four {
-        width: 59vw;
-        height: 225px;
+        width: 62vw;
+        height: 230px;
 
-        top: 420px;
-        right: 2%;
-    }
-
-    .photo-four .caption {
-        bottom: -58px;
-
-        font-size: 10px;
-
-        max-width: 250px;
+        top: 405px;
+        right: 1%;
     }
 
     /* PHOTO 5 */
 
     .photo-five {
-        width: 44vw;
+        width: 47vw;
         height: 285px;
 
-        top: 690px;
-        left: 2%;
-    }
-
-    .photo-five .caption {
-        bottom: -43px;
-
-        font-size: 10px;
+        top: 680px;
+        left: 1%;
     }
 
     /* PHOTO 6 */
 
     .photo-six {
-        width: 42vw;
-        height: 270px;
+        width: 43vw;
+        height: 265px;
 
-        top: 660px;
-        right: 2%;
-    }
-
-    .photo-six .caption {
-        bottom: -55px;
-
-        font-size: 10px;
-
-        max-width: 160px;
+        top: 650px;
+        right: 1%;
     }
 
     /* PHOTO 7 */
 
     .photo-seven {
-        width: 62vw;
-        height: 195px;
+        width: 64vw;
+        height: 205px;
 
-        top: 1010px;
-        left: 18%;
-    }
-
-    .photo-seven .caption {
-        bottom: -55px;
-
-        font-size: 10px;
+        top: 985px;
+        left: 17%;
     }
 
     /* PHOTO 8 */
 
     .photo-eight {
-        width: 39vw;
-        height: 260px;
+        width: 42vw;
+        height: 265px;
 
-        top: 1215px;
-        left: 3%;
-    }
-
-    .photo-eight .caption {
-        bottom: -40px;
-
-        font-size: 11px;
+        top: 1190px;
+        left: 2%;
     }
 
     /* PHOTO 9 */
 
     .photo-nine {
-        width: 56vw;
-        height: 340px;
+        width: 58vw;
+        height: 345px;
 
-        top: 1280px;
-        right: 2%;
-    }
-
-    .photo-nine .caption {
-        bottom: -43px;
-
-        font-size: 11px;
+        top: 1260px;
+        right: 1%;
     }
 
     /* PHOTO 10 */
 
     .photo-ten {
-        width: 40vw;
-        height: 240px;
+        width: 42vw;
+        height: 245px;
 
-        top: 1570px;
+        top: 1530px;
         left: 8%;
     }
 
-    .photo-ten .caption {
-        bottom: -55px;
-
+    .caption {
         font-size: 10px;
 
-        max-width: 180px;
+        bottom: 9px;
     }
 
     .mark {
@@ -722,6 +685,11 @@ h1 {
 
 <main class="page">
 
+
+    <!-- =====================================
+         HEADER
+    ====================================== -->
+
     <header class="header">
 
         <div class="eyebrow">
@@ -732,12 +700,18 @@ h1 {
             FOR THE RECORD
         </h1>
 
+        <div class="header-line"></div>
+
         <p class="header-note">
             A few things I happened to keep.
         </p>
 
     </header>
 
+
+    <!-- =====================================
+         COLLAGE
+    ====================================== -->
 
     <section class="collage">
 
@@ -748,7 +722,7 @@ h1 {
 
             <img
                 src="photo1.jpg"
-                alt="A candid photo"
+                alt="Candid photo"
             >
 
             <div class="caption">
@@ -760,11 +734,11 @@ h1 {
 
         <!-- PHOTO 2 -->
 
-        <div class="photo photo-two">
+        <div class="photo photo-two dark">
 
             <img
                 src="photo2.jpg"
-                alt="A close-up photo"
+                alt="Close-up photo"
             >
 
             <div class="caption">
@@ -780,7 +754,7 @@ h1 {
 
             <img
                 src="photo3.jpg"
-                alt="A candid moment"
+                alt="Candid moment"
             >
 
             <div class="caption">
@@ -792,11 +766,11 @@ h1 {
 
         <!-- PHOTO 4 -->
 
-        <div class="photo photo-four">
+        <div class="photo photo-four dark">
 
             <img
                 src="photo4.jpg"
-                alt="A candid moment"
+                alt="Candid moment"
             >
 
             <div class="caption">
@@ -812,7 +786,7 @@ h1 {
 
             <img
                 src="photo5.jpg"
-                alt="A candid photo"
+                alt="Candid photo"
             >
 
             <div class="caption">
@@ -840,7 +814,7 @@ h1 {
 
         <!-- PHOTO 7 -->
 
-        <div class="photo photo-seven">
+        <div class="photo photo-seven dark">
 
             <img
                 src="photo7.jpg"
@@ -850,7 +824,7 @@ h1 {
             <div class="caption">
                 sleeping…shocker
                 <br>
-                also just look at how much peace i give you
+                <em>also just look at how much peace i give you</em>
             </div>
 
         </div>
@@ -874,7 +848,7 @@ h1 {
 
         <!-- PHOTO 9 -->
 
-        <div class="photo photo-nine">
+        <div class="photo photo-nine dark">
 
             <img
                 src="photo9.jpg"
@@ -904,6 +878,8 @@ h1 {
         </div>
 
 
+        <!-- DECORATIVE DETAILS -->
+
         <div class="mark mark-one">
             kept
         </div>
@@ -916,10 +892,17 @@ h1 {
             for the record
         </div>
 
+
     </section>
 
 
+    <!-- =====================================
+         BACK
+    ====================================== -->
+
     <div class="bottom">
+
+        <div class="bottom-line"></div>
 
         <a
             href="archive.html"
@@ -929,6 +912,7 @@ h1 {
         </a>
 
     </div>
+
 
 </main>
 
