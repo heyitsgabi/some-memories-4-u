@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 
@@ -8,6 +9,10 @@
 <title>Memories</title>
 
 <style>
+
+/* =====================================================
+   RESET
+===================================================== */
 
 * {
     box-sizing: border-box;
@@ -50,9 +55,9 @@ body {
 }
 
 
-/* =========================================
+/* =====================================================
    PAPER TEXTURE
-========================================= */
+===================================================== */
 
 body::before {
     content: "";
@@ -65,26 +70,32 @@ body::before {
 
     z-index: 9999;
 
-    opacity: 0.30;
+    opacity: 0.32;
 
     background:
 
         radial-gradient(
             ellipse at 15% 18%,
-            rgba(255,255,255,0.30),
+            rgba(255,255,255,0.30) 0%,
             transparent 28%
         ),
 
         radial-gradient(
             ellipse at 82% 12%,
-            rgba(90,78,63,0.10),
+            rgba(90,78,63,0.10) 0%,
             transparent 25%
         ),
 
         radial-gradient(
             ellipse at 70% 72%,
-            rgba(255,255,255,0.24),
+            rgba(255,255,255,0.24) 0%,
             transparent 30%
+        ),
+
+        radial-gradient(
+            ellipse at 25% 85%,
+            rgba(90,78,63,0.08) 0%,
+            transparent 25%
         ),
 
         linear-gradient(
@@ -113,6 +124,10 @@ body::before {
 }
 
 
+/* =====================================================
+   BORDER
+===================================================== */
+
 body::after {
     content: "";
 
@@ -128,9 +143,9 @@ body::after {
 }
 
 
-/* =========================================
+/* =====================================================
    PAGE
-========================================= */
+===================================================== */
 
 .page {
     width: 100%;
@@ -143,9 +158,9 @@ body::after {
 }
 
 
-/* =========================================
+/* =====================================================
    HEADER
-========================================= */
+===================================================== */
 
 .header {
     text-align: center;
@@ -216,18 +231,17 @@ h1 {
 }
 
 
-/* =========================================
-   VIDEO GALLERY
-========================================= */
+/* =====================================================
+   GALLERY
+===================================================== */
 
-.video-gallery {
-
+.gallery {
     display: grid;
 
     grid-template-columns:
-        repeat(3, minmax(0, 1fr));
+        repeat(4, minmax(0, 1fr));
 
-    gap: 48px 24px;
+    gap: 44px 22px;
 
     align-items: start;
 
@@ -237,133 +251,353 @@ h1 {
 }
 
 
-/* =========================================
-   VIDEO ITEM
-========================================= */
+/* =====================================================
+   ITEMS
+===================================================== */
 
-.video-item {
+.item {
+    position: relative;
 
     min-width: 0;
-
-    position: relative;
 }
 
 
-/* =========================================
-   VIDEO FRAME
-========================================= */
+/* Intentional variation */
 
-.video-frame {
+.item:nth-child(2) {
+    margin-top: 32px;
+}
 
+.item:nth-child(3) {
+    margin-top: 8px;
+}
+
+.item:nth-child(4) {
+    margin-top: 38px;
+}
+
+.item:nth-child(5) {
+    margin-top: 10px;
+}
+
+.item:nth-child(6) {
+    margin-top: 36px;
+}
+
+.item:nth-child(7) {
+    margin-top: 5px;
+}
+
+.item:nth-child(8) {
+    margin-top: 30px;
+}
+
+.item:nth-child(9) {
+    margin-top: 12px;
+}
+
+.item:nth-child(10) {
+    margin-top: 35px;
+}
+
+
+/* =====================================================
+   THUMBNAIL LINK
+===================================================== */
+
+.video-link {
+    display: block;
+
+    text-decoration: none;
+
+    color: inherit;
+}
+
+
+/* =====================================================
+   FRAMES
+===================================================== */
+
+.frame {
     position: relative;
 
     width: 100%;
 
-    background: #1d1c1a;
+    aspect-ratio: 0.84;
 
-    padding: 7px;
+    padding: 8px;
 
-    border: 1px solid rgba(35,31,27,0.35);
+    background: #f8f5ee;
+
+    border: 1px solid rgba(25,23,20,0.28);
 
     box-shadow:
         5px 7px 0 rgba(65,57,47,0.08),
-        0 12px 25px rgba(40,34,28,0.14);
-
-    transform: rotate(-0.7deg);
+        0 12px 25px rgba(40,34,28,0.13);
 
     transition:
-        transform 0.3s ease,
-        box-shadow 0.3s ease;
+        transform 0.35s ease,
+        box-shadow 0.35s ease;
 }
 
 
-.video-item:nth-child(2) .video-frame {
-    transform: rotate(0.9deg);
-}
+/* =====================================================
+   INNER FRAME
+===================================================== */
 
-.video-item:nth-child(3) .video-frame {
-    transform: rotate(-0.4deg);
-}
+.frame::before {
+    content: "";
 
-.video-item:nth-child(4) .video-frame {
-    transform: rotate(0.8deg);
-}
+    position: absolute;
 
-.video-item:nth-child(5) .video-frame {
-    transform: rotate(-1deg);
-}
+    inset: 4px;
 
-.video-item:nth-child(6) .video-frame {
-    transform: rotate(0.5deg);
-}
+    border: 1px solid rgba(35,31,27,0.13);
 
-.video-item:nth-child(7) .video-frame {
-    transform: rotate(-0.8deg);
-}
+    pointer-events: none;
 
-.video-item:nth-child(8) .video-frame {
-    transform: rotate(0.7deg);
-}
-
-.video-item:nth-child(9) .video-frame {
-    transform: rotate(-0.5deg);
+    z-index: 4;
 }
 
 
-/* =========================================
-   VIDEO
-========================================= */
+/* =====================================================
+   THUMBNAIL
+===================================================== */
 
-.video-frame video {
+.frame img {
+    width: 100%;
+
+    height: 100%;
 
     display: block;
 
-    width: 100%;
-
-    aspect-ratio: 9 / 16;
-
     object-fit: cover;
 
-    background: #111;
+    position: relative;
 
-    border: 1px solid rgba(255,255,255,0.10);
+    z-index: 2;
+
+    filter:
+        saturate(0.92)
+        contrast(0.97);
+
+    transition:
+        transform 0.45s ease,
+        filter 0.45s ease;
 }
 
 
-/* =========================================
+/* =====================================================
+   PLAY BUTTON
+===================================================== */
+
+.play {
+    position: absolute;
+
+    left: 50%;
+
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    width: 52px;
+
+    height: 52px;
+
+    border-radius: 50%;
+
+    background: rgba(25,24,22,0.78);
+
+    border: 1px solid rgba(255,255,255,0.55);
+
+    color: #fff;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 17px;
+
+    padding-left: 3px;
+
+    z-index: 8;
+
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease;
+}
+
+
+/* =====================================================
    HOVER
-========================================= */
+===================================================== */
 
-.video-item:hover .video-frame {
-
+.item:hover .frame {
     transform:
-        translateY(-5px)
-        rotate(0deg);
+        translateY(-6px)
+        rotate(0deg) !important;
 
     box-shadow:
         0 20px 38px rgba(35,30,25,0.20);
 }
 
+.item:hover img {
+    filter:
+        saturate(1)
+        contrast(1);
 
-/* =========================================
+    transform: scale(1.018);
+}
+
+.item:hover .play {
+    transform:
+        translate(-50%, -50%)
+        scale(1.08);
+
+    background: rgba(25,24,22,0.90);
+}
+
+
+/* =====================================================
+   INDIVIDUAL FRAME PERSONALITIES
+===================================================== */
+
+.item:nth-child(1) .frame {
+    background: #f9f6ed;
+
+    border: 2px solid #4a443b;
+
+    padding: 7px;
+
+    transform: rotate(-1.2deg);
+}
+
+.item:nth-child(2) .frame {
+    background: #e7dfd2;
+
+    border: 1px solid #71675a;
+
+    transform: rotate(1.5deg);
+}
+
+.item:nth-child(3) .frame {
+    background: #20201e;
+
+    border: 8px solid #20201e;
+
+    transform: rotate(-0.7deg);
+}
+
+.item:nth-child(3) .frame::before {
+    inset: 2px;
+
+    border-color: rgba(255,255,255,0.15);
+}
+
+.item:nth-child(4) .frame {
+    background: #faf8f2;
+
+    padding: 10px;
+
+    border: 1px solid rgba(20,20,20,0.38);
+
+    transform: rotate(1deg);
+}
+
+.item:nth-child(5) .frame {
+    background: #e0d7ca;
+
+    border: 1px solid #7c7266;
+
+    transform: rotate(-1.3deg);
+}
+
+.item:nth-child(6) .frame {
+    background: #f9f7f1;
+
+    border: 2px solid #292724;
+
+    box-shadow:
+        0 0 0 4px #ded7cb,
+        0 0 0 5px rgba(35,31,27,0.28),
+        0 14px 28px rgba(40,34,28,0.14);
+
+    transform: rotate(0.8deg);
+}
+
+.item:nth-child(7) .frame {
+    background: #ece4d8;
+
+    border: 1px solid #7d7468;
+
+    transform: rotate(-0.8deg);
+}
+
+.item:nth-child(8) .frame {
+    background: #1c1c1b;
+
+    border: 8px solid #1c1c1b;
+
+    transform: rotate(1.2deg);
+}
+
+.item:nth-child(8) .frame::before {
+    inset: 2px;
+
+    border-color: rgba(255,255,255,0.14);
+}
+
+
+/* =====================================================
+   NUMBERS
+===================================================== */
+
+.number {
+    position: absolute;
+
+    top: -18px;
+
+    left: 2px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 7px;
+
+    letter-spacing: 2px;
+
+    color: #9c958b;
+
+    z-index: 15;
+}
+
+
+/* =====================================================
    CAPTIONS
-========================================= */
+===================================================== */
 
-.video-caption {
+.caption {
+    margin-top: 12px;
 
-    margin-top: 13px;
-
-    padding: 0 5px;
+    padding: 0 4px;
 
     color: #403c36;
 
     font-size: 11px;
 
     line-height: 1.5;
+
+    min-height: 34px;
+
+    position: relative;
+
+    z-index: 10;
 }
 
-.video-caption::before {
-
+.caption::before {
     content: "";
 
     display: block;
@@ -378,208 +612,63 @@ h1 {
 }
 
 
-/* =========================================
-   LAST TWO CENTRED
-========================================= */
+/* =====================================================
+   CENTERED LAST TWO
+===================================================== */
 
-.video-item:nth-child(10) {
+.item:nth-child(10),
+.item:nth-child(11) {
+    grid-column: span 2;
 
-    grid-column: 1 / 3;
+    width: 58%;
 
-    width: calc(
-        (100% - 24px) / 2
-    );
-
-    justify-self: end;
-}
-
-.video-item:nth-child(11) {
-
-    grid-column: 2 / 4;
-
-    width: calc(
-        (100% - 24px) / 2
-    );
-
-    justify-self: start;
+    justify-self: center;
 }
 
 
-/* =========================================
-   SCREENSHOTS
-========================================= */
+/* =====================================================
+   SIDE NOTES
+===================================================== */
 
-.screenshot-section {
+.note {
+    position: absolute;
 
-    margin-top: 95px;
+    font-family: Arial, sans-serif;
 
-    position: relative;
+    font-size: 7px;
 
-    z-index: 5;
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+
+    color: #968d82;
+
+    writing-mode: vertical-rl;
+
+    z-index: 1;
 }
 
-.screenshot-heading {
+.note-one {
+    left: -25px;
 
-    text-align: center;
-
-    margin-bottom: 48px;
+    top: 260px;
 }
 
-.screenshot-heading h2 {
+.note-two {
+    right: -25px;
 
-    font-size: 30px;
-
-    font-weight: normal;
-
-    letter-spacing: -0.5px;
-
-    color: #211f1c;
-}
-
-.screenshot-heading p {
-
-    margin-top: 9px;
-
-    color: #81786e;
-
-    font-size: 11px;
+    top: 760px;
 }
 
 
-/* =========================================
-   SCREENSHOT GROUP
-========================================= */
-
-.screenshot-group {
-
-    margin-bottom: 62px;
-}
-
-
-/* screenshot grid */
-
-.screenshot-grid {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(4, minmax(0, 1fr));
-
-    gap: 15px;
-
-    align-items: start;
-}
-
-
-/* individual screenshot */
-
-.screenshot {
-
-    background: #f8f5ee;
-
-    padding: 6px;
-
-    border: 1px solid rgba(25,23,20,0.22);
-
-    box-shadow:
-        4px 6px 0 rgba(65,57,47,0.07),
-        0 10px 20px rgba(40,34,28,0.10);
-
-    transform: rotate(-0.6deg);
-
-    transition:
-        transform 0.25s ease,
-        box-shadow 0.25s ease;
-
-    cursor: pointer;
-}
-
-.screenshot:nth-child(2) {
-    transform: rotate(0.8deg);
-}
-
-.screenshot:nth-child(3) {
-    transform: rotate(-0.4deg);
-}
-
-.screenshot:nth-child(4) {
-    transform: rotate(0.6deg);
-}
-
-.screenshot:hover {
-
-    transform:
-        translateY(-4px)
-        rotate(0deg);
-
-    box-shadow:
-        0 15px 30px rgba(40,34,28,0.18);
-}
-
-.screenshot img {
-
-    display: block;
-
-    width: 100%;
-
-    height: auto;
-}
-
-
-/* =========================================
-   GROUP CAPTION
-========================================= */
-
-.group-caption {
-
-    margin-top: 18px;
-
-    max-width: 650px;
-
-    color: #403c36;
-
-    font-size: 12px;
-
-    line-height: 1.6;
-}
-
-.group-caption::before {
-
-    content: "";
-
-    display: block;
-
-    width: 22px;
-
-    height: 1px;
-
-    background: #aaa195;
-
-    margin-bottom: 8px;
-}
-
-
-/* =========================================
-   SINGLE SCREENSHOT GROUP
-========================================= */
-
-.single-screenshot {
-
-    max-width: 260px;
-
-    margin: 0 auto;
-}
-
-
-/* =========================================
+/* =====================================================
    BOTTOM
-========================================= */
+===================================================== */
 
 .bottom {
-
     text-align: center;
 
-    margin-top: 75px;
+    margin-top: 70px;
 
     padding-top: 28px;
 
@@ -591,7 +680,6 @@ h1 {
 }
 
 .bottom-note {
-
     color: #7d756b;
 
     font-size: 11px;
@@ -602,7 +690,6 @@ h1 {
 }
 
 .back {
-
     display: inline-block;
 
     text-decoration: none;
@@ -627,166 +714,15 @@ h1 {
 }
 
 .back:hover {
-
     background: #1b1b1a;
 
     color: #f7f3eb;
 }
 
 
-/* =========================================
-   LIGHTBOX
-========================================= */
-
-.lightbox {
-
-    position: fixed;
-
-    inset: 0;
-
-    background: rgba(20,19,17,0.94);
-
-    z-index: 10000;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    padding: 30px;
-
-    opacity: 0;
-
-    pointer-events: none;
-
-    transition: opacity 0.3s ease;
-}
-
-.lightbox.active {
-
-    opacity: 1;
-
-    pointer-events: auto;
-}
-
-.lightbox-inner {
-
-    max-width: 850px;
-
-    width: 100%;
-
-    max-height: 94vh;
-
-    display: flex;
-
-    flex-direction: column;
-
-    align-items: center;
-
-    justify-content: center;
-}
-
-.lightbox-image {
-
-    max-width: 90vw;
-
-    max-height: 76vh;
-
-    object-fit: contain;
-
-    display: block;
-
-    box-shadow:
-        0 25px 70px rgba(0,0,0,0.5);
-
-    border: 5px solid #f3efe7;
-}
-
-.lightbox-caption {
-
-    color: #f1eee7;
-
-    font-family: Georgia, serif;
-
-    font-size: 14px;
-
-    line-height: 1.5;
-
-    text-align: center;
-
-    max-width: 540px;
-
-    margin-top: 18px;
-}
-
-.close {
-
-    position: fixed;
-
-    top: 22px;
-
-    right: 25px;
-
-    background: transparent;
-
-    border: 1px solid rgba(255,255,255,0.35);
-
-    color: #fff;
-
-    width: 38px;
-
-    height: 38px;
-
-    border-radius: 50%;
-
-    font-size: 18px;
-
-    cursor: pointer;
-
-    z-index: 10002;
-}
-
-.prev,
-.next {
-
-    position: fixed;
-
-    top: 50%;
-
-    transform: translateY(-50%);
-
-    background: transparent;
-
-    border: 1px solid rgba(255,255,255,0.3);
-
-    color: #fff;
-
-    width: 42px;
-
-    height: 42px;
-
-    border-radius: 50%;
-
-    cursor: pointer;
-
-    font-size: 17px;
-
-    z-index: 10002;
-}
-
-.prev {
-    left: 22px;
-}
-
-.next {
-    right: 22px;
-}
-
-
-/* =========================================
+/* =====================================================
    MOBILE
-========================================= */
+===================================================== */
 
 @media (max-width: 800px) {
 
@@ -806,101 +742,85 @@ h1 {
         font-size: 48px;
     }
 
-    .video-gallery {
-
+    .gallery {
         grid-template-columns:
             repeat(2, minmax(0, 1fr));
 
         gap: 38px 13px;
     }
 
-    .video-item:nth-child(10),
-    .video-item:nth-child(11) {
-
-        grid-column: auto;
-
-        width: 100%;
-
-        justify-self: auto;
+    .item:nth-child(2),
+    .item:nth-child(3),
+    .item:nth-child(4),
+    .item:nth-child(5),
+    .item:nth-child(6),
+    .item:nth-child(7),
+    .item:nth-child(8),
+    .item:nth-child(9) {
+        margin-top: 18px;
     }
 
-    .video-caption {
+    .item:nth-child(10),
+    .item:nth-child(11) {
+        grid-column: 1 / -1;
+
+        width: 72%;
+
+        justify-self: center;
+
+        margin-top: 25px;
+    }
+
+    .caption {
         font-size: 10px;
+
+        margin-top: 9px;
     }
 
-    .screenshot-section {
-        margin-top: 70px;
+    .number {
+        top: -16px;
+
+        font-size: 6px;
     }
 
-    .screenshot-grid {
-
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
-
-        gap: 13px;
-    }
-
-    .group-caption {
-        font-size: 11px;
+    .note {
+        display: none;
     }
 
     .bottom {
-        margin-top: 55px;
-    }
-
-    .lightbox {
-        padding: 20px;
-    }
-
-    .lightbox-image {
-        max-width: 94vw;
-        max-height: 70vh;
-    }
-
-    .lightbox-caption {
-        font-size: 13px;
-        padding: 0 25px;
-    }
-
-    .prev {
-        left: 10px;
-    }
-
-    .next {
-        right: 10px;
-    }
-
-    .close {
-        top: 14px;
-        right: 14px;
+        margin-top: 52px;
     }
 }
 
 
-/* =========================================
+/* =====================================================
    SMALL PHONES
-========================================= */
+===================================================== */
 
 @media (max-width: 430px) {
 
-    .video-gallery {
+    .gallery {
         gap: 32px 10px;
     }
 
-    .video-frame {
-        padding: 5px;
+    .frame {
+        padding: 6px;
     }
 
-    .video-caption {
+    .caption {
         font-size: 9px;
     }
 
-    .screenshot-grid {
-        gap: 9px;
+    .header-note {
+        font-size: 11px;
     }
 
-    .screenshot {
-        padding: 4px;
+    .play {
+        width: 44px;
+
+        height: 44px;
+
+        font-size: 15px;
     }
 }
 
@@ -908,16 +828,17 @@ h1 {
 
 </head>
 
-
 <body>
 
 <main class="page">
 
+```
+<!-- HEADER -->
 
 <header class="header">
 
     <div class="eyebrow">
-        $OME MEMORIES 4 U
+        Some Memories 4 U
     </div>
 
     <h1>
@@ -927,523 +848,404 @@ h1 {
     <div class="header-line"></div>
 
     <p class="header-note">
-        Videos, conversations, and other evidence of your behaviour.
+        Things that probably should have stayed between us.
     </p>
 
     <div class="section-number">
-        03 / Memories
+        02 / Memories
     </div>
 
 </header>
 
 
-<!-- =========================================
-     VIDEOS
-========================================= -->
+<!-- GALLERY -->
 
-<section class="video-gallery">
+<section class="gallery">
 
 
-    <article class="video-item">
+    <!-- VIDEO 1 -->
 
-        <div class="video-frame">
+    <article class="item">
 
-            <video
-                controls
-                playsinline
-                preload="metadata"
-            >
+        <span class="number">01</span>
 
-                <source
-                    src="video1.mp4"
-                    type="video/mp4"
-                >
+        <a
+            class="video-link"
+            href="https://drive.google.com/file/d/1FaHIDvCHrj6Dj8Rjeqw5AZQjwYehdvYl/view?usp=sharing"
+            target="_blank"
+            rel="noopener"
+        >
 
-                <source
-                    src="video1.mov"
-                    type="video/quicktime"
-                >
-
-                Your browser does not support video.
-
-            </video>
-
-        </div>
-
-        <div class="video-caption">
-            unfortunate events with food… which you keep buying btw
-        </div>
-
-    </article>
-
-
-    <article class="video-item">
-
-        <div class="video-frame">
-
-            <video
-                controls
-                playsinline
-                preload="metadata"
-            >
-
-                <source
-                    src="video2.mp4"
-                    type="video/mp4"
-                >
-
-                <source
-                    src="video2.mov"
-                    type="video/quicktime"
-                >
-
-            </video>
-
-        </div>
-
-        <div class="video-caption">
-            mind you i was just styling your hair….
-        </div>
-
-    </article>
-
-
-    <article class="video-item">
-
-        <div class="video-frame">
-
-            <video
-                controls
-                playsinline
-                preload="metadata"
-            >
-
-                <source
-                    src="video3.mp4"
-                    type="video/mp4"
-                >
-
-                <source
-                    src="video3.mov"
-                    type="video/quicktime"
-                >
-
-            </video>
-
-        </div>
-
-        <div class="video-caption">
-            so jolly after cheating😒
-        </div>
-
-    </article>
-
-
-    <article class="video-item">
-
-        <div class="video-frame">
-
-            <video
-                controls
-                playsinline
-                preload="metadata"
-            >
-
-                <source
-                    src="video4.mp4"
-                    type="video/mp4"
-                >
-
-                <source
-                    src="video4.mov"
-                    type="video/quicktime"
-                >
-
-            </video>
-
-        </div>
-
-        <div class="video-caption">
-            me still looking cute after… ‘losing’ the bet
-        </div>
-
-    </article>
-
-
-    <article class="video-item">
-
-        <div class="video-frame">
-
-            <video
-                controls
-                playsinline
-                preload="metadata"
-            >
-
-                <source
-                    src="video5.mp4"
-                    type="video/mp4"
-                >
-
-                <source
-                    src="video5.mov"
-                    type="video/quicktime"
-                >
-
-            </video>
-
-        </div>
-
-        <div class="video-caption">
-            video evidence of the aforementioned cheating
-        </div>
-
-    </article>
-
-
-    <article class="video-item">
-
-        <div class="video-frame">
-
-            <video
-                controls
-                playsinline
-                preload="metadata"
-            >
-
-                <source
-                    src="video6.mp4"
-                    type="video/mp4"
-                >
-
-                <source
-                    src="video6.mov"
-                    type="video/quicktime"
-                >
-
-            </video>
-
-        </div>
-
-        <div class="video-caption">
-            you making yourself laugh at the jeans post caption😭
-        </div>
-
-    </article>
-
-
-    <article class="video-item">
-
-        <div class="video-frame">
-
-            <video
-                controls
-                playsinline
-                preload="metadata"
-            >
-
-                <source
-                    src="video7.mp4"
-                    type="video/mp4"
-                >
-
-                <source
-                    src="video7.mov"
-                    type="video/quicktime"
-                >
-
-            </video>
-
-        </div>
-
-        <div class="video-caption">
-            you being a bully… bc i can’t afford proper earbuds.. hm this life
-        </div>
-
-    </article>
-
-
-    <article class="video-item">
-
-        <div class="video-frame">
-
-            <video
-                controls
-                playsinline
-                preload="metadata"
-            >
-
-                <source
-                    src="video8.mp4"
-                    type="video/mp4"
-                >
-
-                <source
-                    src="video8.mov"
-                    type="video/quicktime"
-                >
-
-            </video>
-
-        </div>
-
-        <div class="video-caption">
-            🤣 not an amazing angle for me but this was just funny
-        </div>
-
-    </article>
-
-
-    <article class="video-item">
-
-        <div class="video-frame">
-
-            <video
-                controls
-                playsinline
-                preload="metadata"
-            >
-
-                <source
-                    src="video9.mp4"
-                    type="video/mp4"
-                >
-
-                <source
-                    src="video9.mov"
-                    type="video/quicktime"
-                >
-
-            </video>
-
-        </div>
-
-        <div class="video-caption">
-            after cheating you’re hiding from the camera🤣
-        </div>
-
-    </article>
-
-
-    <article class="video-item">
-
-        <div class="video-frame">
-
-            <video
-                controls
-                playsinline
-                preload="metadata"
-            >
-
-                <source
-                    src="video10.mp4"
-                    type="video/mp4"
-                >
-
-                <source
-                    src="video10.mov"
-                    type="video/quicktime"
-                >
-
-            </video>
-
-        </div>
-
-        <div class="video-caption">
-            another one of your losses to me🙂‍↕️
-        </div>
-
-    </article>
-
-
-    <article class="video-item">
-
-        <div class="video-frame">
-
-            <video
-                controls
-                playsinline
-                preload="metadata"
-            >
-
-                <source
-                    src="video11.mp4"
-                    type="video/mp4"
-                >
-
-                <source
-                    src="video11.mov"
-                    type="video/quicktime"
-                >
-
-            </video>
-
-        </div>
-
-        <div class="video-caption">
-            🤣🤣 this has got to be my favorite😭😭
-        </div>
-
-    </article>
-
-
-</section>
-
-
-<!-- =========================================
-     SCREENSHOTS
-========================================= -->
-
-<section class="screenshot-section">
-
-
-    <div class="screenshot-heading">
-
-        <h2>
-            Conversations
-        </h2>
-
-        <p>
-            some things needed to be documented
-        </p>
-
-    </div>
-
-
-    <!-- GROUP 1 -->
-
-    <div class="screenshot-group">
-
-        <div class="screenshot-grid">
-
-            <div class="screenshot">
-                <img src="screenshot1.jpg" alt="Screenshot 1">
-            </div>
-
-            <div class="screenshot">
-                <img src="screenshot2.jpg" alt="Screenshot 2">
-            </div>
-
-            <div class="screenshot">
-                <img src="screenshot3.jpg" alt="Screenshot 3">
-            </div>
-
-            <div class="screenshot">
-                <img src="screenshot4.jpg" alt="Screenshot 4">
-            </div>
-
-        </div>
-
-        <div class="group-caption">
-            you saying the most out of pocket things😭
-        </div>
-
-    </div>
-
-
-    <!-- GROUP 2 -->
-
-    <div class="screenshot-group">
-
-        <div class="screenshot-grid">
-
-            <div class="screenshot">
-                <img src="screenshot5.jpg" alt="Screenshot 5">
-            </div>
-
-            <div class="screenshot">
-                <img src="screenshot6.jpg" alt="Screenshot 6">
-            </div>
-
-            <div class="screenshot">
-                <img src="screenshot7.jpg" alt="Screenshot 7">
-            </div>
-
-            <div class="screenshot">
-                <img src="screenshot8.jpg" alt="Screenshot 8">
-            </div>
-
-        </div>
-
-        <div class="group-caption">
-            rare moments when your humor didn’t fail you but your ‘don’t be weird’ filter did🤣
-        </div>
-
-    </div>
-
-
-    <!-- GROUP 3 -->
-
-    <div class="screenshot-group">
-
-        <div class="screenshot-grid">
-
-            <div class="screenshot">
-                <img src="screenshot9.jpg" alt="Screenshot 9">
-            </div>
-
-            <div class="screenshot">
-                <img src="screenshot10.jpg" alt="Screenshot 10">
-            </div>
-
-            <div class="screenshot">
-                <img src="screenshot11.jpg" alt="Screenshot 11">
-            </div>
-
-            <div class="screenshot">
-                <img src="screenshot12.jpg" alt="Screenshot 12">
-            </div>
-
-            <div class="screenshot">
-                <img src="screenshot13.jpg" alt="Screenshot 13">
-            </div>
-
-        </div>
-
-        <div class="group-caption">
-            cute? sweet? pg18?😭
-        </div>
-
-    </div>
-
-
-    <!-- GROUP 4 -->
-
-    <div class="screenshot-group">
-
-        <div class="single-screenshot">
-
-            <div class="screenshot">
+            <div class="frame">
 
                 <img
-                    src="screenshot14.jpg"
-                    alt="Screenshot 14"
+                    src="thumb1.jpg"
+                    alt="Video 1"
                 >
+
+                <div class="play">▶</div>
 
             </div>
 
-        </div>
+            <div class="caption">
+                unfortunate events with food… which you keep buying btw
+            </div>
 
-        <div class="group-caption">
+        </a>
 
-            i never told you but this had me on the floor…but i added it to clarify once and for all. i am taller than 4’11!!!
+    </article>
 
-        </div>
 
-    </div>
+    <!-- VIDEO 2 -->
+
+    <article class="item">
+
+        <span class="number">02</span>
+
+        <a
+            class="video-link"
+            href="https://drive.google.com/file/d/1A-S2MdAV0rGj9lf0Lv5aQ-TV4tx4TMG_/view?usp=sharing"
+            target="_blank"
+            rel="noopener"
+        >
+
+            <div class="frame">
+
+                <img
+                    src="thumb2.jpg"
+                    alt="Video 2"
+                >
+
+                <div class="play">▶</div>
+
+            </div>
+
+            <div class="caption">
+                mind you I was just styling your hair….
+            </div>
+
+        </a>
+
+    </article>
+
+
+    <!-- VIDEO 3 -->
+
+    <article class="item">
+
+        <span class="number">03</span>
+
+        <a
+            class="video-link"
+            href="https://drive.google.com/file/d/1oRgery3QyYA-R3hhpE0YKsSgf7uyMG-Q/view?usp=sharing"
+            target="_blank"
+            rel="noopener"
+        >
+
+            <div class="frame">
+
+                <img
+                    src="thumb3.jpg"
+                    alt="Video 3"
+                >
+
+                <div class="play">▶</div>
+
+            </div>
+
+            <div class="caption">
+                so jolly after cheating😒
+            </div>
+
+        </a>
+
+    </article>
+
+
+    <!-- VIDEO 4 -->
+
+    <article class="item">
+
+        <span class="number">04</span>
+
+        <a
+            class="video-link"
+            href="https://drive.google.com/file/d/183nO1eYWlZinCWKqc1aIcrwNL-qXD35W/view?usp=sharing"
+            target="_blank"
+            rel="noopener"
+        >
+
+            <div class="frame">
+
+                <img
+                    src="thumb4.jpg"
+                    alt="Video 4"
+                >
+
+                <div class="play">▶</div>
+
+            </div>
+
+            <div class="caption">
+                me still looking cute after… ‘losing’ the bet
+            </div>
+
+        </a>
+
+    </article>
+
+
+    <!-- VIDEO 5 -->
+
+    <article class="item">
+
+        <span class="number">05</span>
+
+        <a
+            class="video-link"
+            href="https://drive.google.com/file/d/1ROZOX17T234avamUR_wYkZtsql1NKnEQ/view?usp=sharing"
+            target="_blank"
+            rel="noopener"
+        >
+
+            <div class="frame">
+
+                <img
+                    src="thumb5.jpg"
+                    alt="Video 5"
+                >
+
+                <div class="play">▶</div>
+
+            </div>
+
+            <div class="caption">
+                video evidence of the afforementioned cheating
+            </div>
+
+        </a>
+
+    </article>
+
+
+    <!-- VIDEO 6 -->
+
+    <article class="item">
+
+        <span class="number">06</span>
+
+        <a
+            class="video-link"
+            href="https://drive.google.com/file/d/1ObZx67LF96OvoOlaN-S5BM8GbZL6bH9m/view?usp=sharing"
+            target="_blank"
+            rel="noopener"
+        >
+
+            <div class="frame">
+
+                <img
+                    src="thumb6.jpg"
+                    alt="Video 6"
+                >
+
+                <div class="play">▶</div>
+
+            </div>
+
+            <div class="caption">
+                you making yourself laugh at the jeans post caption😭
+            </div>
+
+        </a>
+
+    </article>
+
+
+    <!-- VIDEO 7 -->
+
+    <article class="item">
+
+        <span class="number">07</span>
+
+        <a
+            class="video-link"
+            href="https://drive.google.com/file/d/1INAKUIL4B0Z_LeeZdEs-3ksmmmCyhykl/view?usp=sharing"
+            target="_blank"
+            rel="noopener"
+        >
+
+            <div class="frame">
+
+                <img
+                    src="thumb7.jpg"
+                    alt="Video 7"
+                >
+
+                <div class="play">▶</div>
+
+            </div>
+
+            <div class="caption">
+                you being a bully… bc I can’t afford proper earbuds.. hm this life
+            </div>
+
+        </a>
+
+    </article>
+
+
+    <!-- VIDEO 8 -->
+
+    <article class="item">
+
+        <span class="number">08</span>
+
+        <a
+            class="video-link"
+            href="https://drive.google.com/file/d/1VHuZXWl9EKfS4j7941PBzcDpEM5a5LgY/view?usp=sharing"
+            target="_blank"
+            rel="noopener"
+        >
+
+            <div class="frame">
+
+                <img
+                    src="thumb8.jpg"
+                    alt="Video 8"
+                >
+
+                <div class="play">▶</div>
+
+            </div>
+
+            <div class="caption">
+                🤣 not an amazing angle for me but this was just funny
+            </div>
+
+        </a>
+
+    </article>
+
+
+    <!-- VIDEO 9 -->
+
+    <article class="item">
+
+        <span class="number">09</span>
+
+        <a
+            class="video-link"
+            href="https://drive.google.com/file/d/1-5CTfYhO1iqhTq3tgWbw2HxljmtSPldO/view?usp=sharing"
+            target="_blank"
+            rel="noopener"
+        >
+
+            <div class="frame">
+
+                <img
+                    src="thumb9.jpg"
+                    alt="Video 9"
+                >
+
+                <div class="play">▶</div>
+
+            </div>
+
+            <div class="caption">
+                after cheating you’re hiding from the camera🤣
+            </div>
+
+        </a>
+
+    </article>
+
+
+    <!-- VIDEO 10 -->
+
+    <article class="item">
+
+        <span class="number">10</span>
+
+        <a
+            class="video-link"
+            href="https://drive.google.com/file/d/1iBnwAu87PSvGRvkiUhq2vaFH0j8_MWqR/view?usp=sharing"
+            target="_blank"
+            rel="noopener"
+        >
+
+            <div class="frame">
+
+                <img
+                    src="thumb10.jpg"
+                    alt="Video 10"
+                >
+
+                <div class="play">▶</div>
+
+            </div>
+
+            <div class="caption">
+                another one of your losses to me🙂‍↕️
+            </div>
+
+        </a>
+
+    </article>
+
+
+    <!-- VIDEO 11 -->
+
+    <article class="item">
+
+        <span class="number">11</span>
+
+        <a
+            class="video-link"
+            href="https://drive.google.com/file/d/1zj66vX1QQrn3i4N4BW-lYVBkANXqzjQS/view?usp=sharing"
+            target="_blank"
+            rel="noopener"
+        >
+
+            <div class="frame">
+
+                <img
+                    src="thumb11.jpg"
+                    alt="Video 11"
+                >
+
+                <div class="play">▶</div>
+
+            </div>
+
+            <div class="caption">
+                🤣🤣 this has got to be my favorite😭😭
+            </div>
+
+        </a>
+
+    </article>
 
 
 </section>
 
 
-<!-- =========================================
-     BOTTOM
-========================================= -->
+<!-- SIDE NOTES -->
+
+<div class="note note-one">
+    documented evidence
+</div>
+
+<div class="note note-two">
+    things we probably shouldn't explain
+</div>
+
+
+<!-- BOTTOM -->
 
 <div class="bottom">
 
     <p class="bottom-note">
-        apparently there is quite a lot of evidence.
+        some things are better kept in the archive.
     </p>
 
     <a
@@ -1454,292 +1256,9 @@ h1 {
     </a>
 
 </div>
-
+```
 
 </main>
-
-
-<!-- =========================================
-     LIGHTBOX
-========================================= -->
-
-<div
-    class="lightbox"
-    id="lightbox"
-    onclick="closeFromBackground(event)"
->
-
-    <button
-        class="close"
-        onclick="closeLightbox()"
-        aria-label="Close"
-    >
-        ×
-    </button>
-
-
-    <button
-        class="prev"
-        onclick="changePhoto(-1)"
-        aria-label="Previous photo"
-    >
-        ‹
-    </button>
-
-
-    <div class="lightbox-inner">
-
-        <img
-            id="lightboxImage"
-            class="lightbox-image"
-            src=""
-            alt=""
-        >
-
-        <div
-            id="lightboxCaption"
-            class="lightbox-caption"
-        >
-        </div>
-
-    </div>
-
-
-    <button
-        class="next"
-        onclick="changePhoto(1)"
-        aria-label="Next photo"
-    >
-        ›
-    </button>
-
-</div>
-
-
-<script>
-
-const screenshots = [
-
-    {
-        src: "screenshot1.jpg",
-        caption: "you saying the most out of pocket things😭"
-    },
-
-    {
-        src: "screenshot2.jpg",
-        caption: "you saying the most out of pocket things😭"
-    },
-
-    {
-        src: "screenshot3.jpg",
-        caption: "you saying the most out of pocket things😭"
-    },
-
-    {
-        src: "screenshot4.jpg",
-        caption: "you saying the most out of pocket things😭"
-    },
-
-    {
-        src: "screenshot5.jpg",
-        caption: "rare moments when your humor didn’t fail you but your ‘don’t be weird’ filter did🤣"
-    },
-
-    {
-        src: "screenshot6.jpg",
-        caption: "rare moments when your humor didn’t fail you but your ‘don’t be weird’ filter did🤣"
-    },
-
-    {
-        src: "screenshot7.jpg",
-        caption: "rare moments when your humor didn’t fail you but your ‘don’t be weird’ filter did🤣"
-    },
-
-    {
-        src: "screenshot8.jpg",
-        caption: "rare moments when your humor didn’t fail you but your ‘don’t be weird’ filter did🤣"
-    },
-
-    {
-        src: "screenshot9.jpg",
-        caption: "cute? sweet? pg18?😭"
-    },
-
-    {
-        src: "screenshot10.jpg",
-        caption: "cute? sweet? pg18?😭"
-    },
-
-    {
-        src: "screenshot11.jpg",
-        caption: "cute? sweet? pg18?😭"
-    },
-
-    {
-        src: "screenshot12.jpg",
-        caption: "cute? sweet? pg18?😭"
-    },
-
-    {
-        src: "screenshot13.jpg",
-        caption: "cute? sweet? pg18?😭"
-    },
-
-    {
-        src: "screenshot14.jpg",
-        caption: "i never told you but this had me on the floor…but i added it to clarify once and for all. i am taller than 4’11!!!"
-    }
-
-];
-
-
-let currentPhoto = 0;
-
-
-function openLightbox(index) {
-
-    currentPhoto = index;
-
-    updateLightbox();
-
-    document
-        .getElementById("lightbox")
-        .classList
-        .add("active");
-
-    document.body.style.overflow = "hidden";
-}
-
-
-function updateLightbox() {
-
-    const image =
-        document.getElementById("lightboxImage");
-
-    const caption =
-        document.getElementById("lightboxCaption");
-
-
-    image.src =
-        screenshots[currentPhoto].src;
-
-    image.alt =
-        screenshots[currentPhoto].caption;
-
-    caption.textContent =
-        screenshots[currentPhoto].caption;
-}
-
-
-function closeLightbox() {
-
-    document
-        .getElementById("lightbox")
-        .classList
-        .remove("active");
-
-    document.body.style.overflow = "";
-}
-
-
-function closeFromBackground(event) {
-
-    if (
-        event.target ===
-        document.getElementById("lightbox")
-    ) {
-
-        closeLightbox();
-
-    }
-
-}
-
-
-function changePhoto(direction) {
-
-    currentPhoto += direction;
-
-
-    if (currentPhoto < 0) {
-
-        currentPhoto =
-            screenshots.length - 1;
-
-    }
-
-
-    if (currentPhoto >= screenshots.length) {
-
-        currentPhoto = 0;
-
-    }
-
-
-    updateLightbox();
-
-}
-
-
-document.addEventListener(
-    "keydown",
-    function(event) {
-
-        const lightbox =
-            document.getElementById("lightbox");
-
-
-        if (
-            !lightbox.classList.contains("active")
-        ) {
-
-            return;
-
-        }
-
-
-        if (event.key === "Escape") {
-
-            closeLightbox();
-
-        }
-
-
-        if (event.key === "ArrowRight") {
-
-            changePhoto(1);
-
-        }
-
-
-        if (event.key === "ArrowLeft") {
-
-            changePhoto(-1);
-
-        }
-
-    }
-);
-
-
-/* Make screenshots clickable */
-
-document
-    .querySelectorAll(".screenshot")
-    .forEach(function(element, index) {
-
-        element.addEventListener(
-            "click",
-            function() {
-
-                openLightbox(index);
-
-            }
-        );
-
-    });
-
-</script>
 
 </body>
 </html>
