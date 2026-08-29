@@ -31,36 +31,36 @@ body {
     align-items: center;
 }
 
-/* =========================
-   LIGHTING
-========================= */
+/* =================================
+   TOP + BOTTOM LIGHT
+================================= */
 
 .top-light,
 .bottom-light,
 .title-light {
     position: absolute;
-    pointer-events: none;
     border-radius: 50%;
+    pointer-events: none;
 }
 
 .top-light {
-    width: 900px;
+    width: 950px;
     height: 480px;
-    top: -330px;
+    top: -340px;
     left: 50%;
     transform: translateX(-50%);
-    background: rgba(255,255,255,0.19);
+    background: rgba(255,255,255,0.20);
     filter: blur(105px);
     z-index: 0;
 }
 
 .bottom-light {
-    width: 900px;
-    height: 460px;
-    bottom: -325px;
+    width: 950px;
+    height: 470px;
+    bottom: -340px;
     left: 50%;
     transform: translateX(-50%);
-    background: rgba(255,255,255,0.15);
+    background: rgba(255,255,255,0.16);
     filter: blur(105px);
     z-index: 0;
 }
@@ -71,143 +71,131 @@ body {
     top: 18%;
     left: 50%;
     transform: translateX(-50%);
-    background: rgba(255,255,255,0.13);
+    background: rgba(255,255,255,0.14);
     filter: blur(85px);
     z-index: 1;
 }
 
-/* =========================
-   WAVEFORMS
-========================= */
+/* =================================
+   SMOOTH VIBRATION WAVES
+================================= */
 
-.waveform {
+.sound-wave {
     position: absolute;
-    width: 780px;
-    max-width: 110vw;
-    height: 105px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-
-    opacity: 0.58;
+    width: 900px;
+    max-width: 125vw;
+    height: 150px;
     z-index: 2;
+    opacity: 0.56;
+    pointer-events: none;
 }
 
-.waveform.top {
-    top: 7%;
+.sound-wave.top {
+    top: 5%;
     left: 47%;
-    transform: translateX(-50%) rotate(-6deg);
+    transform: translateX(-50%) rotate(-5deg);
 }
 
-.waveform.bottom {
-    bottom: 7%;
+.sound-wave.bottom {
+    bottom: 5%;
     left: 53%;
-    transform: translateX(-50%) rotate(6deg);
+    transform: translateX(-50%) rotate(5deg);
 }
 
-.waveform::before {
-    content: "";
+/*
+   Each wave is drawn using a smooth SVG-style
+   vibration line created with CSS curves.
+*/
+
+.wave-line {
     position: absolute;
+    inset: 0;
     width: 100%;
-    height: 2px;
-    background: rgba(255,255,255,0.16);
-    top: 50%;
+    height: 100%;
 }
 
-.waveform span {
-    position: relative;
-    width: 4px;
-    border-radius: 10px;
-    background: rgba(255,255,255,0.82);
-    box-shadow: 0 0 12px rgba(255,255,255,0.12);
+.wave-line svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
 }
 
-/* waveform shape */
-.waveform span:nth-child(1)  { height: 15px; }
-.waveform span:nth-child(2)  { height: 27px; }
-.waveform span:nth-child(3)  { height: 45px; }
-.waveform span:nth-child(4)  { height: 22px; }
-.waveform span:nth-child(5)  { height: 65px; }
-.waveform span:nth-child(6)  { height: 40px; }
-.waveform span:nth-child(7)  { height: 78px; }
-.waveform span:nth-child(8)  { height: 52px; }
-.waveform span:nth-child(9)  { height: 94px; }
-.waveform span:nth-child(10) { height: 55px; }
-.waveform span:nth-child(11) { height: 82px; }
-.waveform span:nth-child(12) { height: 43px; }
-.waveform span:nth-child(13) { height: 70px; }
-.waveform span:nth-child(14) { height: 88px; }
-.waveform span:nth-child(15) { height: 37px; }
-.waveform span:nth-child(16) { height: 61px; }
-.waveform span:nth-child(17) { height: 30px; }
-.waveform span:nth-child(18) { height: 48px; }
-.waveform span:nth-child(19) { height: 24px; }
+.wave-line path {
+    fill: none;
+    stroke: rgba(255,255,255,0.72);
+    stroke-width: 1.7;
+    stroke-linecap: round;
+    filter: drop-shadow(0 0 8px rgba(255,255,255,0.12));
+}
 
-/* =========================
+.wave-line.soft path {
+    stroke: rgba(255,255,255,0.20);
+    stroke-width: 1;
+}
+
+/* =================================
    FLOATING MUSIC NOTES
-========================= */
+================================= */
 
 .note {
     position: absolute;
-    color: rgba(255,255,255,0.48);
     z-index: 4;
+    color: rgba(255,255,255,0.48);
     font-family: Georgia, serif;
     text-shadow: 0 0 18px rgba(255,255,255,0.08);
 }
 
 .note.one {
-    top: 16%;
+    top: 15%;
     left: 10%;
     font-size: 34px;
-    transform: rotate(-15deg);
+    transform: rotate(-14deg);
 }
 
 .note.two {
-    top: 21%;
-    left: 27%;
+    top: 22%;
+    left: 28%;
     font-size: 18px;
-    transform: rotate(9deg);
+    transform: rotate(8deg);
 }
 
 .note.three {
     top: 30%;
     right: 11%;
-    font-size: 28px;
+    font-size: 29px;
     transform: rotate(12deg);
 }
 
 .note.four {
     top: 43%;
     left: 7%;
-    font-size: 22px;
+    font-size: 21px;
     transform: rotate(-10deg);
 }
 
 .note.five {
-    top: 48%;
+    top: 49%;
     right: 6%;
     font-size: 35px;
     transform: rotate(8deg);
 }
 
 .note.six {
-    bottom: 35%;
-    left: 17%;
+    bottom: 34%;
+    left: 16%;
     font-size: 26px;
-    transform: rotate(13deg);
+    transform: rotate(12deg);
 }
 
 .note.seven {
     bottom: 29%;
     right: 21%;
     font-size: 18px;
-    transform: rotate(-12deg);
+    transform: rotate(-11deg);
 }
 
 .note.eight {
-    bottom: 20%;
+    bottom: 19%;
     left: 9%;
     font-size: 31px;
     transform: rotate(-7deg);
@@ -217,7 +205,7 @@ body {
     bottom: 16%;
     right: 12%;
     font-size: 24px;
-    transform: rotate(14deg);
+    transform: rotate(13deg);
 }
 
 .note.ten {
@@ -227,9 +215,9 @@ body {
     transform: rotate(-5deg);
 }
 
-/* =========================
+/* =================================
    TRACK LABELS
-========================= */
+================================= */
 
 .track {
     position: absolute;
@@ -238,7 +226,6 @@ body {
     font-family: Arial, sans-serif;
     font-size: 9px;
     letter-spacing: 3px;
-
     color: rgba(255,255,255,0.30);
 }
 
@@ -272,45 +259,9 @@ body {
     left: 23%;
 }
 
-/* =========================
-   EQUALIZER
-========================= */
-
-.equalizer {
-    position: absolute;
-    bottom: 13%;
-    left: 50%;
-    transform: translateX(-50%);
-
-    display: flex;
-    align-items: center;
-    gap: 6px;
-
-    opacity: 0.34;
-    z-index: 3;
-}
-
-.equalizer span {
-    width: 4px;
-    border-radius: 8px;
-    background: rgba(255,255,255,0.7);
-}
-
-.equalizer span:nth-child(1)  { height: 16px; }
-.equalizer span:nth-child(2)  { height: 28px; }
-.equalizer span:nth-child(3)  { height: 48px; }
-.equalizer span:nth-child(4)  { height: 36px; }
-.equalizer span:nth-child(5)  { height: 65px; }
-.equalizer span:nth-child(6)  { height: 45px; }
-.equalizer span:nth-child(7)  { height: 82px; }
-.equalizer span:nth-child(8)  { height: 55px; }
-.equalizer span:nth-child(9)  { height: 72px; }
-.equalizer span:nth-child(10) { height: 42px; }
-.equalizer span:nth-child(11) { height: 58px; }
-
-/* =========================
-   CONTENT
-========================= */
+/* =================================
+   MAIN CONTENT
+================================= */
 
 .content {
     width: 100%;
@@ -336,14 +287,14 @@ h1 {
     margin-bottom: 24px;
 
     text-shadow:
-        0 0 18px rgba(255,255,255,0.25),
-        0 0 45px rgba(255,255,255,0.16),
-        0 0 90px rgba(255,255,255,0.09);
+        0 0 18px rgba(255,255,255,0.28),
+        0 0 45px rgba(255,255,255,0.18),
+        0 0 90px rgba(255,255,255,0.10);
 }
 
-/* =========================
+/* =================================
    TEXT + HEADPHONES
-========================= */
+================================= */
 
 .text-with-headphones {
     width: 100%;
@@ -377,7 +328,9 @@ h1 {
     font-style: italic;
 }
 
-/* TINY HEADPHONES */
+/* =================================
+   TINY HEADPHONES
+================================= */
 
 .headphones {
     width: 21px;
@@ -413,9 +366,9 @@ h1 {
     box-shadow: 17px 0 0 #aaa;
 }
 
-/* =========================
+/* =================================
    SPOTIFY
-========================= */
+================================= */
 
 .spotify-container {
     width: 100%;
@@ -434,7 +387,6 @@ h1 {
     letter-spacing: 3px;
     color: #bdbdbd;
     text-transform: uppercase;
-
     margin-bottom: 10px;
 }
 
@@ -444,6 +396,7 @@ h1 {
     border-radius: 50%;
 
     background: #1ed760;
+
     box-shadow:
         0 0 12px rgba(30,215,96,0.7),
         0 0 25px rgba(30,215,96,0.25);
@@ -500,9 +453,9 @@ h1 {
     color: #fff;
 }
 
-/* =========================
+/* =================================
    MOBILE
-========================= */
+================================= */
 
 @media (max-width: 700px) {
 
@@ -519,8 +472,8 @@ h1 {
         width: 520px;
     }
 
-    .waveform {
-        width: 105vw;
+    .sound-wave {
+        width: 115vw;
     }
 
     .note.one {
@@ -578,28 +531,96 @@ h1 {
 
 <main class="page">
 
-    <!-- LIGHTING -->
+    <!-- LIGHT -->
     <div class="top-light"></div>
     <div class="bottom-light"></div>
     <div class="title-light"></div>
 
-    <!-- TOP WAVEFORM -->
-    <div class="waveform top">
-        <span></span><span></span><span></span><span></span><span></span>
-        <span></span><span></span><span></span><span></span><span></span>
-        <span></span><span></span><span></span><span></span><span></span>
-        <span></span><span></span><span></span><span></span>
+    <!-- TOP SMOOTH WAVE -->
+    <div class="sound-wave top">
+
+        <div class="wave-line">
+            <svg viewBox="0 0 900 150" preserveAspectRatio="none">
+                <path d="
+                    M0,75
+                    C35,75 35,55 70,55
+                    C105,55 105,95 140,95
+                    C175,95 175,42 210,42
+                    C245,42 245,108 280,108
+                    C315,108 315,30 350,30
+                    C385,30 385,120 420,120
+                    C455,120 455,20 490,20
+                    C525,20 525,130 560,130
+                    C595,130 595,34 630,34
+                    C665,34 665,105 700,105
+                    C735,105 735,48 770,48
+                    C805,48 805,85 840,85
+                    C870,85 880,75 900,75
+                "/>
+            </svg>
+        </div>
+
+        <div class="wave-line soft">
+            <svg viewBox="0 0 900 150" preserveAspectRatio="none">
+                <path d="
+                    M0,75
+                    C55,75 55,64 110,64
+                    C165,64 165,86 220,86
+                    C275,86 275,56 330,56
+                    C385,56 385,94 440,94
+                    C495,94 495,52 550,52
+                    C605,52 605,92 660,92
+                    C715,92 715,60 770,60
+                    C825,60 825,82 900,82
+                "/>
+            </svg>
+        </div>
+
     </div>
 
-    <!-- BOTTOM WAVEFORM -->
-    <div class="waveform bottom">
-        <span></span><span></span><span></span><span></span><span></span>
-        <span></span><span></span><span></span><span></span><span></span>
-        <span></span><span></span><span></span><span></span><span></span>
-        <span></span><span></span><span></span><span></span><span></span>
+    <!-- BOTTOM SMOOTH WAVE -->
+    <div class="sound-wave bottom">
+
+        <div class="wave-line">
+            <svg viewBox="0 0 900 150" preserveAspectRatio="none">
+                <path d="
+                    M0,75
+                    C35,75 35,55 70,55
+                    C105,55 105,95 140,95
+                    C175,95 175,42 210,42
+                    C245,42 245,108 280,108
+                    C315,108 315,30 350,30
+                    C385,30 385,120 420,120
+                    C455,120 455,20 490,20
+                    C525,20 525,130 560,130
+                    C595,130 595,34 630,34
+                    C665,34 665,105 700,105
+                    C735,105 735,48 770,48
+                    C805,48 805,85 840,85
+                    C870,85 880,75 900,75
+                "/>
+            </svg>
+        </div>
+
+        <div class="wave-line soft">
+            <svg viewBox="0 0 900 150" preserveAspectRatio="none">
+                <path d="
+                    M0,75
+                    C55,75 55,64 110,64
+                    C165,64 165,86 220,86
+                    C275,86 275,56 330,56
+                    C385,56 385,94 440,94
+                    C495,94 495,52 550,52
+                    C605,52 605,92 660,92
+                    C715,92 715,60 770,60
+                    C825,60 825,82 900,82
+                "/>
+            </svg>
+        </div>
+
     </div>
 
-    <!-- FLOATING NOTES -->
+    <!-- MUSIC NOTES -->
     <div class="note one">♪</div>
     <div class="note two">♫</div>
     <div class="note three">♬</div>
@@ -611,20 +632,13 @@ h1 {
     <div class="note nine">♬</div>
     <div class="note ten">♪</div>
 
-    <!-- TRACK DETAILS -->
+    <!-- TRACK NUMBERS -->
     <div class="track one">TRACK 01</div>
     <div class="track two">TRACK 02</div>
     <div class="track three">TRACK 05</div>
     <div class="track four">TRACK 03</div>
     <div class="track five">TRACK 07</div>
     <div class="track six">TRACK 09</div>
-
-    <!-- EQUALIZER -->
-    <div class="equalizer">
-        <span></span><span></span><span></span><span></span><span></span>
-        <span></span><span></span><span></span><span></span><span></span>
-        <span></span>
-    </div>
 
     <!-- MAIN CONTENT -->
     <div class="content">
