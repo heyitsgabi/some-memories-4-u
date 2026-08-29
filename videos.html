@@ -1,0 +1,2367 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Memories</title>
+
+<style>
+
+/* =====================================================
+   RESET
+===================================================== */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+
+    background:
+        radial-gradient(
+            ellipse at 15% 5%,
+            rgba(255,255,255,0.34),
+            transparent 32%
+        ),
+        radial-gradient(
+            ellipse at 85% 25%,
+            rgba(125,108,88,0.13),
+            transparent 35%
+        ),
+        radial-gradient(
+            ellipse at 45% 80%,
+            rgba(255,255,255,0.22),
+            transparent 38%
+        ),
+        #d3ccc0;
+
+    color: #1c1a18;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    overflow-x: hidden;
+
+    position: relative;
+}
+
+
+/* =====================================================
+   PAPER TEXTURE
+===================================================== */
+
+body::before {
+    content: "";
+
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    z-index: 9999;
+
+    opacity: 0.30;
+
+    background:
+
+        radial-gradient(
+            ellipse at 12% 20%,
+            rgba(255,255,255,0.28),
+            transparent 28%
+        ),
+
+        radial-gradient(
+            ellipse at 88% 12%,
+            rgba(75,65,53,0.09),
+            transparent 26%
+        ),
+
+        radial-gradient(
+            ellipse at 68% 76%,
+            rgba(255,255,255,0.20),
+            transparent 32%
+        ),
+
+        linear-gradient(
+            127deg,
+            transparent 0%,
+            rgba(255,255,255,0.13) 17%,
+            transparent 30%,
+            rgba(75,65,53,0.06) 47%,
+            transparent 63%,
+            rgba(255,255,255,0.11) 79%,
+            transparent 92%
+        ),
+
+        linear-gradient(
+            34deg,
+            transparent 8%,
+            rgba(70,60,50,0.05) 27%,
+            transparent 42%,
+            rgba(255,255,255,0.11) 65%,
+            transparent 83%
+        ),
+
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.035' numOctaves='4' seed='11' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='.30'/%3E%3C/svg%3E");
+
+    mix-blend-mode: multiply;
+}
+
+
+/* =====================================================
+   PAPER BORDER
+===================================================== */
+
+body::after {
+    content: "";
+
+    position: fixed;
+
+    inset: 12px;
+
+    border: 1px solid rgba(50,45,38,0.11);
+
+    pointer-events: none;
+
+    z-index: 9998;
+}
+
+
+/* =====================================================
+   PAGE
+===================================================== */
+
+.page {
+    width: 100%;
+
+    max-width: 1180px;
+
+    margin: 0 auto;
+
+    padding: 72px 35px 90px;
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.header {
+    text-align: center;
+
+    margin-bottom: 65px;
+
+    position: relative;
+
+    z-index: 20;
+}
+
+.eyebrow {
+    font-family: Arial, sans-serif;
+
+    font-size: 9px;
+
+    letter-spacing: 5px;
+
+    text-transform: uppercase;
+
+    color: #70685d;
+
+    margin-bottom: 18px;
+}
+
+h1 {
+    font-size: clamp(46px, 8vw, 76px);
+
+    font-weight: normal;
+
+    letter-spacing: -2.5px;
+
+    line-height: 0.95;
+}
+
+.header-line {
+    width: 70px;
+
+    height: 1px;
+
+    background: #4a443c;
+
+    margin: 25px auto 20px;
+}
+
+.header-note {
+    color: #70685e;
+
+    font-size: 12px;
+
+    line-height: 1.6;
+}
+
+.section-number {
+    margin-top: 18px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 8px;
+
+    letter-spacing: 4px;
+
+    text-transform: uppercase;
+
+    color: #8c8479;
+}
+
+
+/* =====================================================
+   MEMORY GROUPS
+===================================================== */
+
+.memory-group {
+    margin-bottom: 85px;
+
+    position: relative;
+
+    z-index: 5;
+}
+
+.group-heading {
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    margin-bottom: 27px;
+
+    color: #5f584f;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 8px;
+
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+}
+
+.group-heading::before {
+    content: "";
+
+    width: 28px;
+
+    height: 1px;
+
+    background: #8e8579;
+}
+
+.group-heading::after {
+    content: "";
+
+    flex: 1;
+
+    height: 1px;
+
+    background: rgba(70,63,54,0.15);
+}
+
+
+/* =====================================================
+   VIDEO GRID
+===================================================== */
+
+.video-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 48px 25px;
+
+    align-items: start;
+}
+
+
+/* =====================================================
+   VIDEO CARDS
+===================================================== */
+
+.video-card {
+    position: relative;
+
+    cursor: pointer;
+
+    min-width: 0;
+}
+
+.video-card:nth-child(2) {
+    margin-top: 28px;
+}
+
+.video-card:nth-child(3) {
+    margin-top: 7px;
+}
+
+.video-card:nth-child(4) {
+    margin-top: 35px;
+}
+
+.video-card:nth-child(5) {
+    margin-top: 10px;
+}
+
+.video-card:nth-child(6) {
+    margin-top: 30px;
+}
+
+.video-card:nth-child(7) {
+    margin-top: 3px;
+}
+
+.video-card:nth-child(8) {
+    margin-top: 31px;
+}
+
+.video-card:nth-child(9) {
+    margin-top: 9px;
+}
+
+.video-card:nth-child(10) {
+    margin-top: 37px;
+}
+
+.video-card:nth-child(11) {
+    margin-top: 4px;
+}
+
+
+/* =====================================================
+   VIDEO FRAME
+===================================================== */
+
+.video-frame {
+    position: relative;
+
+    width: 100%;
+
+    aspect-ratio: 0.82;
+
+    padding: 9px;
+
+    background: #f7f3ea;
+
+    border: 1px solid rgba(35,31,27,0.27);
+
+    box-shadow:
+        5px 7px 0 rgba(65,57,47,0.08),
+        0 13px 27px rgba(40,34,28,0.14);
+
+    overflow: hidden;
+
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease;
+}
+
+.video-frame::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 4px;
+
+    border: 1px solid rgba(35,31,27,0.12);
+
+    pointer-events: none;
+
+    z-index: 4;
+}
+
+.video-frame::after {
+    content: "✦";
+
+    position: absolute;
+
+    top: 8px;
+
+    right: 10px;
+
+    font-size: 8px;
+
+    color: rgba(40,35,29,0.35);
+
+    z-index: 5;
+}
+
+
+/* frame variations */
+
+.video-card:nth-child(1) .video-frame {
+    background: #f8f4eb;
+
+    border: 2px solid #4b453c;
+
+    transform: rotate(-1deg);
+}
+
+.video-card:nth-child(2) .video-frame {
+    background: #e5ddd0;
+
+    border-color: #766c60;
+
+    transform: rotate(1.4deg);
+}
+
+.video-card:nth-child(3) .video-frame {
+    background: #22211f;
+
+    border: 8px solid #22211f;
+
+    transform: rotate(-0.7deg);
+}
+
+.video-card:nth-child(3) .video-frame::before {
+    inset: 2px;
+
+    border-color: rgba(255,255,255,0.14);
+}
+
+.video-card:nth-child(4) .video-frame {
+    background: #faf7ef;
+
+    padding: 10px;
+
+    transform: rotate(0.8deg);
+}
+
+.video-card:nth-child(5) .video-frame {
+    background: #dfd5c7;
+
+    border-color: #7b7063;
+
+    transform: rotate(-1.2deg);
+}
+
+.video-card:nth-child(6) .video-frame {
+    background: #f8f5ee;
+
+    border: 2px solid #35312c;
+
+    box-shadow:
+        0 0 0 4px #ddd5c9,
+        0 0 0 5px rgba(35,31,27,0.23),
+        0 14px 28px rgba(40,34,28,0.13);
+
+    transform: rotate(0.7deg);
+}
+
+.video-card:nth-child(7) .video-frame {
+    background: #eae1d5;
+
+    border-color: #7d7367;
+
+    transform: rotate(-0.7deg);
+}
+
+.video-card:nth-child(8) .video-frame {
+    background: #f9f6ef;
+
+    transform: rotate(1.2deg);
+}
+
+.video-card:nth-child(9) .video-frame {
+    background: #ded4c7;
+
+    border-color: #756a5d;
+
+    transform: rotate(-1deg);
+}
+
+.video-card:nth-child(10) .video-frame {
+    background: #f7f3ea;
+
+    border: 2px solid #3c3832;
+
+    transform: rotate(0.8deg);
+}
+
+.video-card:nth-child(11) .video-frame {
+    background: #1f1f1d;
+
+    border: 8px solid #1f1f1d;
+
+    transform: rotate(-1.1deg);
+}
+
+.video-card:nth-child(11) .video-frame::before {
+    inset: 2px;
+
+    border-color: rgba(255,255,255,0.14);
+}
+
+
+/* =====================================================
+   VIDEO
+===================================================== */
+
+.video-frame video {
+    width: 100%;
+
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    position: relative;
+
+    z-index: 2;
+
+    background: #111;
+
+    filter:
+        saturate(0.92)
+        contrast(0.97);
+}
+
+
+/* =====================================================
+   VIDEO CAPTION
+===================================================== */
+
+.caption {
+    margin-top: 13px;
+
+    padding: 0 4px;
+
+    color: #403b35;
+
+    font-size: 11px;
+
+    line-height: 1.5;
+
+    min-height: 34px;
+
+    position: relative;
+
+    z-index: 10;
+}
+
+.caption::before {
+    content: "";
+
+    display: block;
+
+    width: 17px;
+
+    height: 1px;
+
+    background: #aaa095;
+
+    margin-bottom: 7px;
+}
+
+.memory-number {
+    position: absolute;
+
+    top: -17px;
+
+    left: 2px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 7px;
+
+    letter-spacing: 2px;
+
+    color: #91897f;
+
+    z-index: 15;
+}
+
+
+/* =====================================================
+   SCREENSHOT GRID
+===================================================== */
+
+.screenshot-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 42px 20px;
+
+    align-items: start;
+}
+
+
+/* =====================================================
+   SCREENSHOT CARDS
+===================================================== */
+
+.shot-card {
+    position: relative;
+
+    cursor: pointer;
+
+    min-width: 0;
+}
+
+.shot-card:nth-child(2) {
+    margin-top: 25px;
+}
+
+.shot-card:nth-child(3) {
+    margin-top: 7px;
+}
+
+.shot-card:nth-child(4) {
+    margin-top: 32px;
+}
+
+.shot-card:nth-child(5) {
+    margin-top: 8px;
+}
+
+.shot-card:nth-child(6) {
+    margin-top: 27px;
+}
+
+.shot-card:nth-child(7) {
+    margin-top: 2px;
+}
+
+.shot-card:nth-child(8) {
+    margin-top: 31px;
+}
+
+.shot-card:nth-child(9) {
+    margin-top: 5px;
+}
+
+.shot-card:nth-child(10) {
+    margin-top: 29px;
+}
+
+.shot-card:nth-child(11) {
+    margin-top: 8px;
+}
+
+.shot-card:nth-child(12) {
+    margin-top: 33px;
+}
+
+.shot-card:nth-child(13) {
+    margin-top: 4px;
+}
+
+.shot-card:nth-child(14) {
+    margin-top: 25px;
+}
+
+
+/* =====================================================
+   SCREENSHOT FRAME
+===================================================== */
+
+.shot-frame {
+    position: relative;
+
+    width: 100%;
+
+    aspect-ratio: 0.76;
+
+    padding: 8px;
+
+    background: #f8f4eb;
+
+    border: 1px solid rgba(35,31,27,0.28);
+
+    box-shadow:
+        5px 7px 0 rgba(65,57,47,0.08),
+        0 12px 25px rgba(40,34,28,0.13);
+
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease;
+
+    overflow: hidden;
+}
+
+.shot-frame::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 4px;
+
+    border: 1px solid rgba(35,31,27,0.13);
+
+    pointer-events: none;
+
+    z-index: 3;
+}
+
+.shot-frame::after {
+    content: "✦";
+
+    position: absolute;
+
+    top: 8px;
+
+    right: 10px;
+
+    font-size: 8px;
+
+    color: rgba(40,35,29,0.36);
+
+    z-index: 5;
+}
+
+
+/* screenshot frame variations */
+
+.shot-card:nth-child(1) .shot-frame {
+    transform: rotate(-1deg);
+
+    background: #f8f4eb;
+}
+
+.shot-card:nth-child(2) .shot-frame {
+    transform: rotate(1.3deg);
+
+    background: #e5ddd0;
+}
+
+.shot-card:nth-child(3) .shot-frame {
+    transform: rotate(-0.7deg);
+
+    background: #22211f;
+
+    border: 7px solid #22211f;
+}
+
+.shot-card:nth-child(3) .shot-frame::before {
+    inset: 2px;
+
+    border-color: rgba(255,255,255,0.13);
+}
+
+.shot-card:nth-child(4) .shot-frame {
+    transform: rotate(0.8deg);
+
+    background: #faf7ef;
+
+    padding: 10px;
+}
+
+.shot-card:nth-child(5) .shot-frame {
+    transform: rotate(-1.2deg);
+
+    background: #ded5c8;
+
+    border-color: #796e61;
+}
+
+.shot-card:nth-child(6) .shot-frame {
+    transform: rotate(0.7deg);
+
+    background: #f8f5ee;
+
+    border: 2px solid #34312d;
+
+    box-shadow:
+        0 0 0 4px #ddd5c9,
+        0 0 0 5px rgba(35,31,27,0.22),
+        0 13px 27px rgba(40,34,28,0.13);
+}
+
+.shot-card:nth-child(7) .shot-frame {
+    transform: rotate(-0.8deg);
+
+    background: #eae2d6;
+}
+
+.shot-card:nth-child(8) .shot-frame {
+    transform: rotate(1deg);
+
+    background: #f9f6ef;
+}
+
+.shot-card:nth-child(9) .shot-frame {
+    transform: rotate(-1deg);
+
+    background: #ded4c7;
+
+    border-color: #766b5f;
+}
+
+.shot-card:nth-child(10) .shot-frame {
+    transform: rotate(0.8deg);
+
+    background: #f7f3ea;
+}
+
+.shot-card:nth-child(11) .shot-frame {
+    transform: rotate(-0.7deg);
+
+    background: #e4dbce;
+}
+
+.shot-card:nth-child(12) .shot-frame {
+    transform: rotate(1.2deg);
+
+    background: #f8f4eb;
+}
+
+.shot-card:nth-child(13) .shot-frame {
+    transform: rotate(-0.8deg);
+
+    background: #dfd6ca;
+}
+
+.shot-card:nth-child(14) .shot-frame {
+    transform: rotate(1deg);
+
+    background: #f8f5ed;
+
+    border: 2px solid #3c3832;
+}
+
+
+/* =====================================================
+   SCREENSHOT IMAGE
+===================================================== */
+
+.shot-frame img {
+    width: 100%;
+
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    position: relative;
+
+    z-index: 2;
+
+    filter:
+        saturate(0.96)
+        contrast(0.98);
+
+    transition:
+        transform 0.4s ease,
+        filter 0.4s ease;
+}
+
+
+/* =====================================================
+   HOVER
+===================================================== */
+
+.video-card:hover .video-frame,
+.shot-card:hover .shot-frame {
+    transform:
+        translateY(-6px)
+        rotate(0deg) !important;
+
+    box-shadow:
+        0 20px 38px rgba(35,30,25,0.20);
+}
+
+.shot-card:hover img {
+    transform: scale(1.018);
+
+    filter:
+        saturate(1)
+        contrast(1);
+}
+
+
+/* =====================================================
+   SCREENSHOT GROUP CAPTIONS
+===================================================== */
+
+.shot-caption {
+    margin-top: 13px;
+
+    padding: 0 5px;
+
+    color: #403b35;
+
+    font-size: 10px;
+
+    line-height: 1.5;
+
+    position: relative;
+
+    z-index: 10;
+}
+
+.shot-caption::before {
+    content: "";
+
+    display: block;
+
+    width: 17px;
+
+    height: 1px;
+
+    background: #aaa095;
+
+    margin-bottom: 7px;
+}
+
+
+/* =====================================================
+   SINGLE SCREENSHOT
+===================================================== */
+
+.single-shot {
+    max-width: 270px;
+
+    margin: 0 auto;
+}
+
+
+/* =====================================================
+   BOTTOM
+===================================================== */
+
+.bottom {
+    text-align: center;
+
+    margin-top: 75px;
+
+    padding-top: 28px;
+
+    border-top: 1px solid rgba(50,45,38,0.16);
+
+    position: relative;
+
+    z-index: 30;
+}
+
+.bottom-note {
+    color: #7b7369;
+
+    font-size: 11px;
+
+    margin-bottom: 20px;
+
+    font-style: italic;
+}
+
+.back {
+    display: inline-block;
+
+    text-decoration: none;
+
+    color: #3d3934;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 8px;
+
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+
+    padding: 11px 20px;
+
+    border: 1px solid rgba(40,35,30,0.35);
+
+    transition:
+        background 0.25s ease,
+        color 0.25s ease;
+}
+
+.back:hover {
+    background: #1b1b1a;
+
+    color: #f7f3eb;
+}
+
+
+/* =====================================================
+   LIGHTBOX
+===================================================== */
+
+.lightbox {
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(20,19,17,0.95);
+
+    z-index: 10000;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 25px;
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transition: opacity 0.3s ease;
+}
+
+.lightbox.active {
+    opacity: 1;
+
+    pointer-events: auto;
+}
+
+.lightbox-inner {
+    max-width: 900px;
+
+    width: 100%;
+
+    max-height: 94vh;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+.lightbox-media {
+    max-width: 90vw;
+
+    max-height: 72vh;
+
+    object-fit: contain;
+
+    display: block;
+
+    box-shadow:
+        0 25px 70px rgba(0,0,0,0.55);
+
+    border: 5px solid #f3efe7;
+
+    background: #111;
+}
+
+.lightbox-caption {
+    color: #f1eee7;
+
+    font-family: Georgia, serif;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+
+    text-align: center;
+
+    max-width: 570px;
+
+    margin-top: 18px;
+}
+
+.close {
+    position: fixed;
+
+    top: 22px;
+
+    right: 25px;
+
+    background: transparent;
+
+    border: 1px solid rgba(255,255,255,0.35);
+
+    color: #fff;
+
+    width: 38px;
+
+    height: 38px;
+
+    border-radius: 50%;
+
+    font-size: 18px;
+
+    cursor: pointer;
+
+    z-index: 10002;
+}
+
+.prev,
+.next {
+    position: fixed;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    background: transparent;
+
+    border: 1px solid rgba(255,255,255,0.3);
+
+    color: #fff;
+
+    width: 42px;
+
+    height: 42px;
+
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    font-size: 17px;
+
+    z-index: 10002;
+
+    transition:
+        background 0.2s ease;
+}
+
+.prev {
+    left: 22px;
+}
+
+.next {
+    right: 22px;
+}
+
+.prev:hover,
+.next:hover,
+.close:hover {
+    background: rgba(255,255,255,0.12);
+}
+
+.lightbox-counter {
+    margin-top: 10px;
+
+    color: #88837b;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 8px;
+
+    letter-spacing: 3px;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 800px) {
+
+    body::after {
+        inset: 7px;
+    }
+
+    .page {
+        padding: 55px 17px 70px;
+    }
+
+    .header {
+        margin-bottom: 50px;
+    }
+
+    h1 {
+        font-size: 48px;
+    }
+
+    .video-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 40px 13px;
+    }
+
+    .video-card:nth-child(2),
+    .video-card:nth-child(3),
+    .video-card:nth-child(4),
+    .video-card:nth-child(5),
+    .video-card:nth-child(6),
+    .video-card:nth-child(7),
+    .video-card:nth-child(8),
+    .video-card:nth-child(9),
+    .video-card:nth-child(10),
+    .video-card:nth-child(11) {
+        margin-top: 17px;
+    }
+
+    .screenshot-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 35px 12px;
+    }
+
+    .shot-card:nth-child(n) {
+        margin-top: 15px;
+    }
+
+    .caption,
+    .shot-caption {
+        font-size: 9px;
+
+        margin-top: 9px;
+    }
+
+    .memory-number {
+        top: -15px;
+
+        font-size: 6px;
+    }
+
+    .group-heading {
+        font-size: 7px;
+
+        letter-spacing: 2.5px;
+    }
+
+    .memory-group {
+        margin-bottom: 65px;
+    }
+
+    .lightbox {
+        padding: 18px;
+    }
+
+    .lightbox-media {
+        max-width: 94vw;
+
+        max-height: 68vh;
+    }
+
+    .lightbox-caption {
+        font-size: 13px;
+
+        padding: 0 25px;
+    }
+
+    .prev {
+        left: 9px;
+    }
+
+    .next {
+        right: 9px;
+    }
+
+    .close {
+        top: 14px;
+
+        right: 14px;
+    }
+
+}
+
+
+/* =====================================================
+   SMALL PHONES
+===================================================== */
+
+@media (max-width: 430px) {
+
+    .video-grid,
+    .screenshot-grid {
+        gap: 31px 9px;
+    }
+
+    .video-frame,
+    .shot-frame {
+        padding: 6px;
+    }
+
+    .caption,
+    .shot-caption {
+        font-size: 8.5px;
+    }
+
+    .header-note {
+        font-size: 11px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<main class="page">
+
+
+    <!-- =================================================
+         HEADER
+    ================================================== -->
+
+    <header class="header">
+
+        <div class="eyebrow">
+            Some Memories 4 U
+        </div>
+
+        <h1>
+            MEMORIES
+        </h1>
+
+        <div class="header-line"></div>
+
+        <p class="header-note">
+            The evidence, the nonsense, and everything worth keeping.
+        </p>
+
+        <div class="section-number">
+            03 / Memories
+        </div>
+
+    </header>
+
+
+    <!-- =================================================
+         VIDEOS
+    ================================================== -->
+
+    <section class="memory-group">
+
+        <div class="group-heading">
+            Moving evidence
+        </div>
+
+
+        <div class="video-grid">
+
+
+            <!-- VIDEO 1 -->
+
+            <article class="video-card"
+                onclick="openLightbox(0)">
+
+                <span class="memory-number">01</span>
+
+                <div class="video-frame">
+
+                    <video
+                        muted
+                        playsinline
+                        preload="metadata"
+                        onclick="event.stopPropagation();"
+                    >
+                        <source src="video1.mov" type="video/quicktime">
+                    </video>
+
+                </div>
+
+                <div class="caption">
+                    unfortunate events with food… which you keep buying btw
+                </div>
+
+            </article>
+
+
+            <!-- VIDEO 2 -->
+
+            <article class="video-card"
+                onclick="openLightbox(1)">
+
+                <span class="memory-number">02</span>
+
+                <div class="video-frame">
+
+                    <video
+                        muted
+                        playsinline
+                        preload="metadata"
+                        onclick="event.stopPropagation();"
+                    >
+                        <source src="video2.mp4" type="video/mp4">
+                    </video>
+
+                </div>
+
+                <div class="caption">
+                    mind you, I was just styling your hair…
+                </div>
+
+            </article>
+
+
+            <!-- VIDEO 3 -->
+
+            <article class="video-card"
+                onclick="openLightbox(2)">
+
+                <span class="memory-number">03</span>
+
+                <div class="video-frame">
+
+                    <video
+                        muted
+                        playsinline
+                        preload="metadata"
+                        onclick="event.stopPropagation();"
+                    >
+                        <source src="video3.mov" type="video/quicktime">
+                    </video>
+
+                </div>
+
+                <div class="caption">
+                    so jolly after cheating 😒
+                </div>
+
+            </article>
+
+
+            <!-- VIDEO 4 -->
+
+            <article class="video-card"
+                onclick="openLightbox(3)">
+
+                <span class="memory-number">04</span>
+
+                <div class="video-frame">
+
+                    <video
+                        muted
+                        playsinline
+                        preload="metadata"
+                        onclick="event.stopPropagation();"
+                    >
+                        <source src="video4.mp4" type="video/mp4">
+                    </video>
+
+                </div>
+
+                <div class="caption">
+                    me still looking cute after… ‘losing’ the bet
+                </div>
+
+            </article>
+
+
+            <!-- VIDEO 5 -->
+
+            <article class="video-card"
+                onclick="openLightbox(4)">
+
+                <span class="memory-number">05</span>
+
+                <div class="video-frame">
+
+                    <video
+                        muted
+                        playsinline
+                        preload="metadata"
+                        onclick="event.stopPropagation();"
+                    >
+                        <source src="video5.mov" type="video/quicktime">
+                    </video>
+
+                </div>
+
+                <div class="caption">
+                    video evidence of the aforementioned cheating
+                </div>
+
+            </article>
+
+
+            <!-- VIDEO 6 -->
+
+            <article class="video-card"
+                onclick="openLightbox(5)">
+
+                <span class="memory-number">06</span>
+
+                <div class="video-frame">
+
+                    <video
+                        muted
+                        playsinline
+                        preload="metadata"
+                        onclick="event.stopPropagation();"
+                    >
+                        <source src="video6.mp4" type="video/mp4">
+                    </video>
+
+                </div>
+
+                <div class="caption">
+                    you making yourself laugh at the jeans post caption 😭
+                </div>
+
+            </article>
+
+
+            <!-- VIDEO 7 -->
+
+            <article class="video-card"
+                onclick="openLightbox(6)">
+
+                <span class="memory-number">07</span>
+
+                <div class="video-frame">
+
+                    <video
+                        muted
+                        playsinline
+                        preload="metadata"
+                        onclick="event.stopPropagation();"
+                    >
+                        <source src="video7.mov" type="video/quicktime">
+                    </video>
+
+                </div>
+
+                <div class="caption">
+                    you being a bully… bc I can’t afford proper earbuds.. hm, this life
+                </div>
+
+            </article>
+
+
+            <!-- VIDEO 8 -->
+
+            <article class="video-card"
+                onclick="openLightbox(7)">
+
+                <span class="memory-number">08</span>
+
+                <div class="video-frame">
+
+                    <video
+                        muted
+                        playsinline
+                        preload="metadata"
+                        onclick="event.stopPropagation();"
+                    >
+                        <source src="video8.mp4" type="video/mp4">
+                    </video>
+
+                </div>
+
+                <div class="caption">
+                    🤣 not an amazing angle for me but this was just funny
+                </div>
+
+            </article>
+
+
+            <!-- VIDEO 9 -->
+
+            <article class="video-card"
+                onclick="openLightbox(8)">
+
+                <span class="memory-number">09</span>
+
+                <div class="video-frame">
+
+                    <video
+                        muted
+                        playsinline
+                        preload="metadata"
+                        onclick="event.stopPropagation();"
+                    >
+                        <source src="video9.mov" type="video/quicktime">
+                    </video>
+
+                </div>
+
+                <div class="caption">
+                    after cheating, you’re hiding from the camera 🤣
+                </div>
+
+            </article>
+
+
+            <!-- VIDEO 10 -->
+
+            <article class="video-card"
+                onclick="openLightbox(9)">
+
+                <span class="memory-number">10</span>
+
+                <div class="video-frame">
+
+                    <video
+                        muted
+                        playsinline
+                        preload="metadata"
+                        onclick="event.stopPropagation();"
+                    >
+                        <source src="video10.mov" type="video/quicktime">
+                    </video>
+
+                </div>
+
+                <div class="caption">
+                    another one of your losses to me 🙂‍↕️
+                </div>
+
+            </article>
+
+
+            <!-- VIDEO 11 -->
+
+            <article class="video-card"
+                onclick="openLightbox(10)">
+
+                <span class="memory-number">11</span>
+
+                <div class="video-frame">
+
+                    <video
+                        muted
+                        playsinline
+                        preload="metadata"
+                        onclick="event.stopPropagation();"
+                    >
+                        <source src="video11.mov" type="video/quicktime">
+                    </video>
+
+                </div>
+
+                <div class="caption">
+                    🤣🤣 this has got to be my favorite 😭😭
+                </div>
+
+            </article>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         SCREENSHOT GROUP 1
+    ================================================== -->
+
+    <section class="memory-group">
+
+        <div class="group-heading">
+            Things you say
+        </div>
+
+
+        <div class="screenshot-grid">
+
+
+            <article class="shot-card"
+                onclick="openLightbox(11)">
+
+                <span class="memory-number">12</span>
+
+                <div class="shot-frame">
+                    <img src="screenshot1.jpg" alt="">
+                </div>
+
+                <div class="shot-caption">
+                    you saying the most out of pocket things😭
+                </div>
+
+            </article>
+
+
+            <article class="shot-card"
+                onclick="openLightbox(12)">
+
+                <span class="memory-number">13</span>
+
+                <div class="shot-frame">
+                    <img src="screenshot2.jpg" alt="">
+                </div>
+
+            </article>
+
+
+            <article class="shot-card"
+                onclick="openLightbox(13)">
+
+                <span class="memory-number">14</span>
+
+                <div class="shot-frame">
+                    <img src="screenshot3.jpg" alt="">
+                </div>
+
+            </article>
+
+
+            <article class="shot-card"
+                onclick="openLightbox(14)">
+
+                <span class="memory-number">15</span>
+
+                <div class="shot-frame">
+                    <img src="screenshot4.jpg" alt="">
+                </div>
+
+            </article>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         SCREENSHOT GROUP 2
+    ================================================== -->
+
+    <section class="memory-group">
+
+        <div class="group-heading">
+            The filter failed
+        </div>
+
+
+        <div class="screenshot-grid">
+
+
+            <article class="shot-card"
+                onclick="openLightbox(15)">
+
+                <span class="memory-number">16</span>
+
+                <div class="shot-frame">
+                    <img src="screenshot5.jpg" alt="">
+                </div>
+
+                <div class="shot-caption">
+                    rare moments when your humor didnt fail you but your ‘dont be weird’ filter did🤣
+                </div>
+
+            </article>
+
+
+            <article class="shot-card"
+                onclick="openLightbox(16)">
+
+                <span class="memory-number">17</span>
+
+                <div class="shot-frame">
+                    <img src="screenshot6.jpg" alt="">
+                </div>
+
+            </article>
+
+
+            <article class="shot-card"
+                onclick="openLightbox(17)">
+
+                <span class="memory-number">18</span>
+
+                <div class="shot-frame">
+                    <img src="screenshot7.jpg" alt="">
+                </div>
+
+            </article>
+
+
+            <article class="shot-card"
+                onclick="openLightbox(18)">
+
+                <span class="memory-number">19</span>
+
+                <div class="shot-frame">
+                    <img src="screenshot8.jpg" alt="">
+                </div>
+
+            </article>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         SCREENSHOT GROUP 3
+    ================================================== -->
+
+    <section class="memory-group">
+
+        <div class="group-heading">
+            Questionable material
+        </div>
+
+
+        <div class="screenshot-grid">
+
+
+            <article class="shot-card"
+                onclick="openLightbox(19)">
+
+                <span class="memory-number">20</span>
+
+                <div class="shot-frame">
+                    <img src="screenshot9.jpg" alt="">
+                </div>
+
+                <div class="shot-caption">
+                    cute? sweet? pg18?😭
+                </div>
+
+            </article>
+
+
+            <article class="shot-card"
+                onclick="openLightbox(20)">
+
+                <span class="memory-number">21</span>
+
+                <div class="shot-frame">
+                    <img src="screenshot10.jpg" alt="">
+                </div>
+
+            </article>
+
+
+            <article class="shot-card"
+                onclick="openLightbox(21)">
+
+                <span class="memory-number">22</span>
+
+                <div class="shot-frame">
+                    <img src="screenshot11.jpg" alt="">
+                </div>
+
+            </article>
+
+
+            <article class="shot-card"
+                onclick="openLightbox(22)">
+
+                <span class="memory-number">23</span>
+
+                <div class="shot-frame">
+                    <img src="screenshot12.jpg" alt="">
+                </div>
+
+            </article>
+
+
+            <article class="shot-card"
+                onclick="openLightbox(23)">
+
+                <span class="memory-number">24</span>
+
+                <div class="shot-frame">
+                    <img src="screenshot13.jpg" alt="">
+                </div>
+
+            </article>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         SCREENSHOT 14
+    ================================================== -->
+
+    <section class="memory-group">
+
+        <div class="group-heading">
+            For the record
+        </div>
+
+
+        <div class="single-shot">
+
+            <article class="shot-card"
+                onclick="openLightbox(24)">
+
+                <span class="memory-number">25</span>
+
+                <div class="shot-frame">
+                    <img src="screenshot14.jpg" alt="">
+                </div>
+
+                <div class="shot-caption">
+                    i never told you but this had me on the floor…but i added it to clarify once and for all. i am taller than 4’11!!!
+                </div>
+
+            </article>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         BOTTOM
+    ================================================== -->
+
+    <div class="bottom">
+
+        <p class="bottom-note">
+            apparently these needed to be documented.
+        </p>
+
+        <a href="archive.html" class="back">
+            ← Back to archive
+        </a>
+
+    </div>
+
+
+</main>
+
+
+<!-- =================================================
+     LIGHTBOX
+===================================================== -->
+
+<div
+    class="lightbox"
+    id="lightbox"
+    onclick="closeFromBackground(event)"
+>
+
+    <button
+        class="close"
+        onclick="closeLightbox()"
+        aria-label="Close"
+    >
+        ×
+    </button>
+
+
+    <button
+        class="prev"
+        onclick="changeMemory(-1)"
+        aria-label="Previous"
+    >
+        ‹
+    </button>
+
+
+    <div class="lightbox-inner">
+
+        <div id="lightboxMediaContainer"></div>
+
+        <div
+            id="lightboxCaption"
+            class="lightbox-caption"
+        ></div>
+
+        <div
+            id="lightboxCounter"
+            class="lightbox-counter"
+        ></div>
+
+    </div>
+
+
+    <button
+        class="next"
+        onclick="changeMemory(1)"
+        aria-label="Next"
+    >
+        ›
+    </button>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   MEMORY DATA
+===================================================== */
+
+const memories = [
+
+    {
+        type: "video",
+        src: "video1.mov",
+        caption: "unfortunate events with food… which you keep buying btw"
+    },
+
+    {
+        type: "video",
+        src: "video2.mp4",
+        caption: "mind you, I was just styling your hair…"
+    },
+
+    {
+        type: "video",
+        src: "video3.mov",
+        caption: "so jolly after cheating 😒"
+    },
+
+    {
+        type: "video",
+        src: "video4.mp4",
+        caption: "me still looking cute after… ‘losing’ the bet"
+    },
+
+    {
+        type: "video",
+        src: "video5.mov",
+        caption: "video evidence of the aforementioned cheating"
+    },
+
+    {
+        type: "video",
+        src: "video6.mp4",
+        caption: "you making yourself laugh at the jeans post caption 😭"
+    },
+
+    {
+        type: "video",
+        src: "video7.mov",
+        caption: "you being a bully… bc I can’t afford proper earbuds.. hm, this life"
+    },
+
+    {
+        type: "video",
+        src: "video8.mp4",
+        caption: "🤣 not an amazing angle for me but this was just funny"
+    },
+
+    {
+        type: "video",
+        src: "video9.mov",
+        caption: "after cheating, you’re hiding from the camera 🤣"
+    },
+
+    {
+        type: "video",
+        src: "video10.mov",
+        caption: "another one of your losses to me 🙂‍↕️"
+    },
+
+    {
+        type: "video",
+        src: "video11.mov",
+        caption: "🤣🤣 this has got to be my favorite 😭😭"
+    },
+
+    {
+        type: "image",
+        src: "screenshot1.jpg",
+        caption: "you saying the most out of pocket things😭"
+    },
+
+    {
+        type: "image",
+        src: "screenshot2.jpg",
+        caption: "you saying the most out of pocket things😭"
+    },
+
+    {
+        type: "image",
+        src: "screenshot3.jpg",
+        caption: "you saying the most out of pocket things😭"
+    },
+
+    {
+        type: "image",
+        src: "screenshot4.jpg",
+        caption: "you saying the most out of pocket things😭"
+    },
+
+    {
+        type: "image",
+        src: "screenshot5.jpg",
+        caption: "rare moments when your humor didnt fail you but your ‘dont be weird’ filter did🤣"
+    },
+
+    {
+        type: "image",
+        src: "screenshot6.jpg",
+        caption: "rare moments when your humor didnt fail you but your ‘dont be weird’ filter did🤣"
+    },
+
+    {
+        type: "image",
+        src: "screenshot7.jpg",
+        caption: "rare moments when your humor didnt fail you but your ‘dont be weird’ filter did🤣"
+    },
+
+    {
+        type: "image",
+        src: "screenshot8.jpg",
+        caption: "rare moments when your humor didnt fail you but your ‘dont be weird’ filter did🤣"
+    },
+
+    {
+        type: "image",
+        src: "screenshot9.jpg",
+        caption: "cute? sweet? pg18?😭"
+    },
+
+    {
+        type: "image",
+        src: "screenshot10.jpg",
+        caption: "cute? sweet? pg18?😭"
+    },
+
+    {
+        type: "image",
+        src: "screenshot11.jpg",
+        caption: "cute? sweet? pg18?😭"
+    },
+
+    {
+        type: "image",
+        src: "screenshot12.jpg",
+        caption: "cute? sweet? pg18?😭"
+    },
+
+    {
+        type: "image",
+        src: "screenshot13.jpg",
+        caption: "cute? sweet? pg18?😭"
+    },
+
+    {
+        type: "image",
+        src: "screenshot14.jpg",
+        caption: "i never told you but this had me on the floor…but i added it to clarify once and for all. i am taller than 4’11!!!"
+    }
+
+];
+
+
+/* =====================================================
+   CURRENT MEMORY
+===================================================== */
+
+let currentMemory = 0;
+
+
+/* =====================================================
+   OPEN LIGHTBOX
+===================================================== */
+
+function openLightbox(index) {
+
+    currentMemory = index;
+
+    updateLightbox();
+
+    document
+        .getElementById("lightbox")
+        .classList
+        .add("active");
+
+    document.body.style.overflow = "hidden";
+}
+
+
+/* =====================================================
+   UPDATE LIGHTBOX
+===================================================== */
+
+function updateLightbox() {
+
+    const container =
+        document.getElementById(
+            "lightboxMediaContainer"
+        );
+
+    const caption =
+        document.getElementById(
+            "lightboxCaption"
+        );
+
+    const counter =
+        document.getElementById(
+            "lightboxCounter"
+        );
+
+
+    container.innerHTML = "";
+
+
+    const memory =
+        memories[currentMemory];
+
+
+    if (memory.type === "image") {
+
+        const image =
+            document.createElement("img");
+
+        image.src =
+            memory.src;
+
+        image.alt =
+            memory.caption;
+
+        image.className =
+            "lightbox-media";
+
+        container.appendChild(image);
+
+    }
+
+
+    if (memory.type === "video") {
+
+        const video =
+            document.createElement("video");
+
+        video.src =
+            memory.src;
+
+        video.controls = true;
+
+        video.autoplay = true;
+
+        video.playsInline = true;
+
+        video.className =
+            "lightbox-media";
+
+        container.appendChild(video);
+
+    }
+
+
+    caption.textContent =
+        memory.caption;
+
+
+    counter.textContent =
+        String(currentMemory + 1).padStart(2, "0")
+        + " / "
+        + String(memories.length).padStart(2, "0");
+
+}
+
+
+/* =====================================================
+   CLOSE
+===================================================== */
+
+function closeLightbox() {
+
+    document
+        .getElementById("lightbox")
+        .classList
+        .remove("active");
+
+    document.body.style.overflow = "";
+
+}
+
+
+/* =====================================================
+   CLOSE BACKGROUND
+===================================================== */
+
+function closeFromBackground(event) {
+
+    if (
+        event.target ===
+        document.getElementById("lightbox")
+    ) {
+
+        closeLightbox();
+
+    }
+
+}
+
+
+/* =====================================================
+   CHANGE MEMORY
+===================================================== */
+
+function changeMemory(direction) {
+
+    currentMemory += direction;
+
+
+    if (currentMemory < 0) {
+
+        currentMemory =
+            memories.length - 1;
+
+    }
+
+
+    if (currentMemory >= memories.length) {
+
+        currentMemory = 0;
+
+    }
+
+
+    updateLightbox();
+
+}
+
+
+/* =====================================================
+   KEYBOARD
+===================================================== */
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+        const lightbox =
+            document.getElementById("lightbox");
+
+
+        if (
+            !lightbox.classList.contains("active")
+        ) {
+
+            return;
+
+        }
+
+
+        if (event.key === "Escape") {
+
+            closeLightbox();
+
+        }
+
+
+        if (event.key === "ArrowRight") {
+
+            changeMemory(1);
+
+        }
+
+
+        if (event.key === "ArrowLeft") {
+
+            changeMemory(-1);
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+</html>
+```
