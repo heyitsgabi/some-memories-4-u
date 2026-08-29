@@ -282,25 +282,15 @@ function checkAnswer() {
 
     const responseSub = document.getElementById("responseSub");
 
-
-    /*
-        Change this if the final nickname/password
-        is different.
-
-        Spaces and capital letters don't matter.
-    */
-
     const correctAnswer = "missy";
 
 
-   if (answer === correctAnswer) {
+    if (answer === correctAnswer) {
 
-    sessionStorage.setItem("archiveAccess", "granted");
+        sessionStorage.setItem("archiveAccess", "granted");
 
-    window.location.href =
-        "/some-memories-4-u/proceed.html";
-
-}
+        window.location.href =
+            "/some-memories-4-u/proceed.html";
 
     } else {
 
