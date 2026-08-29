@@ -1,6 +1,497 @@
 <!DOCTYPE html>
 <html lang="en">
+<head><!DOCTYPE html>
+
+<html lang="en">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>The Archive</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    background: #050505;
+    color: #f4f4f4;
+    font-family: Georgia, serif;
+    overflow-x: hidden;
+}
+
+/* =========================================
+   PAGE
+========================================= */
+
+.page {
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+
+    padding: 75px 22px 45px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* =========================================
+   LIGHTING
+========================================= */
+
+.top-light,
+.bottom-light {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.top-light {
+    width: 850px;
+    height: 430px;
+
+    top: -330px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    background: rgba(255,255,255,0.13);
+
+    filter: blur(110px);
+}
+
+.bottom-light {
+    width: 850px;
+    height: 420px;
+
+    bottom: -330px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    background: rgba(255,255,255,0.10);
+
+    filter: blur(110px);
+}
+
+/* =========================================
+   CONTENT
+========================================= */
+
+.content {
+    width: 100%;
+    max-width: 600px;
+
+    position: relative;
+    z-index: 5;
+
+    text-align: center;
+}
+
+/* =========================================
+   HEADER
+========================================= */
+
+.eyebrow {
+    font-family: Arial, sans-serif;
+
+    font-size: 9px;
+
+    letter-spacing: 5px;
+
+    color: #777;
+
+    text-transform: uppercase;
+
+    margin-bottom: 15px;
+}
+
+h1 {
+    font-size: clamp(42px, 8vw, 66px);
+
+    font-weight: normal;
+
+    letter-spacing: -2px;
+
+    margin-bottom: 18px;
+
+    text-shadow:
+        0 0 20px rgba(255,255,255,0.20),
+        0 0 55px rgba(255,255,255,0.08);
+}
+
+.subtitle {
+    max-width: 430px;
+
+    margin: 0 auto 42px;
+
+    color: #999;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+}
+
+/* =========================================
+   ARCHIVE ITEMS
+========================================= */
+
+.archive-list {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 13px;
+
+    width: 100%;
+}
+
+.archive-item {
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    width: 100%;
+
+    min-height: 72px;
+
+    padding: 0 24px;
+
+    border: 1px solid rgba(255,255,255,0.13);
+
+    background: rgba(255,255,255,0.025);
+
+    text-decoration: none;
+
+    color: #f2f2f2;
+
+    transition:
+        background 0.25s ease,
+        border-color 0.25s ease,
+        transform 0.25s ease;
+}
+
+.archive-item:hover {
+    background: rgba(255,255,255,0.06);
+
+    border-color: rgba(255,255,255,0.28);
+
+    transform: translateY(-2px);
+}
+
+.item-left {
+    display: flex;
+
+    align-items: center;
+
+    gap: 17px;
+
+    text-align: left;
+}
+
+.number {
+    font-family: Arial, sans-serif;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+
+    color: #666;
+}
+
+.item-title {
+    font-size: 17px;
+
+    letter-spacing: 0.2px;
+}
+
+.item-description {
+    margin-top: 4px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 9px;
+
+    letter-spacing: 1.5px;
+
+    color: #666;
+
+    text-transform: uppercase;
+}
+
+.arrow {
+    font-family: Arial, sans-serif;
+
+    font-size: 15px;
+
+    color: #777;
+
+    transition: transform 0.25s ease;
+}
+
+.archive-item:hover .arrow {
+    transform: translateX(4px);
+
+    color: #fff;
+}
+
+/* =========================================
+   BACK TO MESSAGE
+========================================= */
+
+.back-container {
+    width: 100%;
+
+    text-align: center;
+
+    margin-top: 20px;
+}
+
+.back {
+    display: inline-block;
+
+    color: #707070;
+
+    text-decoration: none;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 9px;
+
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+
+    transition: color 0.2s ease;
+}
+
+.back:visited {
+    color: #707070;
+}
+
+.back:hover {
+    color: #ffffff;
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+    .page {
+        padding: 65px 18px 35px;
+    }
+
+    h1 {
+        font-size: 46px;
+    }
+
+    .subtitle {
+        margin-bottom: 32px;
+    }
+
+    .archive-item {
+        min-height: 68px;
+
+        padding: 0 18px;
+    }
+
+    .item-left {
+        gap: 13px;
+    }
+
+    .item-title {
+        font-size: 16px;
+    }
+
+    .item-description {
+        font-size: 8px;
+    }
+
+    .back-container {
+        margin-top: 18px;
+    }
+}
+
+</style>
+
+</head>
+
+<body>
+
+<main class="page">
+
+```
+<!-- LIGHTING -->
+
+<div class="top-light"></div>
+
+<div class="bottom-light"></div>
+
+
+<!-- CONTENT -->
+
+<div class="content">
+
+    <div class="eyebrow">
+        $OME MEMORIES 4 U
+    </div>
+
+
+    <h1>
+        THE ARCHIVE
+    </h1>
+
+
+    <p class="subtitle">
+        A few things worth keeping.
+    </p>
+
+
+    <!-- ARCHIVE -->
+
+    <div class="archive-list">
+
+
+        <!-- 01 MUSIC -->
+
+        <a
+            href="/some-memories-4-u/soundtrack.html"
+            class="archive-item"
+            onclick="window.location.replace('/some-memories-4-u/soundtrack.html'); return false;"
+        >
+
+            <div class="item-left">
+
+                <div class="number">
+                    01
+                </div>
+
+                <div>
+
+                    <div class="item-title">
+                        Music
+                    </div>
+
+                    <div class="item-description">
+                        Songs · suggestions · things you made me listen to
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="arrow">
+                →
+            </div>
+
+        </a>
+
+
+        <!-- 02 MOMENTS -->
+
+        <a
+            href="/some-memories-4-u/moments.html"
+            class="archive-item"
+        >
+
+            <div class="item-left">
+
+                <div class="number">
+                    02
+                </div>
+
+                <div>
+
+                    <div class="item-title">
+                        Moments
+                    </div>
+
+                    <div class="item-description">
+                        You · us · places · little moments in between
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="arrow">
+                →
+            </div>
+
+        </a>
+
+
+        <!-- 03 MEMORIES -->
+
+        <a
+            href="/some-memories-4-u/videos.html"
+            class="archive-item"
+        >
+
+            <div class="item-left">
+
+                <div class="number">
+                    03
+                </div>
+
+                <div>
+
+                    <div class="item-title">
+                        Memories
+                    </div>
+
+                    <div class="item-description">
+                        Videos · screenshots · proof of weirdness
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="arrow">
+                →
+            </div>
+
+        </a>
+
+
+    </div>
+
+
+    <!-- BACK TO MESSAGE -->
+
+    <div class="back-container">
+
+        <a
+            href="message.html"
+            class="back"
+        >
+            ← Back to message
+        </a>
+
+    </div>
+
+
+</div>
+```
+
+</main>
+
+</body>
+</html>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
