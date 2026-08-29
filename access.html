@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Private Access</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    background: #050505;
+    color: #f4f4f4;
+    font-family: Georgia, serif;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 30px 22px;
+}
+
+.page {
+    width: 100%;
+    max-width: 520px;
+    text-align: center;
+}
+
+/* =========================================
+   HEADER
+========================================= */
+
+.eyebrow {
+    font-family: Arial, sans-serif;
+    font-size: 9px;
+    letter-spacing: 5px;
+    color: #777;
+    text-transform: uppercase;
+    margin-bottom: 22px;
+}
+
+h1 {
+    font-size: clamp(34px, 8vw, 48px);
+    font-weight: normal;
+    letter-spacing: -1.5px;
+
+    margin-bottom: 18px;
+
+    text-shadow:
+        0 0 20px rgba(255,255,255,0.18),
+        0 0 50px rgba(255,255,255,0.07);
+}
+
+.intro {
+    color: #999;
+    font-size: 14px;
+    line-height: 1.7;
+
+    margin-bottom: 38px;
+}
+
+/* =========================================
+   QUESTION
+========================================= */
+
+.question {
+    font-size: 18px;
+    line-height: 1.6;
+
+    margin-bottom: 18px;
+}
+
+.hint {
+    color: #666;
+
+    font-family: Arial, sans-serif;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+
+    text-transform: uppercase;
+
+    margin-bottom: 28px;
+}
+
+/* =========================================
+   INPUT
+========================================= */
+
+.answer-box {
+    width: 100%;
+
+    background: transparent;
+
+    border: 1px solid rgba(255,255,255,0.25);
+
+    color: #ffffff;
+
+    padding: 15px 16px;
+
+    font-family: Georgia, serif;
+    font-size: 16px;
+
+    text-align: center;
+
+    outline: none;
+
+    transition:
+        border-color 0.25s ease,
+        background 0.25s ease;
+}
+
+.answer-box:focus {
+    border-color: rgba(255,255,255,0.55);
+
+    background: rgba(255,255,255,0.025);
+}
+
+.answer-box::placeholder {
+    color: #555;
+}
+
+/* =========================================
+   BUTTON
+========================================= */
+
+.enter {
+    margin-top: 18px;
+
+    background: transparent;
+
+    border: 1px solid #777;
+
+    padding: 14px 35px;
+
+    color: #ffffff;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 10px;
+
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+
+    cursor: pointer;
+
+    transition:
+        background 0.25s ease,
+        color 0.25s ease;
+}
+
+.enter:hover {
+    background: #ffffff;
+    color: #111111;
+}
+
+/* =========================================
+   RESPONSE
+========================================= */
+
+.response {
+    min-height: 75px;
+
+    margin-top: 30px;
+
+    opacity: 0;
+
+    transition: opacity 0.35s ease;
+}
+
+.response.show {
+    opacity: 1;
+}
+
+.response-main {
+    font-size: 16px;
+
+    margin-bottom: 6px;
+}
+
+.response-sub {
+    color: #888;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+    body {
+        padding: 25px 20px;
+    }
+
+    h1 {
+        font-size: 40px;
+    }
+
+    .question {
+        font-size: 17px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<main class="page">
+
+    <div class="eyebrow">
+        Private Access
+    </div>
+
+    <h1>
+        Before you continue
+    </h1>
+
+    <p class="intro">
+        One question. You already know the answer.
+    </p>
+
+    <p class="question">
+        What did you decide to call me, despite my repeated objections?
+    </p>
+
+    <p class="hint">
+        Hint: There have been quite a few... but three of them are used more than the rest.
+    </p>
+
+    <input
+        type="text"
+        id="answer"
+        class="answer-box"
+        placeholder="Your answer"
+        autocomplete="off"
+        autocapitalize="none"
+    >
+
+    <br>
+
+    <button class="enter" onclick="checkAnswer()">
+        Enter
+    </button>
+
+    <div class="response" id="response">
+
+        <div class="response-main" id="responseMain"></div>
+
+        <div class="response-sub" id="responseSub"></div>
+
+    </div>
+
+</main>
+
+
+<script>
+
+function checkAnswer() {
+
+    const input = document.getElementById("answer");
+
+    const answer = input.value
+        .trim()
+        .toLowerCase();
+
+    const response = document.getElementById("response");
+
+    const responseMain = document.getElementById("responseMain");
+
+    const responseSub = document.getElementById("responseSub");
+
+
+    /*
+        Change this if the final nickname/password
+        is different.
+
+        Spaces and capital letters don't matter.
+    */
+
+    const correctAnswer = "missy";
+
+
+    if (answer === correctAnswer) {
+
+        sessionStorage.setItem("archiveAccess", "granted");
+
+        responseMain.textContent = "Okay, proceed...";
+
+        responseSub.textContent =
+            "We're still not making it a thing btw";
+
+        response.classList.add("show");
+
+        setTimeout(function() {
+
+            window.location.href =
+                "/some-memories-4-u/message.html";
+
+        }, 1200);
+
+    } else {
+
+        responseMain.textContent =
+            "Well, this is awkward...";
+
+        responseSub.textContent =
+            "You might want to try that again, buddy.";
+
+        response.classList.add("show");
+
+        input.value = "";
+
+        input.focus();
+
+    }
+
+}
+
+
+/* Allow pressing ENTER instead of tapping the button */
+
+document.getElementById("answer").addEventListener(
+    "keydown",
+    function(event) {
+
+        if (event.key === "Enter") {
+
+            checkAnswer();
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+</html>
