@@ -1,0 +1,1525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Us / Places</title>
+
+<style>
+
+/* =====================================================
+   RESET
+===================================================== */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+
+    background:
+        radial-gradient(
+            ellipse at 12% 8%,
+            rgba(112, 96, 77, 0.16),
+            transparent 32%
+        ),
+        radial-gradient(
+            ellipse at 88% 18%,
+            rgba(255,255,255,0.38),
+            transparent 35%
+        ),
+        radial-gradient(
+            ellipse at 48% 72%,
+            rgba(100,84,66,0.10),
+            transparent 42%
+        ),
+        #d8d1c5;
+
+    color: #191817;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    overflow-x: hidden;
+
+    position: relative;
+}
+
+
+/* =====================================================
+   CRUMPLED PAPER TEXTURE
+===================================================== */
+
+body::before {
+    content: "";
+
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    z-index: 9999;
+
+    opacity: 0.32;
+
+    background:
+
+        radial-gradient(
+            ellipse at 15% 18%,
+            rgba(255,255,255,0.30) 0%,
+            transparent 28%
+        ),
+
+        radial-gradient(
+            ellipse at 82% 12%,
+            rgba(90,78,63,0.10) 0%,
+            transparent 25%
+        ),
+
+        radial-gradient(
+            ellipse at 70% 72%,
+            rgba(255,255,255,0.24) 0%,
+            transparent 30%
+        ),
+
+        radial-gradient(
+            ellipse at 25% 85%,
+            rgba(90,78,63,0.08) 0%,
+            transparent 25%
+        ),
+
+        linear-gradient(
+            125deg,
+            transparent 0%,
+            rgba(255,255,255,0.13) 18%,
+            transparent 31%,
+            rgba(75,65,54,0.06) 48%,
+            transparent 62%,
+            rgba(255,255,255,0.10) 78%,
+            transparent 90%
+        ),
+
+        linear-gradient(
+            35deg,
+            transparent 10%,
+            rgba(80,68,55,0.05) 28%,
+            transparent 43%,
+            rgba(255,255,255,0.12) 66%,
+            transparent 82%
+        ),
+
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paperNoise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.035' numOctaves='4' seed='8' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23paperNoise)' opacity='.32'/%3E%3C/svg%3E");
+
+    mix-blend-mode: multiply;
+}
+
+
+/* =====================================================
+   PAPER BORDER
+===================================================== */
+
+body::after {
+    content: "";
+
+    position: fixed;
+
+    inset: 12px;
+
+    border: 1px solid rgba(50,45,38,0.10);
+
+    pointer-events: none;
+
+    z-index: 9998;
+}
+
+
+/* =====================================================
+   PAGE
+===================================================== */
+
+.page {
+    width: 100%;
+
+    max-width: 1180px;
+
+    margin: 0 auto;
+
+    padding: 70px 35px 90px;
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.header {
+    text-align: center;
+
+    margin-bottom: 58px;
+
+    position: relative;
+
+    z-index: 20;
+}
+
+.eyebrow {
+    font-family: Arial, sans-serif;
+
+    font-size: 9px;
+
+    letter-spacing: 5px;
+
+    text-transform: uppercase;
+
+    color: #70695f;
+
+    margin-bottom: 18px;
+}
+
+h1 {
+    font-size: clamp(45px, 8vw, 74px);
+
+    font-weight: normal;
+
+    letter-spacing: -2.5px;
+
+    line-height: 0.95;
+
+    color: #181716;
+}
+
+.header-line {
+    width: 70px;
+
+    height: 1px;
+
+    background: #3b3731;
+
+    margin: 25px auto 20px;
+}
+
+.header-note {
+    color: #6f685e;
+
+    font-size: 12px;
+
+    line-height: 1.6;
+}
+
+.section-number {
+    margin-top: 18px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 8px;
+
+    letter-spacing: 4px;
+
+    text-transform: uppercase;
+
+    color: #8d857a;
+}
+
+
+/* =====================================================
+   GALLERY
+===================================================== */
+
+.gallery {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 44px 22px;
+
+    align-items: start;
+
+    position: relative;
+
+    z-index: 5;
+}
+
+
+/* =====================================================
+   ITEMS
+===================================================== */
+
+.item {
+    position: relative;
+
+    cursor: pointer;
+
+    min-width: 0;
+}
+
+
+/* intentional variation */
+
+.item:nth-child(2) {
+    margin-top: 32px;
+}
+
+.item:nth-child(3) {
+    margin-top: 8px;
+}
+
+.item:nth-child(4) {
+    margin-top: 38px;
+}
+
+.item:nth-child(5) {
+    margin-top: 10px;
+}
+
+.item:nth-child(6) {
+    margin-top: 36px;
+}
+
+.item:nth-child(7) {
+    margin-top: 5px;
+}
+
+.item:nth-child(8) {
+    margin-top: 30px;
+}
+
+
+/* =====================================================
+   FRAMES
+===================================================== */
+
+.frame {
+    position: relative;
+
+    width: 100%;
+
+    aspect-ratio: 0.84;
+
+    padding: 8px;
+
+    background: #f8f5ee;
+
+    border: 1px solid rgba(25,23,20,0.28);
+
+    box-shadow:
+        5px 7px 0 rgba(65,57,47,0.08),
+        0 12px 25px rgba(40,34,28,0.13);
+
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease;
+}
+
+
+/* inner frame */
+
+.frame::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 4px;
+
+    border: 1px solid rgba(35,31,27,0.13);
+
+    pointer-events: none;
+
+    z-index: 3;
+}
+
+
+/* decorative mark */
+
+.frame::after {
+    content: "✦";
+
+    position: absolute;
+
+    top: 8px;
+
+    right: 10px;
+
+    font-size: 8px;
+
+    color: rgba(40,35,29,0.38);
+
+    z-index: 5;
+}
+
+
+/* =====================================================
+   INDIVIDUAL FRAME PERSONALITIES
+===================================================== */
+
+.item:nth-child(1) .frame {
+    background: #f9f6ed;
+
+    border: 2px solid #4a443b;
+
+    padding: 7px;
+
+    box-shadow:
+        5px 7px 0 rgba(63,53,43,0.10),
+        0 13px 28px rgba(40,34,28,0.14);
+
+    transform: rotate(-1.2deg);
+}
+
+.item:nth-child(2) .frame {
+    background: #e7dfd2;
+
+    border: 1px solid #71675a;
+
+    transform: rotate(1.5deg);
+}
+
+.item:nth-child(3) .frame {
+    background: #20201e;
+
+    border: 8px solid #20201e;
+
+    transform: rotate(-0.7deg);
+}
+
+.item:nth-child(3) .frame::before {
+    inset: 2px;
+
+    border-color: rgba(255,255,255,0.15);
+}
+
+.item:nth-child(4) .frame {
+    background: #faf8f2;
+
+    padding: 10px;
+
+    border: 1px solid rgba(20,20,20,0.38);
+
+    transform: rotate(1deg);
+}
+
+.item:nth-child(5) .frame {
+    background: #e0d7ca;
+
+    border: 1px solid #7c7266;
+
+    transform: rotate(-1.3deg);
+}
+
+.item:nth-child(6) .frame {
+    background: #f9f7f1;
+
+    border: 2px solid #292724;
+
+    box-shadow:
+        0 0 0 4px #ded7cb,
+        0 0 0 5px rgba(35,31,27,0.28),
+        0 14px 28px rgba(40,34,28,0.14);
+
+    transform: rotate(0.8deg);
+}
+
+.item:nth-child(7) .frame {
+    background: #ece4d8;
+
+    border: 1px solid #7d7468;
+
+    transform: rotate(-0.8deg);
+}
+
+.item:nth-child(8) .frame {
+    background: #1c1c1b;
+
+    border: 8px solid #1c1c1b;
+
+    transform: rotate(1.2deg);
+
+    box-shadow:
+        5px 8px 0 rgba(50,43,35,0.10),
+        0 15px 30px rgba(30,27,23,0.20);
+}
+
+.item:nth-child(8) .frame::before {
+    inset: 2px;
+
+    border-color: rgba(255,255,255,0.14);
+}
+
+
+/* =====================================================
+   IMAGE
+===================================================== */
+
+.frame img {
+    width: 100%;
+
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    position: relative;
+
+    z-index: 2;
+
+    filter:
+        saturate(0.92)
+        contrast(0.97);
+
+    transition:
+        transform 0.45s ease,
+        filter 0.45s ease;
+}
+
+
+/* =====================================================
+   HOVER
+===================================================== */
+
+.item:hover .frame {
+    transform:
+        translateY(-6px)
+        rotate(0deg) !important;
+
+    box-shadow:
+        0 20px 38px rgba(35,30,25,0.20);
+}
+
+.item:hover img {
+    filter:
+        saturate(1)
+        contrast(1);
+
+    transform: scale(1.018);
+}
+
+
+/* =====================================================
+   CAPTIONS
+===================================================== */
+
+.caption {
+    margin-top: 12px;
+
+    padding: 0 4px;
+
+    color: #403c36;
+
+    font-size: 11px;
+
+    line-height: 1.5;
+
+    min-height: 34px;
+
+    position: relative;
+
+    z-index: 10;
+}
+
+.caption::before {
+    content: "";
+
+    display: block;
+
+    width: 17px;
+
+    height: 1px;
+
+    background: #aaa195;
+
+    margin-bottom: 7px;
+}
+
+
+/* =====================================================
+   NUMBERS
+===================================================== */
+
+.number {
+    position: absolute;
+
+    top: -18px;
+
+    left: 2px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 7px;
+
+    letter-spacing: 2px;
+
+    color: #9c958b;
+
+    z-index: 15;
+}
+
+
+/* =====================================================
+   SIDE NOTES
+===================================================== */
+
+.note {
+    position: absolute;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 7px;
+
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+
+    color: #968d82;
+
+    writing-mode: vertical-rl;
+
+    z-index: 1;
+}
+
+.note-one {
+    left: -25px;
+
+    top: 260px;
+}
+
+.note-two {
+    right: -25px;
+
+    top: 760px;
+}
+
+
+/* =====================================================
+   BOTTOM
+===================================================== */
+
+.bottom {
+    text-align: center;
+
+    margin-top: 70px;
+
+    padding-top: 28px;
+
+    border-top: 1px solid rgba(50,45,38,0.16);
+
+    position: relative;
+
+    z-index: 30;
+}
+
+.bottom-note {
+    color: #7d756b;
+
+    font-size: 11px;
+
+    margin-bottom: 20px;
+
+    font-style: italic;
+}
+
+.back {
+    display: inline-block;
+
+    text-decoration: none;
+
+    color: #3d3934;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 8px;
+
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+
+    padding: 11px 20px;
+
+    border: 1px solid rgba(40,35,30,0.35);
+
+    transition:
+        background 0.25s ease,
+        color 0.25s ease;
+}
+
+.back:hover {
+    background: #1b1b1a;
+
+    color: #f7f3eb;
+}
+
+
+/* =====================================================
+   LIGHTBOX
+===================================================== */
+
+.lightbox {
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(20,19,17,0.94);
+
+    z-index: 10000;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 30px;
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transition: opacity 0.3s ease;
+}
+
+.lightbox.active {
+    opacity: 1;
+
+    pointer-events: auto;
+}
+
+.lightbox-inner {
+    max-width: 850px;
+
+    width: 100%;
+
+    max-height: 94vh;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+.lightbox-image {
+    max-width: 90vw;
+
+    max-height: 76vh;
+
+    object-fit: contain;
+
+    display: block;
+
+    box-shadow:
+        0 25px 70px rgba(0,0,0,0.5);
+
+    border: 5px solid #f3efe7;
+}
+
+.lightbox-caption {
+    color: #f1eee7;
+
+    font-family: Georgia, serif;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+
+    text-align: center;
+
+    max-width: 540px;
+
+    margin-top: 18px;
+}
+
+.close {
+    position: fixed;
+
+    top: 22px;
+
+    right: 25px;
+
+    background: transparent;
+
+    border: 1px solid rgba(255,255,255,0.35);
+
+    color: #fff;
+
+    width: 38px;
+
+    height: 38px;
+
+    border-radius: 50%;
+
+    font-size: 18px;
+
+    cursor: pointer;
+
+    z-index: 10002;
+}
+
+.prev,
+.next {
+    position: fixed;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    background: transparent;
+
+    border: 1px solid rgba(255,255,255,0.3);
+
+    color: #fff;
+
+    width: 42px;
+
+    height: 42px;
+
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    font-size: 17px;
+
+    z-index: 10002;
+
+    transition:
+        background 0.2s ease;
+}
+
+.prev {
+    left: 22px;
+}
+
+.next {
+    right: 22px;
+}
+
+.prev:hover,
+.next:hover,
+.close:hover {
+    background: rgba(255,255,255,0.12);
+}
+
+.lightbox-counter {
+    margin-top: 10px;
+
+    color: #88837b;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 8px;
+
+    letter-spacing: 3px;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 800px) {
+
+    body::after {
+        inset: 7px;
+    }
+
+    .page {
+        padding: 55px 17px 70px;
+    }
+
+    .header {
+        margin-bottom: 48px;
+    }
+
+    h1 {
+        font-size: 48px;
+    }
+
+    .gallery {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 38px 13px;
+    }
+
+    .item:nth-child(2),
+    .item:nth-child(3),
+    .item:nth-child(4),
+    .item:nth-child(5),
+    .item:nth-child(6),
+    .item:nth-child(7),
+    .item:nth-child(8) {
+        margin-top: 18px;
+    }
+
+    .caption {
+        font-size: 10px;
+
+        margin-top: 9px;
+    }
+
+    .number {
+        top: -16px;
+
+        font-size: 6px;
+    }
+
+    .note {
+        display: none;
+    }
+
+    .bottom {
+        margin-top: 52px;
+    }
+
+    .lightbox {
+        padding: 20px;
+    }
+
+    .lightbox-image {
+        max-width: 94vw;
+
+        max-height: 70vh;
+    }
+
+    .lightbox-caption {
+        font-size: 13px;
+
+        padding: 0 25px;
+    }
+
+    .prev {
+        left: 10px;
+    }
+
+    .next {
+        right: 10px;
+    }
+
+    .close {
+        top: 14px;
+
+        right: 14px;
+    }
+
+}
+
+
+/* =====================================================
+   SMALL PHONES
+===================================================== */
+
+@media (max-width: 430px) {
+
+    .gallery {
+        gap: 32px 10px;
+    }
+
+    .frame {
+        padding: 6px;
+    }
+
+    .caption {
+        font-size: 9px;
+    }
+
+    .header-note {
+        font-size: 11px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<main class="page">
+
+
+    <!-- =============================================
+         HEADER
+    ============================================== -->
+
+    <header class="header">
+
+        <div class="eyebrow">
+            Some Memories 4 U
+        </div>
+
+        <h1>
+            US / PLACES
+        </h1>
+
+        <div class="header-line"></div>
+
+        <p class="header-note">
+            The places, walks, and little moments in between.
+        </p>
+
+        <div class="section-number">
+            02 / Us / Places
+        </div>
+
+    </header>
+
+
+    <!-- =============================================
+         GALLERY
+    ============================================== -->
+
+    <section class="gallery">
+
+
+        <!-- PHOTO 1 -->
+
+        <article
+            class="item"
+            onclick="openLightbox(0)"
+        >
+
+            <span class="number">
+                01
+            </span>
+
+            <div class="frame">
+
+                <img
+                    src="us1.jpg"
+                    alt="Boba drinks"
+                >
+
+            </div>
+
+            <div class="caption">
+                hand mogging
+            </div>
+
+        </article>
+
+
+        <!-- PHOTO 2 -->
+
+        <article
+            class="item"
+            onclick="openLightbox(1)"
+        >
+
+            <span class="number">
+                02
+            </span>
+
+            <div class="frame">
+
+                <img
+                    src="us2.jpg"
+                    alt="Night market"
+                >
+
+            </div>
+
+            <div class="caption">
+                our return to your fav spot which I have hijacked… tbf, I didn’t see your name engraved there
+            </div>
+
+        </article>
+
+
+        <!-- PHOTO 3 -->
+
+        <article
+            class="item"
+            onclick="openLightbox(2)"
+        >
+
+            <span class="number">
+                03
+            </span>
+
+            <div class="frame">
+
+                <img
+                    src="us3.jpg"
+                    alt="Legon City Mall"
+                >
+
+            </div>
+
+            <div class="caption">
+                one of many walks… who is that cutie in the photo though 🤔
+            </div>
+
+        </article>
+
+
+        <!-- PHOTO 4 -->
+
+        <article
+            class="item"
+            onclick="openLightbox(3)"
+        >
+
+            <span class="number">
+                04
+            </span>
+
+            <div class="frame">
+
+                <img
+                    src="us4.jpg"
+                    alt="Relaxing moment"
+                >
+
+            </div>
+
+            <div class="caption">
+                sb looks comfy
+            </div>
+
+        </article>
+
+
+        <!-- PHOTO 5 -->
+
+        <article
+            class="item"
+            onclick="openLightbox(4)"
+        >
+
+            <span class="number">
+                05
+            </span>
+
+            <div class="frame">
+
+                <img
+                    src="us5.jpg"
+                    alt="Relaxing moment close-up"
+                >
+
+            </div>
+
+            <div class="caption">
+                like innocent little thing… looks really are deceptive, aren’t they
+            </div>
+
+        </article>
+
+
+        <!-- PHOTO 6 -->
+
+        <article
+            class="item"
+            onclick="openLightbox(5)"
+        >
+
+            <span class="number">
+                06
+            </span>
+
+            <div class="frame">
+
+                <img
+                    src="us6.jpg"
+                    alt="Balme Library"
+                >
+
+            </div>
+
+            <div class="caption">
+                just bc it’s pretty and you ‘happened’ to be there
+            </div>
+
+        </article>
+
+
+        <!-- PHOTO 7 -->
+
+        <article
+            class="item"
+            onclick="openLightbox(6)"
+        >
+
+            <span class="number">
+                07
+            </span>
+
+            <div class="frame">
+
+                <img
+                    src="us7.jpg"
+                    alt="Campus pathway"
+                >
+
+            </div>
+
+            <div class="caption">
+                our return after you lost the Skittles game terribly
+            </div>
+
+        </article>
+
+
+        <!-- PHOTO 8 -->
+
+        <article
+            class="item"
+            onclick="openLightbox(7)"
+        >
+
+            <span class="number">
+                08
+            </span>
+
+            <div class="frame">
+
+                <img
+                    src="us8.jpg"
+                    alt="Campus walkway"
+                >
+
+            </div>
+
+            <div class="caption">
+                you wallowing in your misery in the distance… realizing that that was going to be just one of your many losses to me
+            </div>
+
+        </article>
+
+
+    </section>
+
+
+    <!-- =============================================
+         SIDE NOTES
+    ============================================== -->
+
+    <div class="note note-one">
+        places we happened to be
+    </div>
+
+    <div class="note note-two">
+        documented evidence
+    </div>
+
+
+    <!-- =============================================
+         BOTTOM
+    ============================================== -->
+
+    <div class="bottom">
+
+        <p class="bottom-note">
+            apparently there are memories attached to places too.
+        </p>
+
+        <a
+            href="archive.html"
+            class="back"
+        >
+            ← Back to archive
+        </a>
+
+    </div>
+
+
+</main>
+
+
+<!-- =============================================
+     LIGHTBOX
+============================================== -->
+
+<div
+    class="lightbox"
+    id="lightbox"
+    onclick="closeFromBackground(event)"
+>
+
+
+    <button
+        class="close"
+        onclick="closeLightbox()"
+        aria-label="Close"
+    >
+        ×
+    </button>
+
+
+    <button
+        class="prev"
+        onclick="changePhoto(-1)"
+        aria-label="Previous photo"
+    >
+        ‹
+    </button>
+
+
+    <div class="lightbox-inner">
+
+        <img
+            id="lightboxImage"
+            class="lightbox-image"
+            src=""
+            alt=""
+        >
+
+        <div
+            id="lightboxCaption"
+            class="lightbox-caption"
+        >
+        </div>
+
+        <div
+            id="lightboxCounter"
+            class="lightbox-counter"
+        >
+        </div>
+
+    </div>
+
+
+    <button
+        class="next"
+        onclick="changePhoto(1)"
+        aria-label="Next photo"
+    >
+        ›
+    </button>
+
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   PHOTO DATA
+===================================================== */
+
+const photos = [
+
+    {
+        src: "us1.jpg",
+        caption: "hand mogging"
+    },
+
+    {
+        src: "us2.jpg",
+        caption: "our return to your fav spot which I have hijacked… tbf, I didn’t see your name engraved there"
+    },
+
+    {
+        src: "us3.jpg",
+        caption: "one of many walks… who is that cutie in the photo though 🤔"
+    },
+
+    {
+        src: "us4.jpg",
+        caption: "sb looks comfy"
+    },
+
+    {
+        src: "us5.jpg",
+        caption: "like innocent little thing… looks really are deceptive, aren’t they"
+    },
+
+    {
+        src: "us6.jpg",
+        caption: "just bc it’s pretty and you ‘happened’ to be there"
+    },
+
+    {
+        src: "us7.jpg",
+        caption: "our return after you lost the Skittles game terribly"
+    },
+
+    {
+        src: "us8.jpg",
+        caption: "you wallowing in your misery in the distance… realizing that that was going to be just one of your many losses to me"
+    }
+
+];
+
+
+/* =====================================================
+   CURRENT PHOTO
+===================================================== */
+
+let currentPhoto = 0;
+
+
+/* =====================================================
+   OPEN
+===================================================== */
+
+function openLightbox(index) {
+
+    currentPhoto = index;
+
+    updateLightbox();
+
+    document
+        .getElementById("lightbox")
+        .classList
+        .add("active");
+
+    document.body.style.overflow = "hidden";
+}
+
+
+/* =====================================================
+   UPDATE
+===================================================== */
+
+function updateLightbox() {
+
+    const image =
+        document.getElementById("lightboxImage");
+
+    const caption =
+        document.getElementById("lightboxCaption");
+
+    const counter =
+        document.getElementById("lightboxCounter");
+
+
+    image.src =
+        photos[currentPhoto].src;
+
+    image.alt =
+        photos[currentPhoto].caption;
+
+    caption.textContent =
+        photos[currentPhoto].caption;
+
+    counter.textContent =
+        String(currentPhoto + 1).padStart(2, "0")
+        + " / "
+        + String(photos.length).padStart(2, "0");
+
+}
+
+
+/* =====================================================
+   CLOSE
+===================================================== */
+
+function closeLightbox() {
+
+    document
+        .getElementById("lightbox")
+        .classList
+        .remove("active");
+
+    document.body.style.overflow = "";
+
+}
+
+
+/* =====================================================
+   CLOSE BACKGROUND
+===================================================== */
+
+function closeFromBackground(event) {
+
+    if (
+        event.target ===
+        document.getElementById("lightbox")
+    ) {
+
+        closeLightbox();
+
+    }
+
+}
+
+
+/* =====================================================
+   CHANGE PHOTO
+===================================================== */
+
+function changePhoto(direction) {
+
+    currentPhoto += direction;
+
+
+    if (currentPhoto < 0) {
+
+        currentPhoto =
+            photos.length - 1;
+
+    }
+
+
+    if (currentPhoto >= photos.length) {
+
+        currentPhoto = 0;
+
+    }
+
+
+    updateLightbox();
+
+}
+
+
+/* =====================================================
+   KEYBOARD
+===================================================== */
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+        const lightbox =
+            document.getElementById("lightbox");
+
+
+        if (
+            !lightbox.classList.contains("active")
+        ) {
+
+            return;
+
+        }
+
+
+        if (event.key === "Escape") {
+
+            closeLightbox();
+
+        }
+
+
+        if (event.key === "ArrowRight") {
+
+            changePhoto(1);
+
+        }
+
+
+        if (event.key === "ArrowLeft") {
+
+            changePhoto(-1);
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+</html>
