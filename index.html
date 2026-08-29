@@ -1,4 +1,4 @@
-<title>$OME MEMORIES 4 U</title>
+[8/29/2026 3:04 AM] Gabriella: <title>$OME MEMORIES 4 U</title>
 
 <style>
     * {
@@ -18,13 +18,15 @@
         line-height: 1.8;
     }
 
+    /* COVER */
+
     .cover {
         min-height: 100vh;
         display: flex;
         align-items: center;
         justify-content: center;
         text-align: center;
-        padding: 60px 25px;
+        padding: 40px 25px;
     }
 
     .cover-content {
@@ -62,7 +64,7 @@
         margin-bottom: 55px;
     }
 
-    .enter {
+    .button {
         display: inline-block;
         border: 1px solid #777777;
         padding: 14px 35px;
@@ -74,16 +76,19 @@
         text-transform: uppercase;
     }
 
-    .enter:hover {
+    .button:hover {
         background: #ffffff;
         color: #111111;
     }
 
-    .message {
+    /* MESSAGE */
+
+    .message-page {
         min-height: 100vh;
-        padding: 100px 25px;
         display: flex;
         justify-content: center;
+        align-items: center;
+        padding: 80px 25px;
     }
 
     .message-content {
@@ -97,18 +102,18 @@
         letter-spacing: 4px;
         text-transform: uppercase;
         color: #999999;
-        margin-bottom: 45px;
+        margin-bottom: 50px;
         text-align: center;
     }
 
-    .message p {
-        margin-bottom: 28px;
+    .message-content p {
         font-size: 17px;
+        margin-bottom: 28px;
     }
 
     .signature {
         text-align: center;
-        font-size: 18px;
+        font-size: 18px !important;
         margin-top: 45px;
     }
 
@@ -118,10 +123,17 @@
         margin-top: 50px;
     }
 
-    .archive {
-        padding: 80px 25px 120px;
+    .continue {
         text-align: center;
-        border-top: 1px solid #292929;
+        margin-top: 65px;
+    }
+
+    /* ARCHIVE */
+
+    .archive-page {
+        min-height: 100vh;
+        padding: 100px 25px;
+        text-align: center;
     }
 
     .archive-content {
@@ -130,17 +142,23 @@
     }
 
     .archive-title {
-        font-size: 34px;
+        font-size: 38px;
         font-weight: normal;
-        margin-bottom: 45px;
+        margin-bottom: 15px;
+    }
+
+    .archive-subtitle {
+        color: #999999;
+        font-style: italic;
+        margin-bottom: 55px;
     }
 
     .archive-button {
         display: block;
         border: 1px solid #555555;
-        padding: 20px;
+        padding: 22px;
         margin: 15px auto;
-        max-width: 400px;
+        max-width: 420px;
         color: #ffffff;
         text-decoration: none;
         font-family: Arial, sans-serif;
@@ -166,9 +184,13 @@
 
         <h1>$OME MEMORIES 4 U</h1>
 
-        <p class="subtitle">A little archive of this chapter.</p>
+        <p class="subtitle">
+            A little archive of this chapter.
+        </p>
 
-        <a href="#message" class="enter">Enter</a>
+        <a href="#message" class="button">
+            Enter
+        </a>
 
     </div>
 
@@ -177,16 +199,75 @@
 
 <!-- MESSAGE -->
 
-<section class="message" id="message">
+<section class="message-page" id="message">
 
     <div class="message-content">
 
-        <div class="section-title">A message for you</div>
+        <div class="section-title">
+            A message for you
+        </div>
 
         <p>
-            So I know you don’t really make a big deal out of your birthday and you probably didn’t really plan for this year to be any different… but you just happened to be blessed with me in your life which makes it a 1000x more amazing (lucky you… okay today is about you so I’ll tone the self-glaze down a bit… not too much though).
+[8/29/2026 3:04 AM] Gabriella: So I know you don’t really make a big deal out of your birthday and you probably didn’t really plan for this year to be any different… but you just happened to be blessed with me in your life which makes it a 1000x more amazing (lucky you… okay today is about you so I’ll tone the self-glaze down a bit… not too much though).
         </p>
 
         <p>
-            I made this archive and filled it with stuff that remind me of you but more than anything, I wanted to give you something that says thank you.
+            I made this archive and filled it with stuff that remind me of you but more than anything, I wanted to give you something that says thank you. For the memories and the laughter, the conversations, the comfort and what it feels like to not be judged for being my weird self (even though ik you lowkey judge me in your head sometimes but kudos for hiding it well).
         </p>
+
+        <p>
+            Whatever happens from here, I’ll always be grateful that I got to experience my final year with you.
+        </p>
+
+        <p>
+            I hope this next chapter of your life is filled with joy, blessings and everything good. And I hope (well I know you will) never forget how much you deserve them.
+        </p>
+
+        <p class="signature">
+            Happy birthday, Pumpks 💜
+        </p>
+
+        <p class="ps">
+            P.S. Read the tiny notes. And don’t let this be an excuse to glaze yourself even more… Lord knows we’ve had enough.
+        </p>
+
+        <div class="continue">
+            <a href="#archive" class="button">
+                Continue
+            </a>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ARCHIVE -->
+
+<section class="archive-page" id="archive">
+
+    <div class="archive-content">
+
+        <h2 class="archive-title">
+            $OME MEMORIES 4 U
+        </h2>
+
+        <p class="archive-subtitle">
+            Some things worth keeping.
+        </p>
+
+        <a href="#" class="archive-button">
+            🎧 The Soundtrack
+        </a>
+
+        <a href="#" class="archive-button">
+            📸 The Memories
+        </a>
+
+        <a href="#" class="archive-button">
+            🎥 The Moments
+        </a>
+
+    </div>
+
+</section>
