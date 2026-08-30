@@ -333,21 +333,12 @@ h1 {
    VIDEO FRAME
 ===================================================== */
 
-/*
-   Portrait-friendly frame.
-
-   Google Drive's iframe controls the actual video player,
-   so object-fit cannot be applied to the video itself.
-   A portrait frame gives portrait videos much more room
-   and prevents them from looking tiny inside a wide box.
-*/
-
 .video-frame {
     position: relative;
 
     width: 100%;
 
-    aspect-ratio: 9 / 14;
+    aspect-ratio: 16 / 10;
 
     background: #1b1b1a;
 
@@ -425,6 +416,9 @@ h1 {
 
     height: 100%;
 
+    min-width: 100%;
+    min-height: 100%;
+
     display: block;
 
     border: none;
@@ -486,6 +480,10 @@ h1 {
     letter-spacing: 2px;
 
     color: #9c958b;
+}
+
+.video-text {
+    display: block;
 }
 
 
@@ -905,7 +903,7 @@ h1 {
     }
 
 
-    /* VIDEO MOBILE */
+    /* VIDEO MOBILE FIX */
 
     .video-grid {
         grid-template-columns:
@@ -929,7 +927,7 @@ h1 {
     }
 
     .video-frame {
-        aspect-ratio: 9 / 14;
+        aspect-ratio: 16 / 9;
 
         padding: 0;
 
@@ -941,6 +939,7 @@ h1 {
 
         height: 100%;
 
+        min-width: 100%;
         min-height: 100%;
 
         display: block;
@@ -995,8 +994,6 @@ h1 {
 
     .video-frame {
         border-width: 6px;
-
-        aspect-ratio: 9 / 14;
     }
 
     .screenshot-frame {
@@ -1100,6 +1097,10 @@ h1 {
                         01
                     </span>
 
+                    <span class="video-text">
+                        unfortunate events with food…which you keep buying btw
+                    </span>
+
                 </div>
 
             </article>
@@ -1123,6 +1124,10 @@ h1 {
 
                     <span class="video-number">
                         02
+                    </span>
+
+                    <span class="video-text">
+                        mind you i was just styling your hair….
                     </span>
 
                 </div>
@@ -1150,6 +1155,10 @@ h1 {
                         03
                     </span>
 
+                    <span class="video-text">
+                        so jolly after cheating😒
+                    </span>
+
                 </div>
 
             </article>
@@ -1173,6 +1182,10 @@ h1 {
 
                     <span class="video-number">
                         04
+                    </span>
+
+                    <span class="video-text">
+                        me still looking cute after…’losing’ the bet
                     </span>
 
                 </div>
@@ -1200,6 +1213,10 @@ h1 {
                         05
                     </span>
 
+                    <span class="video-text">
+                        video evidence of the afforementioned cheating
+                    </span>
+
                 </div>
 
             </article>
@@ -1223,6 +1240,10 @@ h1 {
 
                     <span class="video-number">
                         06
+                    </span>
+
+                    <span class="video-text">
+                        you making yourself laugh at the jeans post caption😭
                     </span>
 
                 </div>
@@ -1250,6 +1271,10 @@ h1 {
                         07
                     </span>
 
+                    <span class="video-text">
+                        you being a bully…bc i cant afford proper earbuds..hm this life
+                    </span>
+
                 </div>
 
             </article>
@@ -1273,6 +1298,10 @@ h1 {
 
                     <span class="video-number">
                         08
+                    </span>
+
+                    <span class="video-text">
+                        🤣not an amazing angle for me but this was just funny
                     </span>
 
                 </div>
@@ -1300,6 +1329,10 @@ h1 {
                         09
                     </span>
 
+                    <span class="video-text">
+                        after cheating you’re hiding from the camera🤣
+                    </span>
+
                 </div>
 
             </article>
@@ -1325,6 +1358,10 @@ h1 {
                         10
                     </span>
 
+                    <span class="video-text">
+                        another one of your losses to me🙂‍↕️
+                    </span>
+
                 </div>
 
             </article>
@@ -1348,6 +1385,10 @@ h1 {
 
                     <span class="video-number">
                         11
+                    </span>
+
+                    <span class="video-text">
+                        🤣🤣this has got to be my favorite😭😭
                     </span>
 
                 </div>
