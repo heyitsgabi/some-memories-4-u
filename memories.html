@@ -333,12 +333,21 @@ h1 {
    VIDEO FRAME
 ===================================================== */
 
+/*
+   Portrait-friendly frame.
+
+   Google Drive's iframe controls the actual video player,
+   so object-fit cannot be applied to the video itself.
+   A portrait frame gives portrait videos much more room
+   and prevents them from looking tiny inside a wide box.
+*/
+
 .video-frame {
     position: relative;
 
     width: 100%;
 
-    aspect-ratio: 16 / 10;
+    aspect-ratio: 9 / 14;
 
     background: #1b1b1a;
 
@@ -896,7 +905,7 @@ h1 {
     }
 
 
-    /* VIDEO MOBILE FIX */
+    /* VIDEO MOBILE */
 
     .video-grid {
         grid-template-columns:
@@ -920,7 +929,7 @@ h1 {
     }
 
     .video-frame {
-        aspect-ratio: 16 / 9;
+        aspect-ratio: 9 / 14;
 
         padding: 0;
 
@@ -986,6 +995,8 @@ h1 {
 
     .video-frame {
         border-width: 6px;
+
+        aspect-ratio: 9 / 14;
     }
 
     .screenshot-frame {
