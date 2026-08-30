@@ -1,6 +1,8 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -27,7 +29,7 @@ body {
     position: relative;
     overflow: hidden;
 
-    padding: 75px 22px 45px;
+    padding: 75px 22px 55px;
 
     display: flex;
     justify-content: center;
@@ -181,39 +183,79 @@ h1 {
     color: #fff;
 }
 
-.back-container {
+
+/* =====================================================
+   CONTINUE
+===================================================== */
+
+.continue-container {
     width: 100%;
     text-align: center;
-    margin-top: 20px;
+
+    margin-top: 42px;
+    padding-top: 25px;
+
+    border-top: 1px solid rgba(255,255,255,0.08);
 }
 
-.back {
-    display: inline-block;
+.continue {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 13px;
 
-    color: #707070;
+    min-width: 155px;
+
+    padding: 13px 21px;
+
+    border: 1px solid rgba(255,255,255,0.22);
+
+    color: #d8d8d8;
+
     text-decoration: none;
 
     font-family: Arial, sans-serif;
-    font-size: 9px;
+    font-size: 8px;
     letter-spacing: 3px;
 
     text-transform: uppercase;
 
-    transition: color 0.2s ease;
+    background: rgba(255,255,255,0.025);
+
+    transition:
+        background 0.25s ease,
+        border-color 0.25s ease,
+        color 0.25s ease,
+        transform 0.25s ease;
 }
 
-.back:visited {
-    color: #707070;
+.continue-arrow {
+    font-size: 14px;
+    letter-spacing: 0;
+
+    transition: transform 0.25s ease;
 }
 
-.back:hover {
-    color: #ffffff;
+.continue:hover {
+    background: rgba(255,255,255,0.08);
+    border-color: rgba(255,255,255,0.40);
+    color: #fff;
+    transform: translateY(-2px);
 }
+
+.continue:hover .continue-arrow {
+    transform: translateX(4px);
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
 
 @media (max-width: 600px) {
 
     .page {
-        padding: 65px 18px 35px;
+        padding: 65px 18px 40px;
     }
 
     h1 {
@@ -241,14 +283,21 @@ h1 {
         font-size: 8px;
     }
 
-    .back-container {
-        margin-top: 18px;
+    .continue-container {
+        margin-top: 36px;
+        padding-top: 23px;
+    }
+
+    .continue {
+        min-width: 145px;
+        padding: 12px 18px;
     }
 
 }
 
 </style>
 </head>
+
 
 <body>
 
@@ -258,20 +307,32 @@ h1 {
 
     <div class="bottom-light"></div>
 
+
     <div class="content">
+
+
+        <!-- =============================================
+             HEADER
+        ============================================= -->
 
         <div class="eyebrow">
             $OME MEMORIES 4 U
         </div>
 
+
         <h1>
             THE ARCHIVE
         </h1>
+
 
         <p class="subtitle">
             A few things worth keeping.
         </p>
 
+
+        <!-- =============================================
+             ARCHIVE SECTIONS
+        ============================================= -->
 
         <div class="archive-list">
 
@@ -382,13 +443,21 @@ h1 {
         </div>
 
 
-        <div class="back-container">
+        <!-- =============================================
+             CONTINUE TO BIRTHDAY PAGE
+        ============================================= -->
+
+        <div class="continue-container">
 
             <a
-                href="message.html"
-                class="back"
+                href="birthday.html"
+                class="continue"
             >
-                ← Back to message
+                Continue
+
+                <span class="continue-arrow">
+                    →
+                </span>
             </a>
 
         </div>
@@ -400,3 +469,4 @@ h1 {
 
 </body>
 </html>
+```
