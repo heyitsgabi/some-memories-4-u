@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -164,7 +165,7 @@ body::after {
 .header {
     text-align: center;
 
-    margin-bottom: 58px;
+    margin-bottom: 75px;
 
     position: relative;
 
@@ -231,6 +232,61 @@ h1 {
 
 
 /* =====================================================
+   MOMENTS SUBSECTION
+===================================================== */
+
+.moment-section {
+    position: relative;
+
+    z-index: 5;
+
+    margin-bottom: 105px;
+}
+
+.moment-header {
+    text-align: center;
+
+    margin-bottom: 48px;
+}
+
+.moment-label {
+    font-family: Arial, sans-serif;
+
+    font-size: 8px;
+
+    letter-spacing: 4px;
+
+    text-transform: uppercase;
+
+    color: #8d857a;
+
+    margin-bottom: 13px;
+}
+
+.moment-title {
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: clamp(30px, 5vw, 42px);
+
+    font-weight: normal;
+
+    letter-spacing: -1px;
+
+    color: #22201d;
+}
+
+.moment-line {
+    width: 42px;
+
+    height: 1px;
+
+    background: #81786c;
+
+    margin: 18px auto 15px;
+}
+
+
+/* =====================================================
    GALLERY
 ===================================================== */
 
@@ -247,6 +303,40 @@ h1 {
     position: relative;
 
     z-index: 5;
+}
+
+
+/* =====================================================
+   CENTRE INCOMPLETE FINAL ROW
+===================================================== */
+
+/*
+   The final incomplete row is centred automatically
+   using explicit placement classes below.
+*/
+
+.gallery.you .item:nth-child(9) {
+    grid-column: 2;
+}
+
+.gallery.you .item:nth-child(10) {
+    grid-column: 3;
+}
+
+.gallery.us .item:nth-child(5) {
+    grid-column: 2;
+}
+
+.gallery.us .item:nth-child(6) {
+    grid-column: 3;
+}
+
+.gallery.us .item:nth-child(7) {
+    grid-column: 2;
+}
+
+.gallery.us .item:nth-child(8) {
+    grid-column: 3;
 }
 
 
@@ -296,38 +386,6 @@ h1 {
 
 .item:nth-child(10) {
     margin-top: 40px;
-}
-
-.item:nth-child(11) {
-    margin-top: 5px;
-}
-
-.item:nth-child(12) {
-    margin-top: 28px;
-}
-
-.item:nth-child(13) {
-    margin-top: 12px;
-}
-
-.item:nth-child(14) {
-    margin-top: 38px;
-}
-
-.item:nth-child(15) {
-    margin-top: 4px;
-}
-
-.item:nth-child(16) {
-    margin-top: 30px;
-}
-
-.item:nth-child(17) {
-    margin-top: 10px;
-}
-
-.item:nth-child(18) {
-    margin-top: 35px;
 }
 
 
@@ -429,8 +487,7 @@ h1 {
    FRAME VARIATIONS
 ===================================================== */
 
-.item:nth-child(2) .frame,
-.item:nth-child(12) .frame {
+.gallery.you .item:nth-child(2) .frame {
     background: #e7dfd2;
 
     border: 1px solid #71675a;
@@ -441,23 +498,20 @@ h1 {
 }
 
 
-.item:nth-child(3) .frame,
-.item:nth-child(15) .frame {
+.gallery.you .item:nth-child(3) .frame {
     background: #20201e;
 
     border: 8px solid #20201e;
 }
 
-.item:nth-child(3) .frame::before,
-.item:nth-child(15) .frame::before {
+.gallery.you .item:nth-child(3) .frame::before {
     inset: 2px;
 
     border-color: rgba(255,255,255,0.15);
 }
 
 
-.item:nth-child(4) .frame,
-.item:nth-child(13) .frame {
+.gallery.you .item:nth-child(4) .frame {
     aspect-ratio: 1.12;
 
     background: #faf8f2;
@@ -468,8 +522,7 @@ h1 {
 }
 
 
-.item:nth-child(5) .frame,
-.item:nth-child(17) .frame {
+.gallery.you .item:nth-child(5) .frame {
     background: #ddd4c6;
 
     border: 1px solid #82786a;
@@ -478,8 +531,7 @@ h1 {
 }
 
 
-.item:nth-child(6) .frame,
-.item:nth-child(16) .frame {
+.gallery.you .item:nth-child(6) .frame {
     background: #f9f7f1;
 
     border: 2px solid #292724;
@@ -491,8 +543,7 @@ h1 {
 }
 
 
-.item:nth-child(7) .frame,
-.item:nth-child(18) .frame {
+.gallery.you .item:nth-child(7) .frame {
     aspect-ratio: 1.15;
 
     background: #1b1b1a;
@@ -500,16 +551,14 @@ h1 {
     border: 8px solid #1b1b1a;
 }
 
-.item:nth-child(7) .frame::before,
-.item:nth-child(18) .frame::before {
+.gallery.you .item:nth-child(7) .frame::before {
     inset: 2px;
 
     border-color: rgba(255,255,255,0.15);
 }
 
 
-.item:nth-child(8) .frame,
-.item:nth-child(14) .frame {
+.gallery.you .item:nth-child(8) .frame {
     background: #eee6d9;
 
     border: 1px solid #817668;
@@ -520,7 +569,7 @@ h1 {
 }
 
 
-.item:nth-child(9) .frame {
+.gallery.you .item:nth-child(9) .frame {
     background: #191918;
 
     border: 9px solid #191918;
@@ -530,14 +579,14 @@ h1 {
         0 16px 30px rgba(30,27,23,0.2);
 }
 
-.item:nth-child(9) .frame::before {
+.gallery.you .item:nth-child(9) .frame::before {
     inset: 2px;
 
     border-color: rgba(255,255,255,0.14);
 }
 
 
-.item:nth-child(10) .frame {
+.gallery.you .item:nth-child(10) .frame {
     background: #f8f5ed;
 
     border: 1px solid rgba(20,20,20,0.4);
@@ -554,7 +603,7 @@ h1 {
    US / PLACES FRAME STYLES
 ===================================================== */
 
-.item:nth-child(11) .frame {
+.gallery.us .item:nth-child(1) .frame {
     background: #f9f6ed;
 
     border: 2px solid #4a443b;
@@ -562,32 +611,79 @@ h1 {
     padding: 7px;
 }
 
-.item:nth-child(12) .frame {
-    transform: rotate(1.5deg);
+.gallery.us .item:nth-child(2) .frame {
+    background: #e7dfd2;
+
+    border: 1px solid #71675a;
+
+    box-shadow:
+        8px 8px 0 rgba(57,50,42,0.11),
+        0 15px 30px rgba(40,34,28,0.14);
 }
 
-.item:nth-child(13) .frame {
-    transform: rotate(-0.7deg);
+.gallery.us .item:nth-child(3) .frame {
+    aspect-ratio: 1.12;
+
+    background: #faf8f2;
+
+    padding: 10px;
+
+    border: 1px solid rgba(20,20,20,0.38);
 }
 
-.item:nth-child(14) .frame {
-    transform: rotate(1deg);
+.gallery.us .item:nth-child(4) .frame {
+    background: #eee6d9;
+
+    border: 1px solid #817668;
+
+    box-shadow:
+        -7px 7px 0 rgba(91,77,60,0.1),
+        0 14px 28px rgba(40,34,28,0.12);
 }
 
-.item:nth-child(15) .frame {
-    transform: rotate(-1.3deg);
+.gallery.us .item:nth-child(5) .frame {
+    background: #20201e;
+
+    border: 8px solid #20201e;
 }
 
-.item:nth-child(16) .frame {
-    transform: rotate(0.8deg);
+.gallery.us .item:nth-child(5) .frame::before {
+    inset: 2px;
+
+    border-color: rgba(255,255,255,0.15);
 }
 
-.item:nth-child(17) .frame {
-    transform: rotate(-0.8deg);
+.gallery.us .item:nth-child(6) .frame {
+    background: #f9f7f1;
+
+    border: 2px solid #292724;
+
+    box-shadow:
+        0 0 0 4px #ded7cb,
+        0 0 0 5px rgba(35,31,27,0.28),
+        0 14px 28px rgba(40,34,28,0.14);
 }
 
-.item:nth-child(18) .frame {
-    transform: rotate(1.2deg);
+.gallery.us .item:nth-child(7) .frame {
+    aspect-ratio: 1.15;
+
+    background: #1b1b1a;
+
+    border: 8px solid #1b1b1a;
+}
+
+.gallery.us .item:nth-child(7) .frame::before {
+    inset: 2px;
+
+    border-color: rgba(255,255,255,0.15);
+}
+
+.gallery.us .item:nth-child(8) .frame {
+    background: #ddd4c6;
+
+    border: 1px solid #82786a;
+
+    padding: 9px;
 }
 
 
@@ -595,43 +691,43 @@ h1 {
    ROTATIONS
 ===================================================== */
 
-.item:nth-child(1) .frame {
+.gallery .item:nth-child(1) .frame {
     transform: rotate(-1.2deg);
 }
 
-.item:nth-child(2) .frame {
+.gallery .item:nth-child(2) .frame {
     transform: rotate(1.5deg);
 }
 
-.item:nth-child(3) .frame {
+.gallery .item:nth-child(3) .frame {
     transform: rotate(-0.7deg);
 }
 
-.item:nth-child(4) .frame {
+.gallery .item:nth-child(4) .frame {
     transform: rotate(1deg);
 }
 
-.item:nth-child(5) .frame {
+.gallery .item:nth-child(5) .frame {
     transform: rotate(-1.4deg);
 }
 
-.item:nth-child(6) .frame {
+.gallery .item:nth-child(6) .frame {
     transform: rotate(0.8deg);
 }
 
-.item:nth-child(7) .frame {
+.gallery .item:nth-child(7) .frame {
     transform: rotate(-1deg);
 }
 
-.item:nth-child(8) .frame {
+.gallery .item:nth-child(8) .frame {
     transform: rotate(1.4deg);
 }
 
-.item:nth-child(9) .frame {
+.gallery .item:nth-child(9) .frame {
     transform: rotate(-0.8deg);
 }
 
-.item:nth-child(10) .frame {
+.gallery .item:nth-child(10) .frame {
     transform: rotate(1.1deg);
 }
 
@@ -749,7 +845,44 @@ h1 {
 .note-two {
     right: -25px;
 
-    top: 1000px;
+    top: 1500px;
+}
+
+
+/* =====================================================
+   DIVIDER BETWEEN YOU + US/PLACES
+===================================================== */
+
+.moment-divider {
+    width: 100%;
+
+    height: 1px;
+
+    background: rgba(50,45,38,0.16);
+
+    margin: 100px 0 90px;
+
+    position: relative;
+}
+
+.moment-divider::before {
+    content: "✦";
+
+    position: absolute;
+
+    left: 50%;
+
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    background: #d8d1c5;
+
+    padding: 0 13px;
+
+    color: #82796d;
+
+    font-size: 9px;
 }
 
 
@@ -991,11 +1124,19 @@ h1 {
     }
 
     .header {
-        margin-bottom: 48px;
+        margin-bottom: 58px;
     }
 
     h1 {
         font-size: 48px;
+    }
+
+    .moment-section {
+        margin-bottom: 70px;
+    }
+
+    .moment-header {
+        margin-bottom: 42px;
     }
 
     .gallery {
@@ -1005,6 +1146,18 @@ h1 {
         gap: 38px 13px;
     }
 
+
+    /* Reset desktop centering */
+    .gallery.you .item:nth-child(9),
+    .gallery.you .item:nth-child(10),
+    .gallery.us .item:nth-child(5),
+    .gallery.us .item:nth-child(6),
+    .gallery.us .item:nth-child(7),
+    .gallery.us .item:nth-child(8) {
+        grid-column: auto;
+    }
+
+
     .item:nth-child(2),
     .item:nth-child(3),
     .item:nth-child(4),
@@ -1013,15 +1166,7 @@ h1 {
     .item:nth-child(7),
     .item:nth-child(8),
     .item:nth-child(9),
-    .item:nth-child(10),
-    .item:nth-child(11),
-    .item:nth-child(12),
-    .item:nth-child(13),
-    .item:nth-child(14),
-    .item:nth-child(15),
-    .item:nth-child(16),
-    .item:nth-child(17),
-    .item:nth-child(18) {
+    .item:nth-child(10) {
         margin-top: 18px;
     }
 
@@ -1039,6 +1184,10 @@ h1 {
 
     .note {
         display: none;
+    }
+
+    .moment-divider {
+        margin: 70px 0 65px;
     }
 
     .bottom {
@@ -1113,7 +1262,7 @@ h1 {
 
 
     <!-- =============================================
-         HEADER
+         MAIN HEADER
     ============================================= -->
 
     <header class="header">
@@ -1140,319 +1289,374 @@ h1 {
 
 
     <!-- =============================================
-         GALLERY
+         01 / YOU
     ============================================= -->
 
-    <section class="gallery">
+    <section class="moment-section">
 
+        <div class="moment-header">
 
-        <!-- PHOTO 1 -->
-
-        <article class="item" onclick="openLightbox(0)">
-
-            <span class="number">01</span>
-
-            <div class="frame">
-                <img src="photo1.jpg" alt="Candid photo">
+            <div class="moment-label">
+                01 / You
             </div>
 
-            <div class="caption">
-                caught unaware…ish
+            <h2 class="moment-title">
+                You
+            </h2>
+
+            <div class="moment-line"></div>
+
+        </div>
+
+
+        <section class="gallery you">
+
+
+            <!-- PHOTO 1 -->
+
+            <article class="item" onclick="openLightbox(0)">
+
+                <span class="number">01</span>
+
+                <div class="frame">
+                    <img src="photo1.jpg" alt="Candid photo">
+                </div>
+
+                <div class="caption">
+                    caught unaware…ish
+                </div>
+
+            </article>
+
+
+            <!-- PHOTO 2 -->
+
+            <article class="item" onclick="openLightbox(1)">
+
+                <span class="number">02</span>
+
+                <div class="frame">
+                    <img src="photo2.jpg" alt="Close-up photo">
+                </div>
+
+                <div class="caption">
+                    …the angle was not the point
+                </div>
+
+            </article>
+
+
+            <!-- PHOTO 3 -->
+
+            <article class="item" onclick="openLightbox(2)">
+
+                <span class="number">03</span>
+
+                <div class="frame">
+                    <img src="photo3.jpg" alt="Candid moment">
+                </div>
+
+                <div class="caption">
+                    hehe
+                </div>
+
+            </article>
+
+
+            <!-- PHOTO 4 -->
+
+            <article class="item" onclick="openLightbox(3)">
+
+                <span class="number">04</span>
+
+                <div class="frame">
+                    <img src="photo4.jpg" alt="Candid moment">
+                </div>
+
+                <div class="caption">
+                    the other one could’ve looked better… now we’ll never know
+                </div>
+
+            </article>
+
+
+            <!-- PHOTO 5 -->
+
+            <article class="item" onclick="openLightbox(4)">
+
+                <span class="number">05</span>
+
+                <div class="frame">
+                    <img src="photo5.jpg" alt="Candid photo">
+                </div>
+
+                <div class="caption">
+                    first goatee reveal?
+                </div>
+
+            </article>
+
+
+            <!-- PHOTO 6 -->
+
+            <article class="item" onclick="openLightbox(5)">
+
+                <span class="number">06</span>
+
+                <div class="frame">
+                    <img src="photo6.jpg" alt="Mirror selfie">
+                </div>
+
+                <div class="caption">
+                    apparently this needed to be recorded…
+                </div>
+
+            </article>
+
+
+            <!-- PHOTO 7 -->
+
+            <article class="item" onclick="openLightbox(6)">
+
+                <span class="number">07</span>
+
+                <div class="frame">
+                    <img src="photo7.jpg" alt="Sleeping">
+                </div>
+
+                <div class="caption">
+                    sleeping…shocker
+                    <br>
+                    also just look at how much peace i give you
+                </div>
+
+            </article>
+
+
+            <!-- PHOTO 8 -->
+
+            <article class="item" onclick="openLightbox(7)">
+
+                <span class="number">08</span>
+
+                <div class="frame">
+                    <img src="photo8.jpg" alt="Back profile outdoors">
+                </div>
+
+                <div class="caption">
+                    😛
+                </div>
+
+            </article>
+
+
+            <!-- PHOTO 9 -->
+
+            <article class="item" onclick="openLightbox(8)">
+
+                <span class="number">09</span>
+
+                <div class="frame">
+                    <img src="photo9.jpg" alt="Mirror photo">
+                </div>
+
+                <div class="caption">
+                    a fav 🙂‍↕️
+                </div>
+
+            </article>
+
+
+            <!-- PHOTO 10 -->
+
+            <article class="item" onclick="openLightbox(9)">
+
+                <span class="number">10</span>
+
+                <div class="frame">
+                    <img src="photo10.jpg" alt="A photo he likes">
+                </div>
+
+                <div class="caption">
+                    you liked this one, so here.
+                </div>
+
+            </article>
+
+
+        </section>
+
+    </section>
+
+
+    <!-- =============================================
+         DIVIDER
+    ============================================= -->
+
+    <div class="moment-divider"></div>
+
+
+    <!-- =============================================
+         02 / US + PLACES
+    ============================================= -->
+
+    <section class="moment-section">
+
+        <div class="moment-header">
+
+            <div class="moment-label">
+                02 / Us / Places
             </div>
 
-        </article>
+            <h2 class="moment-title">
+                Us / Places
+            </h2>
 
+            <div class="moment-line"></div>
 
-        <!-- PHOTO 2 -->
+        </div>
 
-        <article class="item" onclick="openLightbox(1)">
 
-            <span class="number">02</span>
+        <section class="gallery us">
 
-            <div class="frame">
-                <img src="photo2.jpg" alt="Close-up photo">
-            </div>
 
-            <div class="caption">
-                …the angle was not the point
-            </div>
+            <!-- US / PLACES 1 -->
 
-        </article>
+            <article class="item" onclick="openLightbox(10)">
 
+                <span class="number">01</span>
 
-        <!-- PHOTO 3 -->
+                <div class="frame">
+                    <img src="us1.jpg" alt="Boba drinks">
+                </div>
 
-        <article class="item" onclick="openLightbox(2)">
+                <div class="caption">
+                    hand mogging
+                </div>
 
-            <span class="number">03</span>
+            </article>
 
-            <div class="frame">
-                <img src="photo3.jpg" alt="Candid moment">
-            </div>
 
-            <div class="caption">
-                hehe
-            </div>
+            <!-- US / PLACES 2 -->
 
-        </article>
+            <article class="item" onclick="openLightbox(11)">
 
+                <span class="number">02</span>
 
-        <!-- PHOTO 4 -->
+                <div class="frame">
+                    <img src="us2.jpg" alt="Night market">
+                </div>
 
-        <article class="item" onclick="openLightbox(3)">
+                <div class="caption">
+                    our return to your fav spot which I have hijacked… tbf, I didn’t see your name engraved there
+                </div>
 
-            <span class="number">04</span>
+            </article>
 
-            <div class="frame">
-                <img src="photo4.jpg" alt="Candid moment">
-            </div>
 
-            <div class="caption">
-                the other one could’ve looked better… now we’ll never know
-            </div>
+            <!-- US / PLACES 3 -->
 
-        </article>
+            <article class="item" onclick="openLightbox(12)">
 
+                <span class="number">03</span>
 
-        <!-- PHOTO 5 -->
+                <div class="frame">
+                    <img src="us3.jpg" alt="Legon City Mall">
+                </div>
 
-        <article class="item" onclick="openLightbox(4)">
+                <div class="caption">
+                    one of many walks… who is that cutie in the photo though 🤔
+                </div>
 
-            <span class="number">05</span>
+            </article>
 
-            <div class="frame">
-                <img src="photo5.jpg" alt="Candid photo">
-            </div>
 
-            <div class="caption">
-                first goatee reveal?
-            </div>
+            <!-- US / PLACES 4 -->
 
-        </article>
+            <article class="item" onclick="openLightbox(13)">
 
+                <span class="number">04</span>
 
-        <!-- PHOTO 6 -->
+                <div class="frame">
+                    <img src="us4.jpg" alt="Relaxing moment">
+                </div>
 
-        <article class="item" onclick="openLightbox(5)">
+                <div class="caption">
+                    sb looks comfy
+                </div>
 
-            <span class="number">06</span>
+            </article>
 
-            <div class="frame">
-                <img src="photo6.jpg" alt="Mirror selfie">
-            </div>
 
-            <div class="caption">
-                apparently this needed to be recorded…
-            </div>
+            <!-- US / PLACES 5 -->
 
-        </article>
+            <article class="item" onclick="openLightbox(14)">
 
+                <span class="number">05</span>
 
-        <!-- PHOTO 7 -->
+                <div class="frame">
+                    <img src="us5.jpg" alt="Relaxing moment close-up">
+                </div>
 
-        <article class="item" onclick="openLightbox(6)">
+                <div class="caption">
+                    like an innocent little thing… looks really are deceptive, aren’t they
+                </div>
 
-            <span class="number">07</span>
+            </article>
 
-            <div class="frame">
-                <img src="photo7.jpg" alt="Sleeping">
-            </div>
 
-            <div class="caption">
-                sleeping…shocker
-                <br>
-                also just look at how much peace i give you
-            </div>
+            <!-- US / PLACES 6 -->
 
-        </article>
+            <article class="item" onclick="openLightbox(15)">
 
+                <span class="number">06</span>
 
-        <!-- PHOTO 8 -->
+                <div class="frame">
+                    <img src="us6.jpg" alt="Balme Library">
+                </div>
 
-        <article class="item" onclick="openLightbox(7)">
+                <div class="caption">
+                    just bc it’s pretty and you ‘happened’ to be there
+                </div>
 
-            <span class="number">08</span>
+            </article>
 
-            <div class="frame">
-                <img src="photo8.jpg" alt="Back profile outdoors">
-            </div>
 
-            <div class="caption">
-                😛
-            </div>
+            <!-- US / PLACES 7 -->
 
-        </article>
+            <article class="item" onclick="openLightbox(16)">
 
+                <span class="number">07</span>
 
-        <!-- PHOTO 9 -->
+                <div class="frame">
+                    <img src="us7.jpg" alt="Campus pathway">
+                </div>
 
-        <article class="item" onclick="openLightbox(8)">
+                <div class="caption">
+                    our return after you lost the Skittles game terribly
+                </div>
 
-            <span class="number">09</span>
+            </article>
 
-            <div class="frame">
-                <img src="photo9.jpg" alt="Mirror photo">
-            </div>
 
-            <div class="caption">
-                a fav 🙂‍↕️
-            </div>
+            <!-- US / PLACES 8 -->
 
-        </article>
+            <article class="item" onclick="openLightbox(17)">
 
+                <span class="number">08</span>
 
-        <!-- PHOTO 10 -->
+                <div class="frame">
+                    <img src="us8.jpg" alt="Campus walkway">
+                </div>
 
-        <article class="item" onclick="openLightbox(9)">
+                <div class="caption">
+                    you wallowing in your misery in the distance… realizing that that was going to be just one of your many losses to me
+                </div>
 
-            <span class="number">10</span>
+            </article>
 
-            <div class="frame">
-                <img src="photo10.jpg" alt="A photo he likes">
-            </div>
 
-            <div class="caption">
-                you liked this one, so here.
-            </div>
-
-        </article>
-
-
-        <!-- US / PLACES 1 -->
-
-        <article class="item" onclick="openLightbox(10)">
-
-            <span class="number">11</span>
-
-            <div class="frame">
-                <img src="us1.jpg" alt="Boba drinks">
-            </div>
-
-            <div class="caption">
-                hand mogging
-            </div>
-
-        </article>
-
-
-        <!-- US / PLACES 2 -->
-
-        <article class="item" onclick="openLightbox(11)">
-
-            <span class="number">12</span>
-
-            <div class="frame">
-                <img src="us2.jpg" alt="Night market">
-            </div>
-
-            <div class="caption">
-                our return to your fav spot which I have hijacked… tbf, I didn’t see your name engraved there
-            </div>
-
-        </article>
-
-
-        <!-- US / PLACES 3 -->
-
-        <article class="item" onclick="openLightbox(12)">
-
-            <span class="number">13</span>
-
-            <div class="frame">
-                <img src="us3.jpg" alt="Legon City Mall">
-            </div>
-
-            <div class="caption">
-                one of many walks… who is that cutie in the photo though 🤔
-            </div>
-
-        </article>
-
-
-        <!-- US / PLACES 4 -->
-
-        <article class="item" onclick="openLightbox(13)">
-
-            <span class="number">14</span>
-
-            <div class="frame">
-                <img src="us4.jpg" alt="Relaxing moment">
-            </div>
-
-            <div class="caption">
-                sb looks comfy
-            </div>
-
-        </article>
-
-
-        <!-- US / PLACES 5 -->
-
-        <article class="item" onclick="openLightbox(14)">
-
-            <span class="number">15</span>
-
-            <div class="frame">
-                <img src="us5.jpg" alt="Relaxing moment close-up">
-            </div>
-
-            <div class="caption">
-                like an innocent little thing… looks really are deceptive, aren’t they
-            </div>
-
-        </article>
-
-
-        <!-- US / PLACES 6 -->
-
-        <article class="item" onclick="openLightbox(15)">
-
-            <span class="number">16</span>
-
-            <div class="frame">
-                <img src="us6.jpg" alt="Balme Library">
-            </div>
-
-            <div class="caption">
-                just bc it’s pretty and you ‘happened’ to be there
-            </div>
-
-        </article>
-
-
-        <!-- US / PLACES 7 -->
-
-        <article class="item" onclick="openLightbox(16)">
-
-            <span class="number">17</span>
-
-            <div class="frame">
-                <img src="us7.jpg" alt="Campus pathway">
-            </div>
-
-            <div class="caption">
-                our return after you lost the Skittles game terribly
-            </div>
-
-        </article>
-
-
-        <!-- US / PLACES 8 -->
-
-        <article class="item" onclick="openLightbox(17)">
-
-            <span class="number">18</span>
-
-            <div class="frame">
-                <img src="us8.jpg" alt="Campus walkway">
-            </div>
-
-            <div class="caption">
-                you wallowing in your misery in the distance… realizing that that was going to be just one of your many losses to me
-            </div>
-
-        </article>
-
+        </section>
 
     </section>
 
@@ -1824,3 +2028,4 @@ document.addEventListener(
 
 </body>
 </html>
+```
