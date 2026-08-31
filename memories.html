@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 
@@ -1206,7 +1205,6 @@ h1 {
 
 <header class="header">
 
-```
 <div class="eyebrow">
     Some Memories 4 U
 </div>
@@ -1220,9 +1218,9 @@ h1 {
 <p class="header-note">
     Things that somehow survived long enough to be documented.
 </p>
-```
 
 </header>
+
 
 <!-- =================================================
      VIDEOS
@@ -1230,7 +1228,6 @@ h1 {
 
 <section class="archive-section">
 
-```
 <div class="section-header">
 
     <div class="section-label">
@@ -1261,6 +1258,7 @@ h1 {
 
             <iframe
                 src="https://drive.google.com/file/d/1FaHIDvCHrj6Dj8Rjeqw5AZQjwYehdvYl/preview"
+                title="Memory video 1"
                 allow="autoplay"
                 allowfullscreen>
             </iframe>
@@ -1285,6 +1283,7 @@ h1 {
 
             <iframe
                 src="https://drive.google.com/file/d/1A-S2MdAV0rGj9lf0Lv5aQ-TV4tx4TMG_/preview"
+                title="Memory video 2"
                 allow="autoplay"
                 allowfullscreen>
             </iframe>
@@ -1309,6 +1308,7 @@ h1 {
 
             <iframe
                 src="https://drive.google.com/file/d/1oRgery3QyYA-R3hhpE0YKsSgf7uyMG-Q/preview"
+                title="Memory video 3"
                 allow="autoplay"
                 allowfullscreen>
             </iframe>
@@ -1333,6 +1333,7 @@ h1 {
 
             <iframe
                 src="https://drive.google.com/file/d/183nO1eYWlZinCWKqc1aIcrwNL-qXD35W/preview"
+                title="Memory video 4"
                 allow="autoplay"
                 allowfullscreen>
             </iframe>
@@ -1357,6 +1358,7 @@ h1 {
 
             <iframe
                 src="https://drive.google.com/file/d/1ROZOX17T234avamUR_wYkZtsql1NKnEQ/preview"
+                title="Memory video 5"
                 allow="autoplay"
                 allowfullscreen>
             </iframe>
@@ -1381,6 +1383,7 @@ h1 {
 
             <iframe
                 src="https://drive.google.com/file/d/1ObZx67LF96OvoOlaN-S5BM8GbZL6bH9m/preview"
+                title="Memory video 6"
                 allow="autoplay"
                 allowfullscreen>
             </iframe>
@@ -1405,6 +1408,7 @@ h1 {
 
             <iframe
                 src="https://drive.google.com/file/d/1INAKUIL4B0Z_LeeZdEs-3ksmmmCyhykl/preview"
+                title="Memory video 7"
                 allow="autoplay"
                 allowfullscreen>
             </iframe>
@@ -1429,6 +1433,7 @@ h1 {
 
             <iframe
                 src="https://drive.google.com/file/d/1VHuZXWl9EKfS4j7941PBzcDpEM5a5LgY/preview"
+                title="Memory video 8"
                 allow="autoplay"
                 allowfullscreen>
             </iframe>
@@ -1453,6 +1458,7 @@ h1 {
 
             <iframe
                 src="https://drive.google.com/file/d/1-5CTfYhO1iqhTq3tgWbw2HxljmtSPldO/preview"
+                title="Memory video 9"
                 allow="autoplay"
                 allowfullscreen>
             </iframe>
@@ -1477,6 +1483,7 @@ h1 {
 
             <iframe
                 src="https://drive.google.com/file/d/1iBnwAu87PSvGRvkiUhq2vaFH0j8_MWqR/preview"
+                title="Memory video 10"
                 allow="autoplay"
                 allowfullscreen>
             </iframe>
@@ -1501,6 +1508,7 @@ h1 {
 
             <iframe
                 src="https://drive.google.com/file/d/1zj66vX1QQrn3i4N4BW-lYVBkANXqzjQS/preview"
+                title="Memory video 11"
                 allow="autoplay"
                 allowfullscreen>
             </iframe>
@@ -1518,9 +1526,9 @@ h1 {
 
 
 </div>
-```
 
 </section>
+
 
 <!-- =================================================
      DIVIDER
@@ -1528,13 +1536,13 @@ h1 {
 
 <div class="archive-divider"></div>
 
+
 <!-- =================================================
      SCREENSHOTS
 ================================================= -->
 
 <section class="archive-section">
 
-```
 <div class="section-header">
 
     <div class="section-label">
@@ -1741,9 +1749,9 @@ h1 {
 
 
 </div>
-```
 
 </section>
+
 
 <!-- =================================================
      BOTTOM
@@ -1751,7 +1759,6 @@ h1 {
 
 <div class="bottom">
 
-```
 <p class="bottom-note">
     that's enough evidence for now.
 </p>
@@ -1762,11 +1769,11 @@ h1 {
 >
     ← Back to archive
 </a>
-```
 
 </div>
 
 </main>
+
 
 <!-- =================================================
      SCREENSHOT LIGHTBOX
@@ -1778,13 +1785,13 @@ h1 {
     aria-hidden="true"
 >
 
-```
 <div class="lightbox-image-wrap">
 
     <button
         class="lightbox-close"
         id="lightboxClose"
         aria-label="Close screenshot"
+        type="button"
     >
         ×
     </button>
@@ -1801,9 +1808,9 @@ h1 {
 <div class="lightbox-hint">
     tap outside or press esc to close
 </div>
-```
 
 </div>
+
 
 <script>
 
@@ -1812,9 +1819,13 @@ h1 {
 ===================================================== */
 
 window.addEventListener("DOMContentLoaded", function () {
+
     requestAnimationFrame(function () {
+
         document.body.classList.add("page-ready");
+
     });
+
 });
 
 
@@ -1833,10 +1844,13 @@ document.querySelectorAll("a.page-link").forEach(function (link) {
         event.preventDefault();
 
         document.body.classList.remove("page-ready");
+
         document.body.classList.add("page-leaving");
 
         setTimeout(function () {
+
             window.location.href = destination;
+
         }, 140);
 
     });
@@ -1849,10 +1863,13 @@ document.querySelectorAll("a.page-link").forEach(function (link) {
 ===================================================== */
 
 const lightbox = document.getElementById("lightbox");
+
 const lightboxImage = document.getElementById("lightboxImage");
+
 const lightboxClose = document.getElementById("lightboxClose");
 
-const screenshotCards = document.querySelectorAll(".screenshot-card");
+const screenshotCards =
+    document.querySelectorAll(".screenshot-card");
 
 
 screenshotCards.forEach(function (card) {
@@ -1864,6 +1881,7 @@ screenshotCards.forEach(function (card) {
     card.addEventListener("click", function () {
 
         lightboxImage.src = image.src;
+
         lightboxImage.alt = image.alt;
 
         lightbox.classList.add("active");
@@ -1890,9 +1908,13 @@ function closeLightbox() {
     document.body.style.overflow = "";
 
     setTimeout(function () {
+
         if (!lightbox.classList.contains("active")) {
+
             lightboxImage.src = "";
+
         }
+
     }, 200);
 
 }
@@ -1910,7 +1932,9 @@ lightboxClose.addEventListener("click", function (event) {
 lightbox.addEventListener("click", function (event) {
 
     if (event.target === lightbox) {
+
         closeLightbox();
+
     }
 
 });
@@ -1922,8 +1946,13 @@ lightbox.addEventListener("click", function (event) {
 
 document.addEventListener("keydown", function (event) {
 
-    if (event.key === "Escape" && lightbox.classList.contains("active")) {
+    if (
+        event.key === "Escape" &&
+        lightbox.classList.contains("active")
+    ) {
+
         closeLightbox();
+
     }
 
 });
