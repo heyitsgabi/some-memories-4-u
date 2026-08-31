@@ -9,10 +9,6 @@
 
 <style>
 
-/* =====================================================
-   RESET
-===================================================== */
-
 * {
     box-sizing: border-box;
     margin: 0;
@@ -25,7 +21,6 @@ html {
 
 body {
     min-height: 100vh;
-
     background:
         radial-gradient(
             ellipse at 10% 5%,
@@ -45,11 +40,8 @@ body {
         #d8d1c5;
 
     color: #191817;
-
     font-family: Georgia, "Times New Roman", serif;
-
     overflow-x: hidden;
-
     position: relative;
 }
 
@@ -60,43 +52,33 @@ body {
 
 body::before {
     content: "";
-
     position: fixed;
-
     inset: 0;
-
     pointer-events: none;
-
     z-index: 9999;
-
     opacity: 0.28;
 
     background:
-
         radial-gradient(
             ellipse at 15% 18%,
             rgba(255,255,255,0.30) 0%,
             transparent 28%
         ),
-
         radial-gradient(
             ellipse at 82% 12%,
             rgba(90,78,63,0.10) 0%,
             transparent 25%
         ),
-
         radial-gradient(
             ellipse at 70% 72%,
             rgba(255,255,255,0.24) 0%,
             transparent 30%
         ),
-
         radial-gradient(
             ellipse at 25% 85%,
             rgba(90,78,63,0.08) 0%,
             transparent 25%
         ),
-
         linear-gradient(
             125deg,
             transparent 0%,
@@ -107,7 +89,6 @@ body::before {
             rgba(255,255,255,0.10) 78%,
             transparent 90%
         ),
-
         linear-gradient(
             35deg,
             transparent 10%,
@@ -127,15 +108,10 @@ body::before {
 
 body::after {
     content: "";
-
     position: fixed;
-
     inset: 12px;
-
     border: 1px solid rgba(50,45,38,0.10);
-
     pointer-events: none;
-
     z-index: 9998;
 }
 
@@ -146,11 +122,8 @@ body::after {
 
 .page {
     width: 100%;
-
     max-width: 1180px;
-
     margin: 0 auto;
-
     padding: 70px 35px 90px;
 }
 
@@ -161,55 +134,38 @@ body::after {
 
 .header {
     text-align: center;
-
     margin-bottom: 65px;
-
     position: relative;
-
     z-index: 20;
 }
 
 .eyebrow {
     font-family: Arial, sans-serif;
-
     font-size: 9px;
-
     letter-spacing: 5px;
-
     text-transform: uppercase;
-
     color: #70695f;
-
     margin-bottom: 18px;
 }
 
 h1 {
     font-size: clamp(48px, 8vw, 76px);
-
     font-weight: normal;
-
     letter-spacing: -3px;
-
     line-height: 0.92;
-
     color: #181716;
 }
 
 .header-line {
     width: 70px;
-
     height: 1px;
-
     background: #3b3731;
-
     margin: 25px auto 20px;
 }
 
 .header-note {
     color: #6f685e;
-
     font-size: 12px;
-
     line-height: 1.6;
 }
 
@@ -220,9 +176,7 @@ h1 {
 
 .moment-section {
     position: relative;
-
     z-index: 5;
-
     margin-bottom: 90px;
 }
 
@@ -232,51 +186,36 @@ h1 {
 
 .section-header {
     text-align: center;
-
     margin-bottom: 45px;
 }
 
 .section-label {
     font-family: Arial, sans-serif;
-
     font-size: 8px;
-
     letter-spacing: 4px;
-
     text-transform: uppercase;
-
     color: #8d857a;
-
     margin-bottom: 13px;
 }
 
 .section-title {
     font-family: Georgia, "Times New Roman", serif;
-
     font-size: clamp(30px, 5vw, 42px);
-
     font-weight: normal;
-
     letter-spacing: -1px;
-
     color: #22201d;
 }
 
 .section-line {
     width: 42px;
-
     height: 1px;
-
     background: #81786c;
-
     margin: 18px auto 15px;
 }
 
 .section-note {
     color: #756d63;
-
     font-size: 11px;
-
     font-style: italic;
 }
 
@@ -287,33 +226,21 @@ h1 {
 
 .section-divider {
     width: 100%;
-
     height: 1px;
-
     background: rgba(50,45,38,0.13);
-
     margin: 10px 0 85px;
-
     position: relative;
 }
 
 .section-divider::before {
     content: "✦";
-
     position: absolute;
-
     left: 50%;
-
     top: 50%;
-
     transform: translate(-50%, -50%);
-
     background: #d8d1c5;
-
     padding: 0 13px;
-
     color: #82796d;
-
     font-size: 9px;
 }
 
@@ -324,16 +251,10 @@ h1 {
 
 .gallery {
     display: grid;
-
-    grid-template-columns:
-        repeat(4, minmax(0, 1fr));
-
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 44px 22px;
-
     align-items: start;
-
     position: relative;
-
     z-index: 5;
 }
 
@@ -344,13 +265,13 @@ h1 {
 
 .item {
     position: relative;
-
     cursor: pointer;
-
     min-width: 0;
-
     contain: layout paint;
 }
+
+
+/* Desktop stagger */
 
 .item:nth-child(2) {
     margin-top: 32px;
@@ -395,15 +316,10 @@ h1 {
 
 .frame {
     position: relative;
-
     width: 100%;
-
     aspect-ratio: 0.84;
-
     padding: 8px;
-
     background: #f8f5ee;
-
     border: 1px solid rgba(25,23,20,0.28);
 
     box-shadow:
@@ -424,15 +340,10 @@ h1 {
 
 .frame::before {
     content: "";
-
     position: absolute;
-
     inset: 4px;
-
     border: 1px solid rgba(35,31,27,0.13);
-
     pointer-events: none;
-
     z-index: 3;
 }
 
@@ -443,17 +354,11 @@ h1 {
 
 .frame::after {
     content: "✦";
-
     position: absolute;
-
     top: 8px;
-
     right: 10px;
-
     font-size: 8px;
-
     color: rgba(40,35,29,0.38);
-
     z-index: 5;
 }
 
@@ -464,15 +369,10 @@ h1 {
 
 .frame img {
     width: 100%;
-
     height: 100%;
-
     display: block;
-
     object-fit: cover;
-
     position: relative;
-
     z-index: 2;
 
     filter:
@@ -493,7 +393,6 @@ h1 {
 
 .item:nth-child(2) .frame {
     background: #e7dfd2;
-
     border: 1px solid #71675a;
 
     box-shadow:
@@ -501,43 +400,31 @@ h1 {
         0 15px 30px rgba(40,34,28,0.14);
 }
 
-
 .item:nth-child(3) .frame {
     background: #20201e;
-
     border: 8px solid #20201e;
 }
 
 .item:nth-child(3) .frame::before {
     inset: 2px;
-
     border-color: rgba(255,255,255,0.15);
 }
 
-
 .item:nth-child(4) .frame {
     aspect-ratio: 1.12;
-
     background: #faf8f2;
-
     padding: 10px;
-
     border: 1px solid rgba(20,20,20,0.38);
 }
 
-
 .item:nth-child(5) .frame {
     background: #ddd4c6;
-
     border: 1px solid #82786a;
-
     padding: 9px;
 }
 
-
 .item:nth-child(6) .frame {
     background: #f9f7f1;
-
     border: 2px solid #292724;
 
     box-shadow:
@@ -546,25 +433,19 @@ h1 {
         0 14px 28px rgba(40,34,28,0.14);
 }
 
-
 .item:nth-child(7) .frame {
     aspect-ratio: 1.15;
-
     background: #1b1b1a;
-
     border: 8px solid #1b1b1a;
 }
 
 .item:nth-child(7) .frame::before {
     inset: 2px;
-
     border-color: rgba(255,255,255,0.15);
 }
 
-
 .item:nth-child(8) .frame {
     background: #eee6d9;
-
     border: 1px solid #817668;
 
     box-shadow:
@@ -572,10 +453,8 @@ h1 {
         0 14px 28px rgba(40,34,28,0.12);
 }
 
-
 .item:nth-child(9) .frame {
     background: #191918;
-
     border: 9px solid #191918;
 
     box-shadow:
@@ -585,16 +464,12 @@ h1 {
 
 .item:nth-child(9) .frame::before {
     inset: 2px;
-
     border-color: rgba(255,255,255,0.14);
 }
 
-
 .item:nth-child(10) .frame {
     background: #f8f5ed;
-
     border: 1px solid rgba(20,20,20,0.4);
-
     padding: 10px;
 
     box-shadow:
@@ -609,7 +484,6 @@ h1 {
 
 .us-gallery .item:nth-child(2) .frame {
     background: #e7dfd2;
-
     border: 1px solid #71675a;
 
     box-shadow:
@@ -619,17 +493,13 @@ h1 {
 
 .us-gallery .item:nth-child(3) .frame {
     aspect-ratio: 1.12;
-
     background: #faf8f2;
-
     padding: 10px;
-
     border: 1px solid rgba(20,20,20,0.38);
 }
 
 .us-gallery .item:nth-child(4) .frame {
     background: #eee6d9;
-
     border: 1px solid #817668;
 
     box-shadow:
@@ -639,7 +509,6 @@ h1 {
 
 .us-gallery .item:nth-child(5) .frame {
     background: #191918;
-
     border: 9px solid #191918;
 
     box-shadow:
@@ -649,13 +518,11 @@ h1 {
 
 .us-gallery .item:nth-child(5) .frame::before {
     inset: 2px;
-
     border-color: rgba(255,255,255,0.14);
 }
 
 .us-gallery .item:nth-child(6) .frame {
     background: #f9f7f1;
-
     border: 2px solid #292724;
 
     box-shadow:
@@ -666,23 +533,18 @@ h1 {
 
 .us-gallery .item:nth-child(7) .frame {
     background: #ddd4c6;
-
     border: 1px solid #82786a;
-
     padding: 9px;
 }
 
 .us-gallery .item:nth-child(8) .frame {
     aspect-ratio: 1.15;
-
     background: #1b1b1a;
-
     border: 8px solid #1b1b1a;
 }
 
 .us-gallery .item:nth-child(8) .frame::before {
     inset: 2px;
-
     border-color: rgba(255,255,255,0.15);
 }
 
@@ -792,33 +654,21 @@ h1 {
 
 .caption {
     margin-top: 12px;
-
     padding: 0 4px;
-
     color: #403c36;
-
     font-size: 11px;
-
     line-height: 1.5;
-
     min-height: 34px;
-
     position: relative;
-
     z-index: 10;
 }
 
 .caption::before {
     content: "";
-
     display: block;
-
     width: 17px;
-
     height: 1px;
-
     background: #aaa195;
-
     margin-bottom: 7px;
 }
 
@@ -829,17 +679,12 @@ h1 {
 
 .number {
     position: absolute;
-
     top: -18px;
-
     left: 2px;
 
     font-family: Arial, sans-serif;
-
     font-size: 7px;
-
     letter-spacing: 2px;
-
     color: #9c958b;
 
     z-index: 15;
@@ -854,29 +699,22 @@ h1 {
     position: absolute;
 
     font-family: Arial, sans-serif;
-
     font-size: 7px;
-
     letter-spacing: 3px;
-
     text-transform: uppercase;
-
     color: #968d82;
 
     writing-mode: vertical-rl;
-
     z-index: 1;
 }
 
 .note-one {
     left: -25px;
-
     top: 270px;
 }
 
 .note-two {
     right: -25px;
-
     top: 1000px;
 }
 
@@ -887,45 +725,31 @@ h1 {
 
 .bottom {
     text-align: center;
-
     margin-top: 70px;
-
     padding-top: 28px;
-
     border-top: 1px solid rgba(50,45,38,0.16);
-
     position: relative;
-
     z-index: 30;
 }
 
 .bottom-note {
     color: #7d756b;
-
     font-size: 11px;
-
     margin-bottom: 20px;
-
     font-style: italic;
 }
 
 .back {
     display: inline-block;
-
     text-decoration: none;
-
     color: #3d3934;
 
     font-family: Arial, sans-serif;
-
     font-size: 8px;
-
     letter-spacing: 3px;
-
     text-transform: uppercase;
 
     padding: 11px 20px;
-
     border: 1px solid rgba(40,35,30,0.35);
 
     transition:
@@ -935,7 +759,6 @@ h1 {
 
 .back:hover {
     background: #1b1b1a;
-
     color: #f7f3eb;
 }
 
@@ -946,7 +769,6 @@ h1 {
 
 .lightbox {
     position: fixed;
-
     inset: 0;
 
     background: rgba(20,19,17,0.94);
@@ -954,15 +776,12 @@ h1 {
     z-index: 10000;
 
     display: flex;
-
     align-items: center;
-
     justify-content: center;
 
     padding: 30px;
 
     opacity: 0;
-
     pointer-events: none;
 
     transition: opacity 0.25s ease;
@@ -970,33 +789,25 @@ h1 {
 
 .lightbox.active {
     opacity: 1;
-
     pointer-events: auto;
 }
 
 .lightbox-inner {
     max-width: 850px;
-
     width: 100%;
-
     max-height: 94vh;
 
     display: flex;
-
     flex-direction: column;
-
     align-items: center;
-
     justify-content: center;
 }
 
 .lightbox-image {
     max-width: 90vw;
-
     max-height: 76vh;
 
     object-fit: contain;
-
     display: block;
 
     box-shadow:
@@ -1007,74 +818,52 @@ h1 {
 
 .lightbox-caption {
     color: #f1eee7;
-
     font-family: Georgia, serif;
-
     font-size: 14px;
-
     line-height: 1.5;
-
     text-align: center;
 
     max-width: 540px;
-
     margin-top: 18px;
+}
+
+.close,
+.prev,
+.next {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.35);
+    color: #fff;
+    cursor: pointer;
+    z-index: 10002;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
 }
 
 .close {
     position: fixed;
-
     top: 22px;
-
     right: 25px;
 
-    background: transparent;
-
-    border: 1px solid rgba(255,255,255,0.35);
-
-    color: #fff;
-
     width: 38px;
-
     height: 38px;
 
     border-radius: 50%;
-
     font-size: 18px;
-
-    cursor: pointer;
-
-    z-index: 10002;
 }
 
 .prev,
 .next {
     position: fixed;
-
     top: 50%;
-
     transform: translateY(-50%);
 
-    background: transparent;
-
-    border: 1px solid rgba(255,255,255,0.3);
-
-    color: #fff;
-
     width: 42px;
-
     height: 42px;
 
     border-radius: 50%;
-
-    cursor: pointer;
-
     font-size: 17px;
-
-    z-index: 10002;
-
-    transition:
-        background 0.2s ease;
 }
 
 .prev {
@@ -1091,15 +880,22 @@ h1 {
     background: rgba(255,255,255,0.12);
 }
 
+.prev:active,
+.next:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+.close:active {
+    transform: scale(0.95);
+}
+
 .lightbox-counter {
     margin-top: 10px;
 
     color: #88837b;
 
     font-family: Arial, sans-serif;
-
     font-size: 8px;
-
     letter-spacing: 3px;
 }
 
@@ -1139,9 +935,7 @@ h1 {
     }
 
     .gallery {
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
-
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 38px 13px;
     }
 
@@ -1151,21 +945,17 @@ h1 {
 
     .gallery .item:nth-child(odd):last-child {
         grid-column: 1 / -1;
-
         width: calc(50% - 6.5px);
-
         justify-self: center;
     }
 
     .caption {
         font-size: 10px;
-
         margin-top: 9px;
     }
 
     .number {
         top: -16px;
-
         font-size: 6px;
     }
 
@@ -1187,13 +977,11 @@ h1 {
 
     .lightbox-image {
         max-width: 94vw;
-
         max-height: 70vh;
     }
 
     .lightbox-caption {
         font-size: 13px;
-
         padding: 0 25px;
     }
 
@@ -1207,10 +995,8 @@ h1 {
 
     .close {
         top: 14px;
-
         right: 14px;
     }
-
 }
 
 
@@ -1240,6 +1026,76 @@ h1 {
         font-size: 11px;
     }
 
+    .lightbox {
+        padding: 15px;
+    }
+
+    .lightbox-image {
+        max-width: 88vw;
+        max-height: 64vh;
+        border-width: 4px;
+    }
+
+    .lightbox-caption {
+        font-size: 12px;
+        padding: 0 40px;
+        margin-top: 14px;
+    }
+
+    .prev,
+    .next {
+        width: 36px;
+        height: 36px;
+        font-size: 15px;
+    }
+
+    .prev {
+        left: 7px;
+    }
+
+    .next {
+        right: 7px;
+    }
+
+    .close {
+        width: 34px;
+        height: 34px;
+        top: 10px;
+        right: 10px;
+    }
+}
+
+
+/* =====================================================
+   ACCESSIBILITY
+===================================================== */
+
+.item:focus-visible {
+    outline: 2px solid #5c554b;
+    outline-offset: 5px;
+}
+
+button:focus-visible,
+.back:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    .frame,
+    .frame img,
+    .lightbox,
+    .close,
+    .prev,
+    .next,
+    .back {
+        transition: none;
+    }
 }
 
 </style>
@@ -1252,9 +1108,7 @@ h1 {
 <main class="page">
 
 
-    <!-- =============================================
-         HEADER
-    ============================================= -->
+    <!-- HEADER -->
 
     <header class="header">
 
@@ -1275,9 +1129,7 @@ h1 {
     </header>
 
 
-    <!-- =============================================
-         01 / YOU
-    ============================================= -->
+    <!-- 01 / YOU -->
 
     <section class="moment-section">
 
@@ -1303,9 +1155,13 @@ h1 {
         <div class="gallery">
 
 
-            <!-- PHOTO 1 -->
-
-            <article class="item" onclick="openLightbox(0)">
+            <article
+                class="item"
+                tabindex="0"
+                role="button"
+                onclick="openLightbox(0)"
+                onkeydown="handleItemKey(event, 0)"
+            >
 
                 <span class="number">01</span>
 
@@ -1325,9 +1181,13 @@ h1 {
             </article>
 
 
-            <!-- PHOTO 2 -->
-
-            <article class="item" onclick="openLightbox(1)">
+            <article
+                class="item"
+                tabindex="0"
+                role="button"
+                onclick="openLightbox(1)"
+                onkeydown="handleItemKey(event, 1)"
+            >
 
                 <span class="number">02</span>
 
@@ -1347,9 +1207,13 @@ h1 {
             </article>
 
 
-            <!-- PHOTO 3 -->
-
-            <article class="item" onclick="openLightbox(2)">
+            <article
+                class="item"
+                tabindex="0"
+                role="button"
+                onclick="openLightbox(2)"
+                onkeydown="handleItemKey(event, 2)"
+            >
 
                 <span class="number">03</span>
 
@@ -1369,9 +1233,13 @@ h1 {
             </article>
 
 
-            <!-- PHOTO 4 -->
-
-            <article class="item" onclick="openLightbox(3)">
+            <article
+                class="item"
+                tabindex="0"
+                role="button"
+                onclick="openLightbox(3)"
+                onkeydown="handleItemKey(event, 3)"
+            >
 
                 <span class="number">04</span>
 
@@ -1391,9 +1259,13 @@ h1 {
             </article>
 
 
-            <!-- PHOTO 5 -->
-
-            <article class="item" onclick="openLightbox(4)">
+            <article
+                class="item"
+                tabindex="0"
+                role="button"
+                onclick="openLightbox(4)"
+                onkeydown="handleItemKey(event, 4)"
+            >
 
                 <span class="number">05</span>
 
@@ -1413,9 +1285,13 @@ h1 {
             </article>
 
 
-            <!-- PHOTO 6 -->
-
-            <article class="item" onclick="openLightbox(5)">
+            <article
+                class="item"
+                tabindex="0"
+                role="button"
+                onclick="openLightbox(5)"
+                onkeydown="handleItemKey(event, 5)"
+            >
 
                 <span class="number">06</span>
 
@@ -1435,9 +1311,13 @@ h1 {
             </article>
 
 
-            <!-- PHOTO 7 -->
-
-            <article class="item" onclick="openLightbox(6)">
+            <article
+                class="item"
+                tabindex="0"
+                role="button"
+                onclick="openLightbox(6)"
+                onkeydown="handleItemKey(event, 6)"
+            >
 
                 <span class="number">07</span>
 
@@ -1459,9 +1339,13 @@ h1 {
             </article>
 
 
-            <!-- PHOTO 8 -->
-
-            <article class="item" onclick="openLightbox(7)">
+            <article
+                class="item"
+                tabindex="0"
+                role="button"
+                onclick="openLightbox(7)"
+                onkeydown="handleItemKey(event, 7)"
+            >
 
                 <span class="number">08</span>
 
@@ -1481,9 +1365,13 @@ h1 {
             </article>
 
 
-            <!-- PHOTO 9 -->
-
-            <article class="item" onclick="openLightbox(8)">
+            <article
+                class="item"
+                tabindex="0"
+                role="button"
+                onclick="openLightbox(8)"
+                onkeydown="handleItemKey(event, 8)"
+            >
 
                 <span class="number">09</span>
 
@@ -1503,9 +1391,13 @@ h1 {
             </article>
 
 
-            <!-- PHOTO 10 -->
-
-            <article class="item" onclick="openLightbox(9)">
+            <article
+                class="item"
+                tabindex="0"
+                role="button"
+                onclick="openLightbox(9)"
+                onkeydown="handleItemKey(event, 9)"
+            >
 
                 <span class="number">10</span>
 
@@ -1530,16 +1422,12 @@ h1 {
     </section>
 
 
-    <!-- =============================================
-         DIVIDER
-    ============================================= -->
+    <!-- DIVIDER -->
 
     <div class="section-divider"></div>
 
 
-    <!-- =============================================
-         02 / US / PLACES
-    ============================================= -->
+    <!-- 02 / US / PLACES -->
 
     <section class="moment-section">
 
@@ -1565,9 +1453,13 @@ h1 {
         <div class="gallery us-gallery">
 
 
-            <!-- US / PLACES 1 -->
-
-            <article class="item" onclick="openLightbox(10)">
+            <article
+                class="item"
+                tabindex="0"
+                role="button"
+                onclick="openLightbox(10)"
+                onkeydown="handleItemKey(event, 10)"
+            >
 
                 <span class="number">11</span>
 
@@ -1587,9 +1479,13 @@ h1 {
             </article>
 
 
-            <!-- US / PLACES 2 -->
-
-            <article class="item" onclick="openLightbox(11)">
+            <article
+                class="item"
+                tabindex="0"
+                role="button"
+                onclick="openLightbox(11)"
+                onkeydown="handleItemKey(event, 11)"
+            >
 
                 <span class="number">12</span>
 
@@ -1609,9 +1505,13 @@ h1 {
             </article>
 
 
-            <!-- US / PLACES 3 -->
-
-            <article class="item" onclick="openLightbox(12)">
+            <article
+                class="item"
+                tabindex="0"
+                role="button"
+                onclick="openLightbox(12)"
+                onkeydown="handleItemKey(event, 12)"
+            >
 
                 <span class="number">13</span>
 
@@ -1631,9 +1531,13 @@ h1 {
             </article>
 
 
-            <!-- US / PLACES 4 -->
-
-            <article class="item" onclick="openLightbox(13)">
+            <article
+                class="item"
+                tabindex="0"
+                role="button"
+                onclick="openLightbox(13)"
+                onkeydown="handleItemKey(event, 13)"
+            >
 
                 <span class="number">14</span>
 
@@ -1653,9 +1557,13 @@ h1 {
             </article>
 
 
-            <!-- US / PLACES 5 -->
-
-            <article class="item" onclick="openLightbox(14)">
+            <article
+                class="item"
+                tabindex="0"
+                role="button"
+                onclick="openLightbox(14)"
+                onkeydown="handleItemKey(event, 14)"
+            >
 
                 <span class="number">15</span>
 
@@ -1675,9 +1583,13 @@ h1 {
             </article>
 
 
-            <!-- US / PLACES 6 -->
-
-            <article class="item" onclick="openLightbox(15)">
+            <article
+                class="item"
+                tabindex="0"
+                role="button"
+                onclick="openLightbox(15)"
+                onkeydown="handleItemKey(event, 15)"
+            >
 
                 <span class="number">16</span>
 
@@ -1697,9 +1609,13 @@ h1 {
             </article>
 
 
-            <!-- US / PLACES 7 -->
-
-            <article class="item" onclick="openLightbox(16)">
+            <article
+                class="item"
+                tabindex="0"
+                role="button"
+                onclick="openLightbox(16)"
+                onkeydown="handleItemKey(event, 16)"
+            >
 
                 <span class="number">17</span>
 
@@ -1719,9 +1635,13 @@ h1 {
             </article>
 
 
-            <!-- US / PLACES 8 -->
-
-            <article class="item" onclick="openLightbox(17)">
+            <article
+                class="item"
+                tabindex="0"
+                role="button"
+                onclick="openLightbox(17)"
+                onkeydown="handleItemKey(event, 17)"
+            >
 
                 <span class="number">18</span>
 
@@ -1746,9 +1666,7 @@ h1 {
     </section>
 
 
-    <!-- =============================================
-         SIDE NOTES
-    ============================================= -->
+    <!-- SIDE NOTES -->
 
     <div class="note note-one">
         kept for the record
@@ -1759,9 +1677,7 @@ h1 {
     </div>
 
 
-    <!-- =============================================
-         BOTTOM
-    ============================================= -->
+    <!-- BOTTOM -->
 
     <div class="bottom">
 
@@ -1779,14 +1695,13 @@ h1 {
 </main>
 
 
-<!-- =============================================
-     LIGHTBOX
-============================================== -->
+<!-- LIGHTBOX -->
 
 <div
     class="lightbox"
     id="lightbox"
     onclick="closeFromBackground(event)"
+    aria-hidden="true"
 >
 
     <button
@@ -1820,14 +1735,12 @@ h1 {
         <div
             id="lightboxCaption"
             class="lightbox-caption"
-        >
-        </div>
+        ></div>
 
         <div
             id="lightboxCounter"
             class="lightbox-counter"
-        >
-        </div>
+        ></div>
 
     </div>
 
@@ -1961,10 +1874,11 @@ function openLightbox(index) {
 
     updateLightbox();
 
-    document
-        .getElementById("lightbox")
-        .classList
-        .add("active");
+    const lightbox =
+        document.getElementById("lightbox");
+
+    lightbox.classList.add("active");
+    lightbox.setAttribute("aria-hidden", "false");
 
     document.body.style.overflow = "hidden";
 }
@@ -1985,7 +1899,6 @@ function updateLightbox() {
     const counter =
         document.getElementById("lightboxCounter");
 
-
     image.src =
         photos[currentPhoto].src;
 
@@ -1999,7 +1912,6 @@ function updateLightbox() {
         String(currentPhoto + 1).padStart(2, "0")
         + " / "
         + String(photos.length).padStart(2, "0");
-
 }
 
 
@@ -2009,13 +1921,13 @@ function updateLightbox() {
 
 function closeLightbox() {
 
-    document
-        .getElementById("lightbox")
-        .classList
-        .remove("active");
+    const lightbox =
+        document.getElementById("lightbox");
+
+    lightbox.classList.remove("active");
+    lightbox.setAttribute("aria-hidden", "true");
 
     document.body.style.overflow = "";
-
 }
 
 
@@ -2033,7 +1945,6 @@ function closeFromBackground(event) {
         closeLightbox();
 
     }
-
 }
 
 
@@ -2045,24 +1956,15 @@ function changePhoto(direction) {
 
     currentPhoto += direction;
 
-
     if (currentPhoto < 0) {
-
-        currentPhoto =
-            photos.length - 1;
-
+        currentPhoto = photos.length - 1;
     }
-
 
     if (currentPhoto >= photos.length) {
-
         currentPhoto = 0;
-
     }
 
-
     updateLightbox();
-
 }
 
 
@@ -2077,38 +1979,61 @@ document.addEventListener(
         const lightbox =
             document.getElementById("lightbox");
 
-
         if (
             !lightbox.classList.contains("active")
         ) {
-
             return;
-
         }
-
 
         if (event.key === "Escape") {
-
             closeLightbox();
-
         }
-
 
         if (event.key === "ArrowRight") {
-
             changePhoto(1);
-
         }
-
 
         if (event.key === "ArrowLeft") {
-
             changePhoto(-1);
-
         }
-
     }
 );
+
+
+/* =====================================================
+   KEYBOARD ACCESS FOR PHOTO ITEMS
+===================================================== */
+
+function handleItemKey(event, index) {
+
+    if (
+        event.key === "Enter" ||
+        event.key === " "
+    ) {
+
+        event.preventDefault();
+
+        openLightbox(index);
+    }
+}
+
+
+/* =====================================================
+   PRELOAD FIRST IMAGE
+===================================================== */
+
+window.addEventListener("load", function() {
+
+    if (photos.length > 0) {
+
+        const preload =
+            new Image();
+
+        preload.src =
+            photos[0].src;
+    }
+
+});
 
 </script>
 
