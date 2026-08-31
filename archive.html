@@ -27,7 +27,7 @@ body {
     overflow-x: hidden;
 
     opacity: 1;
-    transition: opacity 0.12s ease;
+    transition: opacity 0.08s ease;
 }
 
 body.leaving {
@@ -138,9 +138,9 @@ h1 {
     color: #f2f2f2;
 
     transition:
-        background 0.25s ease,
-        border-color 0.25s ease,
-        transform 0.25s ease;
+        background 0.18s ease,
+        border-color 0.18s ease,
+        transform 0.18s ease;
 }
 
 .archive-item:hover {
@@ -186,8 +186,8 @@ h1 {
     color: #777;
 
     transition:
-        transform 0.25s ease,
-        color 0.25s ease;
+        transform 0.18s ease,
+        color 0.18s ease;
 }
 
 .archive-item:hover .arrow {
@@ -239,17 +239,17 @@ h1 {
     background: rgba(255,255,255,0.025);
 
     transition:
-        background 0.2s ease,
-        border-color 0.2s ease,
-        color 0.2s ease,
-        transform 0.2s ease;
+        background 0.18s ease,
+        border-color 0.18s ease,
+        color 0.18s ease,
+        transform 0.18s ease;
 }
 
 .nav-arrow {
     font-size: 14px;
     letter-spacing: 0;
 
-    transition: transform 0.2s ease;
+    transition: transform 0.18s ease;
 }
 
 .nav-button:hover {
@@ -384,7 +384,7 @@ h1 {
 
             <a
                 href="/some-memories-4-u/soundtrack.html"
-                class="archive-item"
+                class="archive-item page-link"
             >
 
                 <div class="item-left">
@@ -418,7 +418,7 @@ h1 {
 
             <a
                 href="/some-memories-4-u/moments.html"
-                class="archive-item"
+                class="archive-item page-link"
             >
 
                 <div class="item-left">
@@ -452,7 +452,7 @@ h1 {
 
             <a
                 href="/some-memories-4-u/memories.html"
-                class="archive-item"
+                class="archive-item page-link"
             >
 
                 <div class="item-left">
@@ -495,8 +495,8 @@ h1 {
             <!-- BACK TO MESSAGE -->
 
             <a
-                href="message.html"
-                class="nav-button back"
+                href="/some-memories-4-u/message.html"
+                class="nav-button back page-link"
             >
 
                 <span class="nav-arrow">
@@ -511,8 +511,8 @@ h1 {
             <!-- CONTINUE TO BIRTHDAY -->
 
             <a
-                href="birthday.html"
-                class="nav-button"
+                href="/some-memories-4-u/birthday.html"
+                class="nav-button page-link"
             >
 
                 Continue
@@ -535,10 +535,68 @@ h1 {
 <script>
 
 /* =====================================================
+   FAST PAGE PRELOADING
+===================================================== */
+
+const pageLinks = document.querySelectorAll('.page-link');
+
+pageLinks.forEach(function(link) {
+
+    const href = link.getAttribute('href');
+
+    if (!href) return;
+
+    /*
+     * Start loading the destination as soon as the user
+     * moves toward the link.
+     */
+
+    link.addEventListener('pointerenter', function() {
+
+        if (!document.querySelector(
+            'link[rel="prefetch"][href="' + href + '"]'
+        )) {
+
+            const prefetch = document.createElement('link');
+
+            prefetch.rel = 'prefetch';
+            prefetch.href = href;
+
+            document.head.appendChild(prefetch);
+        }
+
+    }, { once: true });
+
+
+    /*
+     * On phones there is no pointerenter, so preload when
+     * the user touches the link.
+     */
+
+    link.addEventListener('touchstart', function() {
+
+        if (!document.querySelector(
+            'link[rel="prefetch"][href="' + href + '"]'
+        )) {
+
+            const prefetch = document.createElement('link');
+
+            prefetch.rel = 'prefetch';
+            prefetch.href = href;
+
+            document.head.appendChild(prefetch);
+        }
+
+    }, { once: true });
+
+});
+
+
+/* =====================================================
    FAST PAGE NAVIGATION
 ===================================================== */
 
-document.querySelectorAll('a[href]').forEach(function(link) {
+pageLinks.forEach(function(link) {
 
     link.addEventListener('click', function(event) {
 
@@ -558,17 +616,15 @@ document.querySelectorAll('a[href]').forEach(function(link) {
 
         event.preventDefault();
 
-        document.body.classList.add('leaving');
-
         /*
-         * Tiny fade only.
-         * Navigation happens almost immediately.
-         * No long artificial delay.
+         * Extremely short fade.
+         * The old version waited 80ms.
+         * This is intentionally almost instant.
          */
 
-        setTimeout(function() {
-            window.location.href = href;
-        }, 80);
+        document.body.classList.add('leaving');
+
+        window.location.href = href;
 
     });
 
@@ -581,9 +637,18 @@ document.querySelectorAll('a[href]').forEach(function(link) {
 
 window.addEventListener('pageshow', function(event) {
 
-    if (event.persisted) {
-        document.body.classList.remove('leaving');
-    }
+    document.body.classList.remove('leaving');
+
+});
+
+
+/* =====================================================
+   RESTORE PAGE IF BROWSER RETURNS TO IT
+===================================================== */
+
+window.addEventListener('pagehide', function() {
+
+    document.body.classList.remove('leaving');
 
 });
 
