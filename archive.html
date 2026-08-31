@@ -15,12 +15,23 @@
     padding: 0;
 }
 
+html {
+    background: #050505;
+}
+
 body {
     min-height: 100vh;
     background: #050505;
     color: #f4f4f4;
     font-family: Georgia, serif;
     overflow-x: hidden;
+
+    opacity: 1;
+    transition: opacity 0.12s ease;
+}
+
+body.leaving {
+    opacity: 0;
 }
 
 .page {
@@ -174,7 +185,9 @@ h1 {
     font-size: 15px;
     color: #777;
 
-    transition: transform 0.25s ease;
+    transition:
+        transform 0.25s ease,
+        color 0.25s ease;
 }
 
 .archive-item:hover .arrow {
@@ -184,12 +197,16 @@ h1 {
 
 
 /* =====================================================
-   CONTINUE
+   BOTTOM NAVIGATION
 ===================================================== */
 
-.continue-container {
+.navigation {
     width: 100%;
-    text-align: center;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
 
     margin-top: 42px;
     padding-top: 25px;
@@ -197,17 +214,17 @@ h1 {
     border-top: 1px solid rgba(255,255,255,0.08);
 }
 
-.continue {
+.nav-button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 13px;
+    gap: 11px;
 
-    min-width: 155px;
+    min-width: 150px;
 
-    padding: 13px 21px;
+    padding: 13px 19px;
 
-    border: 1px solid rgba(255,255,255,0.22);
+    border: 1px solid rgba(255,255,255,0.20);
 
     color: #d8d8d8;
 
@@ -222,28 +239,32 @@ h1 {
     background: rgba(255,255,255,0.025);
 
     transition:
-        background 0.25s ease,
-        border-color 0.25s ease,
-        color 0.25s ease,
-        transform 0.25s ease;
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
 }
 
-.continue-arrow {
+.nav-arrow {
     font-size: 14px;
     letter-spacing: 0;
 
-    transition: transform 0.25s ease;
+    transition: transform 0.2s ease;
 }
 
-.continue:hover {
+.nav-button:hover {
     background: rgba(255,255,255,0.08);
-    border-color: rgba(255,255,255,0.40);
+    border-color: rgba(255,255,255,0.38);
     color: #fff;
     transform: translateY(-2px);
 }
 
-.continue:hover .continue-arrow {
-    transform: translateX(4px);
+.nav-button:hover .nav-arrow {
+    transform: translateX(3px);
+}
+
+.nav-button.back:hover .nav-arrow {
+    transform: translateX(-3px);
 }
 
 
@@ -282,14 +303,37 @@ h1 {
         font-size: 8px;
     }
 
-    .continue-container {
+    .navigation {
         margin-top: 36px;
         padding-top: 23px;
+        gap: 9px;
     }
 
-    .continue {
-        min-width: 145px;
-        padding: 12px 18px;
+    .nav-button {
+        min-width: 0;
+        flex: 1;
+        padding: 12px 10px;
+        letter-spacing: 2.2px;
+    }
+
+}
+
+
+/* =====================================================
+   ACCESSIBILITY
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    body {
+        transition: none;
+    }
+
+    .archive-item,
+    .nav-button,
+    .nav-arrow,
+    .arrow {
+        transition: none;
     }
 
 }
@@ -341,7 +385,6 @@ h1 {
             <a
                 href="/some-memories-4-u/soundtrack.html"
                 class="archive-item"
-                onclick="window.location.replace('/some-memories-4-u/soundtrack.html'); return false;"
             >
 
                 <div class="item-left">
@@ -443,21 +486,43 @@ h1 {
 
 
         <!-- =============================================
-             CONTINUE TO BIRTHDAY PAGE
+             NAVIGATION
         ============================================= -->
 
-        <div class="continue-container">
+        <div class="navigation">
+
+
+            <!-- BACK TO MESSAGE -->
+
+            <a
+                href="message.html"
+                class="nav-button back"
+            >
+
+                <span class="nav-arrow">
+                    ←
+                </span>
+
+                Back to message
+
+            </a>
+
+
+            <!-- CONTINUE TO BIRTHDAY -->
 
             <a
                 href="birthday.html"
-                class="continue"
+                class="nav-button"
             >
+
                 Continue
 
-                <span class="continue-arrow">
+                <span class="nav-arrow">
                     →
                 </span>
+
             </a>
+
 
         </div>
 
@@ -465,6 +530,64 @@ h1 {
     </div>
 
 </main>
+
+
+<script>
+
+/* =====================================================
+   FAST PAGE NAVIGATION
+===================================================== */
+
+document.querySelectorAll('a[href]').forEach(function(link) {
+
+    link.addEventListener('click', function(event) {
+
+        const href = link.getAttribute('href');
+
+        if (
+            !href ||
+            href.startsWith('#') ||
+            link.target === '_blank' ||
+            event.ctrlKey ||
+            event.metaKey ||
+            event.shiftKey ||
+            event.altKey
+        ) {
+            return;
+        }
+
+        event.preventDefault();
+
+        document.body.classList.add('leaving');
+
+        /*
+         * Tiny fade only.
+         * Navigation happens almost immediately.
+         * No long artificial delay.
+         */
+
+        setTimeout(function() {
+            window.location.href = href;
+        }, 80);
+
+    });
+
+});
+
+
+/* =====================================================
+   BACK/FORWARD CACHE FIX
+===================================================== */
+
+window.addEventListener('pageshow', function(event) {
+
+    if (event.persisted) {
+        document.body.classList.remove('leaving');
+    }
+
+});
+
+</script>
 
 </body>
 </html>
