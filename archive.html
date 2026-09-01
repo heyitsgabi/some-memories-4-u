@@ -21,81 +21,134 @@ html {
 
 body {
     min-height: 100vh;
+
     background: #050505;
+
     color: #f4f4f4;
+
     font-family: Georgia, serif;
+
     overflow-x: hidden;
 
-    opacity: 1;
-    transition: opacity 0.08s ease;
+    opacity: 0;
+
+    transition: opacity 0.18s ease;
 }
 
-body.leaving {
-    opacity: 0;
+body.page-ready {
+    opacity: 1;
 }
+
+
+/* =====================================================
+   PAGE
+===================================================== */
 
 .page {
     min-height: 100vh;
+
     position: relative;
+
     overflow: hidden;
 
     padding: 75px 22px 55px;
 
     display: flex;
+
     justify-content: center;
+
     align-items: center;
 }
+
+
+/* =====================================================
+   LIGHTING
+===================================================== */
 
 .top-light,
 .bottom-light {
     position: absolute;
+
     border-radius: 50%;
+
     pointer-events: none;
 }
 
 .top-light {
     width: 850px;
+
     height: 430px;
+
     top: -330px;
+
     left: 50%;
+
     transform: translateX(-50%);
+
     background: rgba(255,255,255,0.13);
+
     filter: blur(110px);
 }
 
 .bottom-light {
     width: 850px;
+
     height: 420px;
+
     bottom: -330px;
+
     left: 50%;
+
     transform: translateX(-50%);
+
     background: rgba(255,255,255,0.10);
+
     filter: blur(110px);
 }
 
+
+/* =====================================================
+   CONTENT
+===================================================== */
+
 .content {
     width: 100%;
+
     max-width: 600px;
 
     position: relative;
+
     z-index: 5;
 
     text-align: center;
 }
 
+
+/* =====================================================
+   HEADER
+===================================================== */
+
 .eyebrow {
     font-family: Arial, sans-serif;
+
     font-size: 9px;
+
     letter-spacing: 5px;
+
     color: #777;
+
     text-transform: uppercase;
+
     margin-bottom: 15px;
 }
 
 h1 {
     font-size: clamp(42px, 8vw, 66px);
+
     font-weight: normal;
+
     letter-spacing: -2px;
+
     margin-bottom: 18px;
 
     text-shadow:
@@ -103,140 +156,103 @@ h1 {
         0 0 55px rgba(255,255,255,0.08);
 }
 
-.subtitle {
-    max-width: 430px;
-    margin: 0 auto 42px;
-    color: #999;
-    font-size: 14px;
-    line-height: 1.7;
-}
 
-.archive-list {
-    display: flex;
-    flex-direction: column;
-    gap: 13px;
-    width: 100%;
-}
+/* =====================================================
+   DIVIDER
+===================================================== */
 
-.archive-item {
-    position: relative;
+.header-line {
+    width: 55px;
 
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    height: 1px;
 
-    width: 100%;
-    min-height: 72px;
+    background: rgba(255,255,255,0.35);
 
-    padding: 0 24px;
-
-    border: 1px solid rgba(255,255,255,0.13);
-
-    background: rgba(255,255,255,0.025);
-
-    text-decoration: none;
-    color: #f2f2f2;
-
-    transition:
-        background 0.18s ease,
-        border-color 0.18s ease,
-        transform 0.18s ease;
-}
-
-.archive-item:hover {
-    background: rgba(255,255,255,0.06);
-    border-color: rgba(255,255,255,0.28);
-    transform: translateY(-2px);
-}
-
-.item-left {
-    display: flex;
-    align-items: center;
-    gap: 17px;
-    text-align: left;
-}
-
-.number {
-    font-family: Arial, sans-serif;
-    font-size: 9px;
-    letter-spacing: 2px;
-    color: #666;
-}
-
-.item-title {
-    font-size: 17px;
-    letter-spacing: 0.2px;
-}
-
-.item-description {
-    margin-top: 4px;
-
-    font-family: Arial, sans-serif;
-    font-size: 9px;
-    letter-spacing: 1.5px;
-
-    color: #666;
-
-    text-transform: uppercase;
-}
-
-.arrow {
-    font-family: Arial, sans-serif;
-    font-size: 15px;
-    color: #777;
-
-    transition:
-        transform 0.18s ease,
-        color 0.18s ease;
-}
-
-.archive-item:hover .arrow {
-    transform: translateX(4px);
-    color: #fff;
+    margin: 0 auto 28px;
 }
 
 
 /* =====================================================
-   BOTTOM NAVIGATION
+   MESSAGE
+===================================================== */
+
+.subtitle {
+    max-width: 440px;
+
+    margin: 0 auto;
+
+    color: #999;
+
+    font-size: 15px;
+
+    line-height: 1.8;
+}
+
+
+/* =====================================================
+   SMALL ARCHIVE NOTE
+===================================================== */
+
+.archive-note {
+    margin-top: 14px;
+
+    color: #666;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 8px;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+}
+
+
+/* =====================================================
+   CONTINUE
 ===================================================== */
 
 .navigation {
-    width: 100%;
+    margin-top: 45px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-
-    margin-top: 42px;
     padding-top: 25px;
 
-    border-top: 1px solid rgba(255,255,255,0.08);
+    border-top:
+        1px solid
+        rgba(255,255,255,0.08);
 }
 
 .nav-button {
     display: inline-flex;
+
     align-items: center;
+
     justify-content: center;
+
     gap: 11px;
 
-    min-width: 150px;
+    min-width: 175px;
 
-    padding: 13px 19px;
+    padding: 13px 22px;
 
-    border: 1px solid rgba(255,255,255,0.20);
+    border:
+        1px solid
+        rgba(255,255,255,0.20);
 
     color: #d8d8d8;
 
     text-decoration: none;
 
     font-family: Arial, sans-serif;
+
     font-size: 8px;
+
     letter-spacing: 3px;
 
     text-transform: uppercase;
 
-    background: rgba(255,255,255,0.025);
+    background:
+        rgba(255,255,255,0.025);
 
     transition:
         background 0.18s ease,
@@ -247,24 +263,29 @@ h1 {
 
 .nav-arrow {
     font-size: 14px;
+
     letter-spacing: 0;
 
-    transition: transform 0.18s ease;
+    transition:
+        transform 0.18s ease;
 }
 
 .nav-button:hover {
-    background: rgba(255,255,255,0.08);
-    border-color: rgba(255,255,255,0.38);
+    background:
+        rgba(255,255,255,0.08);
+
+    border-color:
+        rgba(255,255,255,0.38);
+
     color: #fff;
-    transform: translateY(-2px);
+
+    transform:
+        translateY(-2px);
 }
 
 .nav-button:hover .nav-arrow {
-    transform: translateX(3px);
-}
-
-.nav-button.back:hover .nav-arrow {
-    transform: translateX(-3px);
+    transform:
+        translateX(3px);
 }
 
 
@@ -275,7 +296,8 @@ h1 {
 @media (max-width: 600px) {
 
     .page {
-        padding: 65px 18px 40px;
+        padding:
+            65px 18px 40px;
     }
 
     h1 {
@@ -283,62 +305,41 @@ h1 {
     }
 
     .subtitle {
-        margin-bottom: 32px;
-    }
-
-    .archive-item {
-        min-height: 68px;
-        padding: 0 18px;
-    }
-
-    .item-left {
-        gap: 13px;
-    }
-
-    .item-title {
-        font-size: 16px;
-    }
-
-    .item-description {
-        font-size: 8px;
+        font-size: 14px;
     }
 
     .navigation {
-        margin-top: 36px;
-        padding-top: 23px;
-        gap: 9px;
+        margin-top: 38px;
+
+        padding-top: 22px;
     }
 
     .nav-button {
-        min-width: 0;
-        flex: 1;
-        padding: 12px 10px;
-        letter-spacing: 2.2px;
+        min-width: 165px;
+
+        padding:
+            12px 18px;
     }
 
 }
 
 
 /* =====================================================
-   ACCESSIBILITY
+   REDUCED MOTION
 ===================================================== */
 
 @media (prefers-reduced-motion: reduce) {
 
-    body {
-        transition: none;
-    }
-
-    .archive-item,
+    body,
     .nav-button,
-    .nav-arrow,
-    .arrow {
+    .nav-arrow {
         transition: none;
     }
 
 }
 
 </style>
+
 </head>
 
 
@@ -354,9 +355,9 @@ h1 {
     <div class="content">
 
 
-        <!-- =============================================
+        <!-- =================================================
              HEADER
-        ============================================= -->
+        ================================================= -->
 
         <div class="eyebrow">
             $OME MEMORIES 4 U
@@ -368,151 +369,35 @@ h1 {
         </h1>
 
 
+        <div class="header-line"></div>
+
+
+        <!-- =================================================
+             MESSAGE
+        ================================================= -->
+
         <p class="subtitle">
-            A few things worth keeping.
+            Welcome to the archive.
+            A few things worth keeping,
+            because apparently some memories
+            deserved their own little corner.
         </p>
 
 
-        <!-- =============================================
-             ARCHIVE SECTIONS
-        ============================================= -->
-
-        <div class="archive-list">
-
-
-            <!-- MUSIC -->
-
-            <a
-                href="/some-memories-4-u/soundtrack.html"
-                class="archive-item page-link"
-            >
-
-                <div class="item-left">
-
-                    <div class="number">
-                        01
-                    </div>
-
-                    <div>
-
-                        <div class="item-title">
-                            Music
-                        </div>
-
-                        <div class="item-description">
-                            Songs · suggestions · things you made me listen to
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div class="arrow">
-                    →
-                </div>
-
-            </a>
-
-
-            <!-- MOMENTS -->
-
-            <a
-                href="/some-memories-4-u/moments.html"
-                class="archive-item page-link"
-            >
-
-                <div class="item-left">
-
-                    <div class="number">
-                        02
-                    </div>
-
-                    <div>
-
-                        <div class="item-title">
-                            Moments
-                        </div>
-
-                        <div class="item-description">
-                            You · us · places · little moments in between
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div class="arrow">
-                    →
-                </div>
-
-            </a>
-
-
-            <!-- MEMORIES -->
-
-            <a
-                href="/some-memories-4-u/memories.html"
-                class="archive-item page-link"
-            >
-
-                <div class="item-left">
-
-                    <div class="number">
-                        03
-                    </div>
-
-                    <div>
-
-                        <div class="item-title">
-                            Memories
-                        </div>
-
-                        <div class="item-description">
-                            Videos · screenshots · proof of weirdness
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div class="arrow">
-                    →
-                </div>
-
-            </a>
-
-
+        <div class="archive-note">
+            01 · The collection begins here
         </div>
 
 
-        <!-- =============================================
+        <!-- =================================================
              NAVIGATION
-        ============================================= -->
+        ================================================= -->
 
         <div class="navigation">
 
-
-            <!-- BACK TO MESSAGE -->
-
             <a
-                href="/some-memories-4-u/message.html"
-                class="nav-button back page-link"
-            >
-
-                <span class="nav-arrow">
-                    ←
-                </span>
-
-                Back to message
-
-            </a>
-
-
-            <!-- CONTINUE TO BIRTHDAY -->
-
-            <a
-                href="/some-memories-4-u/birthday.html"
-                class="nav-button page-link"
+                href="soundtrack.html"
+                class="nav-button"
             >
 
                 Continue
@@ -522,7 +407,6 @@ h1 {
                 </span>
 
             </a>
-
 
         </div>
 
@@ -535,124 +419,21 @@ h1 {
 <script>
 
 /* =====================================================
-   FAST PAGE PRELOADING
+   SIMPLE PAGE ENTRY
 ===================================================== */
 
-const pageLinks = document.querySelectorAll('.page-link');
+window.addEventListener("DOMContentLoaded", function () {
 
-pageLinks.forEach(function(link) {
+    requestAnimationFrame(function () {
 
-    const href = link.getAttribute('href');
-
-    if (!href) return;
-
-    /*
-     * Start loading the destination as soon as the user
-     * moves toward the link.
-     */
-
-    link.addEventListener('pointerenter', function() {
-
-        if (!document.querySelector(
-            'link[rel="prefetch"][href="' + href + '"]'
-        )) {
-
-            const prefetch = document.createElement('link');
-
-            prefetch.rel = 'prefetch';
-            prefetch.href = href;
-
-            document.head.appendChild(prefetch);
-        }
-
-    }, { once: true });
-
-
-    /*
-     * On phones there is no pointerenter, so preload when
-     * the user touches the link.
-     */
-
-    link.addEventListener('touchstart', function() {
-
-        if (!document.querySelector(
-            'link[rel="prefetch"][href="' + href + '"]'
-        )) {
-
-            const prefetch = document.createElement('link');
-
-            prefetch.rel = 'prefetch';
-            prefetch.href = href;
-
-            document.head.appendChild(prefetch);
-        }
-
-    }, { once: true });
-
-});
-
-
-/* =====================================================
-   FAST PAGE NAVIGATION
-===================================================== */
-
-pageLinks.forEach(function(link) {
-
-    link.addEventListener('click', function(event) {
-
-        const href = link.getAttribute('href');
-
-        if (
-            !href ||
-            href.startsWith('#') ||
-            link.target === '_blank' ||
-            event.ctrlKey ||
-            event.metaKey ||
-            event.shiftKey ||
-            event.altKey
-        ) {
-            return;
-        }
-
-        event.preventDefault();
-
-        /*
-         * Extremely short fade.
-         * The old version waited 80ms.
-         * This is intentionally almost instant.
-         */
-
-        document.body.classList.add('leaving');
-
-        window.location.href = href;
+        document.body.classList.add("page-ready");
 
     });
 
 });
 
-
-/* =====================================================
-   BACK/FORWARD CACHE FIX
-===================================================== */
-
-window.addEventListener('pageshow', function(event) {
-
-    document.body.classList.remove('leaving');
-
-});
-
-
-/* =====================================================
-   RESTORE PAGE IF BROWSER RETURNS TO IT
-===================================================== */
-
-window.addEventListener('pagehide', function() {
-
-    document.body.classList.remove('leaving');
-
-});
-
 </script>
+
 
 </body>
 </html>
