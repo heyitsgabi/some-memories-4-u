@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
@@ -310,17 +311,9 @@ h1 {
 
     background: #121212;
 
-    display: flex;
-
-    align-items: stretch;
-    justify-content: center;
+    display: block;
 
     overflow: hidden;
-
-    /*
-     * Single clean frame.
-     * No extra outline around the Spotify iframe.
-     */
 
     border: 1px solid rgba(255,255,255,0.22);
 
@@ -337,8 +330,6 @@ h1 {
 
 /*
  * Inner frame.
- * This is subtle enough to look intentional
- * without creating a second obvious border.
  */
 
 .spotify-box::before {
@@ -398,7 +389,9 @@ h1 {
 
     border: none;
 
-    position: relative;
+    position: absolute;
+
+    inset: 0;
 
     z-index: 2;
 
@@ -460,7 +453,7 @@ h1 {
 
 
 /* =========================================
-   BACK TO ARCHIVE
+   CONTINUE TO MOMENTS
 ========================================= */
 
 .back {
@@ -491,7 +484,7 @@ h1 {
 
 .back:hover {
     color: #ffffff;
-    transform: translateX(-2px);
+    transform: translateX(2px);
 }
 
 
@@ -571,173 +564,128 @@ h1 {
 
 </head>
 
-
 <body>
 
 <main class="page">
 
+```
+<!-- LIGHTING -->
 
-    <!-- LIGHTING -->
-
-    <div class="top-light"></div>
-    <div class="bottom-light"></div>
-    <div class="title-light"></div>
-
-
-    <!-- MAIN CONTENT -->
-
-    <div class="content">
+<div class="top-light"></div>
+<div class="bottom-light"></div>
+<div class="title-light"></div>
 
 
-        <!-- HEADER -->
+<!-- MAIN CONTENT -->
 
-        <div class="eyebrow">
-            $OME MEMORIES 4 U
-        </div>
+<div class="content">
 
 
-        <h1>
-            MUSIC
-        </h1>
+    <!-- HEADER -->
+
+    <div class="eyebrow">
+        $OME MEMORIES 4 U
+    </div>
 
 
-        <!-- INTRO -->
-
-        <div class="text-with-headphones intro">
-
-            <div class="headphones"></div>
-
-            <p>
-                A playlist made up of songs you like (I think) and songs you made me listen to.
-            </p>
-
-            <div class="headphones"></div>
-
-        </div>
+    <h1>
+        MUSIC
+    </h1>
 
 
-        <!-- SPOTIFY -->
+    <!-- INTRO -->
 
-        <div class="spotify-container">
+    <div class="text-with-headphones intro">
 
-            <div class="spotify-label">
+        <div class="headphones"></div>
 
-                <span class="spotify-dot"></span>
+        <p>
+            A playlist made up of songs you like (I think) and songs you made me listen to.
+        </p>
 
-                Now playing
-
-            </div>
-
-
-            <div class="spotify-box">
-
-                <iframe
-                    src="https://open.spotify.com/embed/playlist/6hKLkkNrVIzQXHrSKG5bsk?utm_source=generator"
-                    width="100%"
-                    height="352"
-                    frameborder="0"
-                    allowfullscreen
-                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
-                </iframe>
-
-            </div>
-
-
-            <a
-                href="https://open.spotify.com/playlist/6hKLkkNrVIzQXHrSKG5bsk"
-                class="spotify-open"
-                target="_blank"
-                rel="noopener noreferrer">
-                Open in Spotify ↗
-            </a>
-
-        </div>
-
-
-        <!-- LOWER TEXT -->
-
-        <div class="text-with-headphones tease">
-
-            <div class="headphones"></div>
-
-            <p>
-                Some of these you’ll recognize… some you might not… hehe.
-            </p>
-
-            <div class="headphones"></div>
-
-        </div>
-
-
-        <div class="listen">
-            Listen in order 😐
-        </div>
-
-
-        <!-- BACK -->
-
-        <a
-            href="/some-memories-4-u/archive.html"
-            class="back page-link">
-            ← Back to archive
-        </a>
-
+        <div class="headphones"></div>
 
     </div>
 
-</main>
 
+    <!-- SPOTIFY -->
+
+    <div class="spotify-container">
+
+        <div class="spotify-label">
+
+            <span class="spotify-dot"></span>
+
+            Now playing
+
+        </div>
+
+
+        <div class="spotify-box">
+
+            <iframe
+                src="https://open.spotify.com/embed/playlist/6hKLkkNrVIzQXHrSKG5bsk?utm_source=generator"
+                title="Music playlist"
+                frameborder="0"
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                allowfullscreen>
+            </iframe>
+
+        </div>
+
+
+        <a
+            href="https://open.spotify.com/playlist/6hKLkkNrVIzQXHrSKG5bsk"
+            class="spotify-open"
+            target="_blank"
+            rel="noopener noreferrer">
+            Open in Spotify ↗
+        </a>
+
+    </div>
+
+
+    <!-- LOWER TEXT -->
+
+    <div class="text-with-headphones tease">
+
+        <div class="headphones"></div>
+
+        <p>
+            Some of these you’ll recognize… some you might not… hehe.
+        </p>
+
+        <div class="headphones"></div>
+
+    </div>
+
+
+    <div class="listen">
+        Listen in order 😐
+    </div>
+
+
+    <!-- CONTINUE -->
+
+    <a
+        href="/some-memories-4-u/moments.html"
+        class="back page-link">
+        Continue to moments →
+    </a>
+
+
+</div>
+```
+
+</main>
 
 <script>
 
 /* =========================================
-   PAGE PRELOADING
+   FAST PAGE NAVIGATION
 ========================================= */
 
 const pageLinks = document.querySelectorAll('.page-link');
-
-pageLinks.forEach(function(link) {
-
-    const href = link.getAttribute('href');
-
-    if (!href) return;
-
-    function preloadPage() {
-
-        if (
-            !document.querySelector(
-                'link[rel="prefetch"][href="' + href + '"]'
-            )
-        ) {
-
-            const prefetch = document.createElement('link');
-
-            prefetch.rel = 'prefetch';
-            prefetch.href = href;
-
-            document.head.appendChild(prefetch);
-        }
-
-    }
-
-    link.addEventListener(
-        'pointerenter',
-        preloadPage,
-        { once: true }
-    );
-
-    link.addEventListener(
-        'touchstart',
-        preloadPage,
-        { once: true }
-    );
-
-});
-
-
-/* =========================================
-   FAST PAGE NAVIGATION
-========================================= */
 
 pageLinks.forEach(function(link) {
 
@@ -760,11 +708,6 @@ pageLinks.forEach(function(link) {
         event.preventDefault();
 
         document.body.classList.add('leaving');
-
-        /*
-         * Navigate immediately.
-         * No unnecessary artificial delay.
-         */
 
         window.location.href = href;
 
