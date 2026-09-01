@@ -304,7 +304,6 @@ h1 {
 
 .spotify-box {
     width: 100%;
-
     height: 352px;
 
     position: relative;
@@ -371,6 +370,35 @@ h1 {
     z-index: 4;
 }
 
+
+/* =========================================
+   SPOTIFY IFRAME
+========================================= */
+
+.spotify-box iframe {
+    display: block;
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100% !important;
+    height: 100% !important;
+
+    min-width: 100%;
+    max-width: none;
+
+    border: 0;
+
+    margin: 0;
+    padding: 0;
+
+    z-index: 2;
+
+    background: #121212;
+}
+
 .spotify-box:hover {
     border-color: rgba(255,255,255,0.32);
 
@@ -379,23 +407,6 @@ h1 {
         0 0 45px rgba(255,255,255,0.035);
 
     transform: translateY(-2px);
-}
-
-.spotify-box iframe {
-    display: block;
-
-    width: 100%;
-    height: 100%;
-
-    border: none;
-
-    position: absolute;
-
-    inset: 0;
-
-    z-index: 2;
-
-    background: #121212;
 }
 
 
@@ -568,114 +579,111 @@ h1 {
 
 <main class="page">
 
-```
 <!-- LIGHTING -->
 
 <div class="top-light"></div>
 <div class="bottom-light"></div>
 <div class="title-light"></div>
 
-
 <!-- MAIN CONTENT -->
 
 <div class="content">
 
+```
+<!-- HEADER -->
 
-    <!-- HEADER -->
-
-    <div class="eyebrow">
-        $OME MEMORIES 4 U
-    </div>
-
-
-    <h1>
-        MUSIC
-    </h1>
+<div class="eyebrow">
+    $OME MEMORIES 4 U
+</div>
 
 
-    <!-- INTRO -->
-
-    <div class="text-with-headphones intro">
-
-        <div class="headphones"></div>
-
-        <p>
-            A playlist made up of songs you like (I think) and songs you made me listen to.
-        </p>
-
-        <div class="headphones"></div>
-
-    </div>
+<h1>
+    MUSIC
+</h1>
 
 
-    <!-- SPOTIFY -->
+<!-- INTRO -->
 
-    <div class="spotify-container">
+<div class="text-with-headphones intro">
 
-        <div class="spotify-label">
+    <div class="headphones"></div>
 
-            <span class="spotify-dot"></span>
+    <p>
+        A playlist made up of songs you like (I think) and songs you made me listen to.
+    </p>
 
-            Now playing
-
-        </div>
-
-
-        <div class="spotify-box">
-
-            <iframe
-                src="https://open.spotify.com/embed/playlist/6hKLkkNrVIzQXHrSKG5bsk?utm_source=generator"
-                title="Music playlist"
-                frameborder="0"
-                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                allowfullscreen>
-            </iframe>
-
-        </div>
-
-
-        <a
-            href="https://open.spotify.com/playlist/6hKLkkNrVIzQXHrSKG5bsk"
-            class="spotify-open"
-            target="_blank"
-            rel="noopener noreferrer">
-            Open in Spotify ↗
-        </a>
-
-    </div>
-
-
-    <!-- LOWER TEXT -->
-
-    <div class="text-with-headphones tease">
-
-        <div class="headphones"></div>
-
-        <p>
-            Some of these you’ll recognize… some you might not… hehe.
-        </p>
-
-        <div class="headphones"></div>
-
-    </div>
-
-
-    <div class="listen">
-        Listen in order 😐
-    </div>
-
-
-    <!-- CONTINUE -->
-
-    <a
-        href="/some-memories-4-u/moments.html"
-        class="back page-link">
-        Continue to moments →
-    </a>
-
+    <div class="headphones"></div>
 
 </div>
+
+
+<!-- SPOTIFY -->
+
+<div class="spotify-container">
+
+    <div class="spotify-label">
+
+        <span class="spotify-dot"></span>
+
+        Now playing
+
+    </div>
+
+
+    <div class="spotify-box">
+
+        <iframe
+            src="https://open.spotify.com/embed/playlist/6hKLkkNrVIzQXHrSKG5bsk?utm_source=generator"
+            title="Music playlist"
+            frameborder="0"
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            allowfullscreen>
+        </iframe>
+
+    </div>
+
+
+    <a
+        href="https://open.spotify.com/playlist/6hKLkkNrVIzQXHrSKG5bsk"
+        class="spotify-open"
+        target="_blank"
+        rel="noopener noreferrer">
+        Open in Spotify ↗
+    </a>
+
+</div>
+
+
+<!-- LOWER TEXT -->
+
+<div class="text-with-headphones tease">
+
+    <div class="headphones"></div>
+
+    <p>
+        Some of these you’ll recognize… some you might not… hehe.
+    </p>
+
+    <div class="headphones"></div>
+
+</div>
+
+
+<div class="listen">
+    Listen in order 😐
+</div>
+
+
+<!-- CONTINUE -->
+
+<a
+    href="/some-memories-4-u/moments.html"
+    class="back page-link">
+    Continue to moments →
+</a>
 ```
+
+</div>
 
 </main>
 
