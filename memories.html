@@ -1,2068 +1,776 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Memories</title>
-
-<style>
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    min-height: 100vh;
-
-    background:
-        radial-gradient(
-            ellipse at 10% 5%,
-            rgba(112, 96, 77, 0.16),
-            transparent 32%
-        ),
-        radial-gradient(
-            ellipse at 90% 20%,
-            rgba(255,255,255,0.38),
-            transparent 35%
-        ),
-        radial-gradient(
-            ellipse at 45% 70%,
-            rgba(100,84,66,0.10),
-            transparent 42%
-        ),
-        #d8d1c5;
-
-    color: #191817;
-
-    font-family: Georgia, "Times New Roman", serif;
-
-    overflow-x: hidden;
-
-    position: relative;
-
-    opacity: 0;
-
-    transition: opacity 0.18s ease;
-}
-
-body.page-ready {
-    opacity: 1;
-}
-
-
-/* =====================================================
-   PAPER TEXTURE
-===================================================== */
-
-body::before {
-    content: "";
-
-    position: fixed;
-
-    inset: 0;
-
-    pointer-events: none;
-
-    z-index: 9999;
-
-    opacity: 0.28;
-
-    background:
-
-        radial-gradient(
-            ellipse at 15% 18%,
-            rgba(255,255,255,0.30) 0%,
-            transparent 28%
-        ),
-
-        radial-gradient(
-            ellipse at 82% 12%,
-            rgba(90,78,63,0.10) 0%,
-            transparent 25%
-        ),
-
-        radial-gradient(
-            ellipse at 70% 72%,
-            rgba(255,255,255,0.24) 0%,
-            transparent 30%
-        ),
-
-        radial-gradient(
-            ellipse at 25% 85%,
-            rgba(90,78,63,0.08) 0%,
-            transparent 25%
-        ),
-
-        linear-gradient(
-            125deg,
-            transparent 0%,
-            rgba(255,255,255,0.13) 18%,
-            transparent 31%,
-            rgba(75,65,54,0.06) 48%,
-            transparent 62%,
-            rgba(255,255,255,0.10) 78%,
-            transparent 90%
-        ),
-
-        url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paperNoise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.035' numOctaves='3' seed='8' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23paperNoise)' opacity='.25'/%3E%3C/svg%3E");
-
-    mix-blend-mode: multiply;
-}
-
-
-body::after {
-    content: "";
-
-    position: fixed;
-
-    inset: 12px;
-
-    border: 1px solid rgba(50,45,38,0.10);
-
-    pointer-events: none;
-
-    z-index: 9998;
-}
-
-
-/* =====================================================
-   PAGE
-===================================================== */
-
-.page {
-    width: 100%;
-
-    max-width: 1180px;
-
-    margin: 0 auto;
-
-    padding: 70px 35px 90px;
-}
-
-
-/* =====================================================
-   HEADER
-===================================================== */
-
-.header {
-    text-align: center;
-
-    margin-bottom: 65px;
-
-    position: relative;
-
-    z-index: 20;
-}
-
-.eyebrow {
-    font-family: Arial, sans-serif;
-
-    font-size: 9px;
-
-    letter-spacing: 5px;
-
-    text-transform: uppercase;
-
-    color: #70695f;
-
-    margin-bottom: 18px;
-}
-
-h1 {
-    font-size: clamp(48px, 8vw, 76px);
-
-    font-weight: normal;
-
-    letter-spacing: -3px;
-
-    line-height: 0.92;
-
-    color: #181716;
-}
-
-.header-line {
-    width: 70px;
-
-    height: 1px;
-
-    background: #3b3731;
-
-    margin: 25px auto 20px;
-}
-
-.header-note {
-    color: #6f685e;
-
-    font-size: 12px;
-
-    line-height: 1.6;
-}
-
-
-/* =====================================================
-   SECTION
-===================================================== */
-
-.archive-section {
-    position: relative;
-
-    z-index: 5;
-
-    margin-bottom: 90px;
-}
-
-.section-header {
-    text-align: center;
-
-    margin-bottom: 45px;
-}
-
-.section-label {
-    font-family: Arial, sans-serif;
-
-    font-size: 8px;
-
-    letter-spacing: 4px;
-
-    text-transform: uppercase;
-
-    color: #8d857a;
-
-    margin-bottom: 13px;
-}
-
-.section-title {
-    font-family: Georgia, "Times New Roman", serif;
-
-    font-size: clamp(30px, 5vw, 42px);
-
-    font-weight: normal;
-
-    letter-spacing: -1px;
-
-    color: #22201d;
-}
-
-.section-line {
-    width: 42px;
-
-    height: 1px;
-
-    background: #81786c;
-
-    margin: 18px auto 15px;
-}
-
-.section-note {
-    color: #756d63;
-
-    font-size: 11px;
-
-    font-style: italic;
-}
-
-
-/* =====================================================
-   VIDEO GRID
-===================================================== */
-
-.video-grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(3, minmax(0, 1fr));
-
-    gap: 38px 22px;
-
-    align-items: start;
-}
-
-
-/* =====================================================
-   VIDEO CARD
-===================================================== */
-
-.video-card {
-    position: relative;
-
-    min-width: 0;
-}
-
-.video-card:nth-child(2) {
-    margin-top: 28px;
-}
-
-.video-card:nth-child(4) {
-    margin-top: 18px;
-}
-
-.video-card:nth-child(6) {
-    margin-top: 30px;
-}
-
-.video-card:nth-child(8) {
-    margin-top: 16px;
-}
-
-.video-card:nth-child(10) {
-    margin-top: 28px;
-}
-
-
-/* =====================================================
-   VIDEO FRAME
-===================================================== */
-
-.video-frame {
-    position: relative;
-
-    width: 100%;
-
-    aspect-ratio: 16 / 9;
-
-    background: #1b1b1a;
-
-    border: 8px solid #1b1b1a;
-
-    box-shadow:
-        5px 8px 0 rgba(50,43,35,0.10),
-        0 15px 30px rgba(30,27,23,0.20);
-
-    transform: rotate(-0.7deg);
-
-    transition:
-        transform 0.22s ease,
-        box-shadow 0.22s ease;
-
-    overflow: hidden;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-}
-
-.video-card:nth-child(2) .video-frame {
-    transform: rotate(1deg);
-}
-
-.video-card:nth-child(3) .video-frame {
-    transform: rotate(-0.5deg);
-}
-
-.video-card:nth-child(4) .video-frame {
-    transform: rotate(1.2deg);
-}
-
-.video-card:nth-child(5) .video-frame {
-    transform: rotate(-1deg);
-}
-
-.video-card:nth-child(6) .video-frame {
-    transform: rotate(0.6deg);
-}
-
-.video-card:nth-child(7) .video-frame {
-    transform: rotate(-0.8deg);
-}
-
-.video-card:nth-child(8) .video-frame {
-    transform: rotate(1deg);
-}
-
-.video-card:nth-child(9) .video-frame {
-    transform: rotate(-1.1deg);
-}
-
-.video-card:nth-child(10) .video-frame {
-    transform: rotate(0.8deg);
-}
-
-.video-card:nth-child(11) .video-frame {
-    transform: rotate(-0.6deg);
-}
-
-.video-frame::before {
-    content: "";
-
-    position: absolute;
-
-    inset: 2px;
-
-    border: 1px solid rgba(255,255,255,0.15);
-
-    pointer-events: none;
-
-    z-index: 3;
-}
-
-
-/* =====================================================
-   WATCH MEMORY LINK
-===================================================== */
-
-.video-link {
-    position: relative;
-
-    z-index: 2;
-
-    width: 100%;
-    height: 100%;
-
-    display: flex;
-
-    flex-direction: column;
-
-    align-items: center;
-
-    justify-content: center;
-
-    gap: 12px;
-
-    color: #e9e4db;
-
-    text-decoration: none;
-
-    font-family: Arial, sans-serif;
-
-    text-transform: uppercase;
-
-    letter-spacing: 3px;
-
-    font-size: 8px;
-
-    background: #1b1b1a;
-
-    transition:
-        background 0.18s ease,
-        color 0.18s ease;
-}
-
-.video-link::before {
-    content: "▶";
-
-    width: 42px;
-
-    height: 42px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    border: 1px solid rgba(255,255,255,0.42);
-
-    border-radius: 50%;
-
-    font-size: 12px;
-
-    letter-spacing: 0;
-
-    padding-left: 2px;
-
-    transition:
-        transform 0.18s ease,
-        border-color 0.18s ease;
-}
-
-.video-link:hover {
-    background: #252422;
-
-    color: #ffffff;
-}
-
-.video-link:hover::before {
-    transform: scale(1.08);
-
-    border-color: rgba(255,255,255,0.72);
-}
-
-.video-card:hover .video-frame {
-    transform:
-        translateY(-5px)
-        rotate(0deg);
-
-    box-shadow:
-        0 20px 38px rgba(35,30,25,0.22);
-}
-
-
-/* =====================================================
-   VIDEO CAPTION
-===================================================== */
-
-.video-caption {
-    margin-top: 12px;
-
-    padding: 0 4px;
-
-    color: #403c36;
-
-    font-size: 11px;
-
-    line-height: 1.5;
-}
-
-.video-caption::before {
-    content: "";
-
-    display: block;
-
-    width: 17px;
-
-    height: 1px;
-
-    background: #aaa195;
-
-    margin-bottom: 7px;
-}
-
-.video-number {
-    display: block;
-
-    margin-bottom: 5px;
-
-    font-family: Arial, sans-serif;
-
-    font-size: 7px;
-
-    letter-spacing: 2px;
-
-    color: #9c958b;
-}
-
-.video-text {
-    display: block;
-
-    color: #403c36;
-
-    font-size: 11px;
-
-    line-height: 1.5;
-}
-
-
-/* =====================================================
-   DIVIDER
-===================================================== */
-
-.archive-divider {
-    width: 100%;
-
-    height: 1px;
-
-    background: rgba(50,45,38,0.16);
-
-    margin: 95px 0 90px;
-
-    position: relative;
-}
-
-.archive-divider::before {
-    content: "✦";
-
-    position: absolute;
-
-    left: 50%;
-
-    top: 50%;
-
-    transform: translate(-50%, -50%);
-
-    background: #d8d1c5;
-
-    padding: 0 13px;
-
-    color: #82796d;
-
-    font-size: 9px;
-}
-
-
-/* =====================================================
-   SCREENSHOT GRID
-===================================================== */
-
-.screenshot-grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(4, minmax(0, 1fr));
-
-    gap: 42px 22px;
-
-    align-items: start;
-}
-
-
-/* =====================================================
-   SCREENSHOT CARDS
-===================================================== */
-
-.screenshot-card {
-    position: relative;
-
-    min-width: 0;
-
-    cursor: zoom-in;
-}
-
-.screenshot-card:nth-child(2) {
-    margin-top: 25px;
-}
-
-.screenshot-card:nth-child(4) {
-    margin-top: 35px;
-}
-
-.screenshot-card:nth-child(5) {
-    margin-top: 12px;
-}
-
-.screenshot-card:nth-child(7) {
-    margin-top: 30px;
-}
-
-.screenshot-card:nth-child(9) {
-    margin-top: 18px;
-}
-
-.screenshot-card:nth-child(11) {
-    margin-top: 35px;
-}
-
-.screenshot-card:nth-child(13) {
-    margin-top: 22px;
-}
-
-
-/* =====================================================
-   SCREENSHOT FRAME
-===================================================== */
-
-.screenshot-frame {
-    position: relative;
-
-    width: 100%;
-
-    background: #f8f5ee;
-
-    border: 1px solid rgba(25,23,20,0.28);
-
-    padding: 8px;
-
-    box-shadow:
-        5px 7px 0 rgba(65,57,47,0.08),
-        0 12px 25px rgba(40,34,28,0.13);
-
-    transition:
-        transform 0.22s ease,
-        box-shadow 0.22s ease;
-}
-
-.screenshot-card:nth-child(1) .screenshot-frame {
-    transform: rotate(-1.1deg);
-}
-
-.screenshot-card:nth-child(2) .screenshot-frame {
-    transform: rotate(1.4deg);
-}
-
-.screenshot-card:nth-child(3) .screenshot-frame {
-    transform: rotate(-0.6deg);
-}
-
-.screenshot-card:nth-child(4) .screenshot-frame {
-    transform: rotate(1deg);
-}
-
-.screenshot-card:nth-child(5) .screenshot-frame {
-    transform: rotate(-1.3deg);
-}
-
-.screenshot-card:nth-child(6) .screenshot-frame {
-    transform: rotate(0.7deg);
-}
-
-.screenshot-card:nth-child(7) .screenshot-frame {
-    transform: rotate(-0.9deg);
-}
-
-.screenshot-card:nth-child(8) .screenshot-frame {
-    transform: rotate(1.2deg);
-}
-
-.screenshot-card:nth-child(9) .screenshot-frame {
-    transform: rotate(-0.8deg);
-}
-
-.screenshot-card:nth-child(10) .screenshot-frame {
-    transform: rotate(1.1deg);
-}
-
-.screenshot-card:nth-child(11) .screenshot-frame {
-    transform: rotate(-1.2deg);
-}
-
-.screenshot-card:nth-child(12) .screenshot-frame {
-    transform: rotate(0.8deg);
-}
-
-.screenshot-card:nth-child(13) .screenshot-frame {
-    transform: rotate(-0.7deg);
-}
-
-.screenshot-card:nth-child(14) .screenshot-frame {
-    transform: rotate(1deg);
-}
-
-.screenshot-frame::before {
-    content: "";
-
-    position: absolute;
-
-    inset: 4px;
-
-    border: 1px solid rgba(35,31,27,0.13);
-
-    pointer-events: none;
-
-    z-index: 3;
-}
-
-.screenshot-frame img {
-    width: 100%;
-
-    height: auto;
-
-    display: block;
-
-    position: relative;
-
-    z-index: 2;
-
-    filter:
-        saturate(0.94)
-        contrast(0.98);
-
-    transition:
-        transform 0.22s ease,
-        filter 0.22s ease;
-}
-
-.screenshot-card:hover .screenshot-frame {
-    transform:
-        translateY(-5px)
-        rotate(0deg);
-
-    box-shadow:
-        0 20px 38px rgba(35,30,25,0.20);
-}
-
-.screenshot-card:hover img {
-    filter:
-        saturate(1)
-        contrast(1);
-
-    transform: scale(1.012);
-}
-
-
-/* =====================================================
-   SCREENSHOT NUMBER
-===================================================== */
-
-.screenshot-number {
-    position: absolute;
-
-    top: -18px;
-
-    left: 2px;
-
-    font-family: Arial, sans-serif;
-
-    font-size: 7px;
-
-    letter-spacing: 2px;
-
-    color: #9c958b;
-
-    z-index: 15;
-}
-
-
-/* =====================================================
-   GROUP CAPTIONS
-===================================================== */
-
-.group-caption {
-    grid-column: 1 / -1;
-
-    text-align: center;
-
-    margin-top: -4px;
-
-    margin-bottom: 4px;
-
-    color: #5c554c;
-
-    font-size: 11px;
-
-    font-style: italic;
-
-    line-height: 1.5;
-}
-
-.group-caption::before {
-    content: "";
-
-    display: block;
-
-    width: 25px;
-
-    height: 1px;
-
-    background: #aaa195;
-
-    margin: 0 auto 9px;
-}
-
-
-/* =====================================================
-   SCREENSHOT CAPTIONS
-===================================================== */
-
-.screenshot-caption {
-    margin-top: 11px;
-
-    padding: 0 4px;
-
-    color: #403c36;
-
-    font-size: 11px;
-
-    line-height: 1.45;
-
-    min-height: 32px;
-}
-
-.screenshot-caption::before {
-    content: "";
-
-    display: block;
-
-    width: 17px;
-
-    height: 1px;
-
-    background: #aaa195;
-
-    margin-bottom: 7px;
-}
-
-
-/* =====================================================
-   FINAL SCREENSHOT
-===================================================== */
-
-.screenshot-card.final {
-    grid-column: 2 / span 2;
-
-    max-width: 85%;
-
-    justify-self: center;
-}
-
-
-/* =====================================================
-   SCREENSHOT LIGHTBOX
-===================================================== */
-
-.lightbox {
-    position: fixed;
-
-    inset: 0;
-
-    z-index: 10000;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    padding: 35px;
-
-    background: rgba(18,16,13,0.78);
-
-    backdrop-filter: blur(7px);
-
-    -webkit-backdrop-filter: blur(7px);
-
-    opacity: 0;
-
-    visibility: hidden;
-
-    pointer-events: none;
-
-    transition:
-        opacity 0.18s ease,
-        visibility 0.18s ease;
-}
-
-.lightbox.active {
-    opacity: 1;
-
-    visibility: visible;
-
-    pointer-events: auto;
-}
-
-.lightbox-image-wrap {
-    position: relative;
-
-    max-width: min(92vw, 1000px);
-
-    max-height: 88vh;
-
-    padding: 10px;
-
-    background: #f8f5ee;
-
-    border: 1px solid rgba(255,255,255,0.28);
-
-    box-shadow:
-        0 25px 80px rgba(0,0,0,0.55);
-
-    transform:
-        scale(0.94)
-        translateY(8px);
-
-    transition:
-        transform 0.2s ease;
-}
-
-.lightbox.active .lightbox-image-wrap {
-    transform:
-        scale(1)
-        translateY(0);
-}
-
-.lightbox-image {
-    display: block;
-
-    max-width: 100%;
-
-    max-height: calc(88vh - 20px);
-
-    width: auto;
-
-    height: auto;
-
-    object-fit: contain;
-}
-
-.lightbox-close {
-    position: absolute;
-
-    top: -42px;
-
-    right: 0;
-
-    width: 30px;
-
-    height: 30px;
-
-    border: 1px solid rgba(255,255,255,0.35);
-
-    background: rgba(0,0,0,0.35);
-
-    color: #fff;
-
-    font-family: Arial, sans-serif;
-
-    font-size: 17px;
-
-    line-height: 27px;
-
-    text-align: center;
-
-    cursor: pointer;
-
-    transition:
-        background 0.15s ease,
-        transform 0.15s ease;
-}
-
-.lightbox-close:hover {
-    background: rgba(0,0,0,0.65);
-
-    transform: scale(1.05);
-}
-
-.lightbox-hint {
-    position: absolute;
-
-    bottom: 18px;
-
-    left: 50%;
-
-    transform: translateX(-50%);
-
-    font-family: Arial, sans-serif;
-
-    font-size: 8px;
-
-    letter-spacing: 2px;
-
-    text-transform: uppercase;
-
-    color: rgba(255,255,255,0.62);
-
-    white-space: nowrap;
-}
-
-
-/* =====================================================
-   BOTTOM
-===================================================== */
-
-.bottom {
-    text-align: center;
-
-    margin-top: 90px;
-
-    padding-top: 28px;
-
-    border-top: 1px solid rgba(50,45,38,0.16);
-
-    position: relative;
-
-    z-index: 30;
-}
-
-.bottom-note {
-    color: #7d756b;
-
-    font-size: 11px;
-
-    margin-bottom: 20px;
-
-    font-style: italic;
-}
-
-.back {
-    display: inline-block;
-
-    text-decoration: none;
-
-    color: #3d3934;
-
-    font-family: Arial, sans-serif;
-
-    font-size: 8px;
-
-    letter-spacing: 3px;
-
-    text-transform: uppercase;
-
-    padding: 11px 20px;
-
-    border: 1px solid rgba(40,35,30,0.35);
-
-    transition:
-        background 0.15s ease,
-        color 0.15s ease,
-        transform 0.15s ease;
-}
-
-.back:hover {
-    background: #1b1b1a;
-
-    color: #f7f3eb;
-
-    transform: translateY(-2px);
-}
-
-
-/* =====================================================
-   MOBILE
-===================================================== */
-
-@media (max-width: 800px) {
-
-    body::after {
-        inset: 7px;
-    }
-
-    .page {
-        padding: 55px 17px 70px;
-    }
-
-    .header {
-        margin-bottom: 52px;
-    }
-
-    h1 {
-        font-size: 49px;
-    }
-
-    .archive-section {
-        margin-bottom: 65px;
-    }
-
-
-    /* VIDEO MOBILE */
-
-    .video-grid {
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
-
-        gap: 38px 13px;
-    }
-
-    .video-card:nth-child(2),
-    .video-card:nth-child(4),
-    .video-card:nth-child(6),
-    .video-card:nth-child(8),
-    .video-card:nth-child(10),
-    .video-card:nth-child(11) {
-        margin-top: 18px;
-    }
-
-    .video-frame {
-        aspect-ratio: 16 / 9;
-
-        border-width: 6px;
-    }
-
-    .video-link {
-        font-size: 7px;
-
-        letter-spacing: 2px;
-    }
-
-    .video-link::before {
-        width: 34px;
-
-        height: 34px;
-
-        font-size: 10px;
-    }
-
-    .video-text {
-        font-size: 9px;
-    }
-
-
-    /* SCREENSHOTS */
-
-    .screenshot-grid {
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
-
-        gap: 38px 13px;
-    }
-
-    .screenshot-card:nth-child(2),
-    .screenshot-card:nth-child(4),
-    .screenshot-card:nth-child(5),
-    .screenshot-card:nth-child(7),
-    .screenshot-card:nth-child(9),
-    .screenshot-card:nth-child(11),
-    .screenshot-card:nth-child(13) {
-        margin-top: 18px;
-    }
-
-    .screenshot-card.final {
-        grid-column: 1 / -1;
-
-        max-width: 70%;
-    }
-
-    .group-caption {
-        margin-top: 5px;
-    }
-
-    .archive-divider {
-        margin: 70px 0 65px;
-    }
-
-    .bottom {
-        margin-top: 65px;
-    }
-
-    .lightbox {
-        padding: 25px 16px;
-    }
-
-    .lightbox-image-wrap {
-        max-width: 94vw;
-        max-height: 84vh;
-    }
-
-    .lightbox-image {
-        max-height: calc(84vh - 20px);
-    }
-
-    .lightbox-close {
-        top: -38px;
-    }
-}
-
-
-@media (max-width: 430px) {
-
-    .video-grid,
-    .screenshot-grid {
-        gap: 32px 10px;
-    }
-
-    .video-frame {
-        border-width: 6px;
-    }
-
-    .video-link {
-        font-size: 6px;
-
-        letter-spacing: 1.5px;
-    }
-
-    .video-link::before {
-        width: 30px;
-
-        height: 30px;
-
-        font-size: 9px;
-    }
-
-    .screenshot-frame {
-        padding: 6px;
-    }
-
-    .video-caption,
-    .screenshot-caption {
-        font-size: 9px;
-    }
-
-    .video-text {
-        font-size: 9px;
-    }
-
-    .section-note,
-    .header-note {
-        font-size: 11px;
-    }
-
-    .screenshot-card.final {
-        max-width: 82%;
-    }
-
-    .lightbox-hint {
-        font-size: 7px;
-        letter-spacing: 1.5px;
-    }
-
-}
-
-</style>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Memories</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background: #f4f0e8;
+            color: #171717;
+            font-family: Georgia, "Times New Roman", serif;
+        }
+
+        .page {
+            width: min(1100px, 90%);
+            margin: 0 auto;
+            padding: 70px 0 90px;
+        }
+
+        /* -------------------------
+           SECTION HEADINGS
+        ------------------------- */
+
+        .section-label {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+        }
+
+        .section-title {
+            font-size: clamp(32px, 5vw, 52px);
+            font-weight: normal;
+            margin: 0;
+            line-height: 1.05;
+        }
+
+        .section-line {
+            width: 100%;
+            height: 1px;
+            background: #171717;
+            margin: 22px 0 18px;
+        }
+
+        .section-note {
+            font-size: 15px;
+            font-style: italic;
+            margin: 0 0 35px;
+        }
+
+
+        /* -------------------------
+           VIDEOS
+        ------------------------- */
+
+        .video-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 28px;
+            margin-top: 0;
+        }
+
+        .video-card {
+            flex: 0 1 calc((100% - 56px) / 3);
+            min-width: 0;
+        }
+
+        .video-frame {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: #111;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .video-link {
+            color: #f4f0e8;
+            text-decoration: none;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 11px;
+            letter-spacing: 2px;
+            border: 1px solid rgba(244, 240, 232, 0.7);
+            padding: 12px 18px;
+            transition: all 0.2s ease;
+        }
+
+        .video-link:hover {
+            background: #f4f0e8;
+            color: #111;
+        }
+
+        .video-caption {
+            display: flex;
+            gap: 14px;
+            margin-top: 12px;
+            align-items: flex-start;
+        }
+
+        .video-number {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 10px;
+            letter-spacing: 1px;
+            opacity: 0.6;
+            flex-shrink: 0;
+        }
+
+        .video-text {
+            font-size: 14px;
+            line-height: 1.45;
+        }
+
+
+        /* -------------------------
+           SCREENSHOTS
+        ------------------------- */
+
+        .screenshots-section {
+            margin-top: 90px;
+        }
+
+        .screenshot-group {
+            margin-bottom: 65px;
+        }
+
+        .group-caption {
+            font-size: 15px;
+            line-height: 1.5;
+            font-style: italic;
+            margin: 0 0 25px;
+        }
+
+        .screenshot-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .screenshot-card {
+            margin: 0;
+            cursor: pointer;
+        }
+
+        .screenshot-card img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        .final-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .final-group .screenshot-card {
+            width: min(260px, 100%);
+        }
+
+        .final-group .group-caption {
+            max-width: 650px;
+            text-align: center;
+            margin-top: 22px;
+        }
+
+
+        /* -------------------------
+           BOTTOM NAVIGATION
+        ------------------------- */
+
+        .bottom-nav {
+            margin-top: 90px;
+            padding-top: 25px;
+            border-top: 1px solid #171717;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .page-link {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 11px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #171717;
+            text-decoration: none;
+        }
+
+        .page-link:hover {
+            text-decoration: underline;
+        }
+
+
+        /* -------------------------
+           LIGHTBOX
+        ------------------------- */
+
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.9);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 30px;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-image {
+            max-width: 90vw;
+            max-height: 90vh;
+            object-fit: contain;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 40px;
+            line-height: 1;
+            cursor: pointer;
+        }
+
+
+        /* -------------------------
+           RESPONSIVE
+        ------------------------- */
+
+        @media (max-width: 900px) {
+            .video-card {
+                flex-basis: calc((100% - 28px) / 2);
+            }
+
+            .screenshot-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .page {
+                width: 88%;
+                padding-top: 45px;
+            }
+
+            .video-card {
+                flex-basis: 100%;
+            }
+
+            .screenshot-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .screenshots-section {
+                margin-top: 65px;
+            }
+
+            .bottom-nav {
+                margin-top: 65px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
 <main class="page">
 
-<header class="header">
+    <!-- =========================
+         VIDEOS
+    ========================== -->
 
-<div class="eyebrow">
-    Some Memories 4 U
-</div>
+    <section id="9i02qr">
 
-<h1>
-    MEMORIES
-</h1>
+        <div class="section-label">
+            01 / Videos
+        </div>
 
-<div class="header-line"></div>
+        <h2 class="section-title">
+            Moving Evidence
+        </h2>
 
-<p class="header-note">
-    Things that somehow survived long enough to be documented.
-</p>
+        <div class="section-line"></div>
 
-</header>
+        <p class="section-note">
+            apparently these needed to be kept too.
+        </p>
 
-<!-- =================================================
-     VIDEOS
-================================================= -->
+        <div class="video-grid">
 
-<section class="archive-section">
+            <!-- VIDEO 01 -->
+            <article class="video-card">
+                <div class="video-frame">
+                    <a
+                        href="https://drive.google.com/file/d/1FaHIDvCHrj6Dj8Rjeqw5AZQjwYehdvYl/view?usp=drive_link"
+                        class="video-link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Watch memory video 1"
+                    >
+                        WATCH MEMORY ↗
+                    </a>
+                </div>
 
-<div class="section-header">
+                <div class="video-caption">
+                    <span class="video-number">01</span>
+                    <span class="video-text">
+                        unfortunate events with food…which you keep buying btw
+                    </span>
+                </div>
+            </article>
 
-```
-<div class="section-label">
-    01 / Videos
-</div>
 
-<h2 class="section-title">
-    Moving Evidence
-</h2>
+            <!-- VIDEO 02 -->
+            <article class="video-card">
+                <div class="video-frame">
+                    <a
+                        href="https://drive.google.com/file/d/1A-S2MdAV0rGj9lf0Lv5aQ-TV4tx4TMG_/view?usp=drive_link"
+                        class="video-link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Watch memory video 2"
+                    >
+                        WATCH MEMORY ↗
+                    </a>
+                </div>
 
-<div class="section-line"></div>
+                <div class="video-caption">
+                    <span class="video-number">02</span>
+                    <span class="video-text">
+                        mind you i was just styling your hair….
+                    </span>
+                </div>
+            </article>
 
-<p class="section-note">
-    apparently these needed to be kept too.
-</p>
-```
 
-</div>
+            <!-- VIDEO 03 -->
+            <article class="video-card">
+                <div class="video-frame">
+                    <a
+                        href="https://drive.google.com/file/d/1oRgery3QyYA-R3hhpE0YKsSgf7uyMG-Q/view?usp=drive_link"
+                        class="video-link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Watch memory video 3"
+                    >
+                        WATCH MEMORY ↗
+                    </a>
+                </div>
 
-<div class="video-grid">
+                <div class="video-caption">
+                    <span class="video-number">03</span>
+                    <span class="video-text">
+                        so jolly after cheating😒
+                    </span>
+                </div>
+            </article>
 
-```
-<!-- VIDEO 1 -->
 
-<article class="video-card">
+            <!-- VIDEO 04 -->
+            <article class="video-card">
+                <div class="video-frame">
+                    <a
+                        href="https://drive.google.com/file/d/183nO1eYWlZinCWKqc1aIcrwNL-qXD35W/view?usp=drive_link"
+                        class="video-link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Watch memory video 4"
+                    >
+                        WATCH MEMORY ↗
+                    </a>
+                </div>
 
-    <div class="video-frame">
+                <div class="video-caption">
+                    <span class="video-number">04</span>
+                    <span class="video-text">
+                        me still looking cute after…’losing’ the bet
+                    </span>
+                </div>
+            </article>
+
+
+            <!-- VIDEO 05 -->
+            <article class="video-card">
+                <div class="video-frame">
+                    <a
+                        href="https://drive.google.com/file/d/1ROZOX17T234avamUR_wYkZtsql1NKnEQ/view?usp=drive_link"
+                        class="video-link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Watch memory video 5"
+                    >
+                        WATCH MEMORY ↗
+                    </a>
+                </div>
+
+                <div class="video-caption">
+                    <span class="video-number">05</span>
+                    <span class="video-text">
+                        video evidence of the afforementioned cheating
+                    </span>
+                </div>
+            </article>
+
+
+            <!-- VIDEO 06 -->
+            <article class="video-card">
+                <div class="video-frame">
+                    <a
+                        href="https://drive.google.com/file/d/1ObZx67LF96OvoOlaN-S5BM8GbZL6bH9m/view?usp=drive_link"
+                        class="video-link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Watch memory video 6"
+                    >
+                        WATCH MEMORY ↗
+                    </a>
+                </div>
+
+                <div class="video-caption">
+                    <span class="video-number">06</span>
+                    <span class="video-text">
+                        you making yourself laugh at the jeans post caption😭
+                    </span>
+                </div>
+            </article>
+
+
+            <!-- VIDEO 07 -->
+            <article class="video-card">
+                <div class="video-frame">
+                    <a
+                        href="https://drive.google.com/file/d/1INAKUIL4B0Z_LeeZdEs-3ksmmmCyhykl/view?usp=drive_link"
+                        class="video-link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Watch memory video 7"
+                    >
+                        WATCH MEMORY ↗
+                    </a>
+                </div>
+
+                <div class="video-caption">
+                    <span class="video-number">07</span>
+                    <span class="video-text">
+                        you being a bully…bc i cant afford proper earbuds..hm this life
+                    </span>
+                </div>
+            </article>
+
+
+            <!-- VIDEO 08 -->
+            <article class="video-card">
+                <div class="video-frame">
+                    <a
+                        href="https://drive.google.com/file/d/1VHuZXWl9EKfS4j7941PBzcDpEM5a5LgY/view?usp=drive_link"
+                        class="video-link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Watch memory video 8"
+                    >
+                        WATCH MEMORY ↗
+                    </a>
+                </div>
+
+                <div class="video-caption">
+                    <span class="video-number">08</span>
+                    <span class="video-text">
+                        🤣not an amazing angle for me but this was just funny
+                    </span>
+                </div>
+            </article>
+
+
+            <!-- VIDEO 09 -->
+            <article class="video-card">
+                <div class="video-frame">
+                    <a
+                        href="https://drive.google.com/file/d/1-5CTfYhO1iqhTq3tgWbw2HxljmtSPldO/view?usp=drive_link"
+                        class="video-link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Watch memory video 9"
+                    >
+                        WATCH MEMORY ↗
+                    </a>
+                </div>
+
+                <div class="video-caption">
+                    <span class="video-number">09</span>
+                    <span class="video-text">
+                        after cheating you’re hiding from the camera🤣
+                    </span>
+                </div>
+            </article>
+
+
+            <!-- VIDEO 10 -->
+            <article class="video-card">
+                <div class="video-frame">
+                    <a
+                        href="https://drive.google.com/file/d/1iBnwAu87PSvGRvkiUhq2vaFH0j8_MWqR/view?usp=drive_link"
+                        class="video-link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Watch memory video 10"
+                    >
+                        WATCH MEMORY ↗
+                    </a>
+                </div>
+
+                <div class="video-caption">
+                    <span class="video-number">10</span>
+                    <span class="video-text">
+                        another one of your losses to me🙂‍↕️
+                    </span>
+                </div>
+            </article>
+
+
+            <!-- VIDEO 11 -->
+            <article class="video-card">
+                <div class="video-frame">
+                    <a
+                        href="https://drive.google.com/file/d/1zj66vX1QQrn3i4N4BW-lYVBkANXqzjQS/view?usp=drive_link"
+                        class="video-link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Watch memory video 11"
+                    >
+                        WATCH MEMORY ↗
+                    </a>
+                </div>
+
+                <div class="video-caption">
+                    <span class="video-number">11</span>
+                    <span class="video-text">
+                        🤣🤣this has got to be my favorite😭😭
+                    </span>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+
+    <!-- =========================
+         SCREENSHOTS
+    ========================== -->
+
+    <section class="screenshots-section" id="iihv4i">
+
+        <div class="section-label">
+            02 / Screenshots
+        </div>
+
+        <h2 class="section-title">
+            Things You Actually Said
+        </h2>
+
+        <div class="section-line"></div>
+
+        <p class="section-note">
+            because apparently screenshots are evidence now.
+        </p>
+
+
+        <!-- GROUP 01 -->
+        <div class="screenshot-group">
+
+            <p class="group-caption">
+                you saying the most out of pocket things😭
+            </p>
+
+            <div class="screenshot-grid">
+
+                <article class="screenshot-card">
+                    <img src="screenshot1.jpg" alt="Screenshot 1" loading="lazy">
+                </article>
+
+                <article class="screenshot-card">
+                    <img src="screenshot2.jpg" alt="Screenshot 2" loading="lazy">
+                </article>
+
+                <article class="screenshot-card">
+                    <img src="screenshot3.jpg" alt="Screenshot 3" loading="lazy">
+                </article>
+
+                <article class="screenshot-card">
+                    <img src="screenshot4.jpg" alt="Screenshot 4" loading="lazy">
+                </article>
+
+            </div>
+        </div>
+
+
+        <!-- GROUP 02 -->
+        <div class="screenshot-group">
+
+            <p class="group-caption">
+                rare moments when your humor didnt fail you but your ‘dont be weird’ filter did🤣
+            </p>
+
+            <div class="screenshot-grid">
+
+                <article class="screenshot-card">
+                    <img src="screenshot5.jpg" alt="Screenshot 5" loading="lazy">
+                </article>
+
+                <article class="screenshot-card">
+                    <img src="screenshot6.jpg" alt="Screenshot 6" loading="lazy">
+                </article>
+
+                <article class="screenshot-card">
+                    <img src="screenshot7.jpg" alt="Screenshot 7" loading="lazy">
+                </article>
+
+                <article class="screenshot-card">
+                    <img src="screenshot8.jpg" alt="Screenshot 8" loading="lazy">
+                </article>
+
+            </div>
+        </div>
+
+
+        <!-- GROUP 03 -->
+        <div class="screenshot-group">
+
+            <p class="group-caption">
+                cute? sweet? pg18?😭
+            </p>
+
+            <div class="screenshot-grid">
+
+                <article class="screenshot-card">
+                    <img src="screenshot9.jpg" alt="Screenshot 9" loading="lazy">
+                </article>
+
+                <article class="screenshot-card">
+                    <img src="screenshot10.jpg" alt="Screenshot 10" loading="lazy">
+                </article>
+
+                <article class="screenshot-card">
+                    <img src="screenshot11.jpg" alt="Screenshot 11" loading="lazy">
+                </article>
+
+                <article class="screenshot-card">
+                    <img src="screenshot12.jpg" alt="Screenshot 12" loading="lazy">
+                </article>
+
+                <article class="screenshot-card">
+                    <img src="screenshot13.jpg" alt="Screenshot 13" loading="lazy">
+                </article>
+
+            </div>
+        </div>
+
+
+        <!-- FINAL SCREENSHOT -->
+        <div class="screenshot-group final-group">
+
+            <article class="screenshot-card">
+                <img src="screenshot14.jpg" alt="Screenshot 14" loading="lazy">
+            </article>
+
+            <p class="group-caption">
+                i never told you but this had me on the floor…but i added it to clarify once and for all. i am taller than 4’11!!!
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         BOTTOM NAV
+    ========================== -->
+
+    <nav class="bottom-nav">
 
         <a
-            href="https://drive.google.com/file/d/1FaHIDvCHrj6Dj8Rjeqw5AZQjwYehdvYl/view?usp=drive_link"
-            class="video-link"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Watch memory video 1"
+            href="birthday.html"
+            class="back page-link"
         >
-            WATCH MEMORY ↗
+            Continue → Birthday
         </a>
 
-    </div>
-
-    <div class="video-caption">
-        <span class="video-number">01</span>
-        <span class="video-text">
-            unfortunate events with food…which you keep buying btw
-        </span>
-    </div>
-
-</article>
-
-
-<!-- VIDEO 2 -->
-
-<article class="video-card">
-
-    <div class="video-frame">
-
-        <a
-            href="https://drive.google.com/file/d/1A-S2MdAV0rGj9lf0Lv5aQ-TV4tx4TMG_/view?usp=drive_link"
-            class="video-link"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Watch memory video 2"
-        >
-            WATCH MEMORY ↗
-        </a>
-
-    </div>
-
-    <div class="video-caption">
-        <span class="video-number">02</span>
-        <span class="video-text">
-            mind you i was just styling your hair….
-        </span>
-    </div>
-
-</article>
-
-
-<!-- VIDEO 3 -->
-
-<article class="video-card">
-
-    <div class="video-frame">
-
-        <a
-            href="https://drive.google.com/file/d/1oRgery3QyYA-R3hhpE0YKsSgf7uyMG-Q/view?usp=drive_link"
-            class="video-link"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Watch memory video 3"
-        >
-            WATCH MEMORY ↗
-        </a>
-
-    </div>
-
-    <div class="video-caption">
-        <span class="video-number">03</span>
-        <span class="video-text">
-            so jolly after cheating😒
-        </span>
-    </div>
-
-</article>
-
-
-<!-- VIDEO 4 -->
-
-<article class="video-card">
-
-    <div class="video-frame">
-
-        <a
-            href="https://drive.google.com/file/d/183nO1eYWlZinCWKqc1aIcrwNL-qXD35W/view?usp=drive_link"
-            class="video-link"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Watch memory video 4"
-        >
-            WATCH MEMORY ↗
-        </a>
-
-    </div>
-
-    <div class="video-caption">
-        <span class="video-number">04</span>
-        <span class="video-text">
-            me still looking cute after…’losing’ the bet
-        </span>
-    </div>
-
-</article>
-
-
-<!-- VIDEO 5 -->
-
-<article class="video-card">
-
-    <div class="video-frame">
-
-        <a
-            href="https://drive.google.com/file/d/1ROZOX17T234avamUR_wYkZtsql1NKnEQ/view?usp=drive_link"
-            class="video-link"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Watch memory video 5"
-        >
-            WATCH MEMORY ↗
-        </a>
-
-    </div>
-
-    <div class="video-caption">
-        <span class="video-number">05</span>
-        <span class="video-text">
-            video evidence of the afforementioned cheating
-        </span>
-    </div>
-
-</article>
-
-
-<!-- VIDEO 6 -->
-
-<article class="video-card">
-
-    <div class="video-frame">
-
-        <a
-            href="https://drive.google.com/file/d/1ObZx67LF96OvoOlaN-S5BM8GbZL6bH9m/view?usp=drive_link"
-            class="video-link"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Watch memory video 6"
-        >
-            WATCH MEMORY ↗
-        </a>
-
-    </div>
-
-    <div class="video-caption">
-        <span class="video-number">06</span>
-        <span class="video-text">
-            you making yourself laugh at the jeans post caption😭
-        </span>
-    </div>
-
-</article>
-
-
-<!-- VIDEO 7 -->
-
-<article class="video-card">
-
-    <div class="video-frame">
-
-        <a
-            href="https://drive.google.com/file/d/1INAKUIL4B0Z_LeeZdEs-3ksmmmCyhykl/view?usp=drive_link"
-            class="video-link"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Watch memory video 7"
-        >
-            WATCH MEMORY ↗
-        </a>
-
-    </div>
-
-    <div class="video-caption">
-        <span class="video-number">07</span>
-        <span class="video-text">
-            you being a bully…bc i cant afford proper earbuds..hm this life
-        </span>
-    </div>
-
-</article>
-
-
-<!-- VIDEO 8 -->
-
-<article class="video-card">
-
-    <div class="video-frame">
-
-        <a
-            href="https://drive.google.com/file/d/1VHuZXWl9EKfS4j7941PBzcDpEM5a5LgY/view?usp=drive_link"
-            class="video-link"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Watch memory video 8"
-        >
-            WATCH MEMORY ↗
-        </a>
-
-    </div>
-
-    <div class="video-caption">
-        <span class="video-number">08</span>
-        <span class="video-text">
-            🤣not an amazing angle for me but this was just funny
-        </span>
-    </div>
-
-</article>
-
-
-<!-- VIDEO 9 -->
-
-<article class="video-card">
-
-    <div class="video-frame">
-
-        <a
-            href="https://drive.google.com/file/d/1-5CTfYhO1iqhTq3tgWbw2HxljmtSPldO/view?usp=drive_link"
-            class="video-link"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Watch memory video 9"
-        >
-            WATCH MEMORY ↗
-        </a>
-
-    </div>
-
-    <div class="video-caption">
-        <span class="video-number">09</span>
-        <span class="video-text">
-            after cheating you’re hiding from the camera🤣
-        </span>
-    </div>
-
-</article>
-
-
-<!-- VIDEO 10 -->
-
-<article class="video-card">
-
-    <div class="video-frame">
-
-        <a
-            href="https://drive.google.com/file/d/1iBnwAu87PSvGRvkiUhq2vaFH0j8_MWqR/view?usp=drive_link"
-            class="video-link"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Watch memory video 10"
-        >
-            WATCH MEMORY ↗
-        </a>
-
-    </div>
-
-    <div class="video-caption">
-        <span class="video-number">10</span>
-        <span class="video-text">
-            another one of your losses to me🙂‍↕️
-        </span>
-    </div>
-
-</article>
-
-
-<!-- VIDEO 11 -->
-
-<article class="video-card">
-
-    <div class="video-frame">
-
-        <a
-            href="https://drive.google.com/file/d/1zj66vX1QQrn3i4N4BW-lYVBkANXqzjQS/view?usp=drive_link"
-            class="video-link"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Watch memory video 11"
-        >
-            WATCH MEMORY ↗
-        </a>
-
-    </div>
-
-    <div class="video-caption">
-        <span class="video-number">11</span>
-        <span class="video-text">
-            🤣🤣this has got to be my favorite😭😭
-        </span>
-    </div>
-
-</article>
-```
-
-</div>
-
-</section>
-
-<!-- =================================================
-     DIVIDER
-================================================= -->
-
-<div class="archive-divider"></div>
-
-<!-- =================================================
-     SCREENSHOTS
-================================================= -->
-
-<section class="archive-section">
-
-<div class="section-header">
-
-```
-<div class="section-label">
-    02 / Screenshots
-</div>
-
-<h2 class="section-title">
-    Things You Actually Said
-</h2>
-
-<div class="section-line"></div>
-
-<p class="section-note">
-    because apparently screenshots are evidence now.
-</p>
-```
-
-</div>
-
-<div class="screenshot-grid">
-
-```
-<!-- SCREENSHOTS 1–4 -->
-
-<article class="screenshot-card">
-
-    <span class="screenshot-number">01</span>
-
-    <div class="screenshot-frame">
-        <img src="screenshot1.jpg" alt="Screenshot 1" loading="lazy">
-    </div>
-
-</article>
-
-
-<article class="screenshot-card">
-
-    <span class="screenshot-number">02</span>
-
-    <div class="screenshot-frame">
-        <img src="screenshot2.jpg" alt="Screenshot 2" loading="lazy">
-    </div>
-
-</article>
-
-
-<article class="screenshot-card">
-
-    <span class="screenshot-number">03</span>
-
-    <div class="screenshot-frame">
-        <img src="screenshot3.jpg" alt="Screenshot 3" loading="lazy">
-    </div>
-
-</article>
-
-
-<article class="screenshot-card">
-
-    <span class="screenshot-number">04</span>
-
-    <div class="screenshot-frame">
-        <img src="screenshot4.jpg" alt="Screenshot 4" loading="lazy">
-    </div>
-
-</article>
-
-
-<div class="group-caption">
-    you saying the most out of pocket things😭
-</div>
-
-
-<!-- SCREENSHOTS 5–8 -->
-
-<article class="screenshot-card">
-
-    <span class="screenshot-number">05</span>
-
-    <div class="screenshot-frame">
-        <img src="screenshot5.jpg" alt="Screenshot 5" loading="lazy">
-    </div>
-
-</article>
-
-
-<article class="screenshot-card">
-
-    <span class="screenshot-number">06</span>
-
-    <div class="screenshot-frame">
-        <img src="screenshot6.jpg" alt="Screenshot 6" loading="lazy">
-    </div>
-
-</article>
-
-
-<article class="screenshot-card">
-
-    <span class="screenshot-number">07</span>
-
-    <div class="screenshot-frame">
-        <img src="screenshot7.jpg" alt="Screenshot 7" loading="lazy">
-    </div>
-
-</article>
-
-
-<article class="screenshot-card">
-
-    <span class="screenshot-number">08</span>
-
-    <div class="screenshot-frame">
-        <img src="screenshot8.jpg" alt="Screenshot 8" loading="lazy">
-    </div>
-
-</article>
-
-
-<div class="group-caption">
-    rare moments when your humor didnt fail you but your ‘dont be weird’ filter did🤣
-</div>
-
-
-<!-- SCREENSHOTS 9–13 -->
-
-<article class="screenshot-card">
-
-    <span class="screenshot-number">09</span>
-
-    <div class="screenshot-frame">
-        <img src="screenshot9.jpg" alt="Screenshot 9" loading="lazy">
-    </div>
-
-</article>
-
-
-<article class="screenshot-card">
-
-    <span class="screenshot-number">10</span>
-
-    <div class="screenshot-frame">
-        <img src="screenshot10.jpg" alt="Screenshot 10" loading="lazy">
-    </div>
-
-</article>
-
-
-<article class="screenshot-card">
-
-    <span class="screenshot-number">11</span>
-
-    <div class="screenshot-frame">
-        <img src="screenshot11.jpg" alt="Screenshot 11" loading="lazy">
-    </div>
-
-</article>
-
-
-<article class="screenshot-card">
-
-    <span class="screenshot-number">12</span>
-
-    <div class="screenshot-frame">
-        <img src="screenshot12.jpg" alt="Screenshot 12" loading="lazy">
-    </div>
-
-</article>
-
-
-<article class="screenshot-card">
-
-    <span class="screenshot-number">13</span>
-
-    <div class="screenshot-frame">
-        <img src="screenshot13.jpg" alt="Screenshot 13" loading="lazy">
-    </div>
-
-</article>
-
-
-<div class="group-caption">
-    cute? sweet? pg18?😭
-</div>
-
-
-<!-- SCREENSHOT 14 -->
-
-<article class="screenshot-card final">
-
-    <span class="screenshot-number">
-        14
-    </span>
-
-    <div class="screenshot-frame">
-        <img src="screenshot14.jpg" alt="Screenshot 14" loading="lazy">
-    </div>
-
-    <div class="screenshot-caption">
-        i never told you but this had me on the floor…but i added it to clarify once and for all. i am taller than 4’11!!!
-    </div>
-
-</article>
-```
-
-</div>
-
-</section>
-
-<!-- =================================================
-     BOTTOM
-===================================================== -->
-
-<div class="bottom">
-
-<p class="bottom-note">
-    that's enough evidence for now.
-</p>
-
-<a
-href="birthday.html"
-class="back page-link"
-
->
-
-```
-Continue → Birthday
-```
-
-</a>
-
-</div>
+    </nav>
 
 </main>
 
-<!-- =================================================
-     SCREENSHOT LIGHTBOX
-===================================================== -->
 
-<div
-    class="lightbox"
-    id="lightbox"
-    aria-hidden="true"
->
+<!-- =========================
+     LIGHTBOX
+========================== -->
 
-<div class="lightbox-image-wrap">
+<div class="lightbox" id="lightbox">
 
-```
-<button
-    class="lightbox-close"
-    id="lightboxClose"
-    aria-label="Close screenshot"
-    type="button"
->
-    ×
-</button>
+    <button
+        class="lightbox-close"
+        id="lightboxClose"
+        aria-label="Close screenshot"
+        type="button"
+    >
+        ×
+    </button>
 
-<img
-    class="lightbox-image"
-    id="lightboxImage"
-    src=""
-    alt=""
->
-```
+    <img
+        class="lightbox-image"
+        id="lightboxImage"
+        src=""
+        alt=""
+    >
 
 </div>
 
-<div class="lightbox-hint">
-    tap outside or press esc to close
-</div>
-
-</div>
 
 <script>
+    const screenshotCards = document.querySelectorAll(".screenshot-card");
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImage = document.getElementById("lightboxImage");
+    const lightboxClose = document.getElementById("lightboxClose");
 
-/* =====================================================
-   FAST PAGE LOAD
-===================================================== */
+    screenshotCards.forEach(card => {
+        card.addEventListener("click", () => {
+            const image = card.querySelector("img");
 
-window.addEventListener("DOMContentLoaded", function () {
+            if (!image) return;
 
-    requestAnimationFrame(function () {
-
-        document.body.classList.add("page-ready");
-
+            lightboxImage.src = image.src;
+            lightboxImage.alt = image.alt;
+            lightbox.classList.add("active");
+        });
     });
 
-});
-
-
-/* =====================================================
-   SCREENSHOT LIGHTBOX
-===================================================== */
-
-const lightbox =
-    document.getElementById("lightbox");
-
-const lightboxImage =
-    document.getElementById("lightboxImage");
-
-const lightboxClose =
-    document.getElementById("lightboxClose");
-
-const screenshotCards =
-    document.querySelectorAll(".screenshot-card");
-
-
-screenshotCards.forEach(function (card) {
-
-    const image = card.querySelector("img");
-
-    if (!image) return;
-
-    card.addEventListener("click", function () {
-
-        lightboxImage.src = image.src;
-
-        lightboxImage.alt = image.alt;
-
-        lightbox.classList.add("active");
-
-        lightbox.setAttribute(
-            "aria-hidden",
-            "false"
-        );
-
-        document.body.style.overflow = "hidden";
-
+    lightboxClose.addEventListener("click", () => {
+        lightbox.classList.remove("active");
+        lightboxImage.src = "";
     });
 
-});
-
-
-/* =====================================================
-   CLOSE LIGHTBOX
-===================================================== */
-
-function closeLightbox() {
-
-    lightbox.classList.remove("active");
-
-    lightbox.setAttribute(
-        "aria-hidden",
-        "true"
-    );
-
-    document.body.style.overflow = "";
-
-    setTimeout(function () {
-
-        if (!lightbox.classList.contains("active")) {
-
-            lightboxImage.src = "";
-
-        }
-
-    }, 200);
-
-}
-
-
-lightboxClose.addEventListener(
-    "click",
-    function (event) {
-
-        event.stopPropagation();
-
-        closeLightbox();
-
-    }
-);
-
-
-lightbox.addEventListener(
-    "click",
-    function (event) {
-
+    lightbox.addEventListener("click", event => {
         if (event.target === lightbox) {
-
-            closeLightbox();
-
+            lightbox.classList.remove("active");
+            lightboxImage.src = "";
         }
+    });
 
-    }
-);
-
-
-/* =====================================================
-   ESC KEY
-===================================================== */
-
-document.addEventListener(
-    "keydown",
-    function (event) {
-
-        if (
-            event.key === "Escape" &&
-            lightbox.classList.contains("active")
-        ) {
-
-            closeLightbox();
-
+    document.addEventListener("keydown", event => {
+        if (event.key === "Escape") {
+            lightbox.classList.remove("active");
+            lightboxImage.src = "";
         }
-
-    }
-);
-
+    });
 </script>
 
 </body>
