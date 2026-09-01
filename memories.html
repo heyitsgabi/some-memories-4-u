@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 
@@ -343,6 +344,12 @@ h1 {
         box-shadow 0.22s ease;
 
     overflow: hidden;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
 }
 
 .video-card:nth-child(2) .video-frame {
@@ -399,18 +406,86 @@ h1 {
     z-index: 3;
 }
 
-.video-frame iframe {
-    width: 100%;
 
-    height: 100%;
+/* =====================================================
+   WATCH MEMORY LINK
+===================================================== */
 
-    display: block;
-
-    border: none;
-
+.video-link {
     position: relative;
 
     z-index: 2;
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    color: #e9e4db;
+
+    text-decoration: none;
+
+    font-family: Arial, sans-serif;
+
+    text-transform: uppercase;
+
+    letter-spacing: 3px;
+
+    font-size: 8px;
+
+    background: #1b1b1a;
+
+    transition:
+        background 0.18s ease,
+        color 0.18s ease;
+}
+
+.video-link::before {
+    content: "▶";
+
+    width: 42px;
+
+    height: 42px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border: 1px solid rgba(255,255,255,0.42);
+
+    border-radius: 50%;
+
+    font-size: 12px;
+
+    letter-spacing: 0;
+
+    padding-left: 2px;
+
+    transition:
+        transform 0.18s ease,
+        border-color 0.18s ease;
+}
+
+.video-link:hover {
+    background: #252422;
+
+    color: #ffffff;
+}
+
+.video-link:hover::before {
+    transform: scale(1.08);
+
+    border-color: rgba(255,255,255,0.72);
 }
 
 .video-card:hover .video-frame {
@@ -1072,12 +1147,18 @@ h1 {
         border-width: 6px;
     }
 
-    .video-frame iframe {
-        width: 100%;
+    .video-link {
+        font-size: 7px;
 
-        height: 100%;
+        letter-spacing: 2px;
+    }
 
-        display: block;
+    .video-link::before {
+        width: 34px;
+
+        height: 34px;
+
+        font-size: 10px;
     }
 
     .video-text {
@@ -1152,6 +1233,20 @@ h1 {
         border-width: 6px;
     }
 
+    .video-link {
+        font-size: 6px;
+
+        letter-spacing: 1.5px;
+    }
+
+    .video-link::before {
+        width: 30px;
+
+        height: 30px;
+
+        font-size: 9px;
+    }
+
     .screenshot-frame {
         padding: 6px;
     }
@@ -1207,7 +1302,6 @@ h1 {
 
 </header>
 
-
 <!-- =================================================
      VIDEOS
 ================================================= -->
@@ -1216,312 +1310,344 @@ h1 {
 
 <div class="section-header">
 
-    <div class="section-label">
-        01 / Videos
-    </div>
+```
+<div class="section-label">
+    01 / Videos
+</div>
 
-    <h2 class="section-title">
-        Moving Evidence
-    </h2>
+<h2 class="section-title">
+    Moving Evidence
+</h2>
 
-    <div class="section-line"></div>
+<div class="section-line"></div>
 
-    <p class="section-note">
-        apparently these needed to be kept too.
-    </p>
+<p class="section-note">
+    apparently these needed to be kept too.
+</p>
+```
 
 </div>
 
-
 <div class="video-grid">
 
+```
+<!-- VIDEO 1 -->
 
-    <!-- VIDEO 1 -->
+<article class="video-card">
 
-    <article class="video-card">
+    <div class="video-frame">
 
-        <div class="video-frame">
+        <a
+            href="https://drive.google.com/file/d/1FaHIDvCHrj6Dj8Rjeqw5AZQjwYehdvYl/view?usp=drive_link"
+            class="video-link"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Watch memory video 1"
+        >
+            WATCH MEMORY ↗
+        </a>
 
-            <iframe
-                data-src="https://drive.google.com/file/d/1FaHIDvCHrj6Dj8Rjeqw5AZQjwYehdvYl/preview"
-                title="Memory video 1"
-                allow="autoplay"
-                allowfullscreen>
-            </iframe>
+    </div>
 
-        </div>
+    <div class="video-caption">
+        <span class="video-number">01</span>
+        <span class="video-text">
+            unfortunate events with food…which you keep buying btw
+        </span>
+    </div>
 
-        <div class="video-caption">
-            <span class="video-number">01</span>
-            <span class="video-text">
-                unfortunate events with food…which you keep buying btw
-            </span>
-        </div>
+</article>
 
-    </article>
 
+<!-- VIDEO 2 -->
 
-    <!-- VIDEO 2 -->
+<article class="video-card">
 
-    <article class="video-card">
+    <div class="video-frame">
 
-        <div class="video-frame">
+        <a
+            href="https://drive.google.com/file/d/1A-S2MdAV0rGj9lf0Lv5aQ-TV4tx4TMG_/view?usp=drive_link"
+            class="video-link"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Watch memory video 2"
+        >
+            WATCH MEMORY ↗
+        </a>
 
-            <iframe
-                data-src="https://drive.google.com/file/d/1A-S2MdAV0rGj9lf0Lv5aQ-TV4tx4TMG_/preview"
-                title="Memory video 2"
-                allow="autoplay"
-                allowfullscreen>
-            </iframe>
+    </div>
 
-        </div>
+    <div class="video-caption">
+        <span class="video-number">02</span>
+        <span class="video-text">
+            mind you i was just styling your hair….
+        </span>
+    </div>
 
-        <div class="video-caption">
-            <span class="video-number">02</span>
-            <span class="video-text">
-                mind you i was just styling your hair….
-            </span>
-        </div>
+</article>
 
-    </article>
 
+<!-- VIDEO 3 -->
 
-    <!-- VIDEO 3 -->
+<article class="video-card">
 
-    <article class="video-card">
+    <div class="video-frame">
 
-        <div class="video-frame">
+        <a
+            href="https://drive.google.com/file/d/1oRgery3QyYA-R3hhpE0YKsSgf7uyMG-Q/view?usp=drive_link"
+            class="video-link"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Watch memory video 3"
+        >
+            WATCH MEMORY ↗
+        </a>
 
-            <iframe
-                data-src="https://drive.google.com/file/d/1oRgery3QyYA-R3hhpE0YKsSgf7uyMG-Q/preview"
-                title="Memory video 3"
-                allow="autoplay"
-                allowfullscreen>
-            </iframe>
+    </div>
 
-        </div>
+    <div class="video-caption">
+        <span class="video-number">03</span>
+        <span class="video-text">
+            so jolly after cheating😒
+        </span>
+    </div>
 
-        <div class="video-caption">
-            <span class="video-number">03</span>
-            <span class="video-text">
-                so jolly after cheating😒
-            </span>
-        </div>
+</article>
 
-    </article>
 
+<!-- VIDEO 4 -->
 
-    <!-- VIDEO 4 -->
+<article class="video-card">
 
-    <article class="video-card">
+    <div class="video-frame">
 
-        <div class="video-frame">
+        <a
+            href="https://drive.google.com/file/d/183nO1eYWlZinCWKqc1aIcrwNL-qXD35W/view?usp=drive_link"
+            class="video-link"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Watch memory video 4"
+        >
+            WATCH MEMORY ↗
+        </a>
 
-            <iframe
-                data-src="https://drive.google.com/file/d/183nO1eYWlZinCWKqc1aIcrwNL-qXD35W/preview"
-                title="Memory video 4"
-                allow="autoplay"
-                allowfullscreen>
-            </iframe>
+    </div>
 
-        </div>
+    <div class="video-caption">
+        <span class="video-number">04</span>
+        <span class="video-text">
+            me still looking cute after…’losing’ the bet
+        </span>
+    </div>
 
-        <div class="video-caption">
-            <span class="video-number">04</span>
-            <span class="video-text">
-                me still looking cute after…’losing’ the bet
-            </span>
-        </div>
+</article>
 
-    </article>
 
+<!-- VIDEO 5 -->
 
-    <!-- VIDEO 5 -->
+<article class="video-card">
 
-    <article class="video-card">
+    <div class="video-frame">
 
-        <div class="video-frame">
+        <a
+            href="https://drive.google.com/file/d/1ROZOX17T234avamUR_wYkZtsql1NKnEQ/view?usp=drive_link"
+            class="video-link"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Watch memory video 5"
+        >
+            WATCH MEMORY ↗
+        </a>
 
-            <iframe
-                data-src="https://drive.google.com/file/d/1ROZOX17T234avamUR_wYkZtsql1NKnEQ/preview"
-                title="Memory video 5"
-                allow="autoplay"
-                allowfullscreen>
-            </iframe>
+    </div>
 
-        </div>
+    <div class="video-caption">
+        <span class="video-number">05</span>
+        <span class="video-text">
+            video evidence of the afforementioned cheating
+        </span>
+    </div>
 
-        <div class="video-caption">
-            <span class="video-number">05</span>
-            <span class="video-text">
-                video evidence of the afforementioned cheating
-            </span>
-        </div>
+</article>
 
-    </article>
 
+<!-- VIDEO 6 -->
 
-    <!-- VIDEO 6 -->
+<article class="video-card">
 
-    <article class="video-card">
+    <div class="video-frame">
 
-        <div class="video-frame">
+        <a
+            href="https://drive.google.com/file/d/1ObZx67LF96OvoOlaN-S5BM8GbZL6bH9m/view?usp=drive_link"
+            class="video-link"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Watch memory video 6"
+        >
+            WATCH MEMORY ↗
+        </a>
 
-            <iframe
-                data-src="https://drive.google.com/file/d/1ObZx67LF96OvoOlaN-S5BM8GbZL6bH9m/preview"
-                title="Memory video 6"
-                allow="autoplay"
-                allowfullscreen>
-            </iframe>
+    </div>
 
-        </div>
+    <div class="video-caption">
+        <span class="video-number">06</span>
+        <span class="video-text">
+            you making yourself laugh at the jeans post caption😭
+        </span>
+    </div>
 
-        <div class="video-caption">
-            <span class="video-number">06</span>
-            <span class="video-text">
-                you making yourself laugh at the jeans post caption😭
-            </span>
-        </div>
+</article>
 
-    </article>
 
+<!-- VIDEO 7 -->
 
-    <!-- VIDEO 7 -->
+<article class="video-card">
 
-    <article class="video-card">
+    <div class="video-frame">
 
-        <div class="video-frame">
+        <a
+            href="https://drive.google.com/file/d/1INAKUIL4B0Z_LeeZdEs-3ksmmmCyhykl/view?usp=drive_link"
+            class="video-link"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Watch memory video 7"
+        >
+            WATCH MEMORY ↗
+        </a>
 
-            <iframe
-                data-src="https://drive.google.com/file/d/1INAKUIL4B0Z_LeeZdEs-3ksmmmCyhykl/preview"
-                title="Memory video 7"
-                allow="autoplay"
-                allowfullscreen>
-            </iframe>
+    </div>
 
-        </div>
+    <div class="video-caption">
+        <span class="video-number">07</span>
+        <span class="video-text">
+            you being a bully…bc i cant afford proper earbuds..hm this life
+        </span>
+    </div>
 
-        <div class="video-caption">
-            <span class="video-number">07</span>
-            <span class="video-text">
-                you being a bully…bc i cant afford proper earbuds..hm this life
-            </span>
-        </div>
+</article>
 
-    </article>
 
+<!-- VIDEO 8 -->
 
-    <!-- VIDEO 8 -->
+<article class="video-card">
 
-    <article class="video-card">
+    <div class="video-frame">
 
-        <div class="video-frame">
+        <a
+            href="https://drive.google.com/file/d/1VHuZXWl9EKfS4j7941PBzcDpEM5a5LgY/view?usp=drive_link"
+            class="video-link"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Watch memory video 8"
+        >
+            WATCH MEMORY ↗
+        </a>
 
-            <iframe
-                data-src="https://drive.google.com/file/d/1VHuZXWl9EKfS4j7941PBzcDpEM5a5LgY/preview"
-                title="Memory video 8"
-                allow="autoplay"
-                allowfullscreen>
-            </iframe>
+    </div>
 
-        </div>
+    <div class="video-caption">
+        <span class="video-number">08</span>
+        <span class="video-text">
+            🤣not an amazing angle for me but this was just funny
+        </span>
+    </div>
 
-        <div class="video-caption">
-            <span class="video-number">08</span>
-            <span class="video-text">
-                🤣not an amazing angle for me but this was just funny
-            </span>
-        </div>
+</article>
 
-    </article>
 
+<!-- VIDEO 9 -->
 
-    <!-- VIDEO 9 -->
+<article class="video-card">
 
-    <article class="video-card">
+    <div class="video-frame">
 
-        <div class="video-frame">
+        <a
+            href="https://drive.google.com/file/d/1-5CTfYhO1iqhTq3tgWbw2HxljmtSPldO/view?usp=drive_link"
+            class="video-link"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Watch memory video 9"
+        >
+            WATCH MEMORY ↗
+        </a>
 
-            <iframe
-                data-src="https://drive.google.com/file/d/1-5CTfYhO1iqhTq3tgWbw2HxljmtSPldO/preview"
-                title="Memory video 9"
-                allow="autoplay"
-                allowfullscreen>
-            </iframe>
+    </div>
 
-        </div>
+    <div class="video-caption">
+        <span class="video-number">09</span>
+        <span class="video-text">
+            after cheating you’re hiding from the camera🤣
+        </span>
+    </div>
 
-        <div class="video-caption">
-            <span class="video-number">09</span>
-            <span class="video-text">
-                after cheating you’re hiding from the camera🤣
-            </span>
-        </div>
+</article>
 
-    </article>
 
+<!-- VIDEO 10 -->
 
-    <!-- VIDEO 10 -->
+<article class="video-card">
 
-    <article class="video-card">
+    <div class="video-frame">
 
-        <div class="video-frame">
+        <a
+            href="https://drive.google.com/file/d/1iBnwAu87PSvGRvkiUhq2vaFH0j8_MWqR/view?usp=drive_link"
+            class="video-link"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Watch memory video 10"
+        >
+            WATCH MEMORY ↗
+        </a>
 
-            <iframe
-                data-src="https://drive.google.com/file/d/1iBnwAu87PSvGRvkiUhq2vaFH0j8_MWqR/preview"
-                title="Memory video 10"
-                allow="autoplay"
-                allowfullscreen>
-            </iframe>
+    </div>
 
-        </div>
+    <div class="video-caption">
+        <span class="video-number">10</span>
+        <span class="video-text">
+            another one of your losses to me🙂‍↕️
+        </span>
+    </div>
 
-        <div class="video-caption">
-            <span class="video-number">10</span>
-            <span class="video-text">
-                another one of your losses to me🙂‍↕️
-            </span>
-        </div>
+</article>
 
-    </article>
 
+<!-- VIDEO 11 -->
 
-    <!-- VIDEO 11 -->
+<article class="video-card">
 
-    <article class="video-card">
+    <div class="video-frame">
 
-        <div class="video-frame">
+        <a
+            href="https://drive.google.com/file/d/1zj66vX1QQrn3i4N4BW-lYVBkANXqzjQS/view?usp=drive_link"
+            class="video-link"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Watch memory video 11"
+        >
+            WATCH MEMORY ↗
+        </a>
 
-            <iframe
-                data-src="https://drive.google.com/file/d/1zj66vX1QQrn3i4N4BW-lYVBkANXqzjQS/preview"
-                title="Memory video 11"
-                allow="autoplay"
-                allowfullscreen>
-            </iframe>
+    </div>
 
-        </div>
+    <div class="video-caption">
+        <span class="video-number">11</span>
+        <span class="video-text">
+            🤣🤣this has got to be my favorite😭😭
+        </span>
+    </div>
 
-        <div class="video-caption">
-            <span class="video-number">11</span>
-            <span class="video-text">
-                🤣🤣this has got to be my favorite😭😭
-            </span>
-        </div>
-
-    </article>
-
+</article>
+```
 
 </div>
 
 </section>
-
 
 <!-- =================================================
      DIVIDER
 ================================================= -->
 
 <div class="archive-divider"></div>
-
 
 <!-- =================================================
      SCREENSHOTS
@@ -1531,213 +1657,213 @@ h1 {
 
 <div class="section-header">
 
-    <div class="section-label">
-        02 / Screenshots
-    </div>
+```
+<div class="section-label">
+    02 / Screenshots
+</div>
 
-    <h2 class="section-title">
-        Things You Actually Said
-    </h2>
+<h2 class="section-title">
+    Things You Actually Said
+</h2>
 
-    <div class="section-line"></div>
+<div class="section-line"></div>
 
-    <p class="section-note">
-        because apparently screenshots are evidence now.
-    </p>
+<p class="section-note">
+    because apparently screenshots are evidence now.
+</p>
+```
 
 </div>
 
-
 <div class="screenshot-grid">
 
+```
+<!-- SCREENSHOTS 1–4 -->
 
-    <!-- SCREENSHOTS 1–4 -->
+<article class="screenshot-card">
 
-    <article class="screenshot-card">
+    <span class="screenshot-number">01</span>
 
-        <span class="screenshot-number">01</span>
-
-        <div class="screenshot-frame">
-            <img src="screenshot1.jpg" alt="Screenshot 1" loading="lazy">
-        </div>
-
-    </article>
-
-
-    <article class="screenshot-card">
-
-        <span class="screenshot-number">02</span>
-
-        <div class="screenshot-frame">
-            <img src="screenshot2.jpg" alt="Screenshot 2" loading="lazy">
-        </div>
-
-    </article>
-
-
-    <article class="screenshot-card">
-
-        <span class="screenshot-number">03</span>
-
-        <div class="screenshot-frame">
-            <img src="screenshot3.jpg" alt="Screenshot 3" loading="lazy">
-        </div>
-
-    </article>
-
-
-    <article class="screenshot-card">
-
-        <span class="screenshot-number">04</span>
-
-        <div class="screenshot-frame">
-            <img src="screenshot4.jpg" alt="Screenshot 4" loading="lazy">
-        </div>
-
-    </article>
-
-
-    <div class="group-caption">
-        you saying the most out of pocket things😭
+    <div class="screenshot-frame">
+        <img src="screenshot1.jpg" alt="Screenshot 1" loading="lazy">
     </div>
 
-
-    <!-- SCREENSHOTS 5–8 -->
-
-    <article class="screenshot-card">
-
-        <span class="screenshot-number">05</span>
-
-        <div class="screenshot-frame">
-            <img src="screenshot5.jpg" alt="Screenshot 5" loading="lazy">
-        </div>
-
-    </article>
+</article>
 
 
-    <article class="screenshot-card">
+<article class="screenshot-card">
 
-        <span class="screenshot-number">06</span>
+    <span class="screenshot-number">02</span>
 
-        <div class="screenshot-frame">
-            <img src="screenshot6.jpg" alt="Screenshot 6" loading="lazy">
-        </div>
-
-    </article>
-
-
-    <article class="screenshot-card">
-
-        <span class="screenshot-number">07</span>
-
-        <div class="screenshot-frame">
-            <img src="screenshot7.jpg" alt="Screenshot 7" loading="lazy">
-        </div>
-
-    </article>
-
-
-    <article class="screenshot-card">
-
-        <span class="screenshot-number">08</span>
-
-        <div class="screenshot-frame">
-            <img src="screenshot8.jpg" alt="Screenshot 8" loading="lazy">
-        </div>
-
-    </article>
-
-
-    <div class="group-caption">
-        rare moments when your humor didnt fail you but your ‘dont be weird’ filter did🤣
+    <div class="screenshot-frame">
+        <img src="screenshot2.jpg" alt="Screenshot 2" loading="lazy">
     </div>
 
-
-    <!-- SCREENSHOTS 9–13 -->
-
-    <article class="screenshot-card">
-
-        <span class="screenshot-number">09</span>
-
-        <div class="screenshot-frame">
-            <img src="screenshot9.jpg" alt="Screenshot 9" loading="lazy">
-        </div>
-
-    </article>
+</article>
 
 
-    <article class="screenshot-card">
+<article class="screenshot-card">
 
-        <span class="screenshot-number">10</span>
+    <span class="screenshot-number">03</span>
 
-        <div class="screenshot-frame">
-            <img src="screenshot10.jpg" alt="Screenshot 10" loading="lazy">
-        </div>
-
-    </article>
-
-
-    <article class="screenshot-card">
-
-        <span class="screenshot-number">11</span>
-
-        <div class="screenshot-frame">
-            <img src="screenshot11.jpg" alt="Screenshot 11" loading="lazy">
-        </div>
-
-    </article>
-
-
-    <article class="screenshot-card">
-
-        <span class="screenshot-number">12</span>
-
-        <div class="screenshot-frame">
-            <img src="screenshot12.jpg" alt="Screenshot 12" loading="lazy">
-        </div>
-
-    </article>
-
-
-    <article class="screenshot-card">
-
-        <span class="screenshot-number">13</span>
-
-        <div class="screenshot-frame">
-            <img src="screenshot13.jpg" alt="Screenshot 13" loading="lazy">
-        </div>
-
-    </article>
-
-
-    <div class="group-caption">
-        cute? sweet? pg18?😭
+    <div class="screenshot-frame">
+        <img src="screenshot3.jpg" alt="Screenshot 3" loading="lazy">
     </div>
 
+</article>
 
-    <!-- SCREENSHOT 14 -->
 
-    <article class="screenshot-card final">
+<article class="screenshot-card">
 
-        <span class="screenshot-number">
-            14
-        </span>
+    <span class="screenshot-number">04</span>
 
-        <div class="screenshot-frame">
-            <img src="screenshot14.jpg" alt="Screenshot 14" loading="lazy">
-        </div>
+    <div class="screenshot-frame">
+        <img src="screenshot4.jpg" alt="Screenshot 4" loading="lazy">
+    </div>
 
-        <div class="screenshot-caption">
-            i never told you but this had me on the floor…but i added it to clarify once and for all. i am taller than 4’11!!!
-        </div>
+</article>
 
-    </article>
 
+<div class="group-caption">
+    you saying the most out of pocket things😭
+</div>
+
+
+<!-- SCREENSHOTS 5–8 -->
+
+<article class="screenshot-card">
+
+    <span class="screenshot-number">05</span>
+
+    <div class="screenshot-frame">
+        <img src="screenshot5.jpg" alt="Screenshot 5" loading="lazy">
+    </div>
+
+</article>
+
+
+<article class="screenshot-card">
+
+    <span class="screenshot-number">06</span>
+
+    <div class="screenshot-frame">
+        <img src="screenshot6.jpg" alt="Screenshot 6" loading="lazy">
+    </div>
+
+</article>
+
+
+<article class="screenshot-card">
+
+    <span class="screenshot-number">07</span>
+
+    <div class="screenshot-frame">
+        <img src="screenshot7.jpg" alt="Screenshot 7" loading="lazy">
+    </div>
+
+</article>
+
+
+<article class="screenshot-card">
+
+    <span class="screenshot-number">08</span>
+
+    <div class="screenshot-frame">
+        <img src="screenshot8.jpg" alt="Screenshot 8" loading="lazy">
+    </div>
+
+</article>
+
+
+<div class="group-caption">
+    rare moments when your humor didnt fail you but your ‘dont be weird’ filter did🤣
+</div>
+
+
+<!-- SCREENSHOTS 9–13 -->
+
+<article class="screenshot-card">
+
+    <span class="screenshot-number">09</span>
+
+    <div class="screenshot-frame">
+        <img src="screenshot9.jpg" alt="Screenshot 9" loading="lazy">
+    </div>
+
+</article>
+
+
+<article class="screenshot-card">
+
+    <span class="screenshot-number">10</span>
+
+    <div class="screenshot-frame">
+        <img src="screenshot10.jpg" alt="Screenshot 10" loading="lazy">
+    </div>
+
+</article>
+
+
+<article class="screenshot-card">
+
+    <span class="screenshot-number">11</span>
+
+    <div class="screenshot-frame">
+        <img src="screenshot11.jpg" alt="Screenshot 11" loading="lazy">
+    </div>
+
+</article>
+
+
+<article class="screenshot-card">
+
+    <span class="screenshot-number">12</span>
+
+    <div class="screenshot-frame">
+        <img src="screenshot12.jpg" alt="Screenshot 12" loading="lazy">
+    </div>
+
+</article>
+
+
+<article class="screenshot-card">
+
+    <span class="screenshot-number">13</span>
+
+    <div class="screenshot-frame">
+        <img src="screenshot13.jpg" alt="Screenshot 13" loading="lazy">
+    </div>
+
+</article>
+
+
+<div class="group-caption">
+    cute? sweet? pg18?😭
+</div>
+
+
+<!-- SCREENSHOT 14 -->
+
+<article class="screenshot-card final">
+
+    <span class="screenshot-number">
+        14
+    </span>
+
+    <div class="screenshot-frame">
+        <img src="screenshot14.jpg" alt="Screenshot 14" loading="lazy">
+    </div>
+
+    <div class="screenshot-caption">
+        i never told you but this had me on the floor…but i added it to clarify once and for all. i am taller than 4’11!!!
+    </div>
+
+</article>
+```
 
 </div>
 
 </section>
-
 
 <!-- =================================================
      BOTTOM
@@ -1750,16 +1876,20 @@ h1 {
 </p>
 
 <a
-    href="birthday.html"
-    class="back page-link"
+href="birthday.html"
+class="back page-link"
+
 >
-    Continue → Birthday
+
+```
+Continue → Birthday
+```
+
 </a>
 
 </div>
 
 </main>
-
 
 <!-- =================================================
      SCREENSHOT LIGHTBOX
@@ -1773,21 +1903,23 @@ h1 {
 
 <div class="lightbox-image-wrap">
 
-    <button
-        class="lightbox-close"
-        id="lightboxClose"
-        aria-label="Close screenshot"
-        type="button"
-    >
-        ×
-    </button>
+```
+<button
+    class="lightbox-close"
+    id="lightboxClose"
+    aria-label="Close screenshot"
+    type="button"
+>
+    ×
+</button>
 
-    <img
-        class="lightbox-image"
-        id="lightboxImage"
-        src=""
-        alt=""
-    >
+<img
+    class="lightbox-image"
+    id="lightboxImage"
+    src=""
+    alt=""
+>
+```
 
 </div>
 
@@ -1796,7 +1928,6 @@ h1 {
 </div>
 
 </div>
-
 
 <script>
 
@@ -1811,64 +1942,6 @@ window.addEventListener("DOMContentLoaded", function () {
         document.body.classList.add("page-ready");
 
     });
-
-});
-
-
-/* =====================================================
-   FAST PAGE NAVIGATION
-===================================================== */
-
-document.querySelectorAll("a.page-link").forEach(function (link) {
-
-    link.addEventListener("click", function (event) {
-
-        /*
-         * No artificial delay.
-         * Let the browser navigate immediately.
-         */
-
-    });
-
-});
-
-
-/* =====================================================
-   LAZY-LOAD GOOGLE DRIVE VIDEOS
-===================================================== */
-
-const videoIframes =
-    document.querySelectorAll(".video-frame iframe[data-src]");
-
-
-const videoObserver =
-    new IntersectionObserver(
-        function (entries, observer) {
-
-            entries.forEach(function (entry) {
-
-                if (!entry.isIntersecting) return;
-
-                const iframe = entry.target;
-
-                iframe.src = iframe.dataset.src;
-
-                iframe.removeAttribute("data-src");
-
-                observer.unobserve(iframe);
-
-            });
-
-        },
-        {
-            rootMargin: "300px 0px"
-        }
-    );
-
-
-videoIframes.forEach(function (iframe) {
-
-    videoObserver.observe(iframe);
 
 });
 
