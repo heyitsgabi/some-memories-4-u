@@ -314,6 +314,8 @@ h1 {
 
     overflow: hidden;
 
+    box-sizing: border-box;
+
     border: 1px solid rgba(255,255,255,0.22);
 
     box-shadow:
@@ -386,8 +388,11 @@ h1 {
     width: 100% !important;
     height: 100% !important;
 
-    min-width: 100%;
-    max-width: none;
+    min-width: 0 !important;
+    max-width: none !important;
+
+    min-height: 0 !important;
+    max-height: 100% !important;
 
     border: 0;
 
@@ -589,99 +594,96 @@ h1 {
 
 <div class="content">
 
-```
 <!-- HEADER -->
 
 <div class="eyebrow">
     $OME MEMORIES 4 U
 </div>
 
-
 <h1>
     MUSIC
 </h1>
-
 
 <!-- INTRO -->
 
 <div class="text-with-headphones intro">
 
-    <div class="headphones"></div>
+```
+<div class="headphones"></div>
 
-    <p>
-        A playlist made up of songs you like (I think) and songs you made me listen to.
-    </p>
+<p>
+    A playlist made up of songs you like (I think) and songs you made me listen to.
+</p>
 
-    <div class="headphones"></div>
+<div class="headphones"></div>
+```
 
 </div>
-
 
 <!-- SPOTIFY -->
 
 <div class="spotify-container">
 
-    <div class="spotify-label">
+```
+<div class="spotify-label">
 
-        <span class="spotify-dot"></span>
+    <span class="spotify-dot"></span>
 
-        Now playing
-
-    </div>
-
-
-    <div class="spotify-box">
-
-        <iframe
-            src="https://open.spotify.com/embed/playlist/6hKLkkNrVIzQXHrSKG5bsk?utm_source=generator"
-            title="Music playlist"
-            frameborder="0"
-            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-            allowfullscreen>
-        </iframe>
-
-    </div>
-
-
-    <a
-        href="https://open.spotify.com/playlist/6hKLkkNrVIzQXHrSKG5bsk"
-        class="spotify-open"
-        target="_blank"
-        rel="noopener noreferrer">
-        Open in Spotify ↗
-    </a>
+    Now playing
 
 </div>
 
+
+<div class="spotify-box">
+
+    <iframe
+        src="https://open.spotify.com/embed/playlist/6hKLkkNrVIzQXHrSKG5bsk?utm_source=generator"
+        title="Music playlist"
+        frameborder="0"
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+        allowfullscreen>
+    </iframe>
+
+</div>
+
+
+<a
+    href="https://open.spotify.com/playlist/6hKLkkNrVIzQXHrSKG5bsk"
+    class="spotify-open"
+    target="_blank"
+    rel="noopener noreferrer">
+    Open in Spotify ↗
+</a>
+```
+
+</div>
 
 <!-- LOWER TEXT -->
 
 <div class="text-with-headphones tease">
 
-    <div class="headphones"></div>
+```
+<div class="headphones"></div>
 
-    <p>
-        Some of these you’ll recognize… some you might not… hehe.
-    </p>
+<p>
+    Some of these you’ll recognize… some you might not… hehe.
+</p>
 
-    <div class="headphones"></div>
+<div class="headphones"></div>
+```
 
 </div>
-
 
 <div class="listen">
     Listen in order 😐
 </div>
 
-
 <!-- CONTINUE -->
 
 <a
-    href="/some-memories-4-u/moments.html"
-    class="back page-link">
-    Continue to moments →
-</a>
-```
+ href="/some-memories-4-u/moments.html"
+ class="back page-link">
+Continue to moments → </a>
 
 </div>
 
