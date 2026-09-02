@@ -510,13 +510,23 @@ h1 {
 
 
 /* =====================================================
-   RETURN BUTTON
+   RETURN BUTTONS
 ===================================================== */
+
+.return-buttons {
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin-top: 30px;
+}
 
 .return {
     display: inline-block;
-
-    margin-top: 30px;
 
     text-decoration: none;
 
@@ -766,6 +776,19 @@ h1 {
         margin-top: 45px;
     }
 
+    .return-buttons {
+        flex-direction: column;
+
+        gap: 9px;
+
+        width: 100%;
+    }
+
+    .return {
+        width: 100%;
+        max-width: 220px;
+    }
+
     .mark-one,
     .mark-two,
     .mark-three,
@@ -911,14 +934,25 @@ h1 {
         </div>
 
 
-        <!-- RETURN -->
+        <!-- RETURN BUTTONS -->
 
-        <a
-            href="memories.html"
-            class="return"
-        >
-            ← Back to Memories
-        </a>
+        <div class="return-buttons">
+
+            <a
+                href="memories.html"
+                class="return"
+            >
+                ← Back to Memories
+            </a>
+
+            <a
+                href="index.html"
+                class="return"
+            >
+                ← Back to Cover
+            </a>
+
+        </div>
 
 
     </section>
