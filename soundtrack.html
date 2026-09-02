@@ -259,7 +259,7 @@ h1 {
 
 .spotify-container {
     width: 100%;
-    max-width: 560px;
+    max-width: 600px;
 
     margin: 0 auto 18px;
 }
@@ -304,7 +304,7 @@ h1 {
 
 .spotify-box {
     width: 100%;
-    height: 352px;
+    height: 390px;
 
     position: relative;
 
@@ -392,7 +392,7 @@ h1 {
     max-width: none !important;
 
     min-height: 0 !important;
-    max-height: 100% !important;
+    max-height: none !important;
 
     border: 0;
 
@@ -469,13 +469,25 @@ h1 {
 
 
 /* =========================================
-   CONTINUE TO MOMENTS
+   NAVIGATION
 ========================================= */
 
-.back {
-    display: inline-block;
+.navigation {
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 20px;
 
     margin-top: 30px;
+}
+
+.nav-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
 
     color: #707070;
 
@@ -494,13 +506,33 @@ h1 {
         transform 0.2s ease;
 }
 
-.back:visited {
+.nav-button:visited {
     color: #707070;
 }
 
-.back:hover {
+.nav-button:hover {
     color: #ffffff;
+}
+
+.nav-button:not(.back-button):hover {
     transform: translateX(2px);
+}
+
+.back-button:hover {
+    transform: translateX(-2px);
+}
+
+.nav-arrow {
+    display: inline-block;
+    transition: transform 0.2s ease;
+}
+
+.back-button:hover .nav-arrow {
+    transform: translateX(-3px);
+}
+
+.nav-button:not(.back-button):hover .nav-arrow {
+    transform: translateX(3px);
 }
 
 
@@ -523,8 +555,12 @@ h1 {
         width: 520px;
     }
 
+    .spotify-container {
+        max-width: 100%;
+    }
+
     .spotify-box {
-        height: 352px;
+        height: 390px;
     }
 
     .intro p {
@@ -544,7 +580,7 @@ h1 {
     }
 
     .spotify-box {
-        height: 352px;
+        height: 390px;
     }
 
     .text-with-headphones {
@@ -553,6 +589,15 @@ h1 {
 
     .headphones {
         transform: scale(0.85);
+    }
+
+    .navigation {
+        gap: 12px;
+    }
+
+    .nav-button {
+        font-size: 8px;
+        letter-spacing: 2px;
     }
 
 }
@@ -570,7 +615,7 @@ h1 {
 
     .spotify-box,
     .spotify-open,
-    .back {
+    .nav-button {
         transition: none;
     }
 
@@ -608,7 +653,6 @@ h1 {
 
 <div class="text-with-headphones intro">
 
-```
 <div class="headphones"></div>
 
 <p>
@@ -616,7 +660,6 @@ h1 {
 </p>
 
 <div class="headphones"></div>
-```
 
 </div>
 
@@ -624,7 +667,6 @@ h1 {
 
 <div class="spotify-container">
 
-```
 <div class="spotify-label">
 
     <span class="spotify-dot"></span>
@@ -654,7 +696,6 @@ h1 {
     rel="noopener noreferrer">
     Open in Spotify ↗
 </a>
-```
 
 </div>
 
@@ -662,7 +703,6 @@ h1 {
 
 <div class="text-with-headphones tease">
 
-```
 <div class="headphones"></div>
 
 <p>
@@ -670,7 +710,6 @@ h1 {
 </p>
 
 <div class="headphones"></div>
-```
 
 </div>
 
@@ -678,12 +717,26 @@ h1 {
     Listen in order 😐
 </div>
 
-<!-- CONTINUE -->
+<!-- NAVIGATION -->
+
+<nav class="navigation">
 
 <a
- href="/some-memories-4-u/moments.html"
- class="back page-link">
-Continue to moments → </a>
+    href="/some-memories-4-u/archive.html"
+    class="nav-button back-button page-link">
+    <span class="nav-arrow">←</span>
+    Back to Archive
+</a>
+
+<a
+    href="/some-memories-4-u/moments.html"
+    class="nav-button page-link">
+    Continue
+    <span class="nav-arrow">→</span>
+    Moments
+</a>
+
+</nav>
 
 </div>
 
